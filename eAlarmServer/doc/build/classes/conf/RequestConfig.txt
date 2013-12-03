@@ -1,0 +1,2 @@
+/MarketingService
+	Class==com.ar.bean.LoginBean
