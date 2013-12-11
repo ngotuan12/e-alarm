@@ -23,4 +23,14 @@
 		<servlet-name>MarketingService</servlet-name>
 		<url-pattern>/MarketingService</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<description></description>
+		<display-name>AreaService</display-name>
+		<servlet-name>AreaService</servlet-name>
+		<servlet-class>com.ar.service.AreaService</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AreaService</servlet-name>
+		<url-pattern>/AreaService</url-pattern>
+	</servlet-mapping>
 </web-app>

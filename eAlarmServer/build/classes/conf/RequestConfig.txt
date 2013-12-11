@@ -1,2 +1,4 @@
 /MarketingService
 	Class==com.ar.bean.LoginBean
+/AreaService
+	Class==com.ar.bean.AreaBean

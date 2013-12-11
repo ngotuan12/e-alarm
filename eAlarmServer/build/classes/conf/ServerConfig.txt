@@ -17,8 +17,8 @@ Connection
 		UserName==SC_OWNER
 		Password==scowner
 	MySQL
-		#Url==jdbc:mysql://127.0.0.1:3306/studylibrary?useEncoding=true&characterEncoding=utf-8
-		Url==jdbc:mysql://127.0.0.1:9999/studylibrary?useEncoding=true&characterEncoding=UTF-8
+		#Url==jdbc:mysql://192.168.1.110:3306/studylibrary?useEncoding=true&characterEncoding=utf-8
+		Url==jdbc:mysql://192.168.1.110:9999/alarm?useEncoding=true&characterEncoding=UTF-8
 		UserName==root
 		Password==113322
 		#Password==123456@123
