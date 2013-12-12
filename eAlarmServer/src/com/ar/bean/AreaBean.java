@@ -11,7 +11,6 @@ import com.fss.sql.Database;
 
 public class AreaBean extends AppProcessor
 {
-
 	public ResultSet ExcuteQuery(String Query, int TypeExcute) throws Exception
 	{
 		PreparedStatement pstm = null;
@@ -58,7 +57,7 @@ public class AreaBean extends AppProcessor
 
 	private JSONArray GetByID(int ID) throws Exception
 	{
-		String strSQL = "SELECT id,code,name,parent_id,level,status,woodenleg,lat,lng,type "
+		String strSQL = "SELECT id as ID,code as Code,name as Name,parent_id as ParentID,level as Level,status as Status,woodenleg as Woodenleg,lat as Lat,lng as Lng,type as Type "
 				+ "FROM area WHERE id = " + String.valueOf(ID);
 		JSONArray arr = Util.convertToJSONArray(ExcuteQuery(strSQL, 0));
 		return arr;
