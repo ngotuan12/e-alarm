@@ -2,3 +2,5 @@
 	Class==com.ar.bean.LoginBean
 /AreaService
 	Class==com.ar.bean.AreaBean
+/DeviceServices
+	Class==com.ar.bean.DeviceBean

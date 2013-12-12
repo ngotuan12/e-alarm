@@ -33,4 +33,14 @@
 		<servlet-name>AreaService</servlet-name>
 		<url-pattern>/AreaService</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<description></description>
+		<display-name>DeviceServices</display-name>
+		<servlet-name>DeviceServices</servlet-name>
+		<servlet-class>com.ar.service.DeviceServices</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DeviceServices</servlet-name>
+		<url-pattern>/DeviceServices</url-pattern>
+	</servlet-mapping>
 </web-app>
