@@ -30,9 +30,7 @@ public class AreaBean extends AppProcessor
 				pstm.executeUpdate();
 				rs = null;
 			}
-			
 			JSONArray arr = Util.convertToJSONArray(rs);
-			
 			return arr;
 		}
 		catch (Exception ex)
@@ -53,7 +51,8 @@ public class AreaBean extends AppProcessor
 		String strSQL = "SELECT id as ID,code as Code,name as Name,parent_id as ParentID,level as Level,status as Status,woodenleg as Woodenleg,lat as Lat,lng as Lng,type as Type "
 				+ "FROM area "
 				+ "WHERE status=1 AND parent_id = "
-				+ String.valueOf(ID);
+				+ String.valueOf(ID)
+				+ " ORDER BY woodenleg";
 		return ExcuteQuery(strSQL, 0);
 	}
 
@@ -97,6 +96,21 @@ public class AreaBean extends AppProcessor
 		ExcuteQuery(strSQL, 1);
 	}
 
+	private JSONArray GetAllAreaActive() throws Exception {
+		String strSQL = "SELECT id as ID,code as Code,name as Name,parent_id as ParentID,level as Level,status as Status,woodenleg as Woodenleg,lat as Lat,lng as Lng,type as Type "
+				+ "FROM area "
+				+ "WHERE status=1 "
+				+ " ORDER BY woodenleg";
+		return ExcuteQuery(strSQL, 0);
+	}
+	
+	private JSONArray GetAllArea() throws Exception {
+		String strSQL = "SELECT id as ID,code as Code,name as Name,parent_id as ParentID,level as Level,status as Status,woodenleg as Woodenleg,lat as Lat,lng as Lng,type as Type "
+				+ "FROM area "
+				+ " ORDER BY woodenleg";
+		return ExcuteQuery(strSQL, 0);
+	}
+	
 	@Override
 	public void doPost() throws Exception
 	{
@@ -152,11 +166,23 @@ public class AreaBean extends AppProcessor
 			DisbleArea(IDAreaDis);
 			response.put("Mess", "Success");
 			break;
+		case "GetAllAreaActive":
+			JSONArray GetAllAreaActive = GetAllAreaActive();
+			response.put("ListAreaActive", GetAllAreaActive);
+			response.put("Mess", "Success");
+			break;
+		case "GetAllArea":
+			JSONArray GetAllArea = GetAllArea();
+			response.put("ListArea", GetAllArea);
+			response.put("Mess", "Success");
+			break;
 		default:
 			response.put("Mess", "API does not exist");
 			break;
 		}// TODO Auto-generated method stub
 	}
+
+	
 
 	@Override
 	public void doGet() throws Exception
