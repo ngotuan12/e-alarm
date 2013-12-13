@@ -81,7 +81,7 @@ public class DeviceBean extends AppProcessor
 				Database.closeObject(pstm);
 				Database.closeObject(rs);
 				// response
-				response.put("error", "no device found");
+				response.put("Mess", "no device found");
 			}
 			else
 			{
@@ -132,12 +132,12 @@ public class DeviceBean extends AppProcessor
 				Database.closeObject(pstm);
 				Database.closeObject(rs);
 				// response
-				response.put("done", "edit sucess");
+				response.put("Mess", "edit sucess");
 			}
 			else
 			{
 				// response
-				response.put("error", "have error with execute(validate data)");
+				response.put("Mess", "have error with execute(validate data)");
 			}
 		}
 		catch (Exception ex)
@@ -176,7 +176,7 @@ public class DeviceBean extends AppProcessor
 				Database.closeObject(pstm);
 				Database.closeObject(rs);
 				// response
-				response.put("error", "no device found");
+				response.put("Mess", "no device found");
 			}
 			else
 			{
@@ -219,7 +219,7 @@ public class DeviceBean extends AppProcessor
 				Database.closeObject(pstm);
 				Database.closeObject(rs);
 				// response
-				response.put("error", "no device found");
+				response.put("Mess", "no device found");
 			}
 			else
 			{
@@ -263,12 +263,12 @@ public class DeviceBean extends AppProcessor
 				Database.closeObject(pstm);
 				Database.closeObject(rs);
 				// response
-				response.put("done", "edit sucess");
+				response.put("Mess", "edit sucess");
 			}
 			else
 			{
 				// response
-				response.put("error", "have error with execute(validate data)");
+				response.put("Mess", "have error with execute(validate data)");
 			}
 		}
 		catch (Exception ex)
@@ -322,12 +322,12 @@ public class DeviceBean extends AppProcessor
 				Database.closeObject(pstm);
 				Database.closeObject(rs);
 				// response
-				response.put("done", "edit sucess");
+				response.put("Mess", "edit sucess");
 			}
 			else
 			{
 				// response
-				response.put("error", "have error with execute(validate data)");
+				response.put("Mess", "have error with execute(validate data)");
 			}
 		}
 		catch (Exception ex)
@@ -378,12 +378,12 @@ public class DeviceBean extends AppProcessor
 				Database.closeObject(pstm);
 				Database.closeObject(rs);
 				// response
-				response.put("done", "insert sucess");
+				response.put("Mess", "insert sucess");
 			}
 			else
 			{
 				// response
-				response.put("error", "have error with execute(validate data)");
+				response.put("Mess", "have error with execute(validate data)");
 			}
 		}
 		catch (Exception ex)
@@ -420,7 +420,7 @@ public class DeviceBean extends AppProcessor
 				Database.closeObject(pstm);
 				Database.closeObject(rs);
 				// response
-				response.put("error", "no device found");
+				response.put("Mess", "no device found");
 			}
 			else
 			{
