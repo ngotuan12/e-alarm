@@ -23,7 +23,7 @@ public class DeviceBean extends AppProcessor
 			// open connection
 			open();
 			strSQL = "SELECT id,device_id,infor_id,value"
-					+ "FROM device_infor " + "WHERE device_id = ?";
+					+ " FROM device_infor " + "WHERE device_id = ?";
 			// prepare
 			pstm = mcnMain.prepareStatement(strSQL);
 			pstm.setInt(1, deviceID);
@@ -67,7 +67,7 @@ public class DeviceBean extends AppProcessor
 			// open connection
 			open();
 			strSQL = "SELECT id,code,area_id,area_code,address,lat,lng,status"
-					+ "FROM device " + "WHERE id = ? and status = 1";
+					+ " FROM device " + "WHERE id = ? and status = 1";
 			// prepare
 			pstm = mcnMain.prepareStatement(strSQL);
 			pstm.setString(1, strDeviceID.toUpperCase());
@@ -162,7 +162,7 @@ public class DeviceBean extends AppProcessor
 			// open connection
 			open();
 			strSQL = "SELECT id,code,area_id,area_code,address,lat,lng,status"
-					+ "FROM device " + "WHERE id = ? and status = 1";
+					+ " FROM device " + "WHERE id = ? and status = 1";
 			// prepare
 			pstm = mcnMain.prepareStatement(strSQL);
 			pstm.setString(1, strDeviceID.toUpperCase());
@@ -206,7 +206,7 @@ public class DeviceBean extends AppProcessor
 			// open connection
 			open();
 			strSQL = "SELECT id,code,area_id,area_code,address,lat,lng,status"
-					+ "FROM device ";
+					+ " FROM device ";
 			// prepare
 			pstm = mcnMain.prepareStatement(strSQL);
 			rs = pstm.executeQuery();
@@ -407,7 +407,7 @@ public class DeviceBean extends AppProcessor
 			// open connection
 			open();
 			strSQL = "SELECT id,code,area_id,area_code,address,lat,lng,status"
-					+ "FROM device ";
+					+ " FROM device ";
 			// prepare
 			pstm = mcnMain.prepareStatement(strSQL);
 			rs = pstm.executeQuery();
