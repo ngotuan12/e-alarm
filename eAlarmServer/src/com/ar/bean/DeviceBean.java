@@ -447,8 +447,7 @@ public class DeviceBean extends AppProcessor
 	@Override
 	public void doPost() throws Exception
 	{
-
-		String request_type = request.getString("data");
+		String request_type = request.getString("Method");
 		switch (request_type)
 		{
 		case "onGetDevicesByID":
@@ -456,6 +455,24 @@ public class DeviceBean extends AppProcessor
 			break;
 		case "onGetAllDevices":
 			onGetAllDevices();
+			break;
+		case "onCreateNewDevices":
+			onCreateNewDevices();
+			break;
+		case "onEditDevices":
+			onEditDevices();
+			break;
+		case "onDisableDevices":
+			onDisableDevices();
+			break;
+		case "onGetDevicesandDeviceinfobyID":
+			onGetDevicesandDeviceinfobyID();
+			break;
+		case "onEditDevicesinfobyID":
+			onEditDevicesinfobyID();
+			break;
+		case "onViewDevicesOnMap":
+			onViewDevicesOnMap();
 			break;
 		default:
 			response.put("error", "you must enter the correct API name");
