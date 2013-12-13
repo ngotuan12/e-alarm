@@ -182,7 +182,6 @@ public class AreaBean extends AppProcessor
 		}// TODO Auto-generated method stub
 	}
 
-	
 
 	@Override
 	public void doGet() throws Exception
