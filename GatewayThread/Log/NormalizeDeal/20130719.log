@@ -1,0 +1,2660 @@
+19/07 09:52:50 START Process request started
+..check connect database
+connected to database
+19/07 09:53:51 INFO Processing request...
+19/07 09:53:51 INFO id: 1
+19/07 09:53:51 INFO device: 8747fe8651ea9f38
+19/07 09:53:51 INFO result: 20130618100048
+19/07 09:53:51 INFO Request has process succcessful!
+19/07 09:53:51 INFO END.
+19/07 09:54:01 INFO Processing request...
+19/07 09:54:01 INFO id: 2
+19/07 09:54:01 INFO device: 8747fe8651ea9f38
+19/07 09:54:01 INFO result: 20130618100048
+19/07 09:54:01 INFO Request has process succcessful!
+19/07 09:54:01 INFO END.
+19/07 09:55:39 START Process request started
+..check connect database
+connected to database
+19/07 09:55:39 INFO Processing request...
+19/07 09:55:39 INFO id: 1
+19/07 09:55:40 INFO device: 8747fe8651ea9f38
+19/07 09:55:40 INFO result: 20130618100048
+19/07 09:55:40 INFO Request has process succcessful!
+19/07 09:55:40 INFO END.
+19/07 09:55:40 INFO Processing request...
+19/07 09:55:40 INFO id: 2
+19/07 09:55:40 INFO device: 8747fe8651ea9f38
+19/07 09:55:40 INFO result: 20130618100048
+19/07 09:55:40 INFO Request has process succcessful!
+19/07 09:55:40 INFO END.
+19/07 10:00:12 START Process request started
+..check connect database
+connected to database
+19/07 10:00:56 INFO Processing request...
+19/07 10:00:56 INFO id: 1
+19/07 10:00:56 INFO device: 8747fe8651ea9f38
+19/07 10:00:56 INFO result: 20130618100048
+19/07 10:01:06 INFO Request has process succcessful!
+19/07 10:01:06 INFO END.
+19/07 10:01:06 INFO Processing request...
+19/07 10:01:06 INFO id: 2
+19/07 10:01:06 INFO device: 8747fe8651ea9f38
+19/07 10:01:06 INFO result: 20130618100048
+19/07 10:01:15 INFO Request has process succcessful!
+19/07 10:01:15 INFO END.
+19/07 10:53:12 INFO Processing request...
+19/07 10:53:12 INFO id: 3
+19/07 10:53:12 INFO device: 72d116bb8d6b1baf
+19/07 10:53:12 INFO result: 20130703164437
+19/07 10:53:21 INFO Request has process succcessful!
+19/07 10:53:21 INFO END.
+19/07 10:53:21 INFO Processing request...
+19/07 10:53:21 INFO id: 4
+19/07 10:53:21 INFO device: 72d116bb8d6b1baf
+19/07 10:53:21 INFO result: 20130703161359
+19/07 10:53:30 INFO Request has process succcessful!
+19/07 10:53:30 INFO END.
+19/07 10:53:30 INFO Processing request...
+19/07 10:53:30 INFO id: 5
+19/07 10:53:30 INFO device: 72d116bb8d6b1baf
+19/07 10:53:30 INFO result: 20130703161449
+19/07 10:53:39 INFO Request has process succcessful!
+19/07 10:53:39 INFO END.
+19/07 10:53:39 INFO Processing request...
+19/07 10:53:39 INFO id: 6
+19/07 10:53:39 INFO device: 72d116bb8d6b1baf
+19/07 10:53:39 INFO result: 20130703161553
+19/07 10:53:46 INFO Request has process succcessful!
+19/07 10:53:46 INFO END.
+19/07 10:53:46 INFO Processing request...
+19/07 10:53:46 INFO id: 7
+19/07 10:53:47 INFO device: 72d116bb8d6b1baf
+19/07 10:53:47 INFO result: 20130703161528
+19/07 10:53:54 INFO Request has process succcessful!
+19/07 10:53:54 INFO END.
+19/07 10:53:55 INFO Processing request...
+19/07 10:53:55 INFO id: 8
+19/07 10:53:55 INFO device: 8747fe8651ea9f38
+19/07 10:53:55 INFO result: 20130618100048
+19/07 10:54:03 INFO Request has process succcessful!
+19/07 10:54:03 INFO END.
+19/07 10:54:03 INFO Processing request...
+19/07 10:54:03 INFO id: 9
+19/07 10:54:03 INFO device: 8747fe8651ea9f38
+19/07 10:54:03 INFO result: 20130612102619
+19/07 10:54:04 INFO Request has process succcessful!
+19/07 10:54:04 INFO END.
+19/07 10:54:04 INFO Processing request...
+19/07 10:54:04 INFO id: 10
+19/07 10:54:04 INFO device: 8747fe8651ea9f38
+19/07 10:54:04 INFO result: 20130620134527
+19/07 10:54:13 INFO Request has process succcessful!
+19/07 10:54:13 INFO END.
+19/07 10:54:13 INFO Processing request...
+19/07 10:54:13 INFO id: 11
+19/07 10:54:13 INFO device: 8747fe8651ea9f38
+19/07 10:54:13 INFO result: 20130620153753
+19/07 10:54:21 INFO Request has process succcessful!
+19/07 10:54:21 INFO END.
+19/07 10:54:21 INFO Processing request...
+19/07 10:54:21 INFO id: 12
+19/07 10:54:21 INFO device: 8747fe8651ea9f38
+19/07 10:54:21 INFO result: 20130620134721
+19/07 10:54:29 INFO Request has process succcessful!
+19/07 10:54:29 INFO END.
+19/07 10:57:38 INFO Processing request...
+19/07 10:57:38 INFO id: 13
+19/07 10:57:38 INFO device: 72d116bb8d6b1baf
+19/07 10:57:38 INFO result: 20130703160924
+19/07 10:57:45 INFO Request has process succcessful!
+19/07 10:57:45 INFO END.
+19/07 10:57:45 INFO Processing request...
+19/07 10:57:45 INFO id: 14
+19/07 10:57:45 INFO device: 72d116bb8d6b1baf
+19/07 10:57:45 INFO result: 20130703161318
+19/07 10:57:53 INFO Request has process succcessful!
+19/07 10:57:53 INFO END.
+19/07 10:57:53 INFO Processing request...
+19/07 10:57:53 INFO id: 15
+19/07 10:57:53 INFO device: 72d116bb8d6b1baf
+19/07 10:57:53 INFO result: 20130703155953
+19/07 10:58:01 INFO Request has process succcessful!
+19/07 10:58:01 INFO END.
+19/07 10:58:01 INFO Processing request...
+19/07 10:58:01 INFO id: 16
+19/07 10:58:01 INFO device: 72d116bb8d6b1baf
+19/07 10:58:01 INFO result: 20130703154403
+19/07 10:58:09 INFO Request has process succcessful!
+19/07 10:58:09 INFO END.
+19/07 10:58:09 INFO Processing request...
+19/07 10:58:09 INFO id: 17
+19/07 10:58:09 INFO device: 72d116bb8d6b1baf
+19/07 10:58:09 INFO result: 20130703161016
+19/07 10:58:17 INFO Request has process succcessful!
+19/07 10:58:17 INFO END.
+19/07 10:58:18 INFO Processing request...
+19/07 10:58:18 INFO id: 18
+19/07 10:58:18 INFO device: 72d116bb8d6b1baf
+19/07 10:58:18 INFO result: 20130703153806
+19/07 10:58:26 INFO Request has process succcessful!
+19/07 10:58:26 INFO END.
+19/07 10:58:26 INFO Processing request...
+19/07 10:58:26 INFO id: 19
+19/07 10:58:26 INFO device: 72d116bb8d6b1baf
+19/07 10:58:26 INFO result: 20130703161216
+19/07 10:58:33 INFO Request has process succcessful!
+19/07 10:58:33 INFO END.
+19/07 10:58:33 INFO Processing request...
+19/07 10:58:33 INFO id: 20
+19/07 10:58:33 INFO device: 72d116bb8d6b1baf
+19/07 10:58:33 INFO result: 20130703155027
+19/07 10:58:42 INFO Request has process succcessful!
+19/07 10:58:42 INFO END.
+19/07 10:58:42 INFO Processing request...
+19/07 10:58:42 INFO id: 21
+19/07 10:58:42 INFO device: 72d116bb8d6b1baf
+19/07 10:58:42 INFO result: 20130703155451
+19/07 10:58:49 INFO Request has process succcessful!
+19/07 10:58:49 INFO END.
+19/07 10:58:49 INFO Processing request...
+19/07 10:58:49 INFO id: 22
+19/07 10:58:49 INFO device: 72d116bb8d6b1baf
+19/07 10:58:49 INFO result: 20130703161242
+19/07 10:58:58 INFO Request has process succcessful!
+19/07 10:58:58 INFO END.
+19/07 10:58:58 INFO Processing request...
+19/07 10:58:58 INFO id: 23
+19/07 10:58:58 INFO device: 72d116bb8d6b1baf
+19/07 10:58:58 INFO result: 20130703155730
+19/07 10:59:06 INFO Request has process succcessful!
+19/07 10:59:06 INFO END.
+19/07 10:59:06 INFO Processing request...
+19/07 10:59:06 INFO id: 24
+19/07 10:59:06 INFO device: 72d116bb8d6b1baf
+19/07 10:59:06 INFO result: 20130703154013
+19/07 10:59:14 INFO Request has process succcessful!
+19/07 10:59:14 INFO END.
+19/07 10:59:14 INFO Processing request...
+19/07 10:59:14 INFO id: 25
+19/07 10:59:14 INFO device: 72d116bb8d6b1baf
+19/07 10:59:14 INFO result: 20130703155833
+19/07 10:59:15 INFO Request has process succcessful!
+19/07 10:59:15 INFO END.
+19/07 10:59:15 INFO Processing request...
+19/07 10:59:15 INFO id: 26
+19/07 10:59:15 INFO device: 72d116bb8d6b1baf
+19/07 10:59:15 INFO result: 20130703154959
+19/07 10:59:24 INFO Request has process succcessful!
+19/07 10:59:24 INFO END.
+19/07 10:59:24 INFO Processing request...
+19/07 10:59:24 INFO id: 27
+19/07 10:59:24 INFO device: 72d116bb8d6b1baf
+19/07 10:59:24 INFO result: 20130703154226
+19/07 10:59:32 INFO Request has process succcessful!
+19/07 10:59:32 INFO END.
+19/07 10:59:32 INFO Processing request...
+19/07 10:59:32 INFO id: 28
+19/07 10:59:32 INFO device: 72d116bb8d6b1baf
+19/07 10:59:32 INFO result: 20130703154155
+19/07 10:59:40 INFO Request has process succcessful!
+19/07 10:59:40 INFO END.
+19/07 10:59:40 INFO Processing request...
+19/07 10:59:40 INFO id: 29
+19/07 10:59:40 INFO device: 72d116bb8d6b1baf
+19/07 10:59:40 INFO result: 20130703154516
+19/07 10:59:48 INFO Request has process succcessful!
+19/07 10:59:48 INFO END.
+19/07 10:59:48 INFO Processing request...
+19/07 10:59:48 INFO id: 30
+19/07 10:59:48 INFO device: 72d116bb8d6b1baf
+19/07 10:59:48 INFO result: 20130703154307
+19/07 10:59:55 INFO Request has process succcessful!
+19/07 10:59:55 INFO END.
+19/07 10:59:55 INFO Processing request...
+19/07 10:59:55 INFO id: 31
+19/07 10:59:55 INFO device: 72d116bb8d6b1baf
+19/07 10:59:55 INFO result: 20130703155859
+19/07 11:00:03 INFO Request has process succcessful!
+19/07 11:00:03 INFO END.
+19/07 11:00:03 INFO Processing request...
+19/07 11:00:03 INFO id: 32
+19/07 11:00:03 INFO device: 72d116bb8d6b1baf
+19/07 11:00:03 INFO result: 20130703155103
+19/07 11:00:10 INFO Request has process succcessful!
+19/07 11:00:10 INFO END.
+19/07 11:00:11 INFO Processing request...
+19/07 11:00:11 INFO id: 33
+19/07 11:00:11 INFO device: 72d116bb8d6b1baf
+19/07 11:00:11 INFO result: 20130703153903
+19/07 11:00:20 INFO Request has process succcessful!
+19/07 11:00:20 INFO END.
+19/07 11:00:20 INFO Processing request...
+19/07 11:00:20 INFO id: 34
+19/07 11:00:20 INFO device: 72d116bb8d6b1baf
+19/07 11:00:20 INFO result: 20130703153838
+19/07 11:00:29 INFO Request has process succcessful!
+19/07 11:00:29 INFO END.
+19/07 11:00:29 INFO Processing request...
+19/07 11:00:29 INFO id: 35
+19/07 11:00:29 INFO device: 72d116bb8d6b1baf
+19/07 11:00:29 INFO result: 20130703155612
+19/07 11:00:36 INFO Request has process succcessful!
+19/07 11:00:36 INFO END.
+19/07 11:00:36 INFO Processing request...
+19/07 11:00:36 INFO id: 36
+19/07 11:00:36 INFO device: 72d116bb8d6b1baf
+19/07 11:00:36 INFO result: 20130703153935
+19/07 11:00:44 INFO Request has process succcessful!
+19/07 11:00:44 INFO END.
+19/07 11:00:44 INFO Processing request...
+19/07 11:00:44 INFO id: 37
+19/07 11:00:44 INFO device: 72d116bb8d6b1baf
+19/07 11:00:44 INFO result: 20130703155402
+19/07 11:00:53 INFO Request has process succcessful!
+19/07 11:00:53 INFO END.
+19/07 11:00:53 INFO Processing request...
+19/07 11:00:53 INFO id: 38
+19/07 11:00:53 INFO device: 8747fe8651ea9f38
+19/07 11:00:53 INFO result: 20130703162903
+19/07 11:01:02 INFO Request has process succcessful!
+19/07 11:01:02 INFO END.
+19/07 11:01:02 INFO Processing request...
+19/07 11:01:02 INFO id: 39
+19/07 11:01:02 INFO device: 8747fe8651ea9f38
+19/07 11:01:02 INFO result: 20130703120144
+19/07 11:01:11 INFO Request has process succcessful!
+19/07 11:01:11 INFO END.
+19/07 11:01:11 INFO Processing request...
+19/07 11:01:11 INFO id: 40
+19/07 11:01:11 INFO device: 8747fe8651ea9f38
+19/07 11:01:11 INFO result: 20130703161547
+19/07 11:01:19 INFO Request has process succcessful!
+19/07 11:01:19 INFO END.
+19/07 11:01:19 INFO Processing request...
+19/07 11:01:19 INFO id: 41
+19/07 11:01:19 INFO device: 8747fe8651ea9f38
+19/07 11:01:19 INFO result: 20130703180414
+19/07 11:01:27 INFO Request has process succcessful!
+19/07 11:01:27 INFO END.
+19/07 11:01:27 INFO Processing request...
+19/07 11:01:27 INFO id: 42
+19/07 11:01:27 INFO device: 8747fe8651ea9f38
+19/07 11:01:27 INFO result: 20130703120324
+19/07 11:01:37 INFO Request has process succcessful!
+19/07 11:01:37 INFO END.
+19/07 11:01:37 INFO Processing request...
+19/07 11:01:37 INFO id: 43
+19/07 11:01:37 INFO device: 8747fe8651ea9f38
+19/07 11:01:37 INFO result: 20130703164056
+19/07 11:01:37 INFO Request has process succcessful!
+19/07 11:01:37 INFO END.
+19/07 11:01:37 INFO Processing request...
+19/07 11:01:37 INFO id: 44
+19/07 11:01:37 INFO device: 8747fe8651ea9f38
+19/07 11:01:37 INFO result: 20130703164159
+19/07 11:01:47 INFO Request has process succcessful!
+19/07 11:01:47 INFO END.
+19/07 11:01:47 INFO Processing request...
+19/07 11:01:47 INFO id: 45
+19/07 11:01:47 INFO device: 8747fe8651ea9f38
+19/07 11:01:47 INFO result: 20130703164130
+19/07 11:01:56 INFO Request has process succcessful!
+19/07 11:01:56 INFO END.
+19/07 11:01:56 INFO Processing request...
+19/07 11:01:56 INFO id: 46
+19/07 11:01:56 INFO device: 8747fe8651ea9f38
+19/07 11:01:56 INFO result: 20130703160551
+19/07 11:02:04 INFO Request has process succcessful!
+19/07 11:02:04 INFO END.
+19/07 11:02:04 INFO Processing request...
+19/07 11:02:04 INFO id: 47
+19/07 11:02:04 INFO device: 8747fe8651ea9f38
+19/07 11:02:04 INFO result: 20130620153753
+19/07 11:02:13 INFO Request has process succcessful!
+19/07 11:02:13 INFO END.
+19/07 11:02:13 INFO Processing request...
+19/07 11:02:13 INFO id: 48
+19/07 11:02:13 INFO device: 8747fe8651ea9f38
+19/07 11:02:13 INFO result: 20130612102619
+19/07 11:02:14 INFO Request has process succcessful!
+19/07 11:02:14 INFO END.
+19/07 11:02:14 INFO Processing request...
+19/07 11:02:14 INFO id: 49
+19/07 11:02:14 INFO device: 8747fe8651ea9f38
+19/07 11:02:14 INFO result: 20130703180753
+19/07 11:02:22 INFO Request has process succcessful!
+19/07 11:02:22 INFO END.
+19/07 11:02:22 INFO Processing request...
+19/07 11:02:22 INFO id: 50
+19/07 11:02:22 INFO device: 8747fe8651ea9f38
+19/07 11:02:22 INFO result: 20130703163614
+19/07 11:02:30 INFO Request has process succcessful!
+19/07 11:02:30 INFO END.
+19/07 11:02:30 INFO Processing request...
+19/07 11:02:30 INFO id: 51
+19/07 11:02:30 INFO device: 8747fe8651ea9f38
+19/07 11:02:30 INFO result: 20130618100048
+19/07 11:02:39 INFO Request has process succcessful!
+19/07 11:02:39 INFO END.
+19/07 11:02:39 INFO Processing request...
+19/07 11:02:39 INFO id: 52
+19/07 11:02:39 INFO device: 8747fe8651ea9f38
+19/07 11:02:39 INFO result: 20130703180326
+19/07 11:02:47 INFO Request has process succcessful!
+19/07 11:02:47 INFO END.
+19/07 11:02:47 INFO Processing request...
+19/07 11:02:47 INFO id: 53
+19/07 11:02:47 INFO device: 8747fe8651ea9f38
+19/07 11:02:47 INFO result: 20130703150037
+19/07 11:02:48 INFO Request has process succcessful!
+19/07 11:02:48 INFO END.
+19/07 11:02:48 INFO Processing request...
+19/07 11:02:48 INFO id: 54
+19/07 11:02:48 INFO device: 8747fe8651ea9f38
+19/07 11:02:48 INFO result: 20130703180229
+19/07 11:02:56 INFO Request has process succcessful!
+19/07 11:02:56 INFO END.
+19/07 11:02:56 INFO Processing request...
+19/07 11:02:56 INFO id: 55
+19/07 11:02:56 INFO device: 8747fe8651ea9f38
+19/07 11:02:56 INFO result: 20130703163642
+19/07 11:03:05 INFO Request has process succcessful!
+19/07 11:03:05 INFO END.
+19/07 11:03:05 INFO Processing request...
+19/07 11:03:05 INFO id: 56
+19/07 11:03:05 INFO device: 8747fe8651ea9f38
+19/07 11:03:05 INFO result: 20130620134527
+19/07 11:03:14 INFO Request has process succcessful!
+19/07 11:03:14 INFO END.
+19/07 11:03:14 INFO Processing request...
+19/07 11:03:14 INFO id: 57
+19/07 11:03:14 INFO device: 8747fe8651ea9f38
+19/07 11:03:14 INFO result: 20130620134721
+19/07 11:03:22 INFO Request has process succcessful!
+19/07 11:03:22 INFO END.
+19/07 11:03:22 INFO Processing request...
+19/07 11:03:22 INFO id: 58
+19/07 11:03:22 INFO device: 8747fe8651ea9f38
+19/07 11:03:22 INFO result: 20130703180845
+19/07 11:03:31 INFO Request has process succcessful!
+19/07 11:03:31 INFO END.
+19/07 11:03:31 INFO Processing request...
+19/07 11:03:31 INFO id: 59
+19/07 11:03:31 INFO device: 8747fe8651ea9f38
+19/07 11:03:31 INFO result: 20130703120548
+19/07 11:03:40 INFO Request has process succcessful!
+19/07 11:03:40 INFO END.
+19/07 11:03:40 INFO Processing request...
+19/07 11:03:40 INFO id: 60
+19/07 11:03:40 INFO device: 8747fe8651ea9f38
+19/07 11:03:40 INFO result: 20130703120046
+19/07 11:03:40 INFO Request has process succcessful!
+19/07 11:03:40 INFO END.
+19/07 11:03:40 INFO Processing request...
+19/07 11:03:40 INFO id: 61
+19/07 11:03:40 INFO device: 8747fe8651ea9f38
+19/07 11:03:40 INFO result: 20130703180937
+19/07 11:03:49 INFO Request has process succcessful!
+19/07 11:03:49 INFO END.
+19/07 11:03:49 INFO Processing request...
+19/07 11:03:49 INFO id: 62
+19/07 11:03:49 INFO device: 8747fe8651ea9f38
+19/07 11:03:49 INFO result: 20130703163534
+19/07 11:03:58 INFO Request has process succcessful!
+19/07 11:03:58 INFO END.
+19/07 11:07:53 START Process request started
+..check connect database
+connected to database
+19/07 11:08:33 INFO Processing request...
+19/07 11:08:33 INFO id: 62
+19/07 11:08:33 INFO device: 8747fe8651ea9f38
+19/07 11:08:33 INFO result: 20130703163534
+19/07 11:08:54 START Process request started
+..check connect database
+connected to database
+19/07 11:08:55 INFO Processing request...
+19/07 11:08:55 INFO id: 62
+19/07 11:08:55 INFO device: 8747fe8651ea9f38
+19/07 11:08:55 INFO result: 20130703163534
+19/07 11:09:25 START Process request started
+..check connect database
+connected to database
+19/07 11:09:25 INFO Processing request...
+19/07 11:09:25 INFO id: 62
+19/07 11:09:25 INFO device: 8747fe8651ea9f38
+19/07 11:09:25 INFO result: 20130703163534
+19/07 11:09:58 INFO Request has process false!
+19/07 11:09:58 INFO END.
+19/07 11:32:28 START Process request started
+..check connect database
+connected to database
+19/07 11:33:07 INFO Processing request...
+19/07 11:33:07 INFO id: 62
+19/07 11:33:07 INFO device: 8747fe8651ea9f38
+19/07 11:33:07 INFO result: 20130703163534
+19/07 11:33:15 INFO Request has process succcessful!
+19/07 11:33:15 INFO END.
+19/07 11:33:22 START Process request started
+..check connect database
+connected to database
+19/07 11:34:08 INFO Processing request...
+19/07 11:34:08 INFO id: 62
+19/07 11:34:08 INFO device: 8747fe8651ea9f38
+19/07 11:34:08 INFO result: 20130703163534
+19/07 11:36:00 START Process request started
+..check connect database
+connected to database
+19/07 11:36:01 INFO Processing request...
+19/07 11:36:01 INFO id: 62
+19/07 11:36:01 INFO device: 8747fe8651ea9f38
+19/07 11:36:01 INFO result: 20130703163534
+19/07 11:44:17 START Process request started
+..check connect database
+connected to database
+19/07 11:44:17 INFO Processing request...
+19/07 11:44:17 INFO id: 62
+19/07 11:44:17 INFO device: 8747fe8651ea9f38
+19/07 11:44:17 INFO result: 20130703163534
+19/07 11:45:53 START Process request started
+..check connect database
+connected to database
+19/07 11:45:54 INFO Processing request...
+19/07 11:45:54 INFO id: 62
+19/07 11:45:54 INFO device: 8747fe8651ea9f38
+19/07 11:45:54 INFO result: 20130703163534
+19/07 11:45:54 INFO &Exception=Test
+19/07 11:45:54 INFO Request has process succcessful!
+19/07 11:45:54 INFO END.
+19/07 11:46:55 INFO Processing request...
+19/07 11:46:55 INFO id: 62
+19/07 11:46:55 INFO device: 8747fe8651ea9f38
+19/07 11:46:55 INFO result: 20130703163534
+19/07 11:46:55 INFO &Exception=Test
+19/07 11:46:55 INFO Request has process succcessful!
+19/07 11:46:55 INFO END.
+19/07 11:47:27 INFO Processing request...
+19/07 11:47:27 INFO id: 62
+19/07 11:47:27 INFO device: 8747fe8651ea9f38
+19/07 11:47:27 INFO result: 20130703163534
+19/07 11:47:27 INFO Request has process false!
+19/07 11:47:27 INFO END.
+19/07 11:49:41 INFO Processing request...
+19/07 11:49:41 INFO id: 62
+19/07 11:49:41 INFO device: 8747fe8651ea9f38
+19/07 11:49:41 INFO result: 20130703163534
+19/07 11:49:41 INFO Request has process false!
+19/07 11:49:41 INFO END.
+19/07 11:50:51 INFO Processing request...
+19/07 11:50:51 INFO id: 62
+19/07 11:50:51 INFO device: 8747fe8651ea9f38
+19/07 11:50:51 INFO result: 20130703163534
+19/07 11:51:58 INFO Request has process false!
+19/07 11:51:58 INFO END.
+19/07 11:52:01 INFO Processing request...
+19/07 11:52:01 INFO id: 62
+19/07 11:52:01 INFO device: 8747fe8651ea9f38
+19/07 11:52:01 INFO result: 20130703163534
+19/07 11:52:23 INFO Request has process false!
+19/07 11:52:23 INFO END.
+19/07 11:56:03 INFO Processing request...
+19/07 11:56:03 INFO id: 62
+19/07 11:56:03 INFO device: 8747fe8651ea9f38
+19/07 11:56:03 INFO result: 20130703163534
+19/07 11:56:13 INFO {"Exception":"Test"}
+19/07 11:56:13 INFO Request has process succcessful!
+19/07 11:56:13 INFO END.
+19/07 14:13:13 START Process request started
+..check connect database
+can't connect to database
+19/07 14:13:13 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 14:13:13 ERROR Error occured: null
+..check connect database
+can't connect to database
+19/07 14:13:14 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 14:13:14 ERROR Error occured: null
+..check connect database
+can't connect to database
+19/07 14:13:15 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 14:13:15 ERROR Error occured: null
+..check connect database
+can't connect to database
+19/07 14:13:16 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 14:13:16 ERROR Error occured: null
+..check connect database
+can't connect to database
+19/07 14:13:17 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 14:13:17 ERROR Error occured: null
+..check connect database
+can't connect to database
+19/07 14:13:18 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 14:13:18 ERROR Error occured: null
+19/07 14:15:19 START Process request started
+..check connect database
+connected to database
+19/07 15:34:43 ERROR Error occured: Communications link failure
+
+The last packet successfully received from the server was 20,002 milliseconds ago.  The last packet sent successfully to the server was 19,002 milliseconds ago.
+..check connect database
+connected to database
+19/07 15:46:30 ERROR Error occured: Communications link failure
+
+The last packet successfully received from the server was 74,748 milliseconds ago.  The last packet sent successfully to the server was 73,747 milliseconds ago.
+..check connect database
+can't connect to database
+19/07 15:46:52 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 15:46:52 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 15:47:14 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 15:47:14 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 15:47:36 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 15:47:36 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 15:47:58 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 15:47:58 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 15:48:20 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 15:48:20 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 15:48:42 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 15:48:42 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 15:49:04 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 15:49:04 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 15:49:26 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 15:49:26 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 15:49:48 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 15:49:48 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+connected to database
+19/07 16:27:12 ERROR Error occured: Communications link failure
+
+The last packet successfully received from the server was 1,709,071 milliseconds ago.  The last packet sent successfully to the server was 1,708,071 milliseconds ago.
+..check connect database
+can't connect to database
+19/07 16:27:13 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:27:13 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:27:14 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:27:14 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:27:15 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:27:15 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:27:16 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:27:16 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:27:17 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:27:17 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:27:18 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:27:18 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:27:19 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:27:19 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:27:20 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:27:20 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:27:21 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:27:21 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:27:22 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:27:22 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:27:23 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:27:23 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:27:24 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:27:24 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:27:25 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:27:25 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:27:26 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:27:26 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:27:27 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:27:27 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:27:28 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:27:28 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:27:29 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:27:29 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:27:30 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:27:31 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:27:32 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:27:32 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:27:33 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:27:33 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:27:34 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:27:34 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:27:35 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:27:35 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:27:36 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:27:36 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:27:37 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:27:37 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:27:38 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:27:38 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:27:39 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:27:39 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:27:40 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:27:40 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:27:41 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:27:41 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:27:42 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:27:42 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:27:43 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:27:43 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:27:44 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:27:44 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:27:45 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:27:45 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:27:46 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:27:46 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:27:47 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:27:47 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:27:48 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:27:48 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:27:49 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:27:49 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:27:50 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:27:50 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:27:51 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:27:51 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:27:52 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:27:52 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:27:53 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:27:53 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:27:54 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:27:54 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:27:55 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:27:55 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:27:56 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:27:56 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:27:57 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:27:57 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:27:58 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:27:58 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:27:59 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:27:59 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:28:00 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:28:00 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:28:01 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:28:01 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:28:02 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:28:02 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:28:03 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:28:03 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:28:04 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:28:04 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:28:05 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:28:05 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:28:06 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:28:06 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:28:07 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:28:07 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:28:08 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:28:08 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:28:09 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:28:09 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:28:10 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:28:10 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:28:11 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:28:11 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:28:12 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:28:12 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:28:13 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:28:13 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:28:14 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:28:14 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:28:15 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:28:15 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:28:16 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:28:16 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:28:17 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:28:17 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:28:18 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:28:18 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:28:19 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:28:19 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:28:20 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:28:20 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:28:21 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:28:21 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:28:22 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:28:22 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:28:23 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:28:23 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:28:24 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:28:24 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:28:25 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:28:25 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:28:26 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:28:26 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:28:27 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:28:27 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:28:28 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:28:28 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:28:29 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:28:29 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:28:30 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:28:30 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:28:31 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:28:31 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:28:32 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:28:32 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:28:33 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:28:33 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:28:34 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:28:34 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:28:35 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:28:35 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:28:36 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:28:37 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:28:38 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:28:38 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:28:39 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:28:39 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:28:40 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:28:40 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:28:41 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:28:41 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:28:42 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:28:42 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:28:43 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:28:43 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:28:44 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:28:44 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:28:45 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:28:45 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:28:46 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:28:46 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:28:47 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:28:47 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:28:48 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:28:48 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:28:49 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:28:49 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:28:50 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:28:50 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:28:51 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:28:51 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:28:52 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:28:52 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:28:53 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:28:53 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:28:54 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:28:54 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:28:55 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:28:55 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:28:56 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:28:56 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:28:57 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:28:57 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:28:58 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:28:58 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:28:59 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:28:59 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:29:00 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:29:00 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:29:01 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:29:01 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:29:02 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:29:02 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:29:03 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:29:03 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:29:04 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:29:04 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:29:05 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:29:05 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:29:06 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:29:07 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:29:08 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:29:08 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:29:09 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:29:09 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:29:10 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:29:10 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:29:11 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:29:11 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:29:12 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:29:12 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:29:13 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:29:13 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:29:14 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:29:14 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:29:15 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:29:15 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:29:16 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:29:16 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:29:17 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:29:17 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:29:18 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:29:18 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:29:19 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:29:19 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:29:20 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:29:20 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:29:21 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:29:21 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:29:22 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:29:22 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:29:23 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:29:23 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:29:24 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:29:24 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:29:25 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:29:25 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:29:26 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:29:26 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:29:27 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:29:27 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:29:28 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:29:28 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:29:29 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:29:29 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:29:30 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:29:30 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:29:31 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:29:31 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:29:32 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:29:32 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:29:33 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:29:33 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:29:34 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:29:34 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:29:36 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:29:36 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:29:37 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:29:37 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:29:38 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:29:38 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:29:39 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:29:39 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:29:40 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:29:40 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:29:41 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:29:41 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:29:42 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:29:42 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:29:43 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:29:43 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:29:44 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:29:44 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:29:45 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:29:45 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:29:46 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:29:46 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:29:47 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:29:47 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:29:48 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:29:48 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:29:49 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:29:49 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:29:50 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:29:50 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:29:51 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:29:51 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:29:52 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:29:52 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:29:53 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:29:53 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:29:54 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:29:54 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:29:55 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:29:55 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:29:56 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:29:56 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:29:57 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:29:57 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:29:58 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:29:58 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:29:59 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:29:59 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:30:00 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:30:00 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:30:01 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:30:01 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:30:02 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:30:02 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:30:03 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:30:03 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:30:04 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:30:04 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:30:06 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:30:06 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:30:07 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:30:07 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:30:08 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:30:08 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:30:09 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:30:09 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:30:10 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:30:10 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:30:11 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:30:11 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:30:12 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:30:12 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:30:13 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:30:13 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:30:14 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:30:14 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:30:15 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:30:15 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:30:16 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:30:16 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:30:17 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:30:17 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:30:18 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:30:18 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:30:19 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:30:19 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:30:20 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:30:20 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:30:21 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:30:21 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:30:22 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:30:22 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:30:23 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:30:23 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:30:24 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:30:24 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:30:25 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:30:25 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:30:26 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:30:26 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:30:27 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:30:27 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:30:28 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:30:28 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:30:29 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:30:29 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:30:30 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:30:30 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:30:31 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:30:31 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:30:32 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:30:32 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:30:33 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:30:33 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:30:34 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:30:34 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:30:36 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:30:36 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:30:37 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:30:37 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:30:38 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:30:38 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:30:39 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:30:39 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:30:40 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:30:40 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:30:41 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:30:41 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:30:42 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:30:42 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:30:43 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:30:43 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:30:44 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:30:44 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:30:45 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:30:45 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:30:46 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:30:46 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:30:47 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:30:47 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:30:48 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:30:48 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:30:49 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:30:49 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:30:50 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:30:50 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:30:51 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:30:51 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:30:52 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:30:52 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:30:53 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:30:53 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:30:54 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:30:54 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:30:55 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:30:55 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:30:56 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:30:56 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:30:57 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:30:57 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:30:58 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:30:58 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:30:59 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:30:59 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:31:00 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:31:00 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:31:01 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:31:01 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:31:02 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:31:02 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:31:03 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:31:03 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:31:04 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:31:04 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:31:05 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:31:06 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:31:07 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:31:07 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:31:08 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:31:08 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:31:09 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:31:09 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:31:10 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:31:10 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:31:11 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:31:11 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:31:12 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:31:12 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:31:13 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:31:13 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:31:14 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:31:14 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:31:15 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:31:15 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:31:16 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:31:16 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:31:17 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:31:17 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:31:18 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:31:18 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:31:19 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:31:19 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:31:20 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:31:20 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:31:21 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:31:21 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:31:22 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:31:22 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:31:23 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:31:23 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:31:24 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:31:24 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:31:25 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:31:25 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:31:26 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:31:26 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:31:27 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:31:27 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:31:28 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:31:28 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:31:29 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:31:29 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:31:30 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:31:30 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:31:31 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:31:31 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:31:32 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:31:32 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:31:33 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:31:33 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:31:34 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:31:34 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:31:35 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:31:35 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:31:37 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:31:37 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:31:38 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:31:38 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:31:39 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:31:39 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:31:40 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:31:40 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:31:41 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:31:41 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:31:42 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:31:42 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:31:43 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:31:43 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:31:44 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:31:44 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:31:45 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:31:45 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:31:46 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:31:46 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:31:47 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:31:47 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:31:48 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:31:48 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:31:49 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:31:49 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:31:50 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:31:50 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:31:51 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:31:51 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:31:52 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:31:52 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:31:53 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:31:53 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:31:54 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:31:54 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:31:55 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:31:55 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:31:56 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:31:56 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:31:57 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:31:57 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:31:58 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:31:58 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:31:59 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:31:59 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:32:00 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:32:00 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:32:01 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:32:01 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:32:02 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:32:02 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:32:03 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:32:03 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:32:04 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:32:04 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:32:05 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:32:05 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:32:06 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:32:06 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:32:08 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:32:08 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:32:09 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:32:09 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:32:10 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:32:10 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:32:11 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:32:11 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:32:12 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:32:12 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:32:13 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:32:13 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:32:14 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:32:14 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:32:15 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:32:15 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:32:16 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:32:16 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:32:17 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:32:17 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:32:18 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:32:18 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:32:19 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:32:19 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:32:20 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:32:20 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:32:21 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:32:21 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:32:22 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:32:22 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:32:23 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:32:23 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:32:24 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:32:24 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:32:25 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:32:25 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:32:26 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:32:26 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:32:27 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:32:27 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:32:28 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:32:28 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:32:29 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:32:29 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:32:30 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:32:30 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:32:31 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:32:31 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:32:32 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:32:32 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:32:33 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:32:33 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:32:34 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:32:34 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:32:35 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:32:35 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:32:36 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:32:36 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:32:37 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:32:37 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:32:39 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:32:39 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:32:40 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:32:40 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:32:41 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:32:41 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:32:42 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:32:42 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:32:43 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:32:43 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:32:44 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:32:44 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:32:45 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:32:45 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:32:46 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:32:46 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:32:47 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:32:47 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:32:48 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:32:48 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:32:49 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:32:49 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:32:50 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:32:50 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:32:51 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:32:51 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:32:52 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:32:52 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:32:53 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:32:53 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:32:54 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:32:54 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:32:55 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:32:55 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:32:56 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:32:56 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:32:57 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:32:57 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:32:58 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:32:58 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:32:59 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:32:59 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:33:00 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:33:00 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:33:01 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:33:01 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:33:02 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:33:02 ERROR Error occured: No operations allowed after statement closed.
+..check connect database
+can't connect to database
+19/07 16:33:03 ERROR Error: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+19/07 16:33:03 ERROR Error occured: No operations allowed after statement closed.
+19/07 16:33:04 DESTR Thread destroyed

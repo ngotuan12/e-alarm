@@ -1,0 +1,8 @@
+# Thread config
+ErrorLog==Log/General/Error.log
+OutLog==Log/General/Out.log
+AlertLog==Log/General/Alert.log
+ActionLog==Log/General/Action.log
+BufferLog==Log/General/Buffer.log
+PortID==2999
+MaxConnectionAllowed==5
