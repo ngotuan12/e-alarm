@@ -1,0 +1,23 @@
+ListURL
+#HN	
+	Url==http://www.nhommua.com/ha-noi/dich-vu-gia-re.html
+		Cate==9
+DealClass==div.small-box-white
+PlaceDiv==div.deal-rate > a
+DeallinkDiv==h3 > a
+	Att==href
+NameDiv==h3 > a
+DescriptionDiv==div.small-box-text
+	Inner==p
+NewPriceDiv==div.small-box-sale > p
+OldPriceDiv==div.small-box-sale > p
+DiscountDiv==div.small-box-save
+	Inner==span.number
+EndDateDiv==div.small-box-price
+	Inner==
+	Match1==Time_CountDown_
+	Match2==number
+ImageDiv==img
+	Att==src
+BuyerCountDiv==span[id*=Time_CountDown_]
+SourceID==52

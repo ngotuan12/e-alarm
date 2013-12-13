@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="." default="archive" name="TuanNA">
+	<property name="dest" value="classes" />
+	<property name="src" value="src" />
+	<path id="project.class.path">
+		<pathelement location="${dest}" />
+	</path>
+
+	<target depends="cleanup,resource" name="archive">
+		<jar compress="true" destfile="../jar/RobotThread.jar">
+			<fileset dir="${dest}">
+				<!--<exclude name="com/fis/**"/> -->
+				<include name="**" />
+				<exclude name="**/*.xml" />
+				<exclude name="**/*.properties" />
+				<exclude name="**/*.txt" />
+			</fileset>
+		</jar>
+	</target>
+
+	<target name="resource">
+		<copy todir="${dest}">
+			<fileset dir="${src}">
+				<include name="**/*.gif" />
+				<!--
+				<include name="**/*.xml" />
+				<include name="**/*.properties" />
+				<include name="**/*.txt" />
+				-->
+				<include name="**/*.jpeg" />
+				<include name="**/*.png" />
+				<include name="**/*.jpg" />
+			</fileset>
+
+		</copy>
+	</target>
+	<target name="cleanup">
+		<delete failonerror="false" file="../jar/RobotThread.jar" />
+	</target>
+</project>

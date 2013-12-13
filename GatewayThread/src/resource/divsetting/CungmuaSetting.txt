@@ -1,0 +1,41 @@
+ListURL
+#HN	
+	Url==http://www.cungmua.com/an-uong
+		Cate==1
+	Url==http://www.cungmua.com/du-lich
+		Cate==4
+	Url==http://www.cungmua.com/giai-tri
+		Cate==3
+	Url==http://www.cungmua.com/thoi-trang
+		Cate==5
+	Url==http://www.cungmua.com/cong-nghe
+		Cate==2
+	Url==http://www.cungmua.com/lam-dep
+		Cate==5
+	Url==http://www.cungmua.com/gia-dung
+		Cate==6
+	Url==http://www.cungmua.com/dao-tao
+		Cate==7
+	Url==http://www.cungmua.com/khac
+		Cate==9
+DealClass==ul.product > li
+PlaceDiv==div.DropListUI.Theme_Human_Wrapper > p
+DeallinkDiv==a
+	Att==href
+NameDiv==h3
+	Inner==
+DescriptionDiv==img.product_img.loading1[title]
+OldPriceDiv==p.product_price_true
+	Inner==p
+NewPriceDiv==p.product_price
+	Inner==p
+DiscountDiv==div.percent1
+	Inner==
+EndDateDiv==null
+	Match1==
+	Match2==
+ImageDiv==img.product_img.loading1
+	Att==src
+BuyerCountDiv==p.product_infobuy
+SourceID==50
+
