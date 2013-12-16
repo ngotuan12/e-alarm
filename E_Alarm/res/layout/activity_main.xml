@@ -1,0 +1,120 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:map="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+        <fragment
+        android:id="@+id/mapFragment"
+      android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+       <!--  <fragment
+            android:id="@+id/mapFragment"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            class="com.google.android.gms.maps.SupportMapFragment" /> -->
+
+        <LinearLayout
+            android:id="@+id/li_nav"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/toast_frame"
+            android:orientation="horizontal"
+            android:padding="8dp"
+            android:weightSum="8" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:padding="4dp"
+                map:orientation="horizontal"
+                map:weightSum="5" >
+
+                <RelativeLayout
+                    map:layout_width="0dp"
+                    map:layout_height="wrap_content"
+                    map:layout_weight="4" >
+
+                    <TextView
+                        map:id="@+id/tvChooseDistric"
+                        map:layout_width="wrap_content"
+                        map:layout_height="wrap_content"
+                        map:layout_alignParentLeft="true"
+                        map:layout_centerInParent="true"
+                        map:text="@string/choose_district" />
+
+                    <Spinner
+                        android:id="@+id/spDistric"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        map:layout_centerInParent="true"
+                        map:layout_toRightOf="@id/tvChooseDistric"
+                        map:entries="@array/list_distric" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    map:layout_width="0dp"
+                    map:layout_height="fill_parent"
+                    map:layout_weight="1" >
+
+                    <ImageButton
+                        map:id="@+id/imgSetting"
+                        map:layout_width="wrap_content"
+                        map:layout_height="wrap_content"
+                        map:layout_alignParentRight="true"
+                        map:layout_centerInParent="true"
+                        map:background="@drawable/ic_action_settings"
+                        map:onClick="onClickSetting" />
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <ProgressBar
+            map:id="@+id/prMain"
+            map:layout_width="wrap_content"
+            map:layout_height="wrap_content"
+            map:layout_centerInParent="true" />
+
+        <Button
+            map:id="@+id/btnRetry"
+            map:layout_width="wrap_content"
+            map:layout_height="wrap_content"
+            map:layout_centerInParent="true"
+            map:onClick="OnclickRetry"
+            map:paddingBottom="5dp"
+            map:paddingLeft="10dp"
+            map:paddingRight="10dp"
+            map:paddingTop="5dp"
+            map:text="Retry"
+            map:visibility="invisible" />
+    </RelativeLayout>
+
+    <co.vn.e_alarm.customwiget.SlidingLayer
+        xmlns:slidingLayer="http://schemas.android.com/apk/res/com.slidinglayersample"
+        android:id="@+id/slidingLayer1"
+        android:layout_width="@dimen/layer_width"
+        android:layout_height="fill_parent" >
+
+        <RelativeLayout
+            android:id="@+id/layout_main"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="#fff3f3f3"
+            map:visibility="gone" >
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/myfivepanelpager"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent" />
+        </RelativeLayout>
+    </co.vn.e_alarm.customwiget.SlidingLayer>
+
+</RelativeLayout>

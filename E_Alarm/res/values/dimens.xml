@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="shadow_width">0dp</dimen>
+    <dimen name="layer_width">480dp</dimen>
+    <dimen name="offset_width">70dp</dimen>
+</resources>
