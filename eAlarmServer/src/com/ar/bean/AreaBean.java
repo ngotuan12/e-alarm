@@ -48,7 +48,7 @@ public class AreaBean extends AppProcessor
 
 	public JSONArray GetActiveByParent(int ID) throws Exception
 	{
-		String strSQL = "SELECT id as ID,code as Code,name as Name,parent_id as ParentID,level as Level,status as Status,woodenleg as Woodenleg,lat as Lat,lng as Lng,type as Type "
+		String strSQL = "SELECT id as ID,full_name as FullName,code as Code,name as Name,parent_id as ParentID,level as Level,status as Status,woodenleg as Woodenleg,lat as Lat,lng as Lng,type as Type "
 				+ "FROM area "
 				+ "WHERE status=1 AND parent_id = "
 				+ String.valueOf(ID)
@@ -58,7 +58,7 @@ public class AreaBean extends AppProcessor
 
 	private JSONArray GetByID(int ID) throws Exception
 	{
-		String strSQL = "SELECT id as ID,code as Code,name as Name,parent_id as ParentID,level as Level,status as Status,woodenleg as Woodenleg,lat as Lat,lng as Lng,type as Type "
+		String strSQL = "SELECT id as ID,full_name as FullName,code as Code,name as Name,parent_id as ParentID,level as Level,status as Status,woodenleg as Woodenleg,lat as Lat,lng as Lng,type as Type "
 				+ "FROM area WHERE id = " + String.valueOf(ID);
 		return ExcuteQuery(strSQL, 0);
 	}
@@ -97,7 +97,7 @@ public class AreaBean extends AppProcessor
 	}
 
 	private JSONArray GetAllAreaActive() throws Exception {
-		String strSQL = "SELECT id as ID,code as Code,name as Name,parent_id as ParentID,level as Level,status as Status,woodenleg as Woodenleg,lat as Lat,lng as Lng,type as Type "
+		String strSQL = "SELECT id as ID,full_name as FullName,code as Code,name as Name,parent_id as ParentID,level as Level,status as Status,woodenleg as Woodenleg,lat as Lat,lng as Lng,type as Type "
 				+ "FROM area "
 				+ "WHERE status=1 "
 				+ " ORDER BY woodenleg";
@@ -105,7 +105,7 @@ public class AreaBean extends AppProcessor
 	}
 	
 	private JSONArray GetAllArea() throws Exception {
-		String strSQL = "SELECT id as ID,code as Code,name as Name,parent_id as ParentID,level as Level,status as Status,woodenleg as Woodenleg,lat as Lat,lng as Lng,type as Type "
+		String strSQL = "SELECT id as ID,full_name as FullName,code as Code,name as Name,parent_id as ParentID,level as Level,status as Status,woodenleg as Woodenleg,lat as Lat,lng as Lng,type as Type "
 				+ "FROM area "
 				+ " ORDER BY woodenleg";
 		return ExcuteQuery(strSQL, 0);
