@@ -134,6 +134,7 @@ public class DeviceBean extends AppProcessor
 						.parseInt(strDeviceID)));
 				// response
 				response.put("device_info", arr);
+				response.put("Mess", "Success");
 			}
 		}
 		catch (Exception ex)
@@ -180,6 +181,7 @@ public class DeviceBean extends AppProcessor
 						onGetDevicesLogByDeviceID(Integer.parseInt(strDeviceID)));
 				// response
 				response.put("device_info", arr);
+				response.put("Mess", "Success");
 			}
 		}
 		catch (Exception ex)
@@ -228,6 +230,7 @@ public class DeviceBean extends AppProcessor
 			{
 				// response
 				response.put("Mess", "have error with execute(validate data)");
+				response.put("Mess", "Success");
 			}
 		}
 		catch (Exception ex)
@@ -273,6 +276,7 @@ public class DeviceBean extends AppProcessor
 				JSONObject deviceInfo = (JSONObject) arr.get(0);
 				// response
 				response.put("device_info", deviceInfo);
+				response.put("Mess", "Success");
 			}
 		}
 		catch (Exception ex)
@@ -315,6 +319,7 @@ public class DeviceBean extends AppProcessor
 			{
 				// response
 				response.put("all_devices_info", arr);
+				response.put("Mess", "Success");
 			}
 		}
 		catch (Exception ex)
@@ -373,6 +378,7 @@ public class DeviceBean extends AppProcessor
 				}
 
 				response.put("all_devices_byarea_info", Acooked);
+				response.put("Mess", "Success");
 			}
 		}
 		catch (Exception ex)
@@ -412,6 +418,7 @@ public class DeviceBean extends AppProcessor
 				Database.closeObject(rs);
 				// response
 				response.put("Mess", "edit sucess");
+				response.put("Mess", "Success");
 			}
 			else
 			{
@@ -471,6 +478,7 @@ public class DeviceBean extends AppProcessor
 				Database.closeObject(rs);
 				// response
 				response.put("Mess", "edit sucess");
+				response.put("Mess", "Success");
 			}
 			else
 			{
@@ -527,6 +535,7 @@ public class DeviceBean extends AppProcessor
 				Database.closeObject(rs);
 				// response
 				response.put("Mess", "insert sucess");
+				response.put("Mess", "Success");
 			}
 			else
 			{
@@ -569,11 +578,13 @@ public class DeviceBean extends AppProcessor
 				Database.closeObject(rs);
 				// response
 				response.put("Mess", "no device found");
+
 			}
 			else
 			{
 				// response
 				response.put("all_devices_info", arr);
+				response.put("Mess", "Success");
 			}
 		}
 		catch (Exception ex)
