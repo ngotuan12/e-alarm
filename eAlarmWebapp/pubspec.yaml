@@ -1,0 +1,9 @@
+name: eAlarmWebapp
+description: A sample web application
+dependencies:
+  browser: any
+  google_maps: any
+  polymer: any
+transformers:
+- polymer:
+    entry_points: web/index.html

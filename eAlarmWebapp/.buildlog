@@ -1,0 +1,399 @@
+---
+build.dart --machine --changed=web\index.html
+Unable to open file: d:\Projects\dart\/polymer/builder.dart'file:///D:/Projects/dart/eAlarmWebapp/build.dart': error: line 6 pos 1: library handler failed
+import 'package:polymer/builder.dart';
+^
+build.dart finished [112 ms]
+
+---
+build.dart --machine --full
+Unable to open file: d:\Projects\dart\/polymer/builder.dart'file:///D:/Projects/dart/eAlarmWebapp/build.dart': Error: line 6 pos 1: library handler failed
+import 'package:polymer/builder.dart';
+^
+build.dart finished [57 ms]
+
+---
+build.dart --machine --changed=pubspec.lock
+Unable to open file: d:\Projects\dart\/polymer/builder.dart'file:///D:/Projects/dart/eAlarmWebapp/build.dart': error: line 6 pos 1: library handler failed
+import 'package:polymer/builder.dart';
+^
+build.dart finished [113 ms]
+
+---
+build.dart --machine --full
+Unable to open file: d:\Projects\dart\/polymer/builder.dart'file:///D:/Projects/dart/eAlarmWebapp/build.dart': error: line 6 pos 1: library handler failed
+import 'package:polymer/builder.dart';
+^
+build.dart finished [185 ms]
+
+---
+build.dart --machine --full
+Unable to open file: d:\Projects\dart\/polymer/builder.dart'file:///D:/Projects/dart/eAlarmWebapp/build.dart': error: line 6 pos 1: library handler failed
+import 'package:polymer/builder.dart';
+^
+build.dart finished [2070 ms]
+
+---
+build.dart --machine --changed=web\index.html
+Unable to open file: d:\Projects\dart\/polymer/builder.dart'file:///D:/Projects/dart/eAlarmWebapp/build.dart': error: line 6 pos 1: library handler failed
+import 'package:polymer/builder.dart';
+^
+build.dart finished [709 ms]
+
+---
+build.dart --machine --changed=web\index.html
+Unable to open file: d:\Projects\dart\/polymer/builder.dart'file:///D:/Projects/dart/eAlarmWebapp/build.dart': error: line 6 pos 1: library handler failed
+import 'package:polymer/builder.dart';
+^
+build.dart finished [1733 ms]
+
+---
+build.dart --machine --changed=web\index.html
+Unable to open file: d:\Projects\dart\/polymer/builder.dart'file:///D:/Projects/dart/eAlarmWebapp/build.dart': error: line 6 pos 1: library handler failed
+import 'package:polymer/builder.dart';
+^
+build.dart finished [92 ms]
+
+---
+build.dart --machine --changed=web\index.html
+Unable to open file: d:\Projects\dart\/polymer/builder.dart'file:///D:/Projects/dart/eAlarmWebapp/build.dart': error: line 6 pos 1: library handler failed
+import 'package:polymer/builder.dart';
+^
+build.dart finished [76 ms]
+
+---
+build.dart --machine --changed=web\index.html
+Unable to open file: d:\Projects\dart\/polymer/builder.dart'file:///D:/Projects/dart/eAlarmWebapp/build.dart': error: line 6 pos 1: library handler failed
+import 'package:polymer/builder.dart';
+^
+build.dart finished [98 ms]
+
+---
+build.dart --machine --changed=web\index.html
+Unable to open file: d:\Projects\dart\/polymer/builder.dart'file:///D:/Projects/dart/eAlarmWebapp/build.dart': error: line 6 pos 1: library handler failed
+import 'package:polymer/builder.dart';
+^
+build.dart finished [58 ms]
+
+---
+build.dart --machine --changed=web\index.html
+Unable to open file: d:\Projects\dart\/polymer/builder.dart'file:///D:/Projects/dart/eAlarmWebapp/build.dart': error: line 6 pos 1: library handler failed
+import 'package:polymer/builder.dart';
+^
+build.dart finished [57 ms]
+
+---
+build.dart --machine --changed=web\index.html
+Unable to open file: d:\Projects\dart\/polymer/builder.dart'file:///D:/Projects/dart/eAlarmWebapp/build.dart': error: line 6 pos 1: library handler failed
+import 'package:polymer/builder.dart';
+^
+build.dart finished [72 ms]
+
+---
+build.dart --machine --changed=web\index.html
+Unable to open file: d:\Projects\dart\/polymer/builder.dart'file:///D:/Projects/dart/eAlarmWebapp/build.dart': error: line 6 pos 1: library handler failed
+import 'package:polymer/builder.dart';
+^
+build.dart finished [212 ms]
+
+---
+build.dart --machine --changed=web\index.html
+Unable to open file: d:\Projects\dart\/polymer/builder.dart'file:///D:/Projects/dart/eAlarmWebapp/build.dart': error: line 6 pos 1: library handler failed
+import 'package:polymer/builder.dart';
+^
+build.dart finished [553 ms]
+
+---
+build.dart --machine --changed=web\index.html
+Unable to open file: d:\Projects\dart\/polymer/builder.dart'file:///D:/Projects/dart/eAlarmWebapp/build.dart': error: line 6 pos 1: library handler failed
+import 'package:polymer/builder.dart';
+^
+build.dart finished [86 ms]
+
+---
+build.dart --machine --changed=web\index.html
+Unable to open file: d:\Projects\dart\/polymer/builder.dart'file:///D:/Projects/dart/eAlarmWebapp/build.dart': error: line 6 pos 1: library handler failed
+import 'package:polymer/builder.dart';
+^
+build.dart finished [63 ms]
+
+---
+build.dart --machine --changed=web\index.html
+Unable to open file: d:\Projects\dart\/polymer/builder.dart'file:///D:/Projects/dart/eAlarmWebapp/build.dart': error: line 6 pos 1: library handler failed
+import 'package:polymer/builder.dart';
+^
+build.dart finished [51 ms]
+
+---
+build.dart --machine --changed=web\index.html
+Unable to open file: d:\Projects\dart\/polymer/builder.dart'file:///D:/Projects/dart/eAlarmWebapp/build.dart': error: line 6 pos 1: library handler failed
+import 'package:polymer/builder.dart';
+^
+build.dart finished [74 ms]
+
+---
+build.dart --machine --changed=web\index.html
+Unable to open file: d:\Projects\dart\/polymer/builder.dart'file:///D:/Projects/dart/eAlarmWebapp/build.dart': error: line 6 pos 1: library handler failed
+import 'package:polymer/builder.dart';
+^
+build.dart finished [50 ms]
+
+---
+build.dart --machine --changed=web\layout\main.dart
+Unable to open file: d:\Projects\dart\/polymer/builder.dart'file:///D:/Projects/dart/eAlarmWebapp/build.dart': error: line 6 pos 1: library handler failed
+import 'package:polymer/builder.dart';
+^
+build.dart finished [120 ms]
+
+---
+build.dart --machine --changed=build\index.html
+Unable to open file: d:\Projects\dart\/polymer/builder.dart'file:///D:/Projects/dart/eAlarmWebapp/build.dart': error: line 6 pos 1: library handler failed
+import 'package:polymer/builder.dart';
+^
+build.dart finished [1570 ms]
+
+---
+build.dart --machine --full
+Unable to open file: d:\Projects\dart\/polymer/builder.dart'file:///D:/Projects/dart/eAlarmWebapp/build.dart': error: line 6 pos 1: library handler failed
+import 'package:polymer/builder.dart';
+^
+build.dart finished [53 ms]
+
+---
+build.dart --machine --changed=web\layout\main.dart
+Unable to open file: d:\Projects\dart\/polymer/builder.dart'file:///D:/Projects/dart/eAlarmWebapp/build.dart': error: line 6 pos 1: library handler failed
+import 'package:polymer/builder.dart';
+^
+build.dart finished [327 ms]
+
+---
+build.dart --machine --changed=web\src\util\AlarmServiceName.dart
+Unable to open file: d:\Projects\dart\/polymer/builder.dart'file:///D:/Projects/dart/eAlarmWebapp/build.dart': error: line 6 pos 1: library handler failed
+import 'package:polymer/builder.dart';
+^
+build.dart finished [66 ms]
+
+---
+build.dart --machine --changed=web\layout\main.dart
+Unable to open file: d:\Projects\dart\/polymer/builder.dart'file:///D:/Projects/dart/eAlarmWebapp/build.dart': error: line 6 pos 1: library handler failed
+import 'package:polymer/builder.dart';
+^
+build.dart finished [61 ms]
+
+---
+build.dart --machine --changed=web\layout\main.dart
+Unable to open file: d:\Projects\dart\/polymer/builder.dart'file:///D:/Projects/dart/eAlarmWebapp/build.dart': error: line 6 pos 1: library handler failed
+import 'package:polymer/builder.dart';
+^
+build.dart finished [67 ms]
+
+---
+build.dart --machine --changed=web\layout\main.dart
+Unable to open file: d:\Projects\dart\/polymer/builder.dart'file:///D:/Projects/dart/eAlarmWebapp/build.dart': error: line 6 pos 1: library handler failed
+import 'package:polymer/builder.dart';
+^
+build.dart finished [69 ms]
+
+---
+build.dart --machine --changed=web\layout\main.dart
+Unable to open file: d:\Projects\dart\/polymer/builder.dart'file:///D:/Projects/dart/eAlarmWebapp/build.dart': error: line 6 pos 1: library handler failed
+import 'package:polymer/builder.dart';
+^
+build.dart finished [64 ms]
+
+---
+build.dart --machine --changed=web\src\util\AppClient.dart
+Unable to open file: d:\Projects\dart\/polymer/builder.dart'file:///D:/Projects/dart/eAlarmWebapp/build.dart': error: line 6 pos 1: library handler failed
+import 'package:polymer/builder.dart';
+^
+build.dart finished [120 ms]
+
+---
+build.dart --machine --full
+Unable to open file: d:\Projects\dart\/polymer/builder.dart'file:///D:/Projects/dart/eAlarmWebapp/build.dart': Error: line 6 pos 1: library handler failed
+import 'package:polymer/builder.dart';
+^
+build.dart finished [2552 ms]
+
+---
+build.dart --machine --full
+Unable to open file: d:\Projects\dart\/polymer/builder.dart'file:///D:/Projects/dart/eAlarmWebapp/build.dart': Error: line 6 pos 1: library handler failed
+import 'package:polymer/builder.dart';
+^
+build.dart finished [63 ms]
+
+---
+build.dart --machine --changed=web\src\util\AppClient.dart
+Unable to open file: d:\Projects\dart\/polymer/builder.dart'file:///D:/Projects/dart/eAlarmWebapp/build.dart': Error: line 6 pos 1: library handler failed
+import 'package:polymer/builder.dart';
+^
+build.dart finished [59 ms]
+
+---
+build.dart --machine --changed=web\layout\main.dart
+Unable to open file: d:\Projects\dart\/polymer/builder.dart'file:///D:/Projects/dart/eAlarmWebapp/build.dart': Error: line 6 pos 1: library handler failed
+import 'package:polymer/builder.dart';
+^
+build.dart finished [65 ms]
+
+---
+build.dart --machine --changed=web\layout\main.dart
+Unable to open file: d:\Projects\dart\/polymer/builder.dart'file:///D:/Projects/dart/eAlarmWebapp/build.dart': Error: line 6 pos 1: library handler failed
+import 'package:polymer/builder.dart';
+^
+build.dart finished [55 ms]
+
+---
+build.dart --machine --changed=web\layout\main.dart
+Unable to open file: d:\Projects\dart\/polymer/builder.dart'file:///D:/Projects/dart/eAlarmWebapp/build.dart': Error: line 6 pos 1: library handler failed
+import 'package:polymer/builder.dart';
+^
+build.dart finished [112 ms]
+
+---
+build.dart --machine --changed=web\layout\main.dart
+Unable to open file: d:\Projects\dart\/polymer/builder.dart'file:///D:/Projects/dart/eAlarmWebapp/build.dart': Error: line 6 pos 1: library handler failed
+import 'package:polymer/builder.dart';
+^
+build.dart finished [48 ms]
+
+---
+build.dart --machine --changed=web\layout\main.dart
+Unable to open file: d:\Projects\dart\/polymer/builder.dart'file:///D:/Projects/dart/eAlarmWebapp/build.dart': Error: line 6 pos 1: library handler failed
+import 'package:polymer/builder.dart';
+^
+build.dart finished [47 ms]
+
+---
+build.dart --machine --changed=web\layout\main.dart
+Unable to open file: d:\Projects\dart\/polymer/builder.dart'file:///D:/Projects/dart/eAlarmWebapp/build.dart': Error: line 6 pos 1: library handler failed
+import 'package:polymer/builder.dart';
+^
+build.dart finished [135 ms]
+
+---
+build.dart --machine --changed=web\layout\main.dart
+Unable to open file: d:\Projects\dart\/polymer/builder.dart'file:///D:/Projects/dart/eAlarmWebapp/build.dart': Error: line 6 pos 1: library handler failed
+import 'package:polymer/builder.dart';
+^
+build.dart finished [64 ms]
+
+---
+build.dart --machine --changed=web\layout\main.dart
+Unable to open file: d:\Projects\dart\/polymer/builder.dart'file:///D:/Projects/dart/eAlarmWebapp/build.dart': Error: line 6 pos 1: library handler failed
+import 'package:polymer/builder.dart';
+^
+build.dart finished [60 ms]
+
+---
+build.dart --machine --changed=web\layout\main.dart
+Unable to open file: d:\Projects\dart\/polymer/builder.dart'file:///D:/Projects/dart/eAlarmWebapp/build.dart': Error: line 6 pos 1: library handler failed
+import 'package:polymer/builder.dart';
+^
+build.dart finished [67 ms]
+
+---
+build.dart --machine --changed=web\layout\main.dart
+Unable to open file: d:\Projects\dart\/polymer/builder.dart'file:///D:/Projects/dart/eAlarmWebapp/build.dart': Error: line 6 pos 1: library handler failed
+import 'package:polymer/builder.dart';
+^
+build.dart finished [57 ms]
+
+---
+build.dart --machine --changed=web\layout\main.dart
+Unable to open file: d:\Projects\dart\/polymer/builder.dart'file:///D:/Projects/dart/eAlarmWebapp/build.dart': Error: line 6 pos 1: library handler failed
+import 'package:polymer/builder.dart';
+^
+build.dart finished [58 ms]
+
+---
+build.dart --machine --changed=web\layout\main.dart
+Unable to open file: d:\Projects\dart\/polymer/builder.dart'file:///D:/Projects/dart/eAlarmWebapp/build.dart': Error: line 6 pos 1: library handler failed
+import 'package:polymer/builder.dart';
+^
+build.dart finished [46 ms]
+
+---
+build.dart --machine --changed=web\layout\main.dart
+Unable to open file: d:\Projects\dart\/polymer/builder.dart'file:///D:/Projects/dart/eAlarmWebapp/build.dart': Error: line 6 pos 1: library handler failed
+import 'package:polymer/builder.dart';
+^
+build.dart finished [49 ms]
+
+---
+build.dart --machine --changed=web\layout\main.dart
+Unable to open file: d:\Projects\dart\/polymer/builder.dart'file:///D:/Projects/dart/eAlarmWebapp/build.dart': Error: line 6 pos 1: library handler failed
+import 'package:polymer/builder.dart';
+^
+build.dart finished [47 ms]
+
+---
+build.dart --machine --changed=web\src\util\AppClient.dart
+Unable to open file: d:\Projects\dart\/polymer/builder.dart'file:///D:/Projects/dart/eAlarmWebapp/build.dart': Error: line 6 pos 1: library handler failed
+import 'package:polymer/builder.dart';
+^
+build.dart finished [78 ms]
+
+---
+build.dart --machine --changed=web\src\util\AppClient.dart
+Unable to open file: d:\Projects\dart\/polymer/builder.dart'file:///D:/Projects/dart/eAlarmWebapp/build.dart': Error: line 6 pos 1: library handler failed
+import 'package:polymer/builder.dart';
+^
+build.dart finished [49 ms]
+
+---
+build.dart --machine --changed=web\src\util\AppClient.dart
+Unable to open file: d:\Projects\dart\/polymer/builder.dart'file:///D:/Projects/dart/eAlarmWebapp/build.dart': Error: line 6 pos 1: library handler failed
+import 'package:polymer/builder.dart';
+^
+build.dart finished [103 ms]
+
+---
+build.dart --machine --changed=web\src\util\AppClient.dart
+Unable to open file: d:\Projects\dart\/polymer/builder.dart'file:///D:/Projects/dart/eAlarmWebapp/build.dart': Error: line 6 pos 1: library handler failed
+import 'package:polymer/builder.dart';
+^
+build.dart finished [74 ms]
+
+---
+build.dart --machine --changed=web\layout\form_main.dart
+Unable to open file: d:\Projects\dart\/polymer/builder.dart'file:///D:/Projects/dart/eAlarmWebapp/build.dart': Error: line 6 pos 1: library handler failed
+import 'package:polymer/builder.dart';
+^
+build.dart finished [69 ms]
+
+---
+build.dart --machine --changed=web\layout\form_main.dart
+Unable to open file: d:\Projects\dart\/polymer/builder.dart'file:///D:/Projects/dart/eAlarmWebapp/build.dart': Error: line 6 pos 1: library handler failed
+import 'package:polymer/builder.dart';
+^
+build.dart finished [67 ms]
+
+---
+build.dart --machine --changed=web\layout\form_main.dart
+Unable to open file: d:\Projects\dart\/polymer/builder.dart'file:///D:/Projects/dart/eAlarmWebapp/build.dart': Error: line 6 pos 1: library handler failed
+import 'package:polymer/builder.dart';
+^
+build.dart finished [105 ms]
+
+---
+build.dart --machine --changed=web\layout\form_main.dart
+Unable to open file: d:\Projects\dart\/polymer/builder.dart'file:///D:/Projects/dart/eAlarmWebapp/build.dart': Error: line 6 pos 1: library handler failed
+import 'package:polymer/builder.dart';
+^
+build.dart finished [50 ms]
+
+---
+build.dart --machine --changed=web\layout\form_main.dart
+Unable to open file: d:\Projects\dart\/polymer/builder.dart'file:///D:/Projects/dart/eAlarmWebapp/build.dart': Error: line 6 pos 1: library handler failed
+import 'package:polymer/builder.dart';
+^
+build.dart finished [57 ms]
+
+---
+build.dart --machine --changed=web\layout\main.html
+Unable to open file: d:\Projects\dart\/polymer/builder.dart'file:///D:/Projects/dart/eAlarmWebapp/build.dart': Error: line 6 pos 1: library handler failed
+import 'package:polymer/builder.dart';
+^
+build.dart finished [139 ms]
+
