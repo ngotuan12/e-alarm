@@ -392,6 +392,63 @@ public class DeviceBean extends AppProcessor
 		}
 	}
 
+	public void onGetAllDevicesWithPro() throws Exception
+	{
+		String strSQL = "";
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+		try
+		{
+			// open connection
+			open();
+			strSQL = "SELECT id,code,area_id,area_code,address,lat,lng,status"
+					+ " FROM device ";
+			// prepare
+			pstm = mcnMain.prepareStatement(strSQL);
+			rs = pstm.executeQuery();
+			// get JSON data
+			JSONArray arr = Util.convertToJSONArray(rs);
+			// if account not exists
+			if (arr.length() == 0)
+			{
+				// close statement
+				Database.closeObject(pstm);
+				Database.closeObject(rs);
+				// response
+				response.put("Mess", "no device found");
+			}
+			else
+			{
+				// response
+				JSONArray Acooked = new JSONArray();
+				JSONObject Ocooked = new JSONObject();
+				for (int i = 0; i < arr.length(); i++)
+				{
+
+					Ocooked = arr.getJSONObject(i);
+					Ocooked.put("list",
+							(Object) onGetDevicesInfoByDeviceID(Integer
+									.parseInt(arr.getJSONObject(i).getString(
+											"id"))));
+					Acooked.put(Ocooked);
+
+				}
+
+				response.put("all_devices_byarea_info", Acooked);
+				response.put("Mess", "Success");
+			}
+		}
+		catch (Exception ex)
+		{
+			ex.printStackTrace();
+			throw ex;
+		}
+		finally
+		{
+			close();
+		}
+	}
+
 	public void onDisableDevices() throws Exception
 	{
 		String strSQL = "";
@@ -455,7 +512,7 @@ public class DeviceBean extends AppProcessor
 
 			// open connection
 			open();
-			strSQL = "UPDATE student SET code = ?, " + " area_id = ? "
+			strSQL = "UPDATE device SET code = ?, " + " area_id = ? "
 					+ " area_code = ? " + " address = ? " + " lat = ? "
 					+ " lng = ? " + " status = ? " + " WHERE id = ? ";
 			// prepare
@@ -514,7 +571,8 @@ public class DeviceBean extends AppProcessor
 
 			// open connection
 			open();
-			strSQL = "INSERT INTO device " + "VALUES (?,?,?,?,?,?,?)";
+			strSQL = "INSERT into device (code,area_id,area_code,address,lat,lng,status) VALUES"
+					+ "(?,?,?,?,?,?,?)";
 			// prepare
 			pstm = mcnMain.prepareStatement(strSQL);
 			pstm.setString(1, strCode);
@@ -523,7 +581,7 @@ public class DeviceBean extends AppProcessor
 			pstm.setString(4, straddress);
 			pstm.setDouble(5, Double.parseDouble(strlat));
 			pstm.setDouble(6, Double.parseDouble(strlng));
-			pstm.setDouble(7, Integer.parseInt(strstatus));
+			pstm.setString(7, strstatus);
 
 			int done = pstm.executeUpdate(strSQL);
 
@@ -638,6 +696,9 @@ public class DeviceBean extends AppProcessor
 			break;
 		case "onGetDevicesandDeviceLogbyID":
 			onGetDevicesandDeviceLogbyID();
+			break;
+		case "onGetAllDevicesWithPro":
+			onGetAllDevicesWithPro();
 			break;
 		default:
 			response.put("error", "you must enter the correct API name");
