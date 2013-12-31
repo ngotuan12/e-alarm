@@ -2,8 +2,8 @@ part of EASUtil;
 
 class AppClient
 {
-//	static final String url = "http://54.243.244.187:7777/";
-	static final String url = "http://localhost:7777/AlarmServer/";
+	static final String url = "http://54.243.244.187:7777/";
+//	static final String url = "http://localhost:7777/AlarmServer/";
 	static HttpRequest request = new HttpRequest();
 	/*
 	 * @author TuanNA
