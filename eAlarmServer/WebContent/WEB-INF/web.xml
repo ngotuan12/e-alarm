@@ -43,4 +43,14 @@
 		<servlet-name>DeviceServices</servlet-name>
 		<url-pattern>/DeviceServices</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<description></description>
+		<display-name>PermissionService</display-name>
+		<servlet-name>PermissionService</servlet-name>
+		<servlet-class>com.ar.service.PermissionService</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>PermissionService</servlet-name>
+		<url-pattern>/PermissionService</url-pattern>
+	</servlet-mapping>
 </web-app>
