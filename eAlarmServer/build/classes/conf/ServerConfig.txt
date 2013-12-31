@@ -18,9 +18,9 @@ Connection
 		Password==scowner
 	MySQL
 		#Url==jdbc:mysql://192.168.1.110:3306/studylibrary?useEncoding=true&characterEncoding=utf-8
-		Url==jdbc:mysql://localhost:3306/alarm?useEncoding=true&characterEncoding=UTF-8
+		Url==jdbc:mysql://localhost:9999/ealarm?useEncoding=true&characterEncoding=UTF-8
 		UserName==root
-		Password==
+		Password==113322
 		#Password==123456@123
 	SQLServer
 		Url==jdbc:sqlserver://10.15.30.101:1433;databaseName=HANGHOA;
