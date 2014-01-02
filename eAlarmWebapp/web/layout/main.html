@@ -1,4 +1,5 @@
 <link rel="import" href="form_main.html">
+<link rel="import" href="form_area.html">
 <polymer-element name="main-application">
 <meta charset="UTF-8" />
 <template> <!-- Main Container Fluid -->
@@ -8,7 +9,7 @@
 	<div class="navbar main hidden-print " id="tool-bar">
 		<div class="wrapper">
 			<button type="button" class="btn btn-navbar" id="btn-navbar"
-				on-click="{{onToogleMenu}}>
+				on-click="{{onToogleMenu}}">
 				<span class="icon-bar">
 				</span> <span class="icon-bar"></span> <span class="icon-bar"></span>
 			</button>
@@ -169,6 +170,9 @@
 		<div id="content">
 			<template if="{{currentAction == 'FORM_MAIN'}}">
 				<form-main></form-main>
+			</template>
+			<template if="{{currentAction == 'FORM_AREA'}}">
+				<form-area></form-area>
 			</template>
 		</div>
 		<!-- // Content END -->

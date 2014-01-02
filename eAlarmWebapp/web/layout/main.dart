@@ -1,4 +1,4 @@
-library eAlarm;
+
 import 'package:polymer/polymer.dart';
 import 'dart:html';
 import 'dart:convert';
@@ -55,7 +55,6 @@ class MainApplication extends PolymerElement
 		//get menu data
 		Map request = new Map();
 	    request["Method"] = "queryMenuData";
-	    String strJSON = JSON.encode(request);
 	    //Listen
 	    Responder responder = new Responder();
 	    //success
@@ -73,7 +72,7 @@ class MainApplication extends PolymerElement
 	      print(strError);
 	    });
 	    //send to server
-	    AppClient.sendMessage(strJSON, AlarmServiceName.PermissionService, AlarmServiceMethod.POST,responder);
+	    AppClient.sendMessage(request, AlarmServiceName.PermissionService, AlarmServiceMethod.POST,responder);
 			
 	}
 	

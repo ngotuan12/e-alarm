@@ -1,4 +1,4 @@
-library eAlarm;
+
 import 'package:polymer/polymer.dart';
 @CustomTag('menu-left')
 class MenuLeft extends PolymerElement

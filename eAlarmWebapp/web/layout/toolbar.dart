@@ -1,4 +1,4 @@
-library eAlarm;
+
 import 'package:polymer/polymer.dart';
 @CustomTag('tool-bar')
 class ToolBar extends PolymerElement

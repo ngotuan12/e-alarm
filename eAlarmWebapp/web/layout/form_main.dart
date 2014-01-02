@@ -1,4 +1,4 @@
-library eAlarm;
+
 import 'package:polymer/polymer.dart';
 import 'dart:html';
 import 'dart:convert';
@@ -129,7 +129,6 @@ class FormMain extends PolymerElement
 		//get data
 		Map request = new Map();
 		request["Method"] = "GetAllAreaActive";
-		String strJSON = JSON.encode(request);
 		//Listen
 		Responder responder = new Responder();
 		//success
@@ -159,7 +158,7 @@ class FormMain extends PolymerElement
 		}
 		);
 		//send to server
-		AppClient.sendMessage(strJSON, AlarmServiceName.AreaService, AlarmServiceMethod.POST,responder);
+		AppClient.sendMessage(request, AlarmServiceName.AreaService, AlarmServiceMethod.POST,responder);
 	}
 	/*
 	 * @DienND
@@ -274,7 +273,6 @@ class FormMain extends PolymerElement
 	//get data
 		Map request = new Map();
 		request["Method"] = "onGetAllDevicesWithPro";
-		String strJSON = JSON.encode(request);
 		//Listen
 		Responder responder = new Responder();
 		//success
@@ -293,7 +291,7 @@ class FormMain extends PolymerElement
 			print(strError);
 		});
 		//send to server
-		AppClient.sendMessage(strJSON, AlarmServiceName.DeviceService, AlarmServiceMethod.POST,responder);
+		AppClient.sendMessage(request, AlarmServiceName.DeviceService, AlarmServiceMethod.POST,responder);
 	}
 	/*
 	 * @ducdienpt
@@ -307,7 +305,6 @@ class FormMain extends PolymerElement
 		Map request = new Map();
 		request["Method"] = "onGetAllDevicesByAreaID";
 		request["area_id"]=area["ID"];
-		String strJSON = JSON.encode(request);
 		//Listen
 		Responder responder = new Responder();
 		//success
@@ -325,7 +322,7 @@ class FormMain extends PolymerElement
 		}
 		);
 		//send to server
-		AppClient.sendMessage(strJSON, AlarmServiceName.DeviceService, AlarmServiceMethod.POST,responder);
+		AppClient.sendMessage(request, AlarmServiceName.DeviceService, AlarmServiceMethod.POST,responder);
 
 	}
 	/*
@@ -339,7 +336,6 @@ class FormMain extends PolymerElement
 		Map request = new Map();
 		request["Method"] = "GetActiveByParent";
 		request["ID"]=area["ID"];
-		String strJSON = JSON.encode(request);
 		//Listen
 		Responder responder = new Responder();
 		//success
@@ -373,7 +369,7 @@ class FormMain extends PolymerElement
 		}
 		);
 		//send to server
-		AppClient.sendMessage(strJSON, AlarmServiceName.AreaService, AlarmServiceMethod.POST,responder);
+		AppClient.sendMessage(request, AlarmServiceName.AreaService, AlarmServiceMethod.POST,responder);
 	}
 	/*
 	 * @Diennd
