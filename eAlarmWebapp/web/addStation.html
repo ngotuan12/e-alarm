@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="ie lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>    <html class="ie lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>    <html class="ie lt-ie9"> <![endif]-->
+<!--[if gt IE 8]> <html class="ie gt-ie8"> <![endif]-->
+<!--[if !IE]><!-->
+<html>
+<!-- <![endif]-->
+<head>
+<!-- Tìm địa điểm theo tên -->	
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+<!-- get lat,log from address on google map -->
+<SCRIPT>
+	function initialize() 
+	{
+		google.maps.visualRefresh = true;
+		var address=document.getElementById("fullAddress").value;
+		var geo = new google.maps.Geocoder;
+		geo.geocode({'address':address},function(results, status)
+		{
+			if (status == google.maps.GeocoderStatus.OK)
+			{
+				document.getElementById("Lat").value=results[0].geometry.location.lat();
+				document.getElementById("Long").value=results[0].geometry.location.lng();
+				var myCenter=new google.maps.LatLng(value=results[0].geometry.location.lat(),results[0].geometry.location.lng());
+				var mapProp = {
+						center: myCenter,
+						zoom:12,
+						mapTypeId: google.maps.MapTypeId.ROADMAP
+						};
+				var map = new google.maps.Map(document.getElementById("show-map"),mapProp);
+				var marker = new google.maps.Marker({
+					position: myCenter,
+					title:'Click to zoom'
+					});
+					marker.setMap(map);
+				// Zoom to 10 when clicking on marker
+				google.maps.event.addListener(marker,'click',function()
+				{
+					map.setZoom(15);
+					map.setCenter(marker.getPosition());
+				});
+			}
+			else
+			{
+				alert("Không có địa chỉ này trên bản đồ: " + status);
+			}
+		});
+	}
+	//google.maps.event.addDomListener(window, 'load', initialize);
+</SCRIPT>
+<title>Ex-artisan - Admin</title>
+<!-- Meta -->
+<meta charset="UTF-8" />
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE" />
+
+<!-- Bootstrap -->
+<link href="common/bootstrap/css/bootstrap.css" rel="stylesheet" />
+<link href="common/bootstrap/css/responsive.css" rel="stylesheet" />
+
+<!-- Glyphicons Font Icons -->
+<link href="common/theme/css/glyphicons.css" rel="stylesheet" />
+
+<!-- Uniform Pretty Checkboxes -->
+<link
+href="common/theme/scripts/plugins/forms/pixelmatrix-uniform/css/uniform.default.css"
+rel="stylesheet" />
+
+<!-- Main Theme Stylesheet :: CSS -->
+<link href="common/theme/css/style-dark.css?1369753444" rel="stylesheet" />
+
+
+<!-- LESS.js Library -->
+<script src="common/theme/scripts/plugins/system/less.min.js"></script>
+<script type="application/dart" src="addStation.dart"></script>
+<script src="packages/browser/interop.js"></script>
+<script src="packages/browser/dart.js"></script>
+</head>
+<body>
+
+	<!-- Main Container Fluid -->
+	<div class="container-fluid fixed menu-left">
+
+		<!-- Top navbar (note: add class "navbar-hidden" to close the navbar by default) -->
+		<div class="navbar main hidden-print">
+
+			<!-- Wrapper -->
+			<div class="wrapper">
+
+
+				<!-- Menu Toggle Button -->
+				<button type="button" class="btn btn-navbar">
+					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<!-- // Menu Toggle Button END -->
+				
+				<!-- Top Menu Right -->
+				<ul class="topnav pull-right">
+					<!-- Language menu -->
+					<li class="hidden-phone dropdown dd-1 dd-flags" id="lang_nav">
+						<a href="#" data-toggle="dropdown"><img
+							src="common/theme/images/lang/vn.png" alt="en" /></a>
+						<ul class="dropdown-menu pull-left">
+							<li class="active"><a
+								href="?page=blank&amp;layout_type=fixed&amp;menu_position=menu-left&amp;style=style-dark&amp;lang=en"
+								title="English"><img class="IconCountry" src="common/theme/images/lang/en.png"
+									alt="English"> English</a></li>
+							<li><a
+								href="?page=blank&amp;layout_type=fixed&amp;menu_position=menu-left&amp;style=style-dark&amp;lang=ro"
+								title="Romanian"><img class="IconCountry" src="common/theme/images/lang/ro.png"
+									alt="Romanian"> Romanian</a></li>
+							<li><a
+								href="?page=blank&amp;layout_type=fixed&amp;menu_position=menu-left&amp;style=style-dark&amp;lang=it"
+								title="Italian"><img class="IconCountry" src="common/theme/images/lang/it.png"
+									alt="Italian"> Italian</a></li>
+							<li><a
+								href="?page=blank&amp;layout_type=fixed&amp;menu_position=menu-left&amp;style=style-dark&amp;lang=fr"
+								title="French"><img class="IconCountry" src="common/theme/images/lang/fr.png"
+									alt="French"> French</a></li>
+							<li><a
+								href="?page=blank&amp;layout_type=fixed&amp;menu_position=menu-left&amp;style=style-dark&amp;lang=pl"
+								title="Polish"><img class="IconCountry" src="common/theme/images/lang/pl.png"
+									alt="Polish"> Polish</a></li>
+						</ul>
+					</li>
+					<!-- // Language menu END -->
+
+					<!-- Dropdown -->
+					<li class="dropdown dd-1 visible-desktop"><a href=""
+						data-toggle="dropdown" class="glyphicons shield"><i></i>Hướng
+							dẫn <span class="caret"></span></a>
+						<ul class="dropdown-menu pull-right">
+
+							<li class="dropdown submenu"><a href="#"
+								class="dropdown-toggle glyphicons bell" data-toggle="dropdown"><i></i>Level
+									2</a>
+								<ul class="dropdown-menu submenu-show submenu-hide pull-left">
+									<li class="dropdown submenu"><a href="#"
+										class="dropdown-toggle" data-toggle="dropdown">Level 2.1</a>
+										<ul class="dropdown-menu submenu-show submenu-hide pull-left">
+											<li><a href="#">Level 2.1.1</a></li>
+											<li><a href="#">Level 2.1.2</a></li>
+											<li><a href="#">Level 2.1.3</a></li>
+											<li><a href="#">Level 2.1.4</a></li>
+										</ul></li>
+									<li class="dropdown submenu"><a href="#"
+										class="dropdown-toggle" data-toggle="dropdown">Level 2.2</a>
+										<ul class="dropdown-menu submenu-show submenu-hide pull-left">
+											<li><a href="#">Level 2.2.1</a></li>
+											<li><a href="#">Level 2.2.2</a></li>
+										</ul></li>
+								</ul></li>
+
+							<li><a href="" class="glyphicons settings"><i></i>Some
+									option</a></li>
+							<li><a href="" class="glyphicons bell"><i></i>Some other
+									option</a></li>
+							<li><a href="" class="glyphicons bell"><i></i>Other
+									option</a></li>
+
+						</ul></li>
+					<!-- // Dropdown END -->
+
+					<!-- Profile / Logout menu -->
+					<li class="account dropdown dd-1"><a data-toggle="dropdown"
+						href="my_account.html?lang=en&amp;layout_type=fixed&amp;menu_position=menu-left&amp;style=style-dark"
+						class="glyphicons logout lock"><span class="hidden-phone">ducdienpt</span><i></i></a>
+						<ul class="dropdown-menu pull-right">
+							<li><a
+								href="my_account.html?lang=en&amp;layout_type=fixed&amp;menu_position=menu-left&amp;style=style-dark"
+								class="glyphicons cogwheel">Settings<i></i></a></li>
+							<li><a
+								href="my_account.html?lang=en&amp;layout_type=fixed&amp;menu_position=menu-left&amp;style=style-dark"
+								class="glyphicons camera">My Photos<i></i></a></li>
+							<li class="profile"><span> <span class="heading">Profile
+										<a
+										href="my_account.html?lang=en&amp;layout_type=fixed&amp;menu_position=menu-left&amp;style=style-dark"
+										class="pull-right">edit</a>
+								</span> <span class="img"></span> <span class="details"> <a
+										href="my_account.html?lang=en&amp;layout_type=fixed&amp;menu_position=menu-left&amp;style=style-dark">ducdienpt</a> @ex-artisan.com
+								</span> <span class="clearfix"></span>
+							</span></li>
+							<li><span> <a
+									class="btn btn-default btn-mini pull-right"
+									href="login.html?lang=en&amp;layout_type=fixed&amp;menu_position=menu-left&amp;style=style-dark">Sign Out</a>
+							</span></li>
+						</ul></li>
+					<!-- // Profile / Logout menu END -->
+
+				</ul>
+				<!-- // Top Menu Right END -->
+
+
+				<div class="clearfix"></div>
+			</div>
+			<!-- // Wrapper END -->
+
+			<span class="toggle-navbar"></span>
+		</div>
+		<!-- Top navbar END -->
+
+		<!-- Sidebar menu & content wrapper -->
+		<div id="wrapper">
+
+			<!-- Sidebar Menu -->
+			<div id="menu" class="hidden-phone hidden-print">
+
+				<!-- Brand -->
+				<a
+					href="index.html?lang=en&amp;layout_type=fixed&amp;menu_position=menu-left&amp;style=style-dark"
+					class="appbrand">Ex-artisan <span>Admin</span></a>
+
+				<!-- Scrollable menu wrapper with Maximum height -->
+				<div class="slim-scroll" data-scroll-height="800px">
+
+					<!-- Sidebar Profile -->
+					<span class="profile">
+						<p>
+							Xin chào <a
+								href="my_account.html?lang=en&amp;layout_type=fixed&amp;menu_position=menu-left&amp;style=style-dark">
+								ducdienpt</a>
+						</p> <a class="img"
+						href="my_account.html?lang=en&amp;layout_type=fixed&amp;menu_position=menu-left&amp;style=style-dark"><img
+							src="common/theme/images/avatar-style-dark.jpg" alt="Avatar" /></a>
+						<span>
+							<ul>
+								<li><a href="" class="glyphicons lock"><i></i>Tài khoản</a></li>
+								<li><a href="" class="glyphicons keys"><i></i>Mật khẩu</a></li>
+								<li><a href="" class="glyphicons eject"><i></i>Đăng xuất</a></li>
+							</ul>
+					</span>
+					</span>
+					<!-- // Sidebar Profile END -->
+
+					<!-- Regular Size Menu -->
+					<ul class="menu-0">
+
+						<!-- Blank page template menu example -->
+						<!-- Menu Regular Item (add class active to LI for an active menu item) -->
+						<li class="glyphicons google_maps active"><a href="index.html"><i></i><span>Bản Đồ</span></a></li>
+
+						<!-- Submenu Level 1 (closed) -->
+						<li class="hasSubmenu glyphicons cogwheels"><a
+							data-toggle="collapse" href="#submenu-1"><i></i><span>Quản trị</span></a>
+							<ul class="collapse" id="submenu-1">
+								<!-- Submenu Level 1 Regular Items -->
+								<li><a href="#"><span>Quản trị người dùng</span></a></li>
+								<li><a href="#"><span>Phòng ban</span></a></li>
+								<li><a href="#"><span>phân quyền</span></a></li>
+								<!-- // Submenu Level 1 Regular Items END -->
+
+							</ul> <span class="count">3</span></li>
+						<!-- // Submenu Level 1 END -->
+						<!--  start-->
+						<li class="hasSubmenu glyphicons stats"><a
+							data-toggle="collapse" href="#submenu-11"><i></i><span>Quản
+									lý ATM</span></a>
+							<ul class="collapse" id="submenu-11">
+								<!-- Submenu Level 1 Regular Items -->
+								<li><a href="station.html"><span>Danh sách các trạm</span></a></li>
+								<li><a href="#"><span>Danh sách địa bàn</span></a></li>
+								<li><a href="#"><span>Quản lý sự cố</span></a></li>
+								<!-- // Submenu Level 1 Regular Items END -->
+
+							</ul> <span class="count">3</span></li>
+						<!-- // Submenu Level 1 END -->
+						<!--  start-->
+						<li class="hasSubmenu glyphicons luggage"><a
+							data-toggle="collapse" href="#submenu-13"><i></i><span>Tiện
+									ích</span></a>
+							<ul class="collapse" id="submenu-13">
+								<!-- Submenu Level 1 Regular Items -->
+								<li><a href="#"><span>Tìm địa điểm ATM</span></a></li>
+								<li><a href="#"><span>Tìm địa điểm văn Phòng</span></a></li>
+								<li><a href="#"><span>Chỉ đường</span></a></li>
+								<!-- // Submenu Level 1 Regular Items END -->
+
+							</ul> <span class="count">3</span></li>
+						<!-- // Submenu Level 1 END -->
+						<!-- Submenu Level 1 (active) -->
+						<li class="hasSubmenu glyphicons charts active"><a
+							data-toggle="collapse" href="#submenu-14"><i></i><span>Báo cáo</span></a>
+							<ul class="collapse in" id="submenu-14">
+								<!-- Submenu Level 1 Regular Items -->
+								<li><a href="#"><span>Tổng số trạm ATM</span></a></li>
+								<li><a href="#"><span>Vị trí ATM hỏng</span></a></li>
+								<li><a href="#"><span>Vị trí ATM mới đặt</span></a></li>
+								<li><a href="#"><span>Vị trí ATM sắp thêm</span></a></li>
+								<li><a href="statistics.html"><span>Thống kê trạm</span></a></li>
+								<!-- // Submenu Level 1 Regular Items END -->
+
+							</ul> <span class="count">4</span></li>
+						<!-- // Submenu Level 1 (active) END -->
+
+						<!-- // Blank page template menu example END -->
+					</ul>
+					<div class="clearfix"></div>
+					<!-- // Regular Size Menu END -->
+					<div class="separator bottom"></div>
+				</div>
+				<!-- // Scrollable Menu wrapper with Maximum Height END -->
+
+			</div>
+			<!-- // Sidebar Menu END -->
+			<!-- Content -->
+			<div id="content">
+				<div class="heading-buttons">
+					<h3>
+						Thêm trạm<span> | ATM</span>
+					</h3>
+					<div class="buttons pull-right">
+						<a href="station.html" class="btn btn-default btn-icon glyphicons share"><i></i>Thoát</a> 
+							<button class="btn btn-primary btn-icon glyphicons ok_2" id="Save1"><i></i>Lưu</button>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+				<div class="separator bottom"></div>
+				<!-- // Heading END -->
+				<div class="innerLR">
+					<!-- Widget -->
+					<div class="widget widget-tabs">
+						<!-- Widget heading -->
+						<div class="widget-head">
+						<p id="suscess" class="suscess"></p>
+						</div>
+						<!-- // Widget heading END -->
+						<div class="widget-body">
+							<div class="tab-content">
+								<!-- Description -->
+								<div class="tab-pane active" id="productDescriptionTab">
+									<!-- Row -->
+									<div class="row-fluid">
+										<!-- Column -->
+										<div class="span6">
+											<label>Địa bàn</label>
+											<select id="area" class="span10">
+												<option value="-1">Chọn địa bàn</option>
+											</select>
+											<label for="inputTitle">Địa chỉ</label> 
+											<input id="address" type="text" class="span10" placeholder="Địa chỉ" disabled>
+											<label id="ErrorAddress" class="error"></label>
+											<label for="inputTitle">Tọa độ </label>
+											<input type="text" id="Lat" class="span5" value="" placeholder="Kinh tuyến" disabled/>
+											<input type="text" id="Long" class="span5" value="" placeholder="Vĩ tuyến" disabled/>
+											<label id="ErrorLocation" class="error"></label>
+											<label for="inputTitle">Thuộc tính</label> 
+											<input type="checkbox"  id="temperature" class="property" value=""/>Nhiệt độ
+											<input type="checkbox"  id="humidity" class="property" value=""/>Độ ẩm
+											<input type="checkbox"  id="vibration" class="property" value=""/>Đổ rung
+											<input type="checkbox"  id="brightness" class="property" value=""/>Độ sáng
+											<label for="inputTitle">Mã cây ATM</label> 
+											<input id="code" type="text" class="span10" placeholder="Mã cây ATM">
+											<label id="ErrorCode" class="error"></label>
+											<label for="inputTitle" >trạng thái</label>
+											<select id="status" class="span5">
+												<option value="1">Tốt</option>
+												<option value="0">Hỏng</option>
+											</select>
+											<div class="separator"></div>
+										</div>
+										<!-- // Column END -->
+										<!-- Column -->
+										<div class="span6">
+											<label for="inputTitle" >Tìm địa chỉ</label>
+											<input type="text" id="fullAddress" class="span10" value="" placeholder="Địa chỉ google" disabled/>
+											<button class="btn btn-primary btn-icon search" id="search" onclick="initialize();" disabled>Tìm</button>
+											<div id="show-map"></div>
+										</div>
+										<!-- // Column END -->
+									</div>
+									<!-- // Row END -->
+
+								</div>
+								<!-- // Description END -->
+							</div>
+						</div>
+					</div>
+					<!-- // Widget END -->
+
+					<!-- Bottom buttons -->
+					<div class="heading-buttons">
+						<div class="buttons pull-right" style="margin: 0;">
+							<a href="station.html" class="btn btn-default btn-icon glyphicons share"><i></i>Thoát</a>
+								<button class="btn btn-primary btn-icon glyphicons ok_2" id="Save2"><i></i>Lưu</button>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+					<!-- // Bottom buttons END -->
+				</div>
+			</div>
+			<!-- // Content END -->
+		</div>
+		<div class="clearfix"></div>
+		<!-- // Sidebar menu & content wrapper END -->
+
+		<div id="footer" class="hidden-print">
+
+			<!--  Copyright Line -->
+			<div class="copy">
+				&copy; 2012 - 2013 - <a href="http://www.mosaicpro.biz">Ex-artisan</a>- All Rights Reserved. <a
+					href="http://themeforest.net/item/ergo-admin-ui-template/4602755?ref=mosaicpro"
+					target="_blank">Purchase Ergo on ThemeForest</a> - Current version: v1.2 / <a target="_blank"
+					href="http://demo.mosaicpro.biz/ergoadmin/CHANGELOG">changelog</a>
+			</div>
+			<!--  End Copyright Line -->
+
+		</div>
+		<!-- // Footer END -->
+
+	</div>
+	<!-- // Main Container Fluid END -->
+
+
+	<!-- Themer -->
+	<div id="themer" class="collapse">
+		<div class="wrapper">
+			<span class="close2">&times; close</span>
+			<h4>
+				Themer <span>color options</span>
+			</h4>
+			<ul>
+				<li>Theme: <select id="themer-theme" class="pull-right"></select>
+				<div class="clearfix"></div></li>
+				<li>Primary Color: <input type="text" data-type="minicolors"
+					data-default="#ffffff" data-slider="hue" data-textfield="false"
+					data-position="left" id="themer-primary-cp" />
+				<div class="clearfix"></div></li>
+				<li><span class="link" id="themer-custom-reset">reset
+						theme</span> <span class="pull-right"><label>advanced <input
+							type="checkbox" value="1" id="themer-advanced-toggle" /></label></span></li>
+			</ul>
+			<div id="themer-getcode" class="hide">
+				<hr class="separator" />
+				<button
+					class="btn btn-primary btn-small pull-right btn-icon glyphicons download"
+					id="themer-getcode-less">
+					<i></i>Get LESS
+				</button>
+				<button
+					class="btn btn-inverse btn-small pull-right btn-icon glyphicons download"
+					id="themer-getcode-css">
+					<i></i>Get CSS
+				</button>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+	</div>
+	<!-- // Themer END -->
+
+	<!-- JQuery -->
+	<script src="common/theme/scripts/plugins/system/jquery.min.js"></script>
+
+
+	<!-- Modernizr -->
+	<script src="common/theme/scripts/plugins/system/modernizr.js"></script>
+
+	<!-- Bootstrap -->
+	<script src="common/bootstrap/js/bootstrap.min.js"></script>
+
+	<!-- SlimScroll Plugin -->
+	<script
+		src="common/theme/scripts/plugins/other/jquery-slimScroll/jquery.slimscroll.min.js"></script>
+
+	<!-- Common Demo Script -->
+	<script src="common/theme/scripts/demo/common.js?1369753444"></script>
+
+	<!-- Holder Plugin -->
+	<script src="common/theme/scripts/plugins/other/holder/holder.js"></script>
+
+	<!-- Uniform Forms Plugin -->
+	<script
+		src="common/theme/scripts/plugins/forms/pixelmatrix-uniform/jquery.uniform.min.js"></script>
+</body>
+</html>
