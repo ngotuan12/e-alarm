@@ -16,7 +16,7 @@ class AppClient
 	 * 		onSuccess: Function
 	 * 		onFaile:Function
 	 */
-	static void sendMessage(String strData,String strServiceName,String strMethod,Responder response)
+	static void sendMessage(Map mapData,String strServiceName,String strMethod,Responder response)
 	{
 		try
 		{
@@ -45,8 +45,11 @@ class AppClient
 			});
 			//Prepare 
 			request.open(strMethod, strURL, async: true);
+			//Session
+			mapData["SessionID"] = SessionUser.sessionID;
+			mapData["SessionUserName"] = SessionUser.sessionUserName;
 			//send request
-			request.send(strData);
+			request.send(JSON.encode(mapData));
 		}
 		catch(e)
 		{

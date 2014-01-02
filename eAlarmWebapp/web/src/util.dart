@@ -9,3 +9,4 @@ part 'util/AlarmServiceName.dart';
 part 'util/AlarmServiceMethod.dart';
 part 'util/Responder.dart';
 part 'util/AlarmServiceChart.dart';
+part 'util/SessionUser.dart';
