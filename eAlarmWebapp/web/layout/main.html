@@ -1,3 +1,4 @@
+<link rel="import" href="form_device.html">
 <link rel="import" href="form_main.html">
 <link rel="import" href="form_area.html">
 <polymer-element name="main-application">
@@ -173,6 +174,9 @@
 			</template>
 			<template if="{{currentAction == 'FORM_AREA'}}">
 				<form-area></form-area>
+			</template>
+			<template if="{{currentAction == 'FORM_DEVICE'}}">
+				<form-device></form-device>
 			</template>
 		</div>
 		<!-- // Content END -->

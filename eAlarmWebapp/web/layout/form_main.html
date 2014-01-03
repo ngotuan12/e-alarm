@@ -1,5 +1,5 @@
 <polymer-element name="form-main">
-<meta charset="UTF-8" /> 
+<meta charset="UTF-8" />
 <template>
 <div id="location">
 	<select id="city-location">
@@ -14,10 +14,10 @@
 			<!-- Widget heading -->
 			<div class="divice-head">
 				<ul>
-					<li class="goodATM active"><a href="#goodATM"
+					<li id="normal" class="goodATM "><a href="#goodATM"
 						data-toggle="tab" class="glyphicons picture">ATM tốt</a></li>
-					<li class="errorATM"><a href="#errorATM" data-toggle="tab"
-						class="glyphicons font">ATM hỏng</a></li>
+					<li id="error" class="errorATM active"><a href="#errorATM"
+						data-toggle="tab" class="glyphicons font">ATM hỏng</a></li>
 				</ul>
 			</div>
 			<!-- // Widget heading END -->
@@ -25,18 +25,16 @@
 	</div>
 	<div class="divice-content">
 		<div class="tab-content">
-			<div class="tab-pane active" id="goodATM">
+			<div class="tab-pane " id="goodATM">
 				<ol id="ol-devicesGood">
 				</ol>
 			</div>
-			<div class="tab-pane " id="errorATM">
+			<div class="tab-pane active" id="errorATM">
 				<ol id="ol-devicesError">
 				</ol>
 			</div>
 		</div>
 	</div>
 </div>
-	</template>
-	<script type="application/dart" src="form_main.dart">
-	</script> 
-</polymer-element>
+</template> <script type="application/dart" src="form_main.dart">
+	</script> </polymer-element>

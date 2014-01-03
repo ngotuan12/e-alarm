@@ -9,6 +9,7 @@ import '../src/util.dart';
 @CustomTag('form-main')
 class FormMain extends PolymerElement
 {
+	FormMain.created() : super.created();
 	// This lets the Bootstrap CSS "bleed through" into the Shadow DOM
   	// of this element.
 	bool get applyAuthorStyles => true;
@@ -17,6 +18,8 @@ class FormMain extends PolymerElement
 	SelectElement slDistrict;
 	OListElement olDevicesGood;
 	OListElement olDevicesError;
+	LIElement error;
+	LIElement normal;
 	List<Map> listArea;
 	InfoWindow popupWindow;
 	List<MapTypeStyle> styles = 
@@ -36,14 +39,23 @@ class FormMain extends PolymerElement
 	      ]
 	    }	
 	];
-	FormMain.created() : super.created();
+	/*
+	 * @author ducdienpt
+	 * @since:12/12/2013
+	 * @company: ex-artisan
+	 * @version :1.0
+	 */
 	enteredView() 
 	{
-  		super.enteredView();
-		slCity = this.shadowRoot.querySelector("#city-location");
-		slDistrict = this.shadowRoot.querySelector("#district-location");
-		olDevicesGood = this.shadowRoot.querySelector("#ol-devicesGood");
-		olDevicesError = this.shadowRoot.querySelector("#ol-devicesError");
+		super.enteredView();
+		slCity=this.shadowRoot.querySelector("#city-location");
+		slDistrict=this.shadowRoot.querySelector("#district-location");
+		olDevicesGood=this.shadowRoot.querySelector("#ol-devicesGood");
+		olDevicesError=this.shadowRoot.querySelector("#ol-devicesError");
+		normal=this.shadowRoot.querySelector("#normal");
+		error=this.shadowRoot.querySelector("#error");
+		normal.onClick.listen(changeColorNormal);
+		error.onClick.listen(changeColorError);
 		//Event
 		slCity.onChange.listen(onChooseCity);
 		slDistrict.onChange.listen(onChooseDistric);
@@ -51,6 +63,34 @@ class FormMain extends PolymerElement
 		popupWindow = createPopupInfor();
 		//init
 		init();
+		//sys data
+//		var oneSecond = new Duration(seconds:60);
+//		mytimer = new Timer.periodic(oneSecond, updateData);
+		//default background for status atm
+		error.style.background='#d71c00';
+		normal.style.background='#64625f';
+	}
+	/*
+	 * @DienND
+	 * @since 27/12/2013
+	 * @company ex-artisan
+	 * @version 1.0
+	 */
+	void changeColorNormal(Event e)
+	{
+		normal.style.background='#008000';
+		error.style.background='#64625f';
+	}
+	/*
+	 * @DienND
+	 * @since 27/12/2013
+	 * @company ex-artisan
+	 * @version 1.0
+	 */
+	void changeColorError(Event e)
+	{
+		error.style.background='#d71c00';
+		normal.style.background='#64625f';
 	}
 	/*
 	 * @DienND
@@ -278,18 +318,19 @@ class FormMain extends PolymerElement
 		//success
 		responder.onSuccess.listen((Map response)
 		{
-			List<Map> temp=response['all_devices_byarea_info'];
-			//filter order areaId
-			List<Map> listDevices = filterByAreaCode(temp, [area['Code']]);
-			//Show devices on map
-			if(listDevices !=null)
-			showDevices(listDevices, map);
+		List<Map> temp=response['all_devices_byarea_info'];
+		//filter order areaId
+		List<Map> listDevices = filterByAreaCode(temp, [area['Code']]);
+		//Show devices on map
+		if(listDevices !=null)
+		showDevices(listDevices, map);
 		});
 		//error
 		responder.onError.listen((String strError)
 		{
-			print(strError);
-		});
+		print(strError);
+		}
+		);
 		//send to server
 		AppClient.sendMessage(request, AlarmServiceName.DeviceService, AlarmServiceMethod.POST,responder);
 	}
@@ -387,21 +428,43 @@ class FormMain extends PolymerElement
 				liDevice.style.marginTop="5px";
 				liDevice.style.marginLeft="5px";
 				liDevice.style.borderBottom="1px solid #616161";
-					AnchorElement spDevice=new AnchorElement();
-					spDevice.style.textDecoration="none";
-					spDevice.style.color="#fff";
-					spDevice.href="#";
-					spDevice.onMouseOver.listen((event)=>spDevice.style.color='gray');
-					spDevice.onMouseLeave.listen((event)=>spDevice.style.color='#fff');
-					liDevice.onMouseOver.listen((event)=>spDevice.style.color='gray');
-					liDevice.onMouseLeave.listen((event)=>spDevice.style.color='#fff');
+					ImageElement img=new ImageElement();
+						img.style.width='16px';
+						img.style.height='16px';
+						img.style.marginRight='10px';
+					AnchorElement aDevice=new AnchorElement();
+					aDevice.style.textDecoration="none";
+					aDevice.style.color="#fff";
+					aDevice.href="#";
+					aDevice.onMouseOver.listen((event)=>aDevice.style.color='gray');
+					aDevice.onMouseLeave.listen((event)=>aDevice.style.color='#fff');
+					liDevice.onMouseOver.listen((event)=>aDevice.style.color='gray');
+					liDevice.onMouseLeave.listen((event)=>aDevice.style.color='#fff');
 					//split data
-					var parts = device['address'].split(',');
-					spDevice.text=parts[0];
-					liDevice.children.add(spDevice);
+					
+					List parts = device['address'].split(',');
+					String temp="";
+					if(slDistrict.selectedIndex>0){
+						for(int i=0;i<parts.length-2;i++)
+						{
+							temp+=parts[i]+",";
+						}
+					}
+					else
+					{
+						for(int i=0;i<parts.length-1;i++)
+						{
+						temp+=parts[i]+",";
+						}
+					}
+					aDevice.text=temp.substring(0,temp.length-1);
 				//check status
 				if(device["status"]=="1")
 				{
+					img.src='images/ATMs/BlueV.png';
+					//aDevice.children.add(img);
+					liDevice.children.add(img);
+					liDevice.children.add(aDevice);
 					olDevicesGood.children.add(liDevice);
 					//new marker
 					Marker marker = new Marker
@@ -422,6 +485,10 @@ class FormMain extends PolymerElement
 				}
 				else
 				{
+					img.src='images/ATMs/RedX.png';
+					//aDevice.children.add(img);
+					liDevice.children.add(img);
+					liDevice.children.add(aDevice);
 					olDevicesError.children.add(liDevice);
 					//new marker
 					Marker marker = new Marker
