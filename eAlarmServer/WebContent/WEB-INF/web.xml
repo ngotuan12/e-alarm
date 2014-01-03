@@ -53,4 +53,14 @@
 		<servlet-name>PermissionService</servlet-name>
 		<url-pattern>/PermissionService</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<description></description>
+		<display-name>GatewayService</display-name>
+		<servlet-name>GatewayService</servlet-name>
+		<servlet-class>com.ar.service.GatewayService</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>GatewayService</servlet-name>
+		<url-pattern>/GatewayService</url-pattern>
+	</servlet-mapping>
 </web-app>
