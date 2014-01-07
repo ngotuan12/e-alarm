@@ -5,6 +5,7 @@ class AppClient
 	static final String url = "http://54.243.244.187:7777/";
 //	static final String url = "http://localhost:7777/AlarmServer/";
 	static HttpRequest request = new HttpRequest();
+	static bool isLogin = false;
 	/*
 	 * @author TuanNA
 	 * @since 13/12/2013
@@ -22,26 +23,31 @@ class AppClient
 		{
 			String strURL = url + strServiceName;
 			request = new HttpRequest();
+			//start loader
+			Util.startLoader();
 			//listen
 			request.onReadyStateChange.listen(
 			(_)
 			{
-				
-				if(request.readyState == HttpRequest.DONE &&(request.status == 200))
+				if(request.readyState == HttpRequest.DONE)
 				{
-				
-					String strResponse = request.responseText;
-					Map mapResponse = JSON.decode(strResponse);
-					if(mapResponse["error"]==null)
+					Util.stopLoader();
+					if(request.status == 200)
+					{
+						String strResponse = request.responseText;
+						Map mapResponse = JSON.decode(strResponse);
+						if(mapResponse["handle"]=="on_error")
+						{
+							response.error(mapResponse["message"]);
+							return;
+						}
 						response.success(mapResponse);
+					}
 					else
-						response.error(mapResponse["error"]);
+					{
+						response.error("Can't connect to server. Pls, try again!");
+					}
 				}
-			});
-			request.onError.listen(
-			(_)
-			{
-				response.error("Can't connect to server");
 			});
 			//Prepare 
 			request.open(strMethod, strURL, async: true);
