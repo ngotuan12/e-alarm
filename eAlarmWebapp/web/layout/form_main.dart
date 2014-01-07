@@ -420,94 +420,107 @@ class FormMain extends PolymerElement
 	 */
 	void showDevices(List<Map> devices,final GMap map)
 	{
-			for(int i =0;i<devices.length;i++)
+		int count = 0;
+		Timer timer = new Timer.periodic(new Duration(milliseconds: 50), (Timer timer)
+		{
+		
+			showDevice(devices[count],map);
+			count++;
+			if(count==devices.length)
 			{
-				Map device = devices[i];
-				//add into ul_devices
-				LIElement liDevice=new LIElement();
-				liDevice.style.marginTop="5px";
-				liDevice.style.marginLeft="5px";
-				liDevice.style.borderBottom="1px solid #616161";
-					ImageElement img=new ImageElement();
-						img.style.width='16px';
-						img.style.height='16px';
-						img.style.marginRight='10px';
-					AnchorElement aDevice=new AnchorElement();
-					aDevice.style.textDecoration="none";
-					aDevice.style.color="#fff";
-					aDevice.href="#";
-					aDevice.onMouseOver.listen((event)=>aDevice.style.color='gray');
-					aDevice.onMouseLeave.listen((event)=>aDevice.style.color='#fff');
-					liDevice.onMouseOver.listen((event)=>aDevice.style.color='gray');
-					liDevice.onMouseLeave.listen((event)=>aDevice.style.color='#fff');
-					//split data
-					
-					List parts = device['address'].split(',');
-					String temp="";
-					if(slDistrict.selectedIndex>0){
-						for(int i=0;i<parts.length-2;i++)
-						{
-							temp+=parts[i]+",";
-						}
-					}
-					else
-					{
-						for(int i=0;i<parts.length-1;i++)
-						{
-						temp+=parts[i]+",";
-						}
-					}
-					aDevice.text=temp.substring(0,temp.length-1);
-				//check status
-				if(device["status"]=="1")
-				{
-					img.src='images/ATMs/BlueV.png';
-					//aDevice.children.add(img);
-					liDevice.children.add(img);
-					liDevice.children.add(aDevice);
-					olDevicesGood.children.add(liDevice);
-					//new marker
-					Marker marker = new Marker
-					(
-						new MarkerOptions()
-						..position = new LatLng(device["lat"], device["lng"])
-						..map = map
-						..title = device["code"]
-						..animation = Animation.DROP
-						..icon='images/ATMs/marker_blue.png'
-					);
-					//add listener
-					liDevice.onClick.listen((event) =>showMarkerInfor(device,marker,map));
-					marker.onClick.listen((e) 
-					{
-						showMarkerInfor(device,marker,map);
-					});
-				}
-				else
-				{
-					img.src='images/ATMs/RedX.png';
-					//aDevice.children.add(img);
-					liDevice.children.add(img);
-					liDevice.children.add(aDevice);
-					olDevicesError.children.add(liDevice);
-					//new marker
-					Marker marker = new Marker
-					(
-						new MarkerOptions()
-						..position = new LatLng(device["lat"], device["lng"])
-						..map = map
-						..title = device["code"]
-						..animation = Animation.DROP
-						..icon='images/ATMs/marker_red.png'
-					);
-					//add listener
-					liDevice.onClick.listen((event) =>showMarkerInfor(device,marker,map));
-					marker.onClick.listen((e) 
-					{
-						showMarkerInfor(device,marker,map);
-					});
-				}
+				timer.cancel();
 			}
+		});
+	}
+	
+	void showDevice(Map device,final GMap map)
+	{
+		//add into ul_devices
+		LIElement liDevice=new LIElement();
+		liDevice.style.marginTop="5px";
+		liDevice.style.marginLeft="5px";
+		liDevice.style.borderBottom="1px solid #616161";
+		ImageElement img=new ImageElement();
+		img.style.width='16px';
+		img.style.height='16px';
+		img.style.marginRight='10px';
+		AnchorElement aDevice=new AnchorElement();
+		aDevice.style.textDecoration="none";
+		aDevice.style.color="#fff";
+		aDevice.href="#";
+		aDevice.onMouseOver.listen((event)=>aDevice.style.color='gray');
+		aDevice.onMouseLeave.listen((event)=>aDevice.style.color='#fff');
+		liDevice.onMouseOver.listen((event)=>aDevice.style.color='gray');
+		liDevice.onMouseLeave.listen((event)=>aDevice.style.color='#fff');
+		//split data
+		
+		List parts = device['address'].split(',');
+		String temp="";
+		if(slDistrict.selectedIndex>0)
+		{
+			for(int i=0;i<parts.length-2;i++)
+			{
+				temp+=parts[i]+",";
+			}
+		}
+		else
+		{
+			for(int i=0;i<parts.length-1;i++)
+			{
+				temp+=parts[i]+",";
+			}
+		}
+		aDevice.text=temp.substring(0,temp.length-1);
+		//check status
+		if(device["status"]=="1")
+		{
+			img.src='images/ATMs/BlueV.png';
+			//aDevice.children.add(img);
+			liDevice.children.add(img);
+			liDevice.children.add(aDevice);
+			olDevicesGood.children.add(liDevice);
+			//new marker
+			Marker marker = new Marker
+			(
+				new MarkerOptions()
+				..position = new LatLng(device["lat"], device["lng"])
+				..map = map
+				..title = device["code"]
+				..animation = Animation.DROP
+				..icon='images/ATMs/marker_blue.png'
+			);
+			//add listener
+			liDevice.onClick.listen((event) =>showMarkerInfor(device,marker,map));
+			marker.onClick.listen((e) 
+			{
+				showMarkerInfor(device,marker,map);
+			});
+		}
+		else
+		{
+			img.src='images/ATMs/RedX.png';
+			//aDevice.children.add(img);
+			liDevice.children.add(img);
+			liDevice.children.add(aDevice);
+			olDevicesError.children.add(liDevice);
+			//new marker
+			Marker marker = new Marker
+			(
+			new MarkerOptions()
+			..position = new LatLng(device["lat"], device["lng"])
+			..map = map
+			..title = device["code"]
+			..animation = Animation.DROP
+			..icon='images/ATMs/marker_red.png'
+			);
+			
+			//add listener
+			liDevice.onClick.listen((event) =>showMarkerInfor(device,marker,map));
+			marker.onClick.listen((e) 
+			{
+			showMarkerInfor(device,marker,map);
+			});
+		}
 	}
 	/*
 	 * @TuanNA

@@ -1,0 +1,111 @@
+<link rel="import" href="form_device.html">
+<link rel="import" href="form_area.html">
+<link rel="import" href="form_login.html">
+<link rel="import" href="form_main.html">
+<link rel="import" href="tool_bar.html">
+<polymer-element name="main-menu">
+<meta charset="UTF-8" />
+<template> <!-- Main Container Fluid -->
+<style>
+.container-fluid {
+	height:100%;
+  padding: 0;
+  background: #262626;
+}
+ .container-fluid.fixed {
+  margin: 30px auto 30px;
+  border-left: 1px solid #222222;
+  border-right: 1px solid #222222;
+  width: 94%;
+}
+ .container-fluid.documentation {
+  background: #fff;
+}
+ .container-fluid.fixed {
+  -webkit-border-radius: 5px 5px 0 0;
+  -moz-border-radius: 5px 5px 0 0;
+  border-radius: 5px 5px 0 0;
+}
+ .container-fluid.fixed #wrapper {
+  -webkit-border-radius: 5px 5px 0 0;
+  -moz-border-radius: 5px 5px 0 0;
+  border-radius: 5px 5px 0 0;
+}
+ .container-fluid.fixed #content {
+  -webkit-border-radius: 0 5px 0 0;
+  -moz-border-radius: 0 5px 0 0;
+  border-radius: 0 5px 0 0;
+}
+ #main-content #wrapper{
+	height: 100%;
+}
+ #main-content #wrapper #menu{
+}
+ #main-content #wrapper #content{
+}
+
+</style>
+
+<div class="container-fluid fixed menu-left " id="main-content" >
+
+	<tool-bar></tool-bar>
+	<!-- Sidebar menu & content wrapper -->
+	<div id="wrapper">
+		<!-- Sidebar Menu -->
+		<div id="menu" class="hidden-phone hidden-print">
+			<!-- Brand -->
+			<a
+				href="index.html?lang=en&amp;layout_type=fixed&amp;menu_position=menu-left&amp;style=style-dark"
+				class="appbrand">Ex-artisan <span>Admin</span></a>
+			<!-- Scrollable menu wrapper with Maximum height -->
+			<div class="slim-scroll" data-scroll-height="800px">
+
+				<!-- Sidebar Profile -->
+				<span class="profile">
+					<p>
+						Xin chào <a
+							href="my_account.html?lang=en&amp;layout_type=fixed&amp;menu_position=menu-left&amp;style=style-dark">
+							ducdienpt</a>
+					</p> <a class="img"
+					href="my_account.html?lang=en&amp;layout_type=fixed&amp;menu_position=menu-left&amp;style=style-dark"><img
+						src="style/images/avatar-style-dark.jpg" alt="Avatar" /></a> <span>
+						<ul>
+							<li><a href="" class="glyphicons lock"><i></i>Tài khoản</a></li>
+							<li><a href="" class="glyphicons keys"><i></i>Mật khẩu</a></li>
+							<li><a href="" class="glyphicons eject"><i></i>Đăng xuất</a></li>
+						</ul>
+				</span>
+				</span>
+				<!-- // Sidebar Profile END -->
+
+				<!-- Regular Size Menu -->
+				<ul class="menu-0" id="module-content">
+
+				</ul>
+				<div class="clearfix"></div>
+				<!-- // Regular Size Menu END -->
+				<div class="separator bottom"></div>
+			</div>
+			<!-- // Scrollable Menu wrapper with Maximum Height END -->
+
+		</div>
+		<!-- // Sidebar Menu END -->
+		<!-- Content -->
+		<div id="content">
+			
+			<template if="{{currentAction == 'FORM_MAIN'}}">
+				<form-main></form-main>
+			</template>
+			<template if="{{currentAction == 'FORM_AREA'}}">
+				<form-area></form-area>
+			</template>
+			<template if="{{currentAction == 'FORM_DEVICE'}}">
+				<form-device></form-device>
+			</template>
+		</div>
+		<!-- // Content END -->
+	</div>
+</div>
+</template> <script charset="utf-8"
+	type="application/dart" src="main_menu.dart">
+</script> </polymer-element>

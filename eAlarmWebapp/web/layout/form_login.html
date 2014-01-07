@@ -1,0 +1,226 @@
+<polymer-element name="form-login">
+<meta charset="UTF-8" />
+<template>
+<style>
+{
+  background: #252525;
+}
+#login {
+  padding: 10% 0 0;
+}
+#login h1 {
+  font-size: 20pt;
+  color: #8ec657;
+  text-align: center;
+  display: block;
+  padding: 0 0 20px;
+  text-shadow: none;
+}
+#login h1 i:before {
+  position: relative;
+  left: auto;
+  top: auto;
+  color: #ffffff;
+}
+#login .wrapper {
+  max-width: 354px;
+  min-width: 300px;
+  margin: 0 auto;
+  position: relative;
+}
+#login .wrapper.signup {
+  max-width: 600px;
+}
+#login .widget .widget-head {
+  padding: 0 5px 0 0;
+}
+#login .widget .widget-head .btn {
+  margin: -4px 0 0 5px;
+}
+#login .widget .widget-head div {
+  font-size: 12px;
+}
+#login .widget .widget-footer {
+  height: 40px;
+  line-height: 40px;
+}
+#login .widget .widget-footer p {
+  font-size: 12px;
+  color: #ffffff;
+  font-weight: 600;
+  margin: 0;
+  width: auto;
+  float: none;
+  padding: 0 10px 0 35px;
+  display: block;
+  height: 40px;
+  line-height: 40px;
+}
+#login .widget .widget-footer p i:before {
+  top: 7px;
+  left: 7px;
+}
+#login label {
+  font-size: 13px;
+  color: #7c7c7c;
+  font-weight: 600;
+}
+#login .checkbox {
+  margin-top: 5px;
+}
+#login .password {
+  float: right;
+  font-size: 12px;
+  font-weight: 400;
+}
+#login input[type="text"],
+#login input[type="password"] {
+  font-size: 13px;
+  height: auto;
+  margin-bottom: 10px;
+  padding: 5px 9px;
+  box-shadow: inset 1px 1px 1px rgba(255, 255, 255, 0), inset -1px -1px 1px rgba(0, 0, 0, 0);
+  -moz-box-shadow: inset 1px 1px 1px rgba(255, 255, 255, 0), inset -1px -1px 1px rgba(0, 0, 0, 0);
+  -webkit-box-shadow: inset 1px 1px 1px rgba(255, 255, 255, 0), inset -1px -1px 1px rgba(0, 0, 0, 0);
+  -webkit-border-radius: 0 0 0 0;
+  -moz-border-radius: 0 0 0 0;
+  border-radius: 0 0 0 0;
+  background: #fff;
+}
+#login ::-webkit-input-placeholder {
+  /* WebKit browsers */
+  color: #ccc;
+}
+#login :-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: #ccc;
+}
+#login ::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: #ccc;
+}
+#login :-ms-input-placeholder {
+  /* Internet Explorer 10+ */
+  color: #ccc;
+}
+#login form {
+  margin: 0;
+}
+#login p {
+  margin: 5px 0;
+}
+#login p:first-child {
+  margin: 0 0 10px;
+}
+#login p:last-child {
+  margin: 10px 0 0;
+}
+#login .form-signin {
+  position: relative;
+  max-width: 600px;
+  margin: 0 auto 20px;
+  background-color: #fff;
+  border: 1px solid #e5e5e5;
+  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+#login .form-signin .inner {
+  padding: 20px;
+}
+</style>
+<div id="login">
+
+	<div class="container">
+
+		<div class="wrapper">
+
+			<h1 class="glyphicons lock">
+				Alarm Control System <i></i>
+			</h1>
+
+			<!-- Box -->
+			<div class="widget">
+
+				<div class="widget-head">
+					<h3 class="heading">Login area</h3>
+					<div class="pull-right">
+						Don't have an account? <a
+							href="signup.html?lang=en&amp;layout_type=fixed&amp;menu_position=menu-left&amp;style=style-dark"
+							class="btn btn-inverse btn-mini">Sign up</a>
+					</div>
+				</div>
+				<div class="widget-body">
+
+					<!-- Form -->
+						<label>Username or Email</label> <input type="text"
+							class="input-block-level"
+							placeholder="Your Username or Email address"> <label>Password
+							<a class="password" href="">forgot your password?</a>
+						</label> <input type="password" class="input-block-level margin-none"
+							placeholder="Your Password">
+						<div class="separator bottom"></div>
+						<div class="row-fluid">
+							<div class="span8">
+								<div class="uniformjs">
+									<label class="checkbox"><div class="checker"
+											id="uniform-undefined">
+											<span><input type="checkbox" value="remember-me"
+												style="opacity: 0;"></span>
+										</div>Remember me</label>
+								</div>
+							</div>
+							<div class="span4 center">
+								<button class="btn btn-block btn-primary" type="submit" on-click="{{login}}">Sign
+									in</button>
+							</div>
+						</div>
+					<!-- // Form END -->
+
+				</div>
+				<div class="widget-footer">
+					<p class="glyphicons restart">
+						<i></i>Please enter your username and password ...
+					</p>
+				</div>
+			</div>
+			<!-- // Box END -->
+		</div>
+	</div>
+
+</div>
+<div id="themer" class="collapse">
+	<div class="wrapper">
+		<span class="close2">× close</span>
+		<h4>
+			Themer <span>color options</span>
+		</h4>
+		<ul>
+			<li>Theme: <select id="themer-theme" class="pull-right"></select>
+			<div class="clearfix"></div></li>
+			<li>Primary Color: <input type="text" data-type="minicolors"
+				data-default="#ffffff" data-slider="hue" data-textfield="false"
+				data-position="left" id="themer-primary-cp">
+			<div class="clearfix"></div></li>
+			<li><span class="link" id="themer-custom-reset">reset
+					theme</span> <span class="pull-right"><label>advanced <input
+						type="checkbox" value="1" id="themer-advanced-toggle"></label></span></li>
+		</ul>
+		<div id="themer-getcode" class="hide">
+			<hr class="separator">
+			<button
+				class="btn btn-primary btn-small pull-right btn-icon glyphicons download"
+				id="themer-getcode-less">
+				<i></i>Get LESS
+			</button>
+			<button
+				class="btn btn-inverse btn-small pull-right btn-icon glyphicons download"
+				id="themer-getcode-css">
+				<i></i>Get CSS
+			</button>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+</div>
+</template> <script type="application/dart" src="form_login.dart">
+</script> </polymer-element>

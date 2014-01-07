@@ -1,191 +1,277 @@
 <link rel="import" href="form_device.html">
-<link rel="import" href="form_main.html">
 <link rel="import" href="form_area.html">
+<link rel="import" href="form_login.html">
+<link rel="import" href="form_main.html">
+<link rel="import" href="tool_bar.html">
+<link rel="import" href="main_menu.html">
 <polymer-element name="main-application">
 <meta charset="UTF-8" />
 <template> <!-- Main Container Fluid -->
-<div class="container-fluid fixed menu-left " id="main-content">
+<style>
+main-application  > .container-fluid {
+	height:100%;
+  padding: 0;
+  background: #262626;
+}
+main-application > .container-fluid.fixed {
+  margin: 30px auto 30px;
+  border-left: 1px solid #222222;
+  border-right: 1px solid #222222;
+  width: 94%;
+}
+main-application > .container-fluid.documentation {
+  background: #fff;
+}
+main-application > .container-fluid.fixed {
+  -webkit-border-radius: 5px 5px 0 0;
+  -moz-border-radius: 5px 5px 0 0;
+  border-radius: 5px 5px 0 0;
+}
+main-application > .container-fluid.fixed #wrapper {
+  -webkit-border-radius: 5px 5px 0 0;
+  -moz-border-radius: 5px 5px 0 0;
+  border-radius: 5px 5px 0 0;
+}
+main-application > .container-fluid.fixed #content {
+  -webkit-border-radius: 0 5px 0 0;
+  -moz-border-radius: 0 5px 0 0;
+  border-radius: 0 5px 0 0;
+}
+main-application > #main-content #wrapper{
+	height: 100%;
+}
+main-application > #main-content #wrapper #menu{
+}
+main-application > #main-content #wrapper #content{
+}
+.dark-class {
+	background-color: #F0F0F0;
+	filter: alpha(opacity =       50); /* IE */
+	opacity: 0.2; /* Safari, Opera */
+	-moz-opacity: 0.2; /* FireFox */
+	z-index: 10002;
+	background-repeat: no-repeat;
+	background-position: center;
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	padding: 0px;
+}
+#floatingCirclesG{
+position:relative;
+width:128px;
+height:128px;
+-moz-transform:scale(0.6);
+-webkit-transform:scale(0.6);
+-ms-transform:scale(0.6);
+-o-transform:scale(0.6);
+transform:scale(0.6);
+}
 
-	<!-- Top navbar (note: add class "navbar-hidden" to close the navbar by default) -->
-	<div class="navbar main hidden-print " id="tool-bar">
-		<div class="wrapper">
-			<button type="button" class="btn btn-navbar" id="btn-navbar"
-				on-click="{{onToogleMenu}}">
-				<span class="icon-bar">
-				</span> <span class="icon-bar"></span> <span class="icon-bar"></span>
-			</button>
-			<!-- Top Menu Right -->
-			<ul class="topnav pull-right" id="ul-language">
+.f_circleG{
+position:absolute;
+background-color:#FFFFFF;
+height:23px;
+width:23px;
+-moz-border-radius:12px;
+-moz-animation-name:f_fadeG;
+-moz-animation-duration:1.12s;
+-moz-animation-iteration-count:infinite;
+-moz-animation-direction:linear;
+-webkit-border-radius:12px;
+-webkit-animation-name:f_fadeG;
+-webkit-animation-duration:1.12s;
+-webkit-animation-iteration-count:infinite;
+-webkit-animation-direction:linear;
+-ms-border-radius:12px;
+-ms-animation-name:f_fadeG;
+-ms-animation-duration:1.12s;
+-ms-animation-iteration-count:infinite;
+-ms-animation-direction:linear;
+-o-border-radius:12px;
+-o-animation-name:f_fadeG;
+-o-animation-duration:1.12s;
+-o-animation-iteration-count:infinite;
+-o-animation-direction:linear;
+border-radius:12px;
+animation-name:f_fadeG;
+animation-duration:1.12s;
+animation-iteration-count:infinite;
+animation-direction:linear;
+}
 
-				<!-- Language menu -->
-				<li class="hidden-phone dropdown dd-1 dd-flags" id="lang_nav">
-					<a href="#" data-toggle="dropdown"><img
-						src="common/theme/images/lang/vn.png" alt="en" /></a>
-					<ul class="dropdown-menu pull-left">
-						<li class="active"><a
-							href="?page=blank&amp;layout_type=fixed&amp;menu_position=menu-left&amp;style=style-dark&amp;lang=en"
-							title="English"><img class="IconCountry"
-								src="common/theme/images/lang/en.png" alt="English">
-								English</a></li>
-						<li><a
-							href="?page=blank&amp;layout_type=fixed&amp;menu_position=menu-left&amp;style=style-dark&amp;lang=ro"
-							title="Romanian"><img class="IconCountry"
-								src="common/theme/images/lang/ro.png" alt="Romanian">
-								Romanian</a></li>
-						<li><a
-							href="?page=blank&amp;layout_type=fixed&amp;menu_position=menu-left&amp;style=style-dark&amp;lang=it"
-							title="Italian"><img class="IconCountry"
-								src="common/theme/images/lang/it.png" alt="Italian">
-								Italian</a></li>
-						<li><a
-							href="?page=blank&amp;layout_type=fixed&amp;menu_position=menu-left&amp;style=style-dark&amp;lang=fr"
-							title="French"><img class="IconCountry"
-								src="common/theme/images/lang/fr.png" alt="French"> French</a></li>
-						<li><a
-							href="?page=blank&amp;layout_type=fixed&amp;menu_position=menu-left&amp;style=style-dark&amp;lang=pl"
-							title="Polish"><img class="IconCountry"
-								src="common/theme/images/lang/pl.png" alt="Polish"> Polish</a></li>
-					</ul>
-				</li>
-				<!-- // Language menu END -->
+#frotateG_01{
+left:0;
+top:52px;
+-moz-animation-delay:0.42s;
+-webkit-animation-delay:0.42s;
+-ms-animation-delay:0.42s;
+-o-animation-delay:0.42s;
+animation-delay:0.42s;
+}
 
-				<!-- Dropdown -->
-				<li class="dropdown dd-1 visible-desktop" id="help_nav"><a
-					href="#" data-toggle="dropdown" class="glyphicons shield"><i></i>Hướng
-						dẫn <span class="caret"></span></a>
-					<ul class="dropdown-menu pull-right">
+#frotateG_02{
+left:15px;
+top:15px;
+-moz-animation-delay:0.56s;
+-webkit-animation-delay:0.56s;
+-ms-animation-delay:0.56s;
+-o-animation-delay:0.56s;
+animation-delay:0.56s;
+}
 
-						<li class="dropdown submenu"><a href="#"
-							class="dropdown-toggle glyphicons bell" data-toggle="dropdown"><i></i>Level
-								2</a>
-							<ul class="dropdown-menu submenu-show submenu-hide pull-left">
-								<li class="dropdown submenu"><a href="#"
-									class="dropdown-toggle" data-toggle="dropdown">Level 2.1</a>
-									<ul class="dropdown-menu submenu-show submenu-hide pull-left">
-										<li><a href="#">Level 2.1.1</a></li>
-										<li><a href="#">Level 2.1.2</a></li>
-										<li><a href="#">Level 2.1.3</a></li>
-										<li><a href="#">Level 2.1.4</a></li>
-									</ul></li>
-								<li class="dropdown submenu"><a href="#"
-									class="dropdown-toggle" data-toggle="dropdown">Level 2.2</a>
-									<ul class="dropdown-menu submenu-show submenu-hide pull-left">
-										<li><a href="#">Level 2.2.1</a></li>
-										<li><a href="#">Level 2.2.2</a></li>
-									</ul></li>
-							</ul></li>
+#frotateG_03{
+left:52px;
+top:0;
+-moz-animation-delay:0.7s;
+-webkit-animation-delay:0.7s;
+-ms-animation-delay:0.7s;
+-o-animation-delay:0.7s;
+animation-delay:0.7s;
+}
 
-						<li><a href="" class="glyphicons settings"><i></i>Some
-								option</a></li>
-						<li><a href="" class="glyphicons bell"><i></i>Some other
-								option</a></li>
-						<li><a href="" class="glyphicons bell"><i></i>Other
-								option</a></li>
+#frotateG_04{
+right:15px;
+top:15px;
+-moz-animation-delay:0.84s;
+-webkit-animation-delay:0.84s;
+-ms-animation-delay:0.84s;
+-o-animation-delay:0.84s;
+animation-delay:0.84s;
+}
 
-					</ul></li>
-				<!-- // Dropdown END -->
+#frotateG_05{
+right:0;
+top:52px;
+-moz-animation-delay:0.98s;
+-webkit-animation-delay:0.98s;
+-ms-animation-delay:0.98s;
+-o-animation-delay:0.98s;
+animation-delay:0.98s;
+}
 
-				<!-- Profile / Logout menu -->
-				<li class="account dropdown dd-1" id="account_nav"><a href="#"
-					data-toggle="dropdown" class="glyphicons logout lock"> <span
-						class="hidden-phone">ducdienpt </span> 
-						<i></i>
-				</a>
-					<ul class="dropdown-menu pull-right">
-						<li><a
-							href="my_account.html?lang=en&amp;layout_type=fixed&amp;menu_position=menu-left&amp;style=style-dark"
-							class="glyphicons cogwheel">Settings<i></i></a></li>
-						<li><a
-							href="my_account.html?lang=en&amp;layout_type=fixed&amp;menu_position=menu-left&amp;style=style-dark"
-							class="glyphicons camera">My Photos<i></i></a></li>
-						<li class="profile"><span> <span class="heading">Profile
-									<a
-									href="my_account.html?lang=en&amp;layout_type=fixed&amp;menu_position=menu-left&amp;style=style-dark"
-									class="pull-right">edit</a>
-							</span> <span class="img"></span> <span class="details"> <a
-									href="my_account.html?lang=en&amp;layout_type=fixed&amp;menu_position=menu-left&amp;style=style-dark">ducdienpt</a>
-									@ex-artisan.com
-							</span> <span class="clearfix"></span>
-						</span></li>
-						<li><span> <a
-								class="btn btn-default btn-mini pull-right"
-								href="login.html?lang=en&amp;layout_type=fixed&amp;menu_position=menu-left&amp;style=style-dark">Sign
-									Out</a>
-						</span></li>
-					</ul></li>
-				<!-- // Profile / Logout menu END -->
-				
-			</ul>
-			<!-- // Top Menu Right END -->
-			<div class="clearfix"></div>
-		</div>
-		<span class="toggle-navbar"></span>
+#frotateG_06{
+right:15px;
+bottom:15px;
+-moz-animation-delay:1.12s;
+-webkit-animation-delay:1.12s;
+-ms-animation-delay:1.12s;
+-o-animation-delay:1.12s;
+animation-delay:1.12s;
+}
+
+#frotateG_07{
+left:52px;
+bottom:0;
+-moz-animation-delay:1.26s;
+-webkit-animation-delay:1.26s;
+-ms-animation-delay:1.26s;
+-o-animation-delay:1.26s;
+animation-delay:1.26s;
+}
+
+#frotateG_08{
+left:15px;
+bottom:15px;
+-moz-animation-delay:1.4s;
+-webkit-animation-delay:1.4s;
+-ms-animation-delay:1.4s;
+-o-animation-delay:1.4s;
+animation-delay:1.4s;
+}
+
+@-moz-keyframes f_fadeG{
+0%{
+background-color:#182370}
+
+100%{
+background-color:#FFFFFF}
+
+}
+
+@-webkit-keyframes f_fadeG{
+0%{
+background-color:#182370}
+
+100%{
+background-color:#FFFFFF}
+
+}
+
+@-ms-keyframes f_fadeG{
+0%{
+background-color:#182370}
+
+100%{
+background-color:#FFFFFF}
+
+}
+
+@-o-keyframes f_fadeG{
+0%{
+background-color:#182370}
+
+100%{
+background-color:#FFFFFF}
+
+}
+
+@keyframes f_fadeG{
+0%{
+background-color:#182370}
+
+100%{
+background-color:#FFFFFF}
+
+}
+
+</style>
+<template if="{{listNotify.length>0}}"> 
+	<ul id="notyfy_container_top" class="notyfy_container">
+		<template repeat="{{notify in listNotify}}">
+			<li class='notyfy_wrapper {{notify["type"]}}' style="cursor: pointer;height: auto;">
+				<div class="notyfy_bar">
+					<div class="notyfy_message">
+						<span class="notyfy_text"> {{notify["message"]}}</span>
+					</div>
+					<template if='{{notify["type"]=="notyfy_confirm"}}'>
+						<div class="notyfy_buttons">
+							<button class="btn btn-success btn-small btn-icon glyphicons ok_2">
+								<i></i> Ok
+							</button>
+							<button class="btn btn-danger btn-small btn-icon glyphicons remove_2">
+								<i></i> Cancel
+							</button>
+						</div>
+					</template>
+				</div>
+			</li>
+		</template>
+</ul>
+</template>
+<template if="{{showCircleLoader}}">
+<div class="dark-class">
+	<div id="floatingCirclesG" style="top: 45%; left: 45%;">
+		<div class="f_circleG" id="frotateG_01"></div>
+		<div class="f_circleG" id="frotateG_02"></div>
+		<div class="f_circleG" id="frotateG_03"></div>
+		<div class="f_circleG" id="frotateG_04"></div>
+		<div class="f_circleG" id="frotateG_05"></div>
+		<div class="f_circleG" id="frotateG_06"></div>
+		<div class="f_circleG" id="frotateG_07"></div>
+		<div class="f_circleG" id="frotateG_08"></div>
 	</div>
-	<!-- Top navbar END -->
-
-	<!-- Sidebar menu & content wrapper -->
-	<div id="wrapper">
-
-		<!-- Sidebar Menu -->
-		<div id="menu" class="hidden-phone hidden-print">
-
-			<!-- Brand -->
-			<a
-				href="index.html?lang=en&amp;layout_type=fixed&amp;menu_position=menu-left&amp;style=style-dark"
-				class="appbrand">Ex-artisan <span>Admin</span></a>
-
-			<!-- Scrollable menu wrapper with Maximum height -->
-			<div class="slim-scroll" data-scroll-height="800px">
-
-				<!-- Sidebar Profile -->
-				<span class="profile">
-					<p>
-						Xin chào <a
-							href="my_account.html?lang=en&amp;layout_type=fixed&amp;menu_position=menu-left&amp;style=style-dark">
-							ducdienpt</a>
-					</p> <a class="img"
-					href="my_account.html?lang=en&amp;layout_type=fixed&amp;menu_position=menu-left&amp;style=style-dark"><img
-						src="common/theme/images/avatar-style-dark.jpg" alt="Avatar" /></a> <span>
-						<ul>
-							<li><a href="" class="glyphicons lock"><i></i>Tài khoản</a></li>
-							<li><a href="" class="glyphicons keys"><i></i>Mật khẩu</a></li>
-							<li><a href="" class="glyphicons eject"><i></i>Đăng xuất</a></li>
-						</ul>
-				</span>
-				</span>
-				<!-- // Sidebar Profile END -->
-
-				<!-- Regular Size Menu -->
-				<ul class="menu-0" id="module-content">
-
-				</ul>
-				<div class="clearfix"></div>
-				<!-- // Regular Size Menu END -->
-				<div class="separator bottom"></div>
-			</div>
-			<!-- // Scrollable Menu wrapper with Maximum Height END -->
-
-		</div>
-		<!-- // Sidebar Menu END -->
-		<!-- Content -->
-		<div id="content">
-			<template if="{{currentAction == 'FORM_MAIN'}}">
-				<form-main></form-main>
-			</template>
-			<template if="{{currentAction == 'FORM_AREA'}}">
-				<form-area></form-area>
-			</template>
-			<template if="{{currentAction == 'FORM_DEVICE'}}">
-				<form-device></form-device>
-			</template>
-		</div>
-		<!-- // Content END -->
-
-	</div>
-
-	
-
 </div>
-<!-- // Main Container Fluid END --> </template> <script charset="utf-8"
+</template>
+<template if="{{!isLogin}}">
+	<form-login></form-login>
+</template>
+<template if="{{isLogin}}">
+	<main-menu></main-menu>
+</template>
+<!-- // Main Container Fluid END -->
+</template> <script charset="utf-8"
 	type="application/dart" src="main.dart">
 </script> </polymer-element>
