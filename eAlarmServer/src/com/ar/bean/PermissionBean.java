@@ -74,6 +74,7 @@ public class PermissionBean extends AppProcessor
 			Util.session.put(sessionKey, desKey);
 			//response
 			response.put("sessionKey", sessionKey);
+			response.put("Authorization", sessionKey);
 		}
 		catch (Exception ex)
 		{
