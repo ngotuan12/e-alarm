@@ -1,14 +1,22 @@
 package com.ar.bean;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.Date;
+
+import javax.crypto.KeyGenerator;
+import javax.crypto.SecretKey;
 
 import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONObject;
 
 import com.ar.util.AppProcessor;
+import com.ar.util.Encrypt;
 import com.ar.util.Util;
 import com.fss.sql.Database;
+import com.fss.util.AppException;
+import com.fss.util.StringUtil;
 
 public class PermissionBean extends AppProcessor
 {
@@ -28,8 +36,8 @@ public class PermissionBean extends AppProcessor
 		case "login":
 			login();
 			break;
-		case "queryMenuData":
-			queryMenuData();
+		case "loadSystemData":
+			loadSystemData();
 			break;
 		default:
 			throw new Exception("Unknown request");
@@ -46,10 +54,26 @@ public class PermissionBean extends AppProcessor
 	{
 		try
 		{
+			// Parameter
+			String strUserName = request.getString("UserName");
+			String strPassword = request.getString("PassWord");
 			open(false);
-
 			// commit
 			mcnMain.commit();
+			//password
+			verifyPassword(mcnMain, strUserName, strPassword);
+			//session
+			String strDate =StringUtil.format(new Date( System.currentTimeMillis() + 300000L), "dd/MM/yyyy HH:mm:ss");
+			JSONObject json = new JSONObject();
+			json.put("username", strUserName);
+			json.put("date", strDate);
+			//secret key with DES
+			SecretKey desKey       = KeyGenerator.getInstance("DES").generateKey();
+			Encrypt desEncrypter = new Encrypt(desKey, desKey.getAlgorithm());
+			String sessionKey = desEncrypter.encrypt(json.toString());
+			Util.session.put(sessionKey, desKey);
+			//response
+			response.put("sessionKey", sessionKey);
 		}
 		catch (Exception ex)
 		{
@@ -63,7 +87,55 @@ public class PermissionBean extends AppProcessor
 		}
 	}
 
-	public void queryMenuData() throws Exception
+	private String verifyPassword(Connection cn, String strUserName,
+			String strPassword) throws Exception
+	{
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+		try
+		{
+			String strSQL = "SELECT id, password FROM `user` WHERE UPPER(username)=? AND STATUS='1'";
+
+			pstm = cn.prepareStatement(strSQL);
+			pstm.setString(1, strUserName.toUpperCase());
+			rs = pstm.executeQuery();
+			if (!(rs.next()))
+			{
+				throw new AppException("EAS-SYS-003",
+						"DBTableAuthenticator.verifyPassword");
+			}
+			String strReturn = rs.getString(1);
+			String strDBPassword = rs.getString(2);
+			rs.close();
+			pstm.close();
+
+			if (strDBPassword == null)
+			{
+				strDBPassword = "";
+			}
+			if (!(strDBPassword.equals(strPassword)))
+			{
+				throw new AppException("EAS-SYS-003",
+						"DBTableAuthenticator.verifyPassword");
+			}
+
+			return strReturn;
+		}
+		catch (Exception ex)
+		{
+			ex.printStackTrace();
+			throw ex;
+		}
+		finally
+		{
+			Database.closeObject(pstm);
+			pstm = null;
+			Database.closeObject(rs);
+			rs = null;
+		}
+	}
+
+	public void loadSystemData() throws Exception
 	{
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
@@ -85,6 +157,17 @@ public class PermissionBean extends AppProcessor
 			vtReturn = organizeTree(vt, 1, "G");
 			// response
 			response.put("menu_data", vtReturn);
+			pstm.close();
+			rs.close();
+			// language
+			strSQL = "SELECT id, `code`, `name`,`status` "
+					+ "FROM language WHERE status='1' "
+					+ "ORDER BY `order`,`name` ";
+			// prepare
+			pstm = mcnMain.prepareStatement(strSQL);
+			rs = pstm.executeQuery();
+			// put
+			response.put("language", Util.convertToJSONArray(rs));
 		}
 		catch (Exception ex)
 		{

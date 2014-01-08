@@ -7,8 +7,11 @@ import java.lang.reflect.Modifier;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.Scanner;
 
+import javax.crypto.SecretKey;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -18,10 +21,14 @@ import org.codehaus.jettison.json.JSONObject;
 
 import com.fss.dictionary.Dictionary;
 import com.fss.dictionary.DictionaryNode;
+import com.fss.util.AppException;
+import com.fss.util.DateUtil;
+import com.fss.util.StringUtil;
 
 public class Util
 {
 	public static Dictionary mDic;
+	public static HashMap<String, SecretKey> session = new HashMap<>();
 	static
 	{
 		try
@@ -59,6 +66,11 @@ public class Util
 		JSONObject jsonRequest;
 		try
 		{
+			String autKey = servletRequest.getHeader("Authorization");
+			if(autKey==null)
+			{
+				return;
+			}
 			//get parameter
 			String strServiceName = servletRequest.getServletPath();
 			String strMethodName = servletRequest.getMethod();
@@ -80,6 +92,14 @@ public class Util
 			// JSON request
 //			jsonRequest = new JSONObject("{}");
 			jsonRequest = new JSONObject(strRequest);
+			//check session
+			if(!strServiceName.equals("/PermissionService"))
+			{
+//				String strMethod = StringUtil.nvl(jsonRequest.getString("Method"), "");
+				checkSessionUser(jsonRequest.getString("SessionUserName"), autKey);
+			}
+			else if(!StringUtil.nvl(jsonRequest.getString("Method"), "").equals("login"))
+				checkSessionUser(jsonRequest.getString("SessionUserName"), autKey);
 			// Get class name & create class instance
 			String strClassName = ndClassConfig.getString("Class");
 			if (strClassName.length() == 0) throw new Exception(
@@ -138,10 +158,25 @@ public class Util
 				throw new Exception(e.getTargetException());
 			}
 		}
+		catch(AppException aex)
+		{
+			aex.printStackTrace();
+			jsonResponse.put("handle", "on_error");
+			jsonResponse.put("code", aex.getReason());
+			jsonResponse.put("message", aex.getMessage());
+		}
+		catch(JSONException jex)
+		{
+			jex.printStackTrace();
+			jsonResponse.put("handle", "on_error");
+			jsonResponse.put("code", "");
+			jsonResponse.put("message", jex.getMessage());
+		}
 		catch (Exception ex)
 		{
 			ex.printStackTrace();
 			jsonResponse.put("handle", "on_error");
+			jsonResponse.put("code", "");
 			jsonResponse.put("message", ex.getMessage());
 		}
 		finally
@@ -149,9 +184,9 @@ public class Util
 			// response
 			servletResponse.setCharacterEncoding("utf-8");
 			servletResponse.setContentType("text/plain");
-			servletResponse.setHeader("Access-Control-Allow-Origin", "*, ");
+			servletResponse.setHeader("Access-Control-Allow-Origin", "* ");
 			servletResponse.setHeader("Access-Control-Allow-Headers",
-					"Origin, X-Requested-With, Content-Type, Accept");
+					"Origin, X-Requested-With, Content-Type, Accept, Authorization");
 			servletResponse.setHeader("Access-Control-Allow-Methods",
 					"POST, GET, OPTIONS");
 			// return response
@@ -160,7 +195,24 @@ public class Util
 			out.flush();
 		}
 	}
-
+	public static void checkSessionUser(String strUserName,String strSessionKey) throws Exception
+	{
+		SecretKey desKey  = session.get(strSessionKey);
+		Encrypt desEncrypter = new Encrypt(desKey, desKey.getAlgorithm());
+		String strInfor = desEncrypter.decrypt(strSessionKey);
+		JSONObject jsonInfor = new JSONObject(strInfor);
+		//check session username 
+		if(!jsonInfor.getString("username").equals(strUserName))
+		{
+			throw new AppException("EAS-SYS-001", "Session user name not correct!");
+		}
+		Date dateExpire = DateUtil.toDate(jsonInfor.getString("date"),"dd/MM/yyyy HH:mm:ss");
+		//check session expire
+		if(dateExpire.compareTo(new Date())<0)
+		{
+			throw new AppException("EAS-SYS-002", "Session expire!");
+		}
+	}
 	/**
 	 * @param rs
 	 * @return
