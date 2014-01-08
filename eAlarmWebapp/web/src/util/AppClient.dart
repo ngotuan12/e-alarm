@@ -3,9 +3,8 @@ part of EASUtil;
 class AppClient
 {
 	static final String url = "http://54.243.244.187:7777/";
-//	static final String url = "http://localhost:7777/AlarmServer/";
+//	static final String url = "http://127.0.0.1:7777/AlarmServer/";
 	static HttpRequest request = new HttpRequest();
-	static bool isLogin = false;
 	/*
 	 * @author TuanNA
 	 * @since 13/12/2013
@@ -23,6 +22,8 @@ class AppClient
 		{
 			String strURL = url + strServiceName;
 			request = new HttpRequest();
+//			request.setRequestHeader("autKey", autKey);
+//			request.g
 			//start loader
 			Util.startLoader();
 			//listen
@@ -38,21 +39,26 @@ class AppClient
 						Map mapResponse = JSON.decode(strResponse);
 						if(mapResponse["handle"]=="on_error")
 						{
-							response.error(mapResponse["message"]);
+							response.error(mapResponse);
+							if(mapResponse["code"]=="EAS-SYS-002")
+							{
+								SessionValue.main.isLogin = false;
+							}
 							return;
 						}
 						response.success(mapResponse);
 					}
 					else
 					{
-						response.error("Can't connect to server. Pls, try again!");
+						response.error({"message":"Can't connect to server. Pls, try again!"});
 					}
 				}
 			});
 			//Prepare 
 			request.open(strMethod, strURL, async: true);
+			request.setRequestHeader("Authorization", SessionUser.sessionKey);
 			//Session
-			mapData["SessionID"] = SessionUser.sessionID;
+			mapData["SessionKey"] = SessionUser.sessionKey;
 			mapData["SessionUserName"] = SessionUser.sessionUserName;
 			//send request
 			request.send(JSON.encode(mapData));
@@ -60,6 +66,8 @@ class AppClient
 		catch(e)
 		{
 			print(e);
+			Util.stopLoader();
+			response.error({"message":"Can't connect to server. Pls, try again!"});
 		}
 	}
 	

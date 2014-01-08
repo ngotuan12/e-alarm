@@ -23,9 +23,9 @@ class Responder
 		_success = _successController.stream.asBroadcastStream();
 	}
 
-	Stream<String> get onError => _onError;
-	Stream get onSuccess => _success;
+	Stream<Map> get onError => _onError;
+	Stream<Map> get onSuccess => _success;
 	
-	void error(String strError) => _errorController.add(strError);
+	void error(Map response) => _errorController.add(response);
 	void success(Map response) => _successController.add(response);
 }
