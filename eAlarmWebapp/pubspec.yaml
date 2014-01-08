@@ -2,6 +2,7 @@ name: eAlarmWebapp
 description: A sample web application
 dependencies:
   browser: any
+  crypto: any
   google_maps: any
   polymer: any
 transformers:
