@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    <LinearLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="45dp"
+        android:background="@drawable/background_main"
+        android:gravity="center"
+        >
+        <TextView 
+            android:id="@+id/tvNameStation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ATM1"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            />
+    </LinearLayout>
+    <org.holoeverywhere.widget.ListView 
+        android:id="@+id/lvLog"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        />
+
+</LinearLayout>

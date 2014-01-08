@@ -1,0 +1,102 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:map="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <fragment
+            android:id="@+id/mapFragment"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <org.holoeverywhere.widget.ProgressBar
+            map:id="@+id/prMain"
+            map:layout_width="wrap_content"
+            map:layout_height="wrap_content"
+            map:layout_centerInParent="true" />
+
+        <org.holoeverywhere.widget.Button
+            map:id="@+id/btnRetry"
+            map:layout_width="wrap_content"
+            map:layout_height="wrap_content"
+            map:layout_centerInParent="true"
+            map:onClick="OnclickRetry"
+            map:paddingBottom="5dp"
+            map:paddingLeft="10dp"
+            map:paddingRight="10dp"
+            map:paddingTop="5dp"
+            map:text="Retry"
+            map:visibility="invisible" />
+    </RelativeLayout>
+
+    <LinearLayout
+        map:layout_width="fill_parent"
+        map:layout_height="50dp"
+        map:background="@drawable/background_main"
+        map:orientation="horizontal"
+        map:weightSum="6" >
+
+         <org.holoeverywhere.widget.Spinner 
+            android:id="@+id/spCity"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            map:layout_weight="2" />
+        <View
+                    android:id="@+id/divider"
+                    android:layout_width="1dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/custom_lines"
+                    android:paddingBottom="4dp"
+                    android:paddingRight="2dp"
+                    android:paddingTop="4dp" />
+
+        <org.holoeverywhere.widget.ViewPager
+            android:id="@+id/pagerDistric"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            map:layout_weight="3.5" />
+        <LinearLayout 
+            map:layout_width="0dp"
+            map:layout_height="fill_parent"
+            map:layout_weight="0.5"
+            map:gravity="center"
+            map:onClick="OnClickConvertList"
+            >
+            <ImageButton 
+            map:id="@+id/imgList"
+            map:layout_width="wrap_content"
+            map:layout_height="wrap_content"
+            map:clickable="false"
+            map:background="@drawable/ic_action_view_as_grid"
+            />
+        </LinearLayout>
+        
+    </LinearLayout>
+
+    <co.vn.e_alarm.customwiget.SlidingLayer
+        xmlns:slidingLayer="http://schemas.android.com/apk/res/com.slidinglayersample"
+        android:id="@+id/slidingLayer1"
+        android:layout_width="@dimen/layer_width"
+        android:layout_height="fill_parent" >
+
+        <RelativeLayout
+            android:id="@+id/layout_main"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="#fff3f3f3"
+            >
+
+            <org.holoeverywhere.widget.ViewPager
+                android:id="@+id/myfivepanelpager"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent" />
+        </RelativeLayout>
+    </co.vn.e_alarm.customwiget.SlidingLayer>
+
+</RelativeLayout>

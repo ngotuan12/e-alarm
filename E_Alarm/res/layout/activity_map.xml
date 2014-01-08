@@ -1,0 +1,77 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:map="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <fragment
+            android:id="@+id/mapFragment"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            class="com.google.android.gms.maps.SupportMapFragment" />
+
+        <LinearLayout
+            android:id="@+id/li_nav"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/toast_frame"
+            android:orientation="horizontal"
+            android:padding="8dp"
+            android:weightSum="8" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+               android:background="@color/white"
+                android:padding="4dp" >
+
+                
+
+                <TextView
+                    android:id="@+id/txtCatalogyPlace"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    map:layout_gravity="center"
+                    android:gravity="center"
+                    android:textSize="18sp"
+                    map:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                
+            </LinearLayout>
+        </LinearLayout>
+
+       
+    </RelativeLayout>
+
+    <vn.co.exArtisan.travelGuide.wiget.SlidingLayer
+        xmlns:slidingLayer="http://schemas.android.com/apk/res/com.slidinglayersample"
+        android:id="@+id/slidingLayer1"
+        android:layout_width="@dimen/layer_width"
+        android:layout_height="fill_parent"
+        >
+
+        <RelativeLayout
+            android:id="@+id/layout_main"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            map:visibility="gone"
+            android:background="#fff3f3f3" >
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/mPager"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent" />
+        </RelativeLayout>
+    </vn.co.exArtisan.travelGuide.wiget.SlidingLayer>
+
+   
+
+</RelativeLayout>
