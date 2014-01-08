@@ -18,8 +18,8 @@ class FormMain extends PolymerElement
 	SelectElement slDistrict;
 	OListElement olDevicesGood;
 	OListElement olDevicesError;
-	LIElement error;
-	LIElement normal;
+	LIElement liError;
+	LIElement liNormal;
 	List<Map> listArea;
 	InfoWindow popupWindow;
 	List<MapTypeStyle> styles = 
@@ -52,10 +52,10 @@ class FormMain extends PolymerElement
 		slDistrict=this.shadowRoot.querySelector("#district-location");
 		olDevicesGood=this.shadowRoot.querySelector("#ol-devicesGood");
 		olDevicesError=this.shadowRoot.querySelector("#ol-devicesError");
-		normal=this.shadowRoot.querySelector("#normal");
-		error=this.shadowRoot.querySelector("#error");
-		normal.onClick.listen(changeColorNormal);
-		error.onClick.listen(changeColorError);
+		liNormal=this.shadowRoot.querySelector("#normal");
+		liError=this.shadowRoot.querySelector("#error");
+		liNormal.onClick.listen(changeColorNormal);
+		liError.onClick.listen(changeColorError);
 		//Event
 		slCity.onChange.listen(onChooseCity);
 		slDistrict.onChange.listen(onChooseDistric);
@@ -67,8 +67,8 @@ class FormMain extends PolymerElement
 //		var oneSecond = new Duration(seconds:60);
 //		mytimer = new Timer.periodic(oneSecond, updateData);
 		//default background for status atm
-		error.style.background='#d71c00';
-		normal.style.background='#64625f';
+		liError.style.background='#d71c00';
+		liNormal.style.background='#64625f';
 	}
 	/*
 	 * @DienND
@@ -78,8 +78,8 @@ class FormMain extends PolymerElement
 	 */
 	void changeColorNormal(Event e)
 	{
-		normal.style.background='#008000';
-		error.style.background='#64625f';
+	liNormal.style.background='#008000';
+		liError.style.background='#64625f';
 	}
 	/*
 	 * @DienND
@@ -89,8 +89,8 @@ class FormMain extends PolymerElement
 	 */
 	void changeColorError(Event e)
 	{
-		error.style.background='#d71c00';
-		normal.style.background='#64625f';
+		liError.style.background='#d71c00';
+		liNormal.style.background='#64625f';
 	}
 	/*
 	 * @DienND
@@ -192,9 +192,9 @@ class FormMain extends PolymerElement
 			showArea(listArea, map);
 		});
 		//error
-		responder.onError.listen((String strError)
+		responder.onError.listen((Map error)
 		{
-			print(strError);
+			Util.showNotifyError(error["message"]);
 		}
 		);
 		//send to server
@@ -326,9 +326,9 @@ class FormMain extends PolymerElement
 		showDevices(listDevices, map);
 		});
 		//error
-		responder.onError.listen((String strError)
+		responder.onError.listen((Map error)
 		{
-		print(strError);
+			Util.showNotifyError(error["message"]);
 		}
 		);
 		//send to server
@@ -357,9 +357,9 @@ class FormMain extends PolymerElement
 			showDevices(listDevices, map);
 		});
 		//error
-		responder.onError.listen((String strError)
+		responder.onError.listen((Map error)
 		{
-		print(strError);
+			Util.showNotifyError(error["message"]);
 		}
 		);
 		//send to server
@@ -382,33 +382,32 @@ class FormMain extends PolymerElement
 		//success
 		responder.onSuccess.listen((Map response)
 		{
-		List<Map> listAreas=response['ListArea'];
-		//Show areas on Select
-		if(listAreas !=null)
-		{
-			for(int i=0;i<listAreas.length;i++)
+			List<Map> listAreas=response['ListArea'];
+			//Show areas on Select
+			if(listAreas !=null)
 			{
-				//option
-				Map element= listAreas[i];
-				String name=element['Name'];
-				OptionElement op = new Element.option();
-				op.text=name;
-				op.value = JSON.encode(element);
-				//add are
-				slDistrict.children.add(op);
+				for(int i=0;i<listAreas.length;i++)
+				{
+					//option
+					Map element= listAreas[i];
+					String name=element['Name'];
+					OptionElement op = new Element.option();
+					op.text=name;
+					op.value = JSON.encode(element);
+					//add are
+					slDistrict.children.add(op);
+				}
 			}
-		}
-		//show device
-		//getAllDeviceByAreaId(area, map);
-		getAllDevice(map, area);
+			//show device
+			//getAllDeviceByAreaId(area, map);
+			getAllDevice(map, area);
 		});
 		
 		//error
-		responder.onError.listen((String strError)
+		responder.onError.listen((Map error)
 		{
-		print(strError);
-		}
-		);
+			Util.showNotifyError(error["message"]);
+		});
 		//send to server
 		AppClient.sendMessage(request, AlarmServiceName.AreaService, AlarmServiceMethod.POST,responder);
 	}

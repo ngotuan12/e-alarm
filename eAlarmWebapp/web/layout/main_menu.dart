@@ -48,7 +48,7 @@ class MainMenu extends PolymerElement
 		ulModules = menu.querySelector("#module-content");
 		//get menu data
 		Map request = new Map();
-	    request["Method"] = "queryMenuData";
+	    request["Method"] = "loadSystemData";
 	    //Listen
 	    Responder responder = new Responder();
 	    //success
@@ -61,10 +61,9 @@ class MainMenu extends PolymerElement
 			loadMenu(ulModules,listModule);
 	    });
 	    //error
-	    responder.onError.listen((String strError)
+	    responder.onError.listen((Map error)
 	    {
-			Util.showNotifyError(strError);
-	      	print(strError);
+			Util.showNotifyError(error["message"]);
 	    });
 	    //send to server
 	    AppClient.sendMessage(request, AlarmServiceName.PermissionService, AlarmServiceMethod.POST,responder);
