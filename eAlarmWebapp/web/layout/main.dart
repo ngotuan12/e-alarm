@@ -36,7 +36,6 @@ class MainApplication extends MainApp
 	enteredView() 
 	{
 		super.enteredView();
-		
 		SessionValue.main = this;
 	}
 	

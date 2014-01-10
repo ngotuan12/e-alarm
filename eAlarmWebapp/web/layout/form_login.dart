@@ -6,6 +6,8 @@ import 'dart:html';
 @CustomTag('form-login')
 class FormLogin extends PolymerElement
 {
+	InputElement txtUserName;
+	InputElement txtPassWord;
 	FormLogin.created() : super.created();
 	// This lets the Bootstrap CSS "bleed through" into the Shadow DOM
   	// of this element.
@@ -14,6 +16,23 @@ class FormLogin extends PolymerElement
 	{
 		super.enteredView();
 		SessionValue.main.showCircleLoader = false;
+		txtUserName = this.shadowRoot.querySelector("#txtUserName");
+		txtPassWord = this.shadowRoot.querySelector("#txtPassWord");
+		txtUserName.focus();
+		txtUserName.onKeyPress.listen((KeyboardEvent event){
+		
+			if(event.keyCode == KeyCode.ENTER)
+			{
+				login();
+			}
+		});
+		txtPassWord.onKeyPress.listen((KeyboardEvent event){
+		
+			if(event.keyCode == KeyCode.ENTER)
+			{
+				login();
+			}
+		});
 //		SessionValue.main.isLogin = true;
 	}
 	/*
@@ -25,12 +44,12 @@ class FormLogin extends PolymerElement
 	 */
 	login()
 	{
-		//Username
-		InputElement txtUserName = this.shadowRoot.querySelector("#txtUserName");
-		//Password
-		InputElement txtPassWord = this.shadowRoot.querySelector("#txtPassWord");
-		print("username: "+txtUserName.value);
-		print("password: "+txtPassWord.value);
+		if(!validateForm())
+		{
+			return;
+		}
+//		print("username: "+txtUserName.value);
+//		print("password: "+txtPassWord.value);
 		String text = txtPassWord.value;
 		String strUserName = txtUserName.value;
 		String md5hash1 = CryptoUtils.bytesToHex((new MD5()..add(text.codeUnits)).close());
@@ -48,6 +67,7 @@ class FormLogin extends PolymerElement
 			SessionValue.main.isLogin = true;
 			SessionUser.sessionUserName = strUserName;
 			SessionUser.sessionKey = response["sessionKey"];
+			SessionUser.sessionUserInfor = response["userInfor"];
 		});
 		//error
 		responder.onError.listen((Map response)
@@ -56,6 +76,11 @@ class FormLogin extends PolymerElement
 		});
 		//send to server
 		AppClient.sendMessage(request, AlarmServiceName.PermissionService, AlarmServiceMethod.POST,responder);
+	}
+	
+	bool validateForm()
+	{
+		return true;
 	}
 	
 }

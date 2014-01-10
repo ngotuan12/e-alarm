@@ -21,6 +21,7 @@ class MainMenu extends PolymerElement
 	DivElement mainContent;
 	DivElement menu;
 	UListElement ulModules;
+	SpanElement profile;
 	List<Map> listModule;
 	/*
 	 * @author TuanNA
@@ -33,19 +34,24 @@ class MainMenu extends PolymerElement
 	enteredView() 
 	{
 		super.enteredView();
-		//login
+		//
+		mainContent = this.shadowRoot.querySelector("#main-content");
+		//menu
+		menu = this.shadowRoot.querySelector("#menu");
+		//profile
+		profile = menu.querySelector("#profile");
+		//module
+		ulModules = menu.querySelector("#module-content");
+		//user infor
+		initUserInfor();
+		//main menu
 		initMainMenu();
 		
 	}
 	
 	void initMainMenu()
 	{
-		//
-		mainContent = this.shadowRoot.querySelector("#main-content");
-		//menu
-		menu = this.shadowRoot.querySelector("#menu");
-		//module
-		ulModules = menu.querySelector("#module-content");
+		
 		//get menu data
 		Map request = new Map();
 	    request["Method"] = "loadSystemData";
@@ -67,6 +73,11 @@ class MainMenu extends PolymerElement
 	    });
 	    //send to server
 	    AppClient.sendMessage(request, AlarmServiceName.PermissionService, AlarmServiceMethod.POST,responder);
+	}
+	void initUserInfor()
+	{
+		AnchorElement userName = menu.querySelector("#lblUserName");
+		userName.text = SessionUser.sessionUserInfor["fullname"];
 	}
 	// This lets the Bootstrap CSS "bleed through" into the Shadow DOM
   	// of this element.
