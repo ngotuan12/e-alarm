@@ -1,7 +1,27 @@
 package co.vn.e_alarm;
 
 import java.util.ArrayList;
-
+import org.holoeverywhere.widget.AdapterView;
+import org.holoeverywhere.widget.AdapterView.OnItemSelectedListener;
+import org.holoeverywhere.widget.Button;
+import org.holoeverywhere.widget.ProgressBar;
+import org.holoeverywhere.widget.Spinner;
+import org.holoeverywhere.widget.Toast;
+import org.holoeverywhere.widget.ViewPager;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.util.Log;
+import android.view.KeyEvent;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.View.OnTouchListener;
+import android.widget.ArrayAdapter;
+import android.widget.RelativeLayout;
+import android.widget.RelativeLayout.LayoutParams;
+import co.vn.e_alarm.adapter.DistrictAdapter;
 import co.vn.e_alarm.adapter.StationAdapter;
 import co.vn.e_alarm.bean.ObjArea;
 import co.vn.e_alarm.bean.ObjStation;
@@ -13,76 +33,55 @@ import co.vn.e_alarm.network.NetworkUtility;
 import co.vn.e_alarm.network.ParamBuilder;
 import co.vn.e_alarm.network.ResponseTranslater;
 import co.vn.e_alarm.utils.Utils;
-import com.actionbarsherlock.app.ActionBar.OnNavigationListener;
-import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.GoogleMap.InfoWindowAdapter;
 import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.GoogleMap.InfoWindowAdapter;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import android.app.Activity;
-import android.content.Intent;
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
-import android.util.Log;
-import android.view.KeyEvent;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.View.OnTouchListener;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemSelectedListener;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.ProgressBar;
-import android.widget.Toast;
-import android.widget.RelativeLayout;
-import android.widget.RelativeLayout.LayoutParams;
-import android.widget.Spinner;
 
-public class MainActivity extends SherlockFragmentActivity implements
-		OnNavigationListener, OnItemSelectedListener {
+public class MainActivity extends FragmentActivity implements
+		OnItemSelectedListener {
 	GoogleMap mGooglemap;
 	SlidingLayer mSlidingLayer;
 	ArrayList<Marker> arrMarker;
 	ArrayList<ObjStation> arrStation;
 	StationAdapter adapter;
-	Spinner spDistric;
-	ViewPager mPager;
-	String strCity, strWood;
+	ViewPager mPager, mPagerDistric;
+	Spinner spCity;
+	int city;
 	RelativeLayout layout_main;
 	DBStation mdb;
 	Marker market;
-	int index=0,count=0,id=0;
-	private String TAG = "MainActivity";
-	static Activity myActivity;
-	ArrayList<ObjArea> listArea;
-	ArrayList<String> listCity;
-	Marker marker ;
+	int index = 0, count = 0, idArea = 0;
+	String TAG = "MainActivity";
+	ArrayList<ObjArea> listArea, listObjDistrict;
+	ArrayList<Integer> ListIDArea;
+	ArrayList<String> listCity, listDistrict;
+	Marker marker;
 	Fragment fragment;
 	ProgressBar proMain;
 	Button btnRetry;
+	String[] arrDistrict;
+	OnPageChangeListener districtListener;
+	DistrictAdapter districtAdapter;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
+		setContentView(R.layout.activity_home);
 		initMapFragment();
 		ShowCity();
 		bindViews();
 		initState();
 		setWindowPopupMap();
-		spDistric.setOnItemSelectedListener(this);
-		
+		spCity.setOnItemSelectedListener(this);
 	}
-	
-	
 
 	/**
 	 * insert map
@@ -90,26 +89,30 @@ public class MainActivity extends SherlockFragmentActivity implements
 	 */
 	public void initMapFragment() {
 		try {
-			MapsInitializer.initialize(MainActivity.this);
-			MyPreference.getInstance().Initialize(getBaseContext());
-			mdb = new DBStation(getBaseContext());
+			MapsInitializer.initialize(this);
+			MyPreference.getInstance().Initialize(this);
+			mdb = new DBStation(this);
 			listCity = new ArrayList<String>();
-			 fragment = getSupportFragmentManager().findFragmentById(
+			ListIDArea = new ArrayList<Integer>();
+			fragment = getSupportFragmentManager().findFragmentById(
 					R.id.mapFragment);
+
 			mPager = (ViewPager) findViewById(R.id.myfivepanelpager);
-			spDistric = (Spinner) findViewById(R.id.spDistric);
-			proMain=(ProgressBar) findViewById(R.id.prMain);
-			btnRetry=(Button) findViewById(R.id.btnRetry);
-			layout_main=(RelativeLayout) findViewById(R.id.layout_main);
+			mPagerDistric = (ViewPager) findViewById(R.id.pagerDistric);
+			spCity = (Spinner) findViewById(R.id.spCity);
+			proMain = (ProgressBar) findViewById(R.id.prMain);
+			btnRetry = (Button) findViewById(R.id.btnRetry);
+			layout_main = (RelativeLayout) findViewById(R.id.layout_main);
 			SupportMapFragment supportMap = (SupportMapFragment) fragment;
 			mGooglemap = supportMap.getMap();
-			// mGooglemap.setMyLocationEnabled(true);
 			mGooglemap.getUiSettings().setMyLocationButtonEnabled(false);
 			mGooglemap.getUiSettings().setZoomControlsEnabled(false);
-			strCity = MyPreference.getInstance().getString("CITY");
-			myActivity=this;
-			arrStation=new ArrayList<ObjStation>();
-			arrMarker=new ArrayList<Marker>();
+
+			arrStation = new ArrayList<ObjStation>();
+			arrMarker = new ArrayList<Marker>();
+			listDistrict = new ArrayList<String>();
+			listObjDistrict = new ArrayList<ObjArea>();
+			city = MyPreference.getInstance().getInteger("CITY");
 
 		} catch (GooglePlayServicesNotAvailableException e) {
 			// TODO Auto-generated catch block
@@ -135,6 +138,7 @@ public class MainActivity extends SherlockFragmentActivity implements
 			}
 		});
 	}
+
 	/**
 	 * close sliding when back
 	 */
@@ -158,41 +162,37 @@ public class MainActivity extends SherlockFragmentActivity implements
 	 * method get value city from db
 	 */
 	public void ShowCity() {
-		strWood = MyPreference.getInstance().getString("WOODENLEG");
-		strCity = MyPreference.getInstance().getString("CITY");
-		if (!(strWood.equalsIgnoreCase(""))) {
-			listArea = mdb.getListAreabyWoodenleg(strWood);
-			if (listArea.size() > 0) {
-				for (int i = 0; i < listArea.size(); i++) {
-					if (i > 0) {
-						listCity.add(listArea.get(i).getName());
-					}
 
-				}
+		listArea = mdb.getListAreabyWoodenleg("001", 2);
+		Log.e(TAG, "city: "+listArea.size());
+		if (listArea.size() > 0) {
+
+			for (int i = 0; i < listArea.size(); i++) {
+				listCity.add(listArea.get(i).getName());
+				ListIDArea.add(listArea.get(i).getId());
 
 			}
+			if (city == 0) {
+				city = ListIDArea.get(0);
+				Utils.SaveCitySelect(getBaseContext(), city);
+			}
+
+			ShowLocation();
 		}
-		ArrayAdapter<String> adapterCity = new ArrayAdapter<String>(
-				getBaseContext(), android.R.layout.simple_spinner_item,
-				listCity);
-		adapterCity
-				.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		spDistric.setAdapter(adapterCity);
-		if(!(strCity.equalsIgnoreCase(""))){
-			index = listCity.indexOf(strCity);
-			if (index != -1)
-				spDistric.setSelection(index);
-		}
+
 	}
+	/**
+	 * manager event click marker google map
+	 */
 
 	public void setWindowPopupMap() {
 		mGooglemap.setOnMarkerClickListener(new OnMarkerClickListener() {
 
 			@Override
 			public boolean onMarkerClick(Marker marker) {
-				String[] arrStr = marker.getId().split("m");
+				//String[] arrStr = marker.getId().split("m");
 				int index2 = arrMarker.indexOf(marker);
-				int posMarker = Integer.parseInt(arrStr[1].toString());
+				//int posMarker = Integer.parseInt(arrStr[1].toString());
 				mPager.setCurrentItem(index2);
 				adapter.notifyDataSetChanged();
 				mPager.invalidate();
@@ -200,13 +200,6 @@ public class MainActivity extends SherlockFragmentActivity implements
 				return false;
 			}
 		});
-	}
-
-
-	@Override
-	public boolean onNavigationItemSelected(int itemPosition, long itemId) {
-		// TODO Auto-generated method stub
-		return false;
 	}
 
 	/**
@@ -223,7 +216,12 @@ public class MainActivity extends SherlockFragmentActivity implements
 		});
 
 	}
+@Override
+protected void onResume() {
+	// TODO Auto-generated method stub
+	super.onResume();
 
+}
 	/**
 	 * Initializes the origin state of the layer
 	 */
@@ -242,22 +240,14 @@ public class MainActivity extends SherlockFragmentActivity implements
 	}
 
 	/**
-	 * method onclick Setting
-	 */
-	public void onClickSetting(View v) {
-		Intent intent = new Intent(this, SettingActivity.class);
-		intent.putExtra("CHECK",true);
-		startActivity(intent);
-	}
-	
-	/**
 	 * method get station from server by city
-	 * @param id: id area
+	 * 
+	 * @param id
+	 *            : id area
 	 */
 
 	public void getStation(int id) {
 		if (NetworkUtility.checkNetworkState(this)) {
-			proMain.setVisibility(View.VISIBLE);
 			layout_main.setVisibility(View.GONE);
 			StationTask.GetAllStationByIDArea(NetworkUtility.DEVICE_SERVICES,
 					ParamBuilder.GetInfo(ParamBuilder.BuildDeviceData(id)),
@@ -272,15 +262,19 @@ public class MainActivity extends SherlockFragmentActivity implements
 							arrStation = ResponseTranslater
 									.getAllStation(response);
 							if (arrStation.size() > 0) {
-								proMain.setVisibility(View.GONE);
 								layout_main.setVisibility(View.VISIBLE);
+								btnRetry.setVisibility(View.INVISIBLE);
 								ShowStation();
-							}
-							else{
-								Toast.makeText(getBaseContext(), "Không có dữ liệu cho địa điểm này",
+							} else {
+								arrMarker.clear();
+								mGooglemap.clear();
+								layout_main.setVisibility(View.INVISIBLE);
+								Toast.makeText(getBaseContext(),
+										"Không có dữ liệu cho địa điểm này",
 										Toast.LENGTH_SHORT).show();
 							}
-
+							
+							proMain.setVisibility(View.INVISIBLE);
 						}
 
 						@Override
@@ -295,22 +289,35 @@ public class MainActivity extends SherlockFragmentActivity implements
 					});
 		}
 	}
-/**
- * Show station to map
- * @param listStation: arraylist ObjStation
- */
+
+	/**
+	 * Show station to map
+	 * 
+	 * @param listStation
+	 *            : arraylist ObjStation
+	 */
 	public void ShowStation() {
 		mSlidingLayer.setVisibility(View.VISIBLE);
 		for (int i = 0; i < arrStation.size(); i++) {
 			LatLng lat_long_place = new LatLng(arrStation.get(i).getLat(),
 					arrStation.get(i).getLng());
+			if(arrStation.get(i).getStatus()==1){
+				marker = mGooglemap.addMarker(new MarkerOptions()
+				.position(lat_long_place)
+				.title("")
+				.snippet("")
+				.icon(BitmapDescriptorFactory
+						.fromResource(R.drawable.marker2)));
+			}
+			else{
+				marker = mGooglemap.addMarker(new MarkerOptions()
+				.position(lat_long_place)
+				.title("")
+				.snippet("")
+				.icon(BitmapDescriptorFactory
+						.fromResource(R.drawable.marker_dot)));
+			}
 			
-			marker = mGooglemap.addMarker(new MarkerOptions()
-					.position(lat_long_place)
-					.title("")
-					.snippet("")
-					.icon(BitmapDescriptorFactory
-							.fromResource(R.drawable.marker_dot)));
 
 			mGooglemap.animateCamera(CameraUpdateFactory.zoomTo(14.0f), 2000,
 					null);
@@ -318,47 +325,150 @@ public class MainActivity extends SherlockFragmentActivity implements
 			arrMarker.add(marker);
 
 		}
-		Log.e(TAG, "d: "+arrStation.get(0).getAddress());
-/*StationFragment station=new StationFragment(arrStation.get(0));
-FragmentManager fm = getSupportFragmentManager();
-fm.beginTransaction().replace(R.id.myfivepanelpager, station)
-		.commit();*/
 		adapter = new StationAdapter(getSupportFragmentManager(), arrStation,
 				mGooglemap, arrMarker);
-		
+
 		mPager.setAdapter(adapter);
 		adapter.notifyDataSetChanged();
 		mPager.setOnPageChangeListener(adapter);
+
+	}
+
+	/**
+	 * Show location city
+	 */
+	public void ShowLocation() {
+
+		ArrayAdapter<String> adapterArea = new ArrayAdapter<String>(
+				getBaseContext(), R.layout.row_city, listCity);
+		adapterArea
+				.setDropDownViewResource(R.layout.simple_spinner_dropdown_item);
+		spCity.setAdapter(adapterArea);
+
+		String name_area = mdb.getNameArea(city);
+		int index = listCity.indexOf(name_area);
+		if(index!=-1){
+			spCity.setSelection(index);
+		}
 		
-	//	mPager.setCurrentItem(0);
-		
+
 	}
 
 
-	@Override
-	public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,
-			long arg3) {
-		mGooglemap.clear();
-		arrStation.clear();
-		arrMarker.clear();
-		mPager.setAdapter(null);
-		 id=mdb.getIdAreaByName(spDistric.getSelectedItem().toString());
-		getStation(id);
-		Utils.SaveCitySelect(getBaseContext(), spDistric.getSelectedItem().toString());
+	/**
+	 * Show district by id City
+	 */
+	public void ShowDistrict(int idCity) {
+
+		listObjDistrict = mdb.getListDistrict(idCity);
+
+		if (listObjDistrict.size() > 0) {
+			ShowLocationDistrict(listObjDistrict);
+		} else {
+			
+			listDistrict.clear();
+			mPagerDistric.setAdapter(null);
+			LatLng latLng = mdb.getLatLngCity(idCity);
+			mGooglemap.animateCamera(CameraUpdateFactory.zoomTo(13.0f));
+			mGooglemap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,
+					10.0f));
+			arrMarker.clear();
+			mGooglemap.clear();
+		layout_main.setVisibility(View.GONE);
+			proMain.setVisibility(View.INVISIBLE);
+		}
 	}
 
-
-	@Override
-	public void onNothingSelected(AdapterView<?> arg0) {
-		// TODO Auto-generated method stub
-		
+	/**
+	 * Show device by area district
+	 * param id district
+	 */
+	public void ShowDevice(int idDistrict) {
+		btnRetry.setVisibility(View.INVISIBLE);
+		proMain.setVisibility(View.VISIBLE);
+		idArea = mdb.getIdAreaByName(listDistrict.get(idDistrict));
+		getStation(idArea);
 	}
+
+	/**
+	 * Show location district
+	 */
+	public void ShowLocationDistrict(ArrayList<ObjArea> arrDistrict) {
+		for (int i = 0; i < arrDistrict.size(); i++) {
+			listDistrict.add(arrDistrict.get(i).getName());
+		}
+		districtAdapter = new DistrictAdapter(getSupportFragmentManager(),
+				listDistrict);
+		mPagerDistric.setAdapter(districtAdapter);
+		districtAdapter.notifyDataSetChanged();
+		ShowDevice(0);
+		mPagerDistric.setOnPageChangeListener(new OnPageChangeListener() {
+
+			@Override
+			public void onPageSelected(int arg0) {
+				mGooglemap.clear();
+				arrMarker.clear();
+				ShowDevice(arg0);
+
+			}
+
+			@Override
+			public void onPageScrolled(int arg0, float arg1, int arg2) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void onPageScrollStateChanged(int arg0) {
+				// TODO Auto-generated method stub
+
+			}
+		});
+
+	}
+
 	/**
 	 * click to load data again
 	 */
-	public void OnclickRetry(View v){
+	public void OnclickRetry(View v) {
 		btnRetry.setVisibility(View.INVISIBLE);
-		getStation(id);
+		proMain.setVisibility(View.VISIBLE);
+		getStation(idArea);
+
+	}
+
+	@Override
+	public void onItemSelected(AdapterView<?> parent, View view, int position,
+			long id) {
+		arrMarker.clear();
+		mGooglemap.clear();
+		listObjDistrict.clear();
+		listDistrict.clear();
+		btnRetry.setVisibility(View.INVISIBLE);
+		Utils.SaveCitySelect(getBaseContext(), ListIDArea.get(position));
+		ShowDistrict(ListIDArea.get(position));
 		
 	}
+
+	@Override
+	public void onNothingSelected(AdapterView<?> parent) {
+		// TODO Auto-generated method stub
+
+	}
+	/**
+	 * method transfer atm map->list
+	 */
+	public void OnClickConvertList(View v){
+		if(arrStation.size()>0){
+		Intent intent=new Intent(this,ListStationActivity.class);
+		Bundle b = new Bundle();
+		b.putSerializable("ARRAY_OBJECT", arrStation);
+		intent.putExtras(b);
+		startActivity(intent);
+		}
+		else{
+			Toast.makeText(getBaseContext(), "Không có dữ liệu !", Toast.LENGTH_SHORT).show();
+		}
+	}
+
 }

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray"
+    android:padding="10dp"
+    android:orientation="vertical" >
+    <LinearLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="45dp"
+        android:background="@drawable/background_main"
+        android:gravity="center"
+        >
+        <TextView 
+            android:id="@+id/tvNameStation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ĐĂNG NHẬP"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            />
+        
+    </LinearLayout>
+    <EditText
+        android:id="@+id/eUsername"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="#C0C0C0"
+        android:hint="Enter Username"
+        android:layout_margin="10dp"
+        android:padding="10dp"
+        android:textColor="@android:color/black" />
+
+    <EditText
+        android:id="@+id/ePassword"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="#C0C0C0"
+        android:hint="Enter Password"
+        android:padding="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:inputType="textPassword"
+        android:textColor="@android:color/black" />
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:onClick="OnclickLogin"
+        android:textColor="@color/white"
+        android:text="XÁC NHẬN" />
+  
+
+</LinearLayout>

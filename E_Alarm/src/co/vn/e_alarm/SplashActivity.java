@@ -15,6 +15,7 @@ import co.vn.e_alarm.network.ResponseTranslater;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -37,7 +38,7 @@ public class SplashActivity extends Activity{
 			getArea();	
 		}
 		else{
-			intent=new Intent(this,MainActivity.class);
+			intent=new Intent(this,PopupLoginActitvity.class);
 			startActivity(intent);
 			finish();
 		}
@@ -53,24 +54,27 @@ public class SplashActivity extends Activity{
 							return;
 						}
 						arrArea=ResponseTranslater.getAllArea(response);
+						Log.e("TAG: ", "h: " +arrArea.size());
 						if(arrArea.size()>0){
 							MyPreference.getInstance().writeString("FIRST_TIME","second");
 							for(int i=0;i<arrArea.size();i++){
 								mdb.AddArea(arrArea.get(i));
 							}
+							
+							
+							intent=new Intent(SplashActivity.this,PopupLoginActitvity.class);
+							startActivity(intent);
+							finish();
 						}
 						
-						intent=new Intent(SplashActivity.this,SettingActivity.class);
-						intent.putExtra("CHECK",false);
-						startActivity(intent);
-						finish();
+						
 						
 					}
 					@Override
 					public void onFailure(Throwable arg0, String arg1) {
 						// TODO Auto-generated method stub
 						super.onFailure(arg0, arg1);
-						Toast.makeText(getBaseContext(), "không kết nối được với server: "+arg1, Toast.LENGTH_SHORT).show();
+						Toast.makeText(getBaseContext(), "không kết nối được với server: ", Toast.LENGTH_SHORT).show();
 					}
 				});
 			

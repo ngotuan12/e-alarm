@@ -11,8 +11,8 @@ public class ObjStation implements Serializable {
 	public double lat;
 	public double lng;
 	public int status;
-	public String temp;
-	public String humidity;
+	public double temp;
+	public double humidity;
 	public int getId() {
 		return id;
 	}
@@ -61,16 +61,16 @@ public class ObjStation implements Serializable {
 	public void setStatus(int status) {
 		this.status = status;
 	}
-	public String getTemp() {
+	public double getTemp() {
 		return temp;
 	}
-	public void setTemp(String temp) {
+	public void setTemp(double temp) {
 		this.temp = temp;
 	}
-	public String getHumidity() {
+	public double getHumidity() {
 		return humidity;
 	}
-	public void setHumidity(String humidity) {
+	public void setHumidity(double humidity) {
 		this.humidity = humidity;
 	}
 	

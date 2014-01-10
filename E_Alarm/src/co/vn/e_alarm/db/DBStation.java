@@ -2,6 +2,8 @@ package co.vn.e_alarm.db;
 
 import java.util.ArrayList;
 
+import com.google.android.gms.maps.model.LatLng;
+
 
 import co.vn.e_alarm.bean.ObjArea;
 import android.content.ContentValues;
@@ -99,10 +101,10 @@ onCreate(db);
 		
 	}
 	@SuppressWarnings("null")
-	public ArrayList<ObjArea> getListAreabyWoodenleg(String id){
+	public ArrayList<ObjArea> getListAreabyWoodenleg(String id,int level){
 		ArrayList<ObjArea> listArea=new ArrayList<ObjArea>();
 		SQLiteDatabase db=this.getWritableDatabase();
-		String query="SELECT * FROM "+TABLE_AREA +" WHERE "+COLUMN_WOODENLEG +" like '%"+id+"%'";
+		String query="SELECT * FROM "+TABLE_AREA +" WHERE "+COLUMN_WOODENLEG +" like '%"+id+"%'" +" and level ="+level;
 		Cursor cursor=db.rawQuery(query, null);
 		if(cursor!=null || cursor.getCount()>0){
 			if(cursor.moveToFirst()){
@@ -110,6 +112,28 @@ onCreate(db);
 					ObjArea obj=new ObjArea();
 					obj.setId(cursor.getInt(cursor.getColumnIndex(COLUMN_ID_AREA_SERVER)));
 					obj.setName(cursor.getString(cursor.getColumnIndex(COLUMN_NAME_AREA)));
+					listArea.add(obj);
+					
+					
+				} while (cursor.moveToNext());
+			}
+		}
+		return listArea;
+		
+	}
+	@SuppressWarnings("null")
+	public ArrayList<ObjArea> getListDistrict(int id){
+		ArrayList<ObjArea> listArea=new ArrayList<ObjArea>();
+		SQLiteDatabase db=this.getWritableDatabase();
+		String query="SELECT * FROM "+TABLE_AREA +" WHERE "+COLUMN_PARENT_ID +" ="+id;
+		Cursor cursor=db.rawQuery(query, null);
+		if(cursor!=null || cursor.getCount()>0){
+			if(cursor.moveToFirst()){
+				do {
+					ObjArea obj=new ObjArea();
+					obj.setId(cursor.getInt(cursor.getColumnIndex(COLUMN_ID_AREA_SERVER)));
+					obj.setName(cursor.getString(cursor.getColumnIndex(COLUMN_NAME_AREA)));
+					
 					listArea.add(obj);
 					
 					
@@ -134,5 +158,49 @@ onCreate(db);
 		cursor.close();
 		db.close();
 		return idUser;
+	}
+	
+	public Integer getIdParentDistrict(String name){
+		int idUser=0;
+		SQLiteDatabase db = this.getWritableDatabase();
+		Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_AREA +" WHERE TRIM(nameArea) = '"+name.trim()+"'", null);
+		if (cursor.getCount()> 0 && cursor!=null) {
+			if (cursor.moveToFirst()) {
+				do {
+					 idUser = cursor.getInt(cursor
+							.getColumnIndex(COLUMN_ID_AREA_SERVER));
+				} while (cursor.moveToNext());
+			}
+		}
+		cursor.close();
+		db.close();
+		return idUser;
+	}
+	public String getNameArea(int id){
+		String name="";
+		SQLiteDatabase db=this.getWritableDatabase();
+		Cursor cur = db.rawQuery("SELECT * FROM area WHERE idAreaSever = '"+id+"'", null);
+			if(cur.getCount()>0){
+				if(cur.moveToFirst()){
+					name=cur.getString(cur.getColumnIndex(COLUMN_NAME_AREA));
+				}
+			}	
+		return name;
+		
+				
+	}
+	public LatLng getLatLngCity(int id){
+		LatLng latLng = null ;
+		SQLiteDatabase db=this.getWritableDatabase();
+		Cursor cur = db.rawQuery("SELECT * FROM area WHERE idAreaSever = '"+id+"'", null);
+			if(cur.getCount()>0){
+				if(cur.moveToFirst()){
+					double lat=cur.getDouble(cur.getColumnIndex(COLUMN_LAT));
+					double lng=cur.getDouble(cur.getColumnIndex(COLUMN_LNG));
+					latLng=new LatLng(lat, lng);
+					
+				}
+			}	
+		return latLng;
 	}
 }

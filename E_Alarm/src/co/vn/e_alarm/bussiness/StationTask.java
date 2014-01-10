@@ -10,4 +10,7 @@ public class StationTask {
 	public static void GetAllStationByIDArea(String url,StringEntity entity,AsyncHttpResponseHandler response){
 		RestConnector.postEntiny(null, url, entity, null, response);
 	}
+	public static void ViewLogStation(String url,StringEntity entity,AsyncHttpResponseHandler handler){
+		RestConnector.postEntiny(null, url, entity, null, handler);
+	}
 }

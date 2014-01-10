@@ -16,5 +16,15 @@
     <style name="AppTheme" parent="AppBaseTheme">
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
+     <style name="Holo.Demo"/>
+    <style name="Holo.Demo.FontViewer">
+        <item name="android:gravity">center</item>
+        <item name="android:layout_height">?listPreferredItemHeightSmall</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:textAppearance">?android:textAppearanceSmall</item>
+    </style>
+    <style name="Dialog" parent="@style/Holo.Theme.Dialog.Light">
+        <item name="android:windowNoTitle">true</item>
+    </style>
 
 </resources>

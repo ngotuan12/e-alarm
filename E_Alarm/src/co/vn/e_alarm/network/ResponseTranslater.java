@@ -3,6 +3,7 @@ package co.vn.e_alarm.network;
 import java.util.ArrayList;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.util.Log;
@@ -48,6 +49,29 @@ public class ResponseTranslater {
 		return arrArea;
 
 	}
+	public static boolean CheckLoginSession(String response,String userName){
+		try {
+			JSONObject jsonMain = new JSONObject(response);
+			if (jsonMain.getString(NetworkUtility.HANDLE).equals(
+					NetworkUtility.SUCCESS1)) {
+				
+				NetworkUtility.AUTHORIZATION = jsonMain
+						.getString("Authorization");
+				NetworkUtility.SESSIONKEY = jsonMain
+						.getString("sessionKey");
+				NetworkUtility.SESSION_USERNAME = userName;
+				return true;
+			}
+			else{
+				return false;
+			}
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+		
+	}
 
 	public static ArrayList<ObjStation> getAllStation(String response) {
 		ObjStation obj;
@@ -78,9 +102,9 @@ public class ResponseTranslater {
 						JSONArray jsonList = j.getJSONArray("list");
 						if(jsonList.length()>0){
 							JSONObject jsonTemp = jsonList.getJSONObject(0);
-							obj.setTemp(jsonTemp.getString("value"));
+							obj.setTemp(jsonTemp.getDouble("value"));
 							JSONObject jsonHumi = jsonList.getJSONObject(1);
-							obj.setHumidity(jsonHumi.getString("value"));
+							obj.setHumidity(jsonHumi.getDouble("value"));
 						}
 						
 						arrStation.add(obj);

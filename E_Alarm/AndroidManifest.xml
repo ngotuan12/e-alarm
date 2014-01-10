@@ -34,7 +34,7 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/Theme.Sherlock.Light.NoActionBar" >
+        android:theme="@style/Holo.Theme.NoActionBar" >
         <activity
             android:name="co.vn.e_alarm.MainActivity"
             android:label="@string/app_name" >
@@ -53,6 +53,15 @@
         
         <activity android:name="SettingActivity"></activity>
         <activity android:name="SplashActivity">
+        </activity>
+        <activity android:name="GraphStationActivity" android:screenOrientation="landscape"></activity>
+        <activity android:name="ListStationActivity"></activity>
+        <activity android:name="ViewLogActivity"
+             android:theme="@style/Dialog"
+            ></activity>
+        <activity android:name="PopupLoginActitvity"
+              android:theme="@style/Dialog"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
