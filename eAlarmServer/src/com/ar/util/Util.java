@@ -60,21 +60,31 @@ public class Util
 	 * @param response
 	 * @throws Exception
 	 */
-	public static void processRequest(HttpServletRequest servletRequest,HttpServletResponse servletResponse) throws Exception
+	public static void processRequest(HttpServletRequest servletRequest,
+			HttpServletResponse servletResponse) throws Exception
 	{
+		// response
+		servletResponse.setCharacterEncoding("utf-8");
+		servletResponse.setContentType("text/plain");
+		servletResponse.setHeader("Access-Control-Allow-Origin", "* ");
+		servletResponse
+				.setHeader("Access-Control-Allow-Headers",
+						"Origin, X-Requested-With, Content-Type, Accept, Authorization");
+		servletResponse.setHeader("Access-Control-Allow-Methods",
+				"POST, GET, OPTIONS");
 		JSONObject jsonResponse = new JSONObject();
 		JSONObject jsonRequest;
 		try
 		{
 			String autKey = servletRequest.getHeader("Authorization");
-			if(autKey==null)
+			if (autKey == null)
 			{
 				return;
 			}
-			//get parameter
+			// get parameter
 			String strServiceName = servletRequest.getServletPath();
 			String strMethodName = servletRequest.getMethod();
-			//get service config
+			// get service config
 			DictionaryNode ndClassConfig = mDic.getNode(strServiceName);
 			if (ndClassConfig == null)
 			{
@@ -90,16 +100,19 @@ public class Util
 			String strRequest = stringBuilder.toString();
 			System.out.println(strRequest);
 			// JSON request
-//			jsonRequest = new JSONObject("{}");
+			// jsonRequest = new JSONObject("{}");
 			jsonRequest = new JSONObject(strRequest);
-			//check session
-			if(!strServiceName.equals("/PermissionService"))
+			// check session
+			if (!strServiceName.equals("/PermissionService"))
 			{
-//				String strMethod = StringUtil.nvl(jsonRequest.getString("Method"), "");
-				checkSessionUser(jsonRequest.getString("SessionUserName"), autKey);
+				// String strMethod =
+				// StringUtil.nvl(jsonRequest.getString("Method"), "");
+				checkSessionUser(jsonRequest.getString("SessionUserName"),
+						autKey);
 			}
-			else if(!StringUtil.nvl(jsonRequest.getString("Method"), "").equals("login"))
-				checkSessionUser(jsonRequest.getString("SessionUserName"), autKey);
+			else if (!StringUtil.nvl(jsonRequest.getString("Method"), "")
+					.equals("login")) checkSessionUser(
+					jsonRequest.getString("SessionUserName"), autKey);
 			// Get class name & create class instance
 			String strClassName = ndClassConfig.getString("Class");
 			if (strClassName.length() == 0) throw new Exception(
@@ -116,17 +129,17 @@ public class Util
 			String strFunctionName = "";
 			switch (strMethodName.toUpperCase())
 			{
-				case "GET":
-					strFunctionName = "doGet";
-					break;
-				case "POST":
-					strFunctionName = "doPost";
-					break;
-				case "DELETE":
-					strFunctionName = "doDelete";
-					break;
-				default:
-					throw new Exception("method is unsupport");
+			case "GET":
+				strFunctionName = "doGet";
+				break;
+			case "POST":
+				strFunctionName = "doPost";
+				break;
+			case "DELETE":
+				strFunctionName = "doDelete";
+				break;
+			default:
+				throw new Exception("method is unsupport");
 			}
 			if (strFunctionName.length() == 0) throw new Exception(
 					"Function name was not passed");
@@ -157,62 +170,73 @@ public class Util
 						.getTargetException();
 				throw new Exception(e.getTargetException());
 			}
+			jsonResponse.put("handle", "on_success");
 		}
-		catch(AppException aex)
+		catch (AppException aex)
 		{
 			aex.printStackTrace();
 			jsonResponse.put("handle", "on_error");
 			jsonResponse.put("code", aex.getReason());
 			jsonResponse.put("message", aex.getMessage());
 		}
-		catch(JSONException jex)
+		catch (JSONException jex)
 		{
 			jex.printStackTrace();
 			jsonResponse.put("handle", "on_error");
-			jsonResponse.put("code", "");
+			jsonResponse.put("code", "JSON-ERROR");
 			jsonResponse.put("message", jex.getMessage());
 		}
 		catch (Exception ex)
 		{
 			ex.printStackTrace();
 			jsonResponse.put("handle", "on_error");
-			jsonResponse.put("code", "");
+			jsonResponse.put("code", "SYS-ERROR");
 			jsonResponse.put("message", ex.getMessage());
 		}
 		finally
 		{
-			// response
-			servletResponse.setCharacterEncoding("utf-8");
-			servletResponse.setContentType("text/plain");
-			servletResponse.setHeader("Access-Control-Allow-Origin", "* ");
-			servletResponse.setHeader("Access-Control-Allow-Headers",
-					"Origin, X-Requested-With, Content-Type, Accept, Authorization");
-			servletResponse.setHeader("Access-Control-Allow-Methods",
-					"POST, GET, OPTIONS");
+
 			// return response
 			PrintWriter out = servletResponse.getWriter();
 			out.println(jsonResponse.toString());
 			out.flush();
 		}
 	}
-	public static void checkSessionUser(String strUserName,String strSessionKey) throws Exception
+
+	public static void checkSessionUser(String strUserName, String strSessionKey)
+			throws Exception
 	{
-		SecretKey desKey  = session.get(strSessionKey);
-		Encrypt desEncrypter = new Encrypt(desKey, desKey.getAlgorithm());
-		String strInfor = desEncrypter.decrypt(strSessionKey);
-		JSONObject jsonInfor = new JSONObject(strInfor);
-		//check session username 
-		if(!jsonInfor.getString("username").equals(strUserName))
+		try
 		{
-			throw new AppException("EAS-SYS-001", "Session user name not correct!");
+			SecretKey desKey = session.get(strSessionKey);
+			Encrypt desEncrypter = new Encrypt(desKey, desKey.getAlgorithm());
+			String strInfor = desEncrypter.decrypt(strSessionKey);
+			JSONObject jsonInfor = new JSONObject(strInfor);
+			// check session username
+			if (!jsonInfor.getString("username").equals(strUserName))
+			{
+				throw new AppException("EAS-SYS-001",
+						"Session user name not correct!");
+			}
+			Date dateExpire = DateUtil.toDate(jsonInfor.getString("date"),
+					"dd/MM/yyyy HH:mm:ss");
+			// check session expire
+			if (dateExpire.compareTo(new Date()) < 0)
+			{
+				throw new AppException("EAS-SYS-002", "Session expire!");
+			}
 		}
-		Date dateExpire = DateUtil.toDate(jsonInfor.getString("date"),"dd/MM/yyyy HH:mm:ss");
-		//check session expire
-		if(dateExpire.compareTo(new Date())<0)
+		catch (AppException aex)
 		{
-			throw new AppException("EAS-SYS-002", "Session expire!");
+			throw aex;
+		}
+		catch (Exception ex)
+		{
+			ex.printStackTrace();
+			throw new AppException("EAS-SYS-004","Authenticate false!");
 		}
 	}
+
 	/**
 	 * @param rs
 	 * @return

@@ -50,6 +50,10 @@ public class PermissionBean extends AppProcessor
 
 	}
 
+	/**
+	 * @author TuanNA
+	 * @throws Exception
+	 */
 	public void login() throws Exception
 	{
 		try
@@ -60,21 +64,26 @@ public class PermissionBean extends AppProcessor
 			open(false);
 			// commit
 			mcnMain.commit();
-			//password
-			verifyPassword(mcnMain, strUserName, strPassword);
-			//session
-			String strDate =StringUtil.format(new Date( System.currentTimeMillis() + 300000L), "dd/MM/yyyy HH:mm:ss");
+			// password
+			JSONObject jsonInfor = verifyPassword(mcnMain, strUserName,
+					strPassword);
+			// session
+			String strDate = StringUtil.format(
+					new Date(System.currentTimeMillis() + 300000L),
+					"dd/MM/yyyy HH:mm:ss");
 			JSONObject json = new JSONObject();
 			json.put("username", strUserName);
 			json.put("date", strDate);
-			//secret key with DES
-			SecretKey desKey       = KeyGenerator.getInstance("DES").generateKey();
+			// secret key with DES
+			SecretKey desKey = KeyGenerator.getInstance("DES").generateKey();
 			Encrypt desEncrypter = new Encrypt(desKey, desKey.getAlgorithm());
 			String sessionKey = desEncrypter.encrypt(json.toString());
+			// put to session
 			Util.session.put(sessionKey, desKey);
-			//response
+			// response
 			response.put("sessionKey", sessionKey);
 			response.put("Authorization", sessionKey);
+			response.put("userInfor", jsonInfor);
 		}
 		catch (Exception ex)
 		{
@@ -88,28 +97,38 @@ public class PermissionBean extends AppProcessor
 		}
 	}
 
-	private String verifyPassword(Connection cn, String strUserName,
+	/**
+	 * @author TuanNA
+	 * @param cn
+	 * @param strUserName
+	 * @param strPassword
+	 * @return
+	 * @throws Exception
+	 */
+	private JSONObject verifyPassword(Connection cn, String strUserName,
 			String strPassword) throws Exception
 	{
+		JSONArray arrReturn;
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
 		try
 		{
-			String strSQL = "SELECT id, password FROM `user` WHERE UPPER(username)=? AND STATUS='1'";
-
+			String strSQL = "SELECT id, dept_id, owner_id, `username`, `password`, "
+					+ "`status`, `sex`, email, phone, id_no, "
+					+ "address, birth_day, create_date, fullname "
+					+ "FROM `user` WHERE UPPER(username)=? AND STATUS='1'";
 			pstm = cn.prepareStatement(strSQL);
 			pstm.setString(1, strUserName.toUpperCase());
 			rs = pstm.executeQuery();
-			if (!(rs.next()))
+			arrReturn = Util.convertToJSONArray(rs);
+			if (arrReturn.length() != 1)
 			{
 				throw new AppException("EAS-SYS-003",
-						"DBTableAuthenticator.verifyPassword");
+						"User name or password does not correct!");
 			}
-			String strReturn = rs.getString(1);
-			String strDBPassword = rs.getString(2);
-			rs.close();
-			pstm.close();
-
+			JSONObject objInfor = arrReturn.getJSONObject(0);
+			// String strReturn = objInfor.getString("id");
+			String strDBPassword = (String) objInfor.remove("password");
 			if (strDBPassword == null)
 			{
 				strDBPassword = "";
@@ -117,10 +136,9 @@ public class PermissionBean extends AppProcessor
 			if (!(strDBPassword.equals(strPassword)))
 			{
 				throw new AppException("EAS-SYS-003",
-						"DBTableAuthenticator.verifyPassword");
+						"User name or password does not correct!");
 			}
-
-			return strReturn;
+			return objInfor;
 		}
 		catch (Exception ex)
 		{
@@ -136,6 +154,10 @@ public class PermissionBean extends AppProcessor
 		}
 	}
 
+	/**
+	 * @author TuanNA
+	 * @throws Exception
+	 */
 	public void loadSystemData() throws Exception
 	{
 		PreparedStatement pstm = null;
@@ -185,6 +207,14 @@ public class PermissionBean extends AppProcessor
 		}
 	}
 
+	/**
+	 * @author TuanNA
+	 * @param vtData
+	 * @param iLevel
+	 * @param strTypeGroup
+	 * @return
+	 * @throws Exception
+	 */
 	public static JSONArray organizeTree(JSONArray vtData, int iLevel,
 			String strTypeGroup) throws Exception
 	{
