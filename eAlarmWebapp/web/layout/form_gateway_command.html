@@ -1,0 +1,33 @@
+<polymer-element name="form-gateway-command">
+<meta charset="UTF-8" />
+<template>
+<style>
+</style>
+<div style="float: left; width: 40%; margin-left: 10px">
+	<br />
+	<h3 style="color: White">List Gateway</h3>
+	<br />
+	<div class="divice-content">
+		<div class="tab-content">
+			<div class="tab-pane active">
+				<ol id="listGateway">
+				</ol>
+			</div>
+		</div>
+	</div>
+</div>
+<div style="float: right; width: 50%">
+	<br />
+	<h3 style="color: White">Test command</h3>
+	<h5 style="color: White" id="txtID"></h5>
+	<br /> <span>Send Request</span> <br />
+	<textarea cols="40" rows="10" style="width: 90%" id="txtRequest"></textarea>
+	<br /> <span>Detail Respone</span> 
+	<button id="btnSendRequest">Send command</button>
+	<br />
+	<textarea cols="40" rows="10" style="width: 90%" id="txtRespone"></textarea>
+	<br />
+</div>
+</template> <script type="application/dart" src="form_gateway_command.dart"></script>
+</polymer-element>
+
