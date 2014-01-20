@@ -111,8 +111,8 @@ public class DeviceBean extends AppProcessor
 			String strDeviceID = (String) request.getString("deviceID");
 			// open connection
 			open();
-			strSQL = "SELECT id,code,area_id,area_code,address,lat,lng,status"
-					+ " FROM device " + "WHERE id = ? and status = 1";
+			strSQL = "SELECT *" + " FROM device "
+					+ "WHERE id = ? and status = 1";
 			// prepare
 			pstm = mcnMain.prepareStatement(strSQL);
 			pstm.setString(1, strDeviceID.toUpperCase());
@@ -254,8 +254,8 @@ public class DeviceBean extends AppProcessor
 			String strDeviceID = (String) request.getString("deviceID");
 			// open connection
 			open();
-			strSQL = "SELECT id,code,area_id,area_code,address,lat,lng,status"
-					+ " FROM device " + "WHERE id = ? and status = 1";
+			strSQL = "SELECT *" + " FROM device "
+					+ "WHERE id = ? and status = 1";
 			// prepare
 			pstm = mcnMain.prepareStatement(strSQL);
 			pstm.setString(1, strDeviceID.toUpperCase());
@@ -656,6 +656,53 @@ public class DeviceBean extends AppProcessor
 		}
 	}
 
+	public void onGetDevicesInfoByDeviceID() throws Exception
+	{
+		String strSQL = "";
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+		try
+		{
+			String strDeviceID = (String) request.getString("deviceID");
+			String strDeviceProID = (String) request.getString("deviceproID");
+			// open connection
+			open();
+			strSQL = "SELECT *" + " FROM device_infor "
+					+ "WHERE device_id = ? and device_pro_id= ?";
+			// prepare
+			pstm = mcnMain.prepareStatement(strSQL);
+			pstm.setString(1, strDeviceID.toUpperCase());
+			pstm.setString(2, strDeviceProID.toUpperCase());
+			rs = pstm.executeQuery();
+			// get JSON data
+			JSONArray arr = Util.convertToJSONArray(rs);
+			// if account not exists
+			if (arr.length() == 0)
+			{
+				// close statement
+				Database.closeObject(pstm);
+				Database.closeObject(rs);
+				// response
+				response.put("Mess", "no device found");
+			}
+			else
+			{
+				// response
+				response.put("device_info", arr);
+				response.put("Mess", "Success");
+			}
+		}
+		catch (Exception ex)
+		{
+			ex.printStackTrace();
+			throw ex;
+		}
+		finally
+		{
+			close();
+		}
+	}
+
 	public void doGet() throws Exception
 	{
 		// TODO Auto-generated method stub
@@ -667,6 +714,9 @@ public class DeviceBean extends AppProcessor
 		String request_type = request.getString("Method");
 		switch (request_type)
 		{
+		case "onGetDevicesInfoByDeviceID":
+			onGetDevicesInfoByDeviceID();
+			break;
 		case "onGetDevicesByID":
 			onGetDevicesByID();
 			break;
