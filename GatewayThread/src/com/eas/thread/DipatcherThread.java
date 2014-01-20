@@ -28,7 +28,7 @@ public class DipatcherThread extends com.fss.thread.ManageableThread
 	DataOutputStream out = null;
 	Socket socket = null;
 	public boolean isAnnounce = false;
-	private String currentCmdID = "";
+	private static String currentCmdID = "";
 
 	public DipatcherThread()
 	{
@@ -81,7 +81,7 @@ public class DipatcherThread extends com.fss.thread.ManageableThread
 			{
 				try
 				{
-					socket = new Socket("127.0.0.1", 32432);
+					socket = new Socket("54.243.244.187", 8888);
 					// announce socket
 					announce();
 					// check response
@@ -90,16 +90,17 @@ public class DipatcherThread extends com.fss.thread.ManageableThread
 					while (connect)
 					{
 						responseLine = is.readLine();
+						logInfo(responseLine);
 						if (responseLine != null)
 						{
-							synchronized (currentCmdID)
+							if (!currentCmdID.trim().equals(""))
 							{
 								// update database
 								pstmupdate.setString(1, responseLine);
 								pstmupdate.setString(2, currentCmdID);
 								pstmupdate.executeUpdate();
 								// end response
-								currentCmdID = null;
+								currentCmdID = "";
 							}
 						}
 					}
@@ -142,14 +143,11 @@ public class DipatcherThread extends com.fss.thread.ManageableThread
 								request.put("G_MAC",
 										content.getString("mac_add"));
 								sendRequest(request);
-								pstmupdate.setString(1, "thanh cong");
-								pstmupdate.setString(2, currentCmdID);
-								pstmupdate.executeUpdate();
 							}
 							else
 							{
 								request.put("error", "chuoi nhap ko chinh xac");
-								sendRequest(request);
+								// sendRequest(request);
 								pstmupdate.setString(1,
 										"chuoi nhap ko chinh xac");
 								pstmupdate.setString(2, currentCmdID);
@@ -157,10 +155,10 @@ public class DipatcherThread extends com.fss.thread.ManageableThread
 							}
 
 							// wait response
-							// while (currentCmdID != null)
-							// {
-							// continue;
-							// }
+							while (!DipatcherThread.currentCmdID.trim().equals(
+									""))
+							{
+							}
 						}
 						catch (Exception ex)
 						{
