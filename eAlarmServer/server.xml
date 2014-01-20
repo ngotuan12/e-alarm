@@ -13,6 +13,7 @@
 				<include name="com/ar/bean/*.class" />
 				<include name="com/ar/service/**/*.class" />
 				<include name="com/ar/util/**/*.class" />
+				<include name="com/ar/Model/**/*.class" />
 				<exclude name="com/ar/**/*.sql"/>
 				<exclude name="com/ar/**/*.txt"/>
 				<exclude name="com/ar/**/*.xls"/>
