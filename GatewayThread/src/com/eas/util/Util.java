@@ -1,4 +1,4 @@
-package com.sc.robot.util;
+package com.eas.util;
 
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;

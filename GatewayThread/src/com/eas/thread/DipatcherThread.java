@@ -12,11 +12,11 @@ import java.util.Vector;
 import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONObject;
 
+import com.eas.util.AppServer;
+import com.eas.util.Util;
 import com.fss.sql.Database;
 import com.fss.thread.ThreadConstant;
 import com.fss.util.AppException;
-import com.sc.robot.util.AppServer;
-import com.sc.robot.util.Util;
 
 public class DipatcherThread extends com.fss.thread.ManageableThread
 {
@@ -60,7 +60,7 @@ public class DipatcherThread extends com.fss.thread.ManageableThread
 	{
 		conn = AppServer.getConnection("MySQL");
 		pstm = conn
-				.prepareStatement("SELECT * FROM gateway_request WHERE status = '2' ");
+				.prepareStatement("SELECT * FROM gateway_request,gateway WHERE gateway_request.status = '2' and gateway_request.gateway_id = gateway.id ");
 		pstmupdate = conn
 				.prepareStatement("UPDATE gateway_request SET status = '1',response = ? WHERE id = ?  ");
 	}
@@ -112,6 +112,7 @@ public class DipatcherThread extends com.fss.thread.ManageableThread
 			}
 		};
 		thread.start();
+
 		while (miThreadCommand != ThreadConstant.THREAD_STOP && socket != null
 				&& socket.isConnected())
 		{
@@ -129,13 +130,37 @@ public class DipatcherThread extends com.fss.thread.ManageableThread
 							currentCmdID = String.valueOf(content.getInt("id"));
 							// send request
 							String strRequest = content.getString("request");
+
 							logInfo("send request " + strRequest);
-							sendRequest(new JSONObject(strRequest));
-							// wait response
-							while (currentCmdID != null)
+							JSONObject jRequest = new JSONObject(strRequest);
+
+							JSONObject request = new JSONObject();
+							if (jRequest.getString("cmd") != null)
 							{
-								continue;
+								request.put("cmd", "send_gw_request");
+								request.put("body", jRequest);
+								request.put("G_MAC",
+										content.getString("mac_add"));
+								sendRequest(request);
+								pstmupdate.setString(1, "thanh cong");
+								pstmupdate.setString(2, currentCmdID);
+								pstmupdate.executeUpdate();
 							}
+							else
+							{
+								request.put("error", "chuoi nhap ko chinh xac");
+								sendRequest(request);
+								pstmupdate.setString(1,
+										"chuoi nhap ko chinh xac");
+								pstmupdate.setString(2, currentCmdID);
+								pstmupdate.executeUpdate();
+							}
+
+							// wait response
+							// while (currentCmdID != null)
+							// {
+							// continue;
+							// }
 						}
 						catch (Exception ex)
 						{

@@ -17,9 +17,9 @@ Connection
 		UserName==SC_OWNER
 		Password==scowner
 	MySQL
-		Url==jdbc:mysql://10.0.1.46:3306/benesse_production?useEncoding=true&characterEncoding=UTF-8
+		Url==jdbc:mysql://localhost:9999/ealarm?useEncoding=true&characterEncoding=UTF-8
 		UserName==root
-		Password==
+		Password==113322
 Report
 	ResourceAbsolutePath==/u01/app/jrun4/servers/loyalty/default-ear/default-war/excel-report/
 	ResourceVirtualPath==/excel-report/

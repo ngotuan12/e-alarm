@@ -7,13 +7,14 @@
 	</path>
 
 	<target depends="cleanup,resource" name="archive">
-		<jar compress="true" destfile="../jar/RobotThread.jar">
+		<jar compress="true" destfile="jar/thread.jar">
 			<fileset dir="${dest}">
 				<!--<exclude name="com/fis/**"/> -->
 				<include name="**" />
 				<exclude name="**/*.xml" />
 				<exclude name="**/*.properties" />
 				<exclude name="**/*.txt" />
+				<exclude name="**/*.cfg" />
 			</fileset>
 		</jar>
 	</target>
@@ -35,6 +36,6 @@
 		</copy>
 	</target>
 	<target name="cleanup">
-		<delete failonerror="false" file="../jar/RobotThread.jar" />
+		<delete failonerror="false" file="jar/thread.jar" />
 	</target>
 </project>

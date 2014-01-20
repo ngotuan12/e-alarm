@@ -1,4 +1,4 @@
-package com.sc.robot.server;
+package com.eas.server;
 
 import java.io.File;
 import java.io.PrintStream;
@@ -138,8 +138,8 @@ public class Manager extends ThreadManager implements ProcessorListener
 			PrintStream errorPs = new PrintStream(new LogOutputStream(
 					mstrErrorLog));
 			PrintStream outPs = new PrintStream(new LogOutputStream(mstrOutLog));
-//			System.setOut(outPs);
-//			System.setErr(errorPs);
+			System.setOut(outPs);
+			System.setErr(errorPs);
 			//
 			manager = new Manager(mintPort, lsn);
 			manager.setActionLogFile(mstrActionLog);
