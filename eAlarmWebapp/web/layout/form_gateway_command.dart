@@ -1,6 +1,5 @@
 import 'package:polymer/polymer.dart';
 import 'dart:html';
-import 'dart:convert';
 import '../src/util.dart';
 @CustomTag('form-gateway-command')
 class FormGatewayCommand extends PolymerElement

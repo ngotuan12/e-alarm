@@ -3,6 +3,7 @@
 <link rel="import" href="form_login.html">
 <link rel="import" href="form_main.html">
 <link rel="import" href="tool_bar.html">
+<link rel="import" href="form_gateway_command.html">
 <polymer-element name="main-menu">
 <meta charset="UTF-8" />
 <template> <!-- Main Container Fluid -->
@@ -97,6 +98,9 @@
 			</template>
 			<template if="{{currentAction == 'FORM_DEVICE'}}">
 				<form-device></form-device>
+			</template>
+			<template if="{{currentAction == 'FORM_GATEWAY_COMMAND'}}">
+				<form-gateway-command></form-gateway-command>
 			</template>
 		</div>
 		<!-- // Content END -->
