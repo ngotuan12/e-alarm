@@ -14,7 +14,7 @@ var monitors = new Array;
 var server;
 var gateway;
 var log_ob;
-var func = require("./func.js");
+
 connDB = require("./AppServer.js").connDB;
 
 connDB.connect(function(err) 
@@ -39,6 +39,7 @@ var WebsocketServer = net.createServer(function (socket) {
 		util.log('disconnected');
 		if(socket.isConnect)
 		{
+			updateGatewayStatus(socket,false);
 			if(socket.gatewayinfo.type == "1")
 			{
 				//remove gateway
@@ -47,7 +48,7 @@ var WebsocketServer = net.createServer(function (socket) {
 					if(gateways[i].gatewayinfo.id==socket.gatewayinfo.id)
 					{
 						gateways.splice(i,1);
-						updateGatewayStatus(socket,false);
+						
 						break;
 					}
 					
@@ -94,7 +95,7 @@ var WebsocketServer = net.createServer(function (socket) {
 	    	//util.log("Data"+data);
 	    	//util.log(data.toString().length);
 	    	var str = data.toString();
-	    	var strReuest = str.substring(1,str.length-1);
+	    	var strReuest = str.substring(1,str.length-2);
 			util.log(strReuest);
 	    	//util.log("Request"+strReuest);
 	    	var request = gjson.jsonParse(strReuest);
@@ -125,11 +126,12 @@ var WebsocketServer = net.createServer(function (socket) {
 					var gateway = findGatewayByGMac(g_mac);
 					if(gateway==null)
 					{
-						socket.write("gateway not found!");
+						
+						sendGatewayCommand({"message":"gateway not found!"});
 					}
 					else
 					{
-						sendGatewayCommand(gjson.jsonParse(request.body),gateway);
+						sendGatewayCommand(request.body,gateway);
 						socket.on_gateway = g_mac;
 						socket.on_cmd = request.body.cmd;
 					}
@@ -141,10 +143,12 @@ var WebsocketServer = net.createServer(function (socket) {
 						for(var i=0;i<dispatchers.length;i++)
 						{
 							if(dispatchers[i].on_gateway == socket.gatewayinfo.mac_add&&
-							dispatchers[i].on_cmd = request.cmd)
+							dispatchers[i].on_cmd == request.cmd)
 							{
-								//write to dispatcher wait response
-								dispatchers[i].write(JSON.stringify(request));
+								util.log('response to dispatcher '+dispatchers[i].gatewayinfo.mac_add+JSON.stringify(request));
+								//response to dispatcher wait response
+								sendGatewayCommand(request,dispatchers[i]);
+								
 							}
 						}
 					}
@@ -223,7 +227,9 @@ function updateGatewayStatus(socket,turn)
 {	
 	if(turn)
 	{
-		var strSQL = "Update gateway set connected_server = true,status = 1,ip_add ="+ serverIPAddress +" WHERE id =" + socket.gatewayinfo.id;
+		var strSQL = "Update gateway "+
+					" SET connected_server = '54.243.244.187',status = '1' "+ 
+					" WHERE id = " + socket.gatewayinfo.id;
 		connDB.query(strSQL, function(err) 
 		{
 			if (err) 
@@ -236,7 +242,9 @@ function updateGatewayStatus(socket,turn)
 		
 	}else
 	{
-		var strSQL = "Update gateway set connected_server = null,status = 0,ip_add = null WHERE id =" + socket.gatewayinfo.id ;
+		var strSQL = "UPDATE gateway "+
+					"SET connected_server = null,status = '0' "+
+					"WHERE id = " + socket.gatewayinfo.id ;
 		connDB.query(strSQL, function(err) 
 		{
 			if (err) 
@@ -311,7 +319,7 @@ function sendGatewayCommand(response,socket)
 	{
 		strResponse = String.fromCharCode(0x01)+strResponse+String.fromCharCode(0x0A)+String.fromCharCode(0x0D);
 	}
-	else if(socket.gatewayinfo.type == "2")
+	else if(socket.gatewayinfo.type == "2"||socket.gatewayinfo.type == "3")
 	{
 		strResponse = strResponse+"\n";
 	}
@@ -338,5 +346,5 @@ function create_log(gateway_id,issue_date,command,type)
 	log_ob.type = type;
 }
 
-WebsocketServer.listen(32432, "127.0.0.1");
+WebsocketServer.listen(8888, "10.80.14.53");
 console.log('websocket server start on port 32432');
