@@ -1,0 +1,86 @@
+<polymer-element name="form-gatewaycommand">
+<meta charset="UTF-8" />
+<template> <!-- Heading --> <input type='hidden'
+	id='current_page' /> <input type='hidden' id='show_per_page' />
+<div class="heading-buttons">
+	<h3 id="show">Danh sách Gateway</h3>
+	<div class="clearfix"></div>
+</div>
+<div class="separator bottom"></div>
+<!-- // Heading END -->
+<div class="innerLR">
+	<!-- Widget -->
+	<div class="widget">
+
+		<!-- Widget heading -->
+		<div class="widget-head">
+			<h4 class="heading glyphicons list">
+				<i></i>Test command Gateway
+			</h4>
+		</div>
+		<div class="widget-body">
+			<!-- Products table -->
+			<table
+				class="table table-bordered table-condensed table-striped table-primary table-vertical-center checkboxs">
+				<thead>
+					<tr>
+						<th style="width: 20%;" class="center">No</th>
+						<th class="center">Mac Address</th>
+						<th style="width: 40%;" class="center">Connected Server</th>
+					</tr>
+				</thead>
+				<tbody id="ListDevices">
+
+				</tbody>
+			</table>
+			<!-- // Products table END -->
+
+			<!-- Options -->
+			<div class="separator top form-inline small">
+
+				<!-- Pagination -->
+				<div class="pagination pagination-small pull-right"
+					style="margin: 0;">
+					<ul id="pagination">
+					</ul>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+			<!-- // Options END -->
+
+		</div>
+	</div>
+	<div class="widget" style="width: 49%; float: left;">
+
+		<!-- Widget heading -->
+		<div class="widget-head">
+			<h4 class="heading glyphicons list">
+				<i></i>Request <span style="color: White" id="txtID"></span>
+			</h4>
+		</div>
+		<div class="widget-body" style="padding: 10px">
+			<textarea style="width: 95%" id="txtRequest"></textarea>
+			<div style="width: 120px">
+				<button id="btnSendRequest" class="btn btn-block btn-primary">Send
+					command</button>
+			</div>
+		</div>
+	</div>
+
+	<div class="widget" style="width: 49%; float: right;">
+
+		<!-- Widget heading -->
+		<div class="widget-head">
+			<h4 class="heading glyphicons list">
+				<i></i>Respone
+			</h4>
+		</div>
+		<div class="widget-body" style="padding: 10px">
+			<textarea style="width: 95%" id="txtRespone"></textarea>
+		</div>
+	</div>
+	<!-- // Widget END -->
+
+</div>
+</template> <script type="application/dart" src="form_gatewaycommand.dart">
+	</script> </polymer-element>

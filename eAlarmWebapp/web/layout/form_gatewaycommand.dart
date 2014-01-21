@@ -1,17 +1,18 @@
 import 'package:polymer/polymer.dart';
 import 'dart:html';
 import '../src/util.dart';
-@CustomTag('form-gateway-command')
-class FormGatewayCommand extends PolymerElement
+@CustomTag('form-gatewaycommand')
+class FormGatewaycommand extends PolymerElement
 {
-  FormGatewayCommand.created() : super.created();
+  FormGatewaycommand.created() : super.created();
   OListElement olListGateway;
   TextAreaElement txtRequest;
   TextAreaElement txtRespone;
   ButtonElement btnSendRequest;
-  HeadingElement txtID;
+  SpanElement txtID;
   bool get applyAuthorStyles => true;
   int GatewayID=0;
+  Element tblGateway;
   enteredView() 
   {
       super.enteredView();
@@ -24,37 +25,39 @@ class FormGatewayCommand extends PolymerElement
         txtID=this.shadowRoot.querySelector("#txtID");
         btnSendRequest.onClick.listen(
             (event) => SendCommand());
+        tblGateway = this.shadowRoot.querySelector("#ListDevices");
         Responder responder = new Responder();
         Map request = new Map();
         request["Method"] = "GetListGateway";
+       
         responder.onSuccess.listen((Map response)
         {
           List<Map> listGateway=response['ListGateway'];
           for(int i=0;i<listGateway.length;i++)
           {
             Map gateway = listGateway[i];
-            //add children
-            LIElement liDevice=new LIElement();
-            liDevice.style.marginTop="5px";
-            liDevice.style.marginLeft="5px";
-            liDevice.style.borderBottom="1px solid #616161";
+            //row
+            TableRowElement row = new TableRowElement();
+            row.classes.add("selectable");
+            //column
+            TableCellElement colId=new TableCellElement();
+            colId.classes.add("center");
+            colId.appendHtml((i+1).toString());
+            TableCellElement colMac=new TableCellElement();
+            colMac.classes.add("center");
+            colMac.appendHtml(gateway["mac_add"].toString());
+            TableCellElement colConnServer=new TableCellElement();
+            colConnServer.classes.add("center");
+            colConnServer.appendHtml(gateway["connected_server"].toString());
+            //add column
+            row.children.add(colId);
+            row.children.add(colMac);
+            row.children.add(colConnServer);
             
-            //<a>
-            AnchorElement aDevice=new AnchorElement();
-            aDevice.style.textDecoration="none";
-            aDevice.style.color="#fff";
-            aDevice.href="#";
-            aDevice.text = gateway["mac_add"];
-            
-            aDevice.onMouseOver.listen((event)=>aDevice.style.color='gray');
-            aDevice.onMouseLeave.listen((event)=>aDevice.style.color='#fff');
-            liDevice.onMouseOver.listen((event)=>aDevice.style.color='gray');
-            liDevice.onMouseLeave.listen((event)=>aDevice.style.color='#fff');
-            //
-            liDevice.children.add(aDevice);
-            olListGateway.children.add(liDevice);
-            GatewayID=gateway["id"];
-            liDevice.onClick.listen((event)=>SendGatewayRequest(gateway["mac_add"].toString()));
+            //event click of row item
+            row.onClick.listen((event)=>SendGatewayRequest(gateway["mac_add"].toString(),gateway["connected_server"].toString()));
+            //add row
+            tblGateway.children.add(row);
           }
         });
         //error
@@ -70,14 +73,26 @@ class FormGatewayCommand extends PolymerElement
         Util.showNotifyError(err.toString());
       }
   }
-  void SendGatewayRequest(String ID)
+  void SendGatewayRequest(String Mac_Add,String Conn_Ser)
   {
-    txtRequest.value="";
-    txtRespone.value="";
-    txtID.text="Gateway MacAddress is " + ID;
+    if(Conn_Ser!="null")
+    {
+      txtRequest.disabled=false;
+      txtRespone.disabled=false;
+      btnSendRequest.disabled=false;
+      txtRequest.value="";
+      txtRespone.value="";
+      txtID.text="Gateway Mac Address is " + Mac_Add;
+    }
+    else
+    {
+      btnSendRequest.disabled=true;
+      txtRequest.disabled=true;
+      txtRespone.disabled=true;
+      txtID.text="";
+    }
   }
-  
-void SendCommand()
+  void SendCommand()
   {
     //txtRequest.text=GatewayID.toString();
     Responder responder = new Responder();

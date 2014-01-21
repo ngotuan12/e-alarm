@@ -19,7 +19,7 @@ class FormArea extends PolymerElement
 			
 		});
 		//error
-		responder.onError.listen((String strError)
+		responder.onError.listen((Map strError)
 		{
 			print(strError);
 		});
