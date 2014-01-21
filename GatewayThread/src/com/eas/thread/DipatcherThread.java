@@ -1,10 +1,5 @@
 package com.eas.thread;
 
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.net.Socket;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.util.Vector;
@@ -15,20 +10,24 @@ import org.codehaus.jettison.json.JSONObject;
 import com.eas.util.AppServer;
 import com.eas.util.Util;
 import com.fss.sql.Database;
+import com.fss.thread.ParameterType;
 import com.fss.thread.ThreadConstant;
 import com.fss.util.AppException;
 
 public class DipatcherThread extends com.fss.thread.ManageableThread
 {
-	private Connection conn;
+	private static Connection conn;
 	private int iDelaytime = 30000;
-	PreparedStatement pstm;
-	PreparedStatement pstmupdate;
-	BufferedReader is = null;
-	DataOutputStream out = null;
-	Socket socket = null;
+	private static PreparedStatement pstm;
+	public static PreparedStatement pstmupdate;
 	public boolean isAnnounce = false;
-	private static String currentCmdID = "";
+	public static String currentCmdID = "";
+	public static JSONObject currentRequest;
+	public static String currentResponse = null;
+	private DispatcherSocketThread dispatcherSocket;
+
+	private String strHost;
+	private int port;
 
 	public DipatcherThread()
 	{
@@ -40,6 +39,11 @@ public class DipatcherThread extends com.fss.thread.ManageableThread
 	public Vector getParameterDefinition()
 	{
 		Vector vtReturn = new Vector();
+
+		vtReturn.addElement(createParameterDefinition("Host", "54.243.244.187",
+				ParameterType.PARAM_TEXTBOX_MAX, "100"));
+		vtReturn.addElement(createParameterDefinition("Port", "8888",
+				ParameterType.PARAM_TEXTBOX_MASK, "99999"));
 		// Add all
 		vtReturn.addAll(super.getParameterDefinition());
 		return vtReturn;
@@ -48,6 +52,8 @@ public class DipatcherThread extends com.fss.thread.ManageableThread
 	public void fillParameter() throws AppException
 	{
 		iDelaytime = loadUnsignedInteger("DelayTime");
+		port = loadUnsignedInteger("Port");
+		strHost = loadMandatory("Host");
 		super.fillParameter();
 	}
 
@@ -63,6 +69,7 @@ public class DipatcherThread extends com.fss.thread.ManageableThread
 				.prepareStatement("SELECT * FROM gateway_request,gateway WHERE gateway_request.status = '2' and gateway_request.gateway_id = gateway.id ");
 		pstmupdate = conn
 				.prepareStatement("UPDATE gateway_request SET status = '1',response = ? WHERE id = ?  ");
+		dispatcherSocket = new DispatcherSocketThread(strHost, port, this);
 	}
 
 	/*
@@ -72,114 +79,103 @@ public class DipatcherThread extends com.fss.thread.ManageableThread
 	 */
 	protected void processSession() throws Exception
 	{
-		JSONArray arrRequest;
-		// new socket
-		Thread thread = new Thread()
+		dispatcherSocket.setDaemon(true);
+		dispatcherSocket.start();
+		while (miThreadCommand != ThreadConstant.THREAD_STOP)
 		{
-			@Override
-			public void run()
+			if (dispatcherSocket.isAnnounce)
 			{
+				JSONArray arrRequest;
 				try
 				{
-					socket = new Socket("54.243.244.187", 8888);
-					// announce socket
-					announce();
-					// check response
-					boolean connect = true;
-					String responseLine;
-					while (connect)
+					// get list request
+					arrRequest = Util.convertToJSONArray(pstm.executeQuery());
+					if (arrRequest.length() > 0)
 					{
-						responseLine = is.readLine();
-						logInfo(responseLine);
-						if (responseLine != null)
+						for (int i = 0; i < arrRequest.length(); i++)
 						{
-							if (!currentCmdID.trim().equals(""))
+							try
 							{
+								JSONObject content = (JSONObject) arrRequest
+										.get(i);
+								currentCmdID = String.valueOf(content
+										.getInt("id"));
+								// send request
+								String strRequest = content
+										.getString("request");
+
+								
+								JSONObject jRequest = new JSONObject(strRequest);
+								JSONObject request = new JSONObject();
+								logInfo("Send request " + content.getString("mac_add"));
+								logInfo("Content " + strRequest);
+								if (jRequest.getString("cmd") != null)
+								{
+									currentResponse = null;
+									request.put("cmd", "send_gw_request");
+									request.put("body", jRequest);
+									request.put("G_MAC",
+											content.getString("mac_add"));
+									currentRequest = request;
+									
+									dispatcherSocket.sendRequest(request);
+									int time = 0;
+									while(currentResponse==null&&time<=5)
+									{
+										time++;
+										Thread.sleep(1000);
+									}
+									if(currentResponse!=null)
+									{
+										logInfo("Response: "+currentResponse);
+										pstmupdate.setString(1,
+												currentResponse);
+										pstmupdate.setString(2, currentCmdID);
+										pstmupdate.executeUpdate();
+									}
+									else
+									{
+										logInfo("Response: "+"request time out");
+										pstmupdate.setString(1,
+												"Request time out");
+										pstmupdate.setString(2, currentCmdID);
+										pstmupdate.executeUpdate();
+									}
+								}
+								else
+								{
+									logInfo("Response: "+"cmd not found");
+									request.put("error",
+											"cmd not found");
+									// sendRequest(request);
+									pstmupdate.setString(1,
+											"chuoi nhap ko chinh xac");
+									pstmupdate.setString(2, currentCmdID);
+									pstmupdate.executeUpdate();
+								}
+							}
+							catch (Exception ex)
+							{
+								ex.printStackTrace();
 								// update database
-								pstmupdate.setString(1, responseLine);
+								logInfo("Response: "+ex.getMessage());
+								pstmupdate.setString(1, ex.getMessage());
 								pstmupdate.setString(2, currentCmdID);
 								pstmupdate.executeUpdate();
-								// end response
-								currentCmdID = "";
+								continue;
 							}
 						}
 					}
 				}
-				catch (Exception e)
+				catch (Exception ex)
 				{
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					logError("exception");
+					logError(ex.getMessage());
 				}
-			}
-		};
-		thread.start();
-
-		while (miThreadCommand != ThreadConstant.THREAD_STOP && socket != null
-				&& socket.isConnected())
-		{
-			try
-			{
-				// get list request
-				arrRequest = Util.convertToJSONArray(pstm.executeQuery());
-				if (arrRequest.length() > 0)
+				finally
 				{
-					for (int i = 0; i < arrRequest.length(); i++)
-					{
-						try
-						{
-							JSONObject content = (JSONObject) arrRequest.get(i);
-							currentCmdID = String.valueOf(content.getInt("id"));
-							// send request
-							String strRequest = content.getString("request");
 
-							logInfo("send request " + strRequest);
-							JSONObject jRequest = new JSONObject(strRequest);
-
-							JSONObject request = new JSONObject();
-							if (jRequest.getString("cmd") != null)
-							{
-								request.put("cmd", "send_gw_request");
-								request.put("body", jRequest);
-								request.put("G_MAC",
-										content.getString("mac_add"));
-								sendRequest(request);
-							}
-							else
-							{
-								request.put("error", "chuoi nhap ko chinh xac");
-								// sendRequest(request);
-								pstmupdate.setString(1,
-										"chuoi nhap ko chinh xac");
-								pstmupdate.setString(2, currentCmdID);
-								pstmupdate.executeUpdate();
-							}
-
-							// wait response
-							while (!DipatcherThread.currentCmdID.trim().equals(
-									""))
-							{
-							}
-						}
-						catch (Exception ex)
-						{
-							ex.printStackTrace();
-							// update database
-							pstmupdate.setString(1, ex.getMessage());
-							pstmupdate.setString(2, currentCmdID);
-							pstmupdate.executeUpdate();
-							continue;
-						}
-					}
 				}
-			}
-			catch (Exception ex)
-			{
-				logError("exception");
-				logError(ex.getMessage());
-			}
-			finally
-			{
-
 			}
 			Thread.sleep(iDelaytime * 1000);
 		}
@@ -192,53 +188,8 @@ public class DipatcherThread extends com.fss.thread.ManageableThread
 	 */
 	protected void afterSession() throws Exception
 	{
-		if (is != null) is.close();
-		if (out != null) out.close();
-		if (socket != null) socket.close();
 		Database.closeObject(pstm);
 		Database.closeObject(pstmupdate);
 		Database.closeObject(conn);
-	}
-
-	public void sendRequest(JSONObject request)
-	{
-		try
-		{
-			// monitor.logInfo("Send request: "+ request);
-			out.writeUTF("A" + request.toString() + "BB");
-			out.flush();
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-	}
-
-	public void announce() throws Exception
-	{
-		try
-		{
-			OutputStream outToServer = socket.getOutputStream();
-			out = new DataOutputStream(outToServer);
-			is = new BufferedReader(new InputStreamReader(
-					socket.getInputStream()));
-			// announce
-			JSONObject request = new JSONObject();
-			request.put("cmd", "announce");
-			request.put("type", "request");
-			// body
-			JSONObject body = new JSONObject();
-			body.put("G_MAC", "C4:2C:03:01:04:75");
-			body.put("G_IP", "192.168.1.100");
-			body.put("G_type", "DISPATCHER");
-			request.put("body", body);
-			sendRequest(request);
-			isAnnounce = true;
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-			throw e;
-		}
 	}
 }
