@@ -53,7 +53,7 @@ class FormGatewaycommand extends PolymerElement
             row.children.add(colId);
             row.children.add(colMac);
             row.children.add(colConnServer);
-            
+            GatewayID=gateway["id"];
             //event click of row item
             row.onClick.listen((event)=>SendGatewayRequest(gateway["mac_add"].toString(),gateway["connected_server"].toString()));
             //add row
