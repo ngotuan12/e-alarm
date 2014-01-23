@@ -4,8 +4,6 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import org.holoeverywhere.widget.Toast;
-import org.json.JSONException;
-import org.json.JSONObject;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import co.vn.e_alarm.bean.ObjArea;
 import co.vn.e_alarm.bussiness.AccountTask;
@@ -28,7 +26,7 @@ public class PopupLoginActitvity extends Activity {
 	String userName, passWord, firstTime;
 	ArrayList<ObjArea> arrArea;
 	DBStation mdb;
-	boolean isCancel=false;
+	boolean isCancel = false;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +35,7 @@ public class PopupLoginActitvity extends Activity {
 		setContentView(R.layout.activity_login);
 		init();
 	}
+
 	/**
 	 * init variable popuplogin
 	 */
@@ -47,15 +46,26 @@ public class PopupLoginActitvity extends Activity {
 		MyPreference.getInstance().Initialize(this);
 		mdb = new DBStation(getBaseContext());
 	}
-/**
- * event click button login
- * @param v
- */
+
+	/**
+	 * event click button login
+	 * 
+	 * @param v
+	 */
 	public void OnclickLogin(View v) {
 		// userName=
+		userName = eUserName.getText().toString();
+		passWord = ePassword.getText().toString();
 		if (NetworkUtility.checkNetworkState(getBaseContext())) {
+			if (CheckValidAccount(0, userName)
+					&& CheckValidAccount(0, passWord)) {
+				CheckLogin();
+				
+			} else {
+				AccountTask.showFailToast(getBaseContext(),
+						"Thiếu Thông Tin Đăng Nhập!");
+			}
 
-			CheckLogin();
 		} else {
 			AccountTask.showNoNetworkToast(getBaseContext(),
 					"Không có kết nối mạng!");
@@ -85,13 +95,15 @@ public class PopupLoginActitvity extends Activity {
 
 	}
 
+	/**
+	 * Process login account
+	 */
 	public void CheckLogin() {
-		userName = eUserName.getText().toString();
-		passWord = ePassword.getText().toString();
+
 		passWord = ConverPassToMD5(passWord);
 		if (NetworkUtility.checkNetworkState(getBaseContext())) {
-			NetworkUtility.showProgressDialog(this, "",
-					"Đang đăng nhập ...", true, new OnCancelListener() {
+			NetworkUtility.showProgressDialog(PopupLoginActitvity.this, "", "Đang đăng nhập ...",
+					true, new OnCancelListener() {
 
 						@Override
 						public void onCancel(DialogInterface dialog) {
@@ -105,26 +117,27 @@ public class PopupLoginActitvity extends Activity {
 						public void onSuccess(int arg0, String response) {
 							super.onSuccess(arg0, response);
 							if (response == null || isCancel == true) {
-								isCancel=false;
+								isCancel = false;
 								return;
 							}
-							
-								if(ResponseTranslater.CheckLoginSession(response,userName)){
-									firstTime = MyPreference.getInstance()
-											.getString("FIRST_TIME");
-										if ((firstTime.equals(""))) {
-											getArea();
-										} else {
-											Intent intent = new Intent(
-													PopupLoginActitvity.this,
-													MainActivity.class);
-											startActivity(intent);
-											finish();
-										}
-								}
-							
 
-							else{
+							if (ResponseTranslater.CheckLoginSession(response,
+									userName)) {
+								firstTime = MyPreference.getInstance()
+										.getString("FIRST_TIME");
+								if ((firstTime.equals(""))) {
+									getArea();
+								} else {
+									NetworkUtility.dismissProgressDialog();
+									Intent intent = new Intent(
+											PopupLoginActitvity.this,
+											MainActivity.class);
+									startActivity(intent);
+									finish();
+								}
+							}
+
+							else {
 								AccountTask.showFailToast(getBaseContext(),
 										"Sai Thông Tin Đăng Nhập");
 								NetworkUtility.dismissProgressDialog();
@@ -151,6 +164,13 @@ public class PopupLoginActitvity extends Activity {
 
 	}
 
+	/**
+	 * convert String to MD5
+	 * 
+	 * @param s
+	 *            : password input
+	 * @return String decoded MD5
+	 */
 	public String ConverPassToMD5(String s) {
 		try {
 			// Create MD5 Hash
@@ -171,6 +191,9 @@ public class PopupLoginActitvity extends Activity {
 		return "";
 	}
 
+	/**
+	 * Get area from server To DB
+	 */
 	public void getArea() {
 		if (NetworkUtility.checkNetworkState(this)) {
 			AreaTask.GetAllArea(NetworkUtility.AREA_SERVICE,
@@ -190,7 +213,6 @@ public class PopupLoginActitvity extends Activity {
 								for (int i = 0; i < arrArea.size(); i++) {
 									mdb.AddArea(arrArea.get(i));
 								}
-
 								Intent intent = new Intent(
 										PopupLoginActitvity.this,
 										MainActivity.class);

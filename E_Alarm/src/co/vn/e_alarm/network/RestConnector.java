@@ -1,10 +1,8 @@
 package co.vn.e_alarm.network;
-
 import org.apache.http.Header;
 import org.apache.http.HeaderElement;
 import org.apache.http.ParseException;
 import org.apache.http.entity.StringEntity;
-
 import android.app.Activity;
 import android.content.Context;
 
@@ -54,8 +52,8 @@ public class RestConnector {
 	}
 
 	/**
-	 * @param ac
-	 * @param url
+	 * @param ac: context
+	 * @param url: link server
 	 * @param entity
 	 * @param type
 	 * @param response
@@ -84,7 +82,12 @@ public class RestConnector {
 				return null;
 			}
 		};
-		client.post(ac, getAbsoluteUrl(url), headers, entity, "", response);
+		try {
+			client.post(ac, getAbsoluteUrl(url), headers, entity, "", response);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 
 	}
 

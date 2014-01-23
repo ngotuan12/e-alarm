@@ -1,10 +1,7 @@
 package co.vn.e_alarm.db;
 
 import java.util.ArrayList;
-
 import com.google.android.gms.maps.model.LatLng;
-
-
 import co.vn.e_alarm.bean.ObjArea;
 import android.content.ContentValues;
 import android.content.Context;
@@ -12,11 +9,10 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
-import android.util.Log;
 
 public class DBStation extends SQLiteOpenHelper {
 	private static final String DATABASE = "dbstation";
-	// table school
+	// area
 	public static final String TABLE_AREA = "area";
 	public static final String COLUMN_ID_AREA = "idArea";
 	public static final String COLUMN_ID_AREA_SERVER = "idAreaSever";
@@ -29,6 +25,7 @@ public class DBStation extends SQLiteOpenHelper {
 	public static final String COLUMN_TYPE = "type";
 	public static final String COLUMN_LAT = "lat";
 	public static final String COLUMN_LNG = "lng";
+	//
 
 	Context mContext = null;
 
@@ -160,7 +157,7 @@ onCreate(db);
 		return idUser;
 	}
 	
-	public Integer getIdParentDistrict(String name){
+	/*public Integer getIdParentDistrict(String name){
 		int idUser=0;
 		SQLiteDatabase db = this.getWritableDatabase();
 		Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_AREA +" WHERE TRIM(nameArea) = '"+name.trim()+"'", null);
@@ -175,7 +172,7 @@ onCreate(db);
 		cursor.close();
 		db.close();
 		return idUser;
-	}
+	}*/
 	public String getNameArea(int id){
 		String name="";
 		SQLiteDatabase db=this.getWritableDatabase();
@@ -189,6 +186,7 @@ onCreate(db);
 		
 				
 	}
+	
 	public LatLng getLatLngCity(int id){
 		LatLng latLng = null ;
 		SQLiteDatabase db=this.getWritableDatabase();

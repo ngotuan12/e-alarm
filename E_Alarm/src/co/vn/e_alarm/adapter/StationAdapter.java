@@ -11,7 +11,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
-import android.util.Log;
 
 public class StationAdapter extends FragmentPagerAdapter implements
 		OnPageChangeListener {
@@ -24,7 +23,6 @@ public class StationAdapter extends FragmentPagerAdapter implements
 	public StationAdapter(FragmentManager fm,ArrayList<ObjStation> listStation,GoogleMap googleMap,
 			ArrayList<Marker> arrMarket) {
 		super(fm);
-		fmMa=fm;
 		listMarket = arrMarket;
 		mGooglemap = googleMap;
 		arrStation=listStation;
@@ -32,7 +30,6 @@ public class StationAdapter extends FragmentPagerAdapter implements
 		mGooglemap.animateCamera(CameraUpdateFactory.zoomTo(13.0f));
 		mGooglemap.moveCamera(CameraUpdateFactory.newLatLngZoom(latlng, 14.0f));
 		listMarket.get(0).showInfoWindow();
-		Log.e("TEST: ",""+ arrStation.size());
 		StationFragment.setStationFragment(arrStation);
 		// TODO Auto-generated constructor stub
 	}
@@ -66,11 +63,11 @@ public class StationAdapter extends FragmentPagerAdapter implements
 	public void onPageSelected(int arg0) {
 		listMarket.get(arg0).showInfoWindow();
 		mGooglemap.animateCamera(CameraUpdateFactory.zoomTo(14.0f));
+		if(arrStation.size()>arg0){
 		latlng=new LatLng(arrStation.get(arg0).getLat(), arrStation.get(arg0).getLng());
 		mGooglemap.moveCamera(CameraUpdateFactory.newLatLngZoom(latlng, 14.0f));
-		Log.e("TEST: ", ""+arg0);
-		
 		listMarket.get(arg0).showInfoWindow();
+		}
 
 	}
 

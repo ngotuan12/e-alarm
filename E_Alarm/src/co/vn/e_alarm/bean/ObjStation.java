@@ -1,8 +1,13 @@
 package co.vn.e_alarm.bean;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class ObjStation implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public  int id;
 	public String code;
 	public int area_id;
@@ -11,8 +16,7 @@ public class ObjStation implements Serializable {
 	public double lat;
 	public double lng;
 	public int status;
-	public double temp;
-	public double humidity;
+	public ArrayList<ObjProperties> listPropertiesStation;
 	public int getId() {
 		return id;
 	}
@@ -61,17 +65,15 @@ public class ObjStation implements Serializable {
 	public void setStatus(int status) {
 		this.status = status;
 	}
-	public double getTemp() {
-		return temp;
+	
+	public ArrayList<ObjProperties> getListPropertiesStation() {
+		return listPropertiesStation;
 	}
-	public void setTemp(double temp) {
-		this.temp = temp;
+	public void setListPropertiesStation(ArrayList<ObjProperties> listPropertiesStation) {
+		this.listPropertiesStation = listPropertiesStation;
 	}
-	public double getHumidity() {
-		return humidity;
-	}
-	public void setHumidity(double humidity) {
-		this.humidity = humidity;
-	}
+	
+	
+	
 	
 }

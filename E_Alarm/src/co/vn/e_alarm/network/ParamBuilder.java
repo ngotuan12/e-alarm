@@ -1,13 +1,10 @@
 package co.vn.e_alarm.network;
-
 import org.apache.http.entity.StringEntity;
 import org.apache.http.message.BasicHeader;
 import org.apache.http.protocol.HTTP;
 import org.json.JSONException;
 import org.json.JSONObject;
-import android.os.NetworkOnMainThreadException;
 
-import com.loopj.android.http.RequestParams;
 
 /**
  * 
@@ -63,9 +60,23 @@ public class ParamBuilder {
 		}
 		return data;
 	}
+	/**
+	 * send param to get value log
+	 */
+	public static JSONObject getLog(int idDevice,int idProDevice){
+		JSONObject data=new JSONObject();
+		try {
+			data.put(NetworkUtility.METHOD, NetworkUtility.DEVIECESINFOBYDEVICEID);
+			data.put(NetworkUtility.DEVICEID,""+ idDevice);
+			data.put(NetworkUtility.DEVICEPROID,""+idProDevice);
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return data;
+	}
 	
 	/**
-	 * @author HoaiNhoi
+	 * @author HoaiLTT
 	 * @param data
 	 * @return
 	 */
@@ -83,4 +94,6 @@ public class ParamBuilder {
 		}
 		return entity;
 	}
+	
+	
 }
