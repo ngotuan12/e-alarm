@@ -103,12 +103,10 @@ public class DipatcherThread extends com.fss.thread.ManageableThread
 								// send request
 								String strRequest = content
 										.getString("request");
-
-								
+								logInfo("Send request " + content.getString("mac_add"));
+								logInfo("Content " + strRequest);	
 								JSONObject jRequest = new JSONObject(strRequest);
 								JSONObject request = new JSONObject();
-								logInfo("Send request " + content.getString("mac_add"));
-								logInfo("Content " + strRequest);
 								if (jRequest.getString("cmd") != null)
 								{
 									currentResponse = null;
