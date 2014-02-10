@@ -1,12 +1,14 @@
 package com.ar.bean;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
 import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONObject;
 
 import com.ar.util.AppProcessor;
 import com.ar.util.Util;
 import com.fss.sql.Database;
-import com.mysql.jdbc.PreparedStatement;
 
 public class DeviceBean extends AppProcessor
 {
