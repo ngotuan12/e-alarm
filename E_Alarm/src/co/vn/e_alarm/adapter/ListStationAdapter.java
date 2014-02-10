@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.achartengine.GraphicalView;
 import co.vn.e_alarm.R;
+import co.vn.e_alarm.bean.ObjProperties;
 import co.vn.e_alarm.bean.ObjStation;
 import co.vn.e_alarm.utils.Utils;
 import android.content.Context;
@@ -19,6 +20,7 @@ public class ListStationAdapter extends BaseAdapter {
 	static ArrayList<ObjStation> arrStation;
 	LayoutInflater inflater;
 	 GraphicalView mChart;
+	 ArrayList<ObjProperties> listProperties;
 	  int[] temp = {48,48,48,48,48,48,48,43,48,48,48,48,48,48,52,48,48,48,48,48,46,54,58,48,48,48,48,48,48,48};
       int[] humi = {80, 80, 90, 90, 80,80, 80, 70, 80, 80,80, 80, 80, 80, 70,80, 60, 80, 80, 80,80, 80, 80, 80, 80,80, 80, 80, 80, 80};
 	@SuppressWarnings("static-access")
@@ -27,6 +29,7 @@ public class ListStationAdapter extends BaseAdapter {
 		this.arrStation = listStation;
 		inflater = (LayoutInflater) context
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		listProperties=new ArrayList<ObjProperties>();
 	}
 
 	@Override
@@ -69,7 +72,14 @@ public class ListStationAdapter extends BaseAdapter {
 		else{
 			holder.layout_main.setBackgroundResource(R.color.green);
 		}
-		Utils.DrawChart(context, 0, temp, humi, holder.layout_container, false);
+		int size=arrStation.get(position).getListPropertiesStation().size();
+		if(size>0){
+			for(int i=0;i<size;i++){
+				listProperties.add(arrStation.get(position).getListPropertiesStation().get(i));
+			}
+			Utils.DrawChart(context, 0, temp, humi, holder.layout_container, true,listProperties);
+		}
+		
 		return view;
 	}
 	public static void SetStation(ArrayList<ObjStation> list_Station){

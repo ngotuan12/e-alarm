@@ -60,17 +60,19 @@ public class MainActivity extends FragmentActivity implements
 	DBStation mdb;
 	Marker market;
 	int index = 0, count = 0, idArea = 0;
-	String TAG = "MainActivity";
+	String TAG = "MainActivity", nameDistrict = "";
 	ArrayList<ObjArea> listArea, listObjDistrict;
 	ArrayList<Integer> ListIDArea;
 	ArrayList<String> listCity, listDistrict;
 	Marker marker;
 	Fragment fragment;
 	ProgressBar proMain;
+	public static boolean isCheckHomePress = false;
 	Button btnRetry;
 	String[] arrDistrict;
 	OnPageChangeListener districtListener;
 	DistrictAdapter districtAdapter;
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -123,10 +125,8 @@ public class MainActivity extends FragmentActivity implements
 
 			@Override
 			public View getInfoWindow(Marker arg0) {
-				String[] arr = arg0.getId().split("m");
-				int po = Integer.parseInt(arr[1].toString());
-				View v = null;
-				v = getLayoutInflater().inflate(R.layout.balloon_overlay, null);
+				View v = getLayoutInflater().inflate(R.layout.balloon_overlay,
+						null);
 
 				return v;
 			}
@@ -151,6 +151,12 @@ public class MainActivity extends FragmentActivity implements
 					mSlidingLayer.closeLayer(true);
 					return true;
 				}
+				else{
+					android.os.Process.killProcess(android.os.Process
+							.myPid());
+					finish();
+					return true;
+				}
 			}
 
 		default:
@@ -164,7 +170,6 @@ public class MainActivity extends FragmentActivity implements
 	public void ShowCity() {
 
 		listArea = mdb.getListAreabyWoodenleg("001", 2);
-		Log.e(TAG, "city: "+listArea.size());
 		if (listArea.size() > 0) {
 
 			for (int i = 0; i < listArea.size(); i++) {
@@ -181,6 +186,7 @@ public class MainActivity extends FragmentActivity implements
 		}
 
 	}
+
 	/**
 	 * manager event click marker google map
 	 */
@@ -190,9 +196,8 @@ public class MainActivity extends FragmentActivity implements
 
 			@Override
 			public boolean onMarkerClick(Marker marker) {
-				//String[] arrStr = marker.getId().split("m");
+				// String[] arrStr = marker.getId().split("m");
 				int index2 = arrMarker.indexOf(marker);
-				//int posMarker = Integer.parseInt(arrStr[1].toString());
 				mPager.setCurrentItem(index2);
 				adapter.notifyDataSetChanged();
 				mPager.invalidate();
@@ -216,12 +221,14 @@ public class MainActivity extends FragmentActivity implements
 		});
 
 	}
-@Override
-protected void onResume() {
-	// TODO Auto-generated method stub
-	super.onResume();
 
-}
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+
+	}
+
 	/**
 	 * Initializes the origin state of the layer
 	 */
@@ -249,6 +256,7 @@ protected void onResume() {
 	public void getStation(int id) {
 		if (NetworkUtility.checkNetworkState(this)) {
 			layout_main.setVisibility(View.GONE);
+			Log.e(TAG, "" + id);
 			StationTask.GetAllStationByIDArea(NetworkUtility.DEVICE_SERVICES,
 					ParamBuilder.GetInfo(ParamBuilder.BuildDeviceData(id)),
 					new AsyncHttpResponseHandler() {
@@ -259,6 +267,7 @@ protected void onResume() {
 							if (response == null) {
 								return;
 							}
+
 							arrStation = ResponseTranslater
 									.getAllStation(response);
 							if (arrStation.size() > 0) {
@@ -269,11 +278,20 @@ protected void onResume() {
 								arrMarker.clear();
 								mGooglemap.clear();
 								layout_main.setVisibility(View.INVISIBLE);
-								Toast.makeText(getBaseContext(),
-										"Không có dữ liệu cho địa điểm này",
-										Toast.LENGTH_SHORT).show();
+
+								if (NetworkUtility.FAIL
+										.equals(NetworkUtility.ERROR)) {
+									StationFragment.removeAllCallback();
+									Utils.DiaLogAuthenticate(MainActivity.this);
+									
+								} else {
+									Toast.makeText(
+											getBaseContext(),
+											"Không có dữ liệu cho địa điểm này",
+											Toast.LENGTH_SHORT).show();
+								}
 							}
-							
+
 							proMain.setVisibility(View.INVISIBLE);
 						}
 
@@ -301,23 +319,21 @@ protected void onResume() {
 		for (int i = 0; i < arrStation.size(); i++) {
 			LatLng lat_long_place = new LatLng(arrStation.get(i).getLat(),
 					arrStation.get(i).getLng());
-			if(arrStation.get(i).getStatus()==1){
+			if (arrStation.get(i).getStatus() == 1) {
 				marker = mGooglemap.addMarker(new MarkerOptions()
-				.position(lat_long_place)
-				.title("")
-				.snippet("")
-				.icon(BitmapDescriptorFactory
-						.fromResource(R.drawable.marker2)));
-			}
-			else{
+						.position(lat_long_place)
+						.title("")
+						.snippet("")
+						.icon(BitmapDescriptorFactory
+								.fromResource(R.drawable.marker2)));
+			} else {
 				marker = mGooglemap.addMarker(new MarkerOptions()
-				.position(lat_long_place)
-				.title("")
-				.snippet("")
-				.icon(BitmapDescriptorFactory
-						.fromResource(R.drawable.marker_dot)));
+						.position(lat_long_place)
+						.title("")
+						.snippet("")
+						.icon(BitmapDescriptorFactory
+								.fromResource(R.drawable.marker_dot)));
 			}
-			
 
 			mGooglemap.animateCamera(CameraUpdateFactory.zoomTo(14.0f), 2000,
 					null);
@@ -329,9 +345,19 @@ protected void onResume() {
 				mGooglemap, arrMarker);
 
 		mPager.setAdapter(adapter);
+
+		mPager.setCurrentItem(1, true);
+		mPager.setCurrentItem(2, false);
+		mPager.setCurrentItem(0);
 		adapter.notifyDataSetChanged();
 		mPager.setOnPageChangeListener(adapter);
 
+	}
+
+	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		super.onDestroy();
 	}
 
 	/**
@@ -347,13 +373,11 @@ protected void onResume() {
 
 		String name_area = mdb.getNameArea(city);
 		int index = listCity.indexOf(name_area);
-		if(index!=-1){
+		if (index != -1) {
 			spCity.setSelection(index);
 		}
-		
 
 	}
-
 
 	/**
 	 * Show district by id City
@@ -365,7 +389,7 @@ protected void onResume() {
 		if (listObjDistrict.size() > 0) {
 			ShowLocationDistrict(listObjDistrict);
 		} else {
-			
+
 			listDistrict.clear();
 			mPagerDistric.setAdapter(null);
 			LatLng latLng = mdb.getLatLngCity(idCity);
@@ -374,14 +398,13 @@ protected void onResume() {
 					10.0f));
 			arrMarker.clear();
 			mGooglemap.clear();
-		layout_main.setVisibility(View.GONE);
+			layout_main.setVisibility(View.GONE);
 			proMain.setVisibility(View.INVISIBLE);
 		}
 	}
 
 	/**
-	 * Show device by area district
-	 * param id district
+	 * Show device by area district param id district
 	 */
 	public void ShowDevice(int idDistrict) {
 		btnRetry.setVisibility(View.INVISIBLE);
@@ -402,6 +425,7 @@ protected void onResume() {
 		mPagerDistric.setAdapter(districtAdapter);
 		districtAdapter.notifyDataSetChanged();
 		ShowDevice(0);
+		nameDistrict = listDistrict.get(0);
 		mPagerDistric.setOnPageChangeListener(new OnPageChangeListener() {
 
 			@Override
@@ -409,12 +433,12 @@ protected void onResume() {
 				mGooglemap.clear();
 				arrMarker.clear();
 				ShowDevice(arg0);
+				nameDistrict = listDistrict.get(arg0);
 
 			}
 
 			@Override
 			public void onPageScrolled(int arg0, float arg1, int arg2) {
-				// TODO Auto-generated method stub
 
 			}
 
@@ -447,7 +471,7 @@ protected void onResume() {
 		btnRetry.setVisibility(View.INVISIBLE);
 		Utils.SaveCitySelect(getBaseContext(), ListIDArea.get(position));
 		ShowDistrict(ListIDArea.get(position));
-		
+
 	}
 
 	@Override
@@ -455,20 +479,40 @@ protected void onResume() {
 		// TODO Auto-generated method stub
 
 	}
+
 	/**
 	 * method transfer atm map->list
 	 */
-	public void OnClickConvertList(View v){
-		if(arrStation.size()>0){
-		Intent intent=new Intent(this,ListStationActivity.class);
-		Bundle b = new Bundle();
-		b.putSerializable("ARRAY_OBJECT", arrStation);
-		intent.putExtras(b);
-		startActivity(intent);
+	public void OnClickConvertList(View v) {
+		if (!nameDistrict.equals("")) {
+			// int id=mdb.getIdAreaByName(nameDistrict);
+			Utils.SaveDistrictSelect(getBaseContext(), nameDistrict);
 		}
-		else{
-			Toast.makeText(getBaseContext(), "Không có dữ liệu !", Toast.LENGTH_SHORT).show();
+		if (arrStation.size() > 0) {
+
+			isCheckHomePress = true;
+			Intent intent = new Intent(this, ListStationActivity.class);
+			Bundle b = new Bundle();
+			b.putSerializable("ARRAY_OBJECT", arrStation);
+			intent.putExtras(b);
+			startActivity(intent);
+		} else {
+			Toast.makeText(getBaseContext(), "Không có dữ liệu !",
+					Toast.LENGTH_SHORT).show();
 		}
+	}
+
+	/**
+	 * event when user click home button
+	 */
+	@Override
+	protected void onUserLeaveHint() {
+
+		/*
+		 * if (!isCheckHomePress) { finish(); } isCheckHomePress = false;
+		 */
+		super.onUserLeaveHint();
+
 	}
 
 }

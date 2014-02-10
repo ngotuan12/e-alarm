@@ -31,7 +31,7 @@ public class CityFragment extends Fragment{
 	}
 	/**
 	 * input position city fragment
-	 * @param po: position city
+	 * @param po: position city select
 	 * @return fragment city
 	 */
 	public static Fragment newInstance(int po) {

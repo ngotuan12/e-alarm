@@ -22,12 +22,9 @@
  */
 
 package co.vn.e_alarm.customwiget;
-
 import java.lang.reflect.Method;
 import java.util.Random;
-
 import co.vn.e_alarm.R;
-
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
@@ -39,7 +36,6 @@ import android.support.v4.view.VelocityTrackerCompat;
 import android.support.v4.view.ViewConfigurationCompat;
 import android.util.AttributeSet;
 import android.util.FloatMath;
-import android.util.Log;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
@@ -53,7 +49,7 @@ import android.widget.Scroller;
 public class SlidingLayer extends FrameLayout {
 	   double corX ;
        double corY ;
-       private String TAG = "SlidingLayer";
+        String TAG = "SlidingLayer";
 
     // TODO Document
 

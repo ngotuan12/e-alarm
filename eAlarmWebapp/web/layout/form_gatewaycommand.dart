@@ -53,9 +53,9 @@ class FormGatewaycommand extends PolymerElement
             row.children.add(colId);
             row.children.add(colMac);
             row.children.add(colConnServer);
-            GatewayID=gateway["id"];
+            
             //event click of row item
-            row.onClick.listen((event)=>SendGatewayRequest(gateway["mac_add"].toString(),gateway["connected_server"].toString()));
+            row.onClick.listen((event)=>SendGatewayRequest(gateway["id"],gateway["mac_add"].toString(),gateway["connected_server"].toString()));
             //add row
             tblGateway.children.add(row);
           }
@@ -73,7 +73,7 @@ class FormGatewaycommand extends PolymerElement
         Util.showNotifyError(err.toString());
       }
   }
-  void SendGatewayRequest(String Mac_Add,String Conn_Ser)
+  void SendGatewayRequest(Object obj, String Mac_Add,String Conn_Ser)
   {
     if(Conn_Ser!="null")
     {
@@ -82,6 +82,7 @@ class FormGatewaycommand extends PolymerElement
       btnSendRequest.disabled=false;
       txtRequest.value="";
       txtRespone.value="";
+      GatewayID=obj;
       txtID.text="Gateway Mac Address is " + Mac_Add;
     }
     else

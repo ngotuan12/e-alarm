@@ -1,32 +1,37 @@
 package co.vn.e_alarm.utils;
 
 import java.text.Format;
-import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
-
 import org.achartengine.ChartFactory;
 import org.achartengine.GraphicalView;
 import org.achartengine.chart.PointStyle;
-import org.achartengine.model.SeriesSelection;
 import org.achartengine.model.TimeSeries;
 import org.achartengine.model.XYMultipleSeriesDataset;
 import org.achartengine.renderer.XYMultipleSeriesRenderer;
 import org.achartengine.renderer.XYSeriesRenderer;
+import org.holoeverywhere.app.AlertDialog;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Paint.Align;
+import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.LinearLayout;
-import android.widget.Toast;
-import co.vn.e_alarm.GraphStationActivity;
+import co.vn.e_alarm.DetailGraphActivity;
+import co.vn.e_alarm.MainActivity;
+import co.vn.e_alarm.PopupLoginActitvity;
 import co.vn.e_alarm.R;
+import co.vn.e_alarm.bean.ObjProperties;
 import co.vn.e_alarm.db.MyPreference;
 
 public class Utils {
+	static Format formatter;
 	 static GraphicalView mChart ;
 	int[] temp = { 48, 48, 48, 48, 48, 48, 48, 43, 48, 48, 48, 48, 48, 48, 52,
 			48, 48, 48, 48, 48, 46, 54, 58, 48, 48, 48, 48, 48, 48, 48 };
@@ -35,6 +40,10 @@ public class Utils {
 	public static void SaveCitySelect(Context ctx,int city){
 		MyPreference.getInstance().Initialize(ctx);
 		MyPreference.getInstance().writeInteger("CITY", city);
+	}
+	public static void SaveDistrictSelect(Context ctx,String district){
+		MyPreference.getInstance().Initialize(ctx);
+		MyPreference.getInstance().writeString("DISTRICT",district);
 	}
 	public static void SaveNationalSelect(Context ctx,String national){
 		MyPreference.getInstance().Initialize(ctx);
@@ -48,7 +57,7 @@ public class Utils {
 		MyPreference.getInstance().Initialize(ctx);
 		MyPreference.getInstance().writeInteger("LANGUAGE",language);
 	}
-	public static void DrawChart(final Context ctx,int position,int[] arrTemp, int[] arrHumi,final LinearLayout chartContainer,boolean isCheck ){
+	public static void DrawChart(final Context ctx,int position,int[] arrTemp, int[] arrHumi,final LinearLayout chartContainer,boolean isCheck,final ArrayList<ObjProperties> listProperties ){
 		
 		int count = 30;
 		Date[] dt = new Date[30];
@@ -100,15 +109,11 @@ public class Utils {
 		//custom min
 		XYSeriesRenderer minRenderer=new XYSeriesRenderer();
 		minRenderer.setColor(ctx.getResources().getColor(R.color.green3));
-		//minRenderer.setPointStyle(PointStyle.CIRCLE);
-		//minRenderer.setFillPoints(true);
 		minRenderer.setLineWidth(1);
 		minRenderer.setDisplayChartValues(false);
 		//custom max
 				XYSeriesRenderer maxRenderer=new XYSeriesRenderer();
 				maxRenderer.setColor(Color.RED);
-				//maxRenderer.setPointStyle(PointStyle.CIRCLE);
-				//maxRenderer.setFillPoints(true);
 				maxRenderer.setLineWidth(1);
 				maxRenderer.setDisplayChartValues(false);
 		XYMultipleSeriesRenderer multiRenderer = new XYMultipleSeriesRenderer();
@@ -117,12 +122,12 @@ public class Utils {
 		multiRenderer.setYLabelsAlign(Align.LEFT);//
 		multiRenderer.setXLabelsColor(Color.WHITE);//
 		multiRenderer.setYTitle("value");
-		if(isCheck){
+		/*if(isCheck){
 			multiRenderer.setZoomButtonsVisible(true);
 		}
-		else{
+		else{*/
 			multiRenderer.setZoomButtonsVisible(false);
-		}
+		//}
 		
 
 		// add tempRenderer and humRenderer in multipleRenderer
@@ -158,26 +163,24 @@ public class Utils {
 				
 				@Override
 				public void onClick(View v) {
-					Intent intent=new Intent(ctx,GraphStationActivity.class);
+					MainActivity.isCheckHomePress=true;
+					Intent intent=new Intent(ctx,DetailGraphActivity.class);
+					Bundle b=new Bundle();
+					b.putSerializable("OBJ_PROPERTIES", listProperties);
+					intent.putExtras(b);
 					ctx.startActivity(intent);
 					
 				}
 			});
 		}
-		if(isCheck){
+	/*	if(isCheck){
 			mChart.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					Format formatter = new SimpleDateFormat("dd-MMM-yyyy");
+					 formatter = new SimpleDateFormat("dd-MMM-yyyy");
 					SeriesSelection seriesSelection = mChart
 							.getCurrentSeriesAndPoint();
 					if (seriesSelection != null) {
-						int seriesIndex = seriesSelection.getSeriesIndex();
-						String selectedSeries = "";
-						if (seriesIndex == 0)
-							selectedSeries = "Độ ẩm";
-						else
-							selectedSeries = "Nhiệt độ";
 						long clickedDateSeconds = (long) seriesSelection
 								.getXValue();
 						Date clickedDate = new Date(clickedDateSeconds);
@@ -188,10 +191,29 @@ public class Utils {
 					}
 				}
 			});
-		}
+		}*/
 		
 		mChart.refreshDrawableState();
 		chartContainer.addView(mChart);
 		
+	}
+	/**
+	 * Dialog authenticate again
+	 */
+	public static void DiaLogAuthenticate(final Activity ac){
+		AlertDialog.Builder dialog=new AlertDialog.Builder(ac);
+		dialog.setTitle("Thông Báo !");
+		dialog.setMessage("Please login again !");
+		dialog.setPositiveButton("OK",new DialogInterface.OnClickListener() {
+			
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				Intent intent=new Intent(ac,PopupLoginActitvity.class);
+				ac.startActivity(intent);
+				ac.finish();
+				
+			}
+		});
+		dialog.show();
 	}
 }

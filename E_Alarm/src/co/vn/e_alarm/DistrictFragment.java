@@ -12,7 +12,7 @@ public class DistrictFragment extends Fragment {
 	private static ArrayList<String> arrDistrict;
 	static boolean check = false;
 	int position = 0;
-
+	/** Called when the activity is first created. */
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -21,14 +21,17 @@ public class DistrictFragment extends Fragment {
 		if (check) {
 			position = getArguments().getInt("POSITION_DISTRICT");
 		}
+		
 		if(arrDistrict!=null){
 			tvDistric.setText("" + arrDistrict.get(position));
+			
 		}
 		
 		return view;
 	}
 
 	public static void SetDistrict(ArrayList<String> listDistrict) {
+		
 		arrDistrict = listDistrict;
 	}
 

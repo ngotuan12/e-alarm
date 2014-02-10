@@ -13,7 +13,7 @@ import android.net.NetworkInfo;
  * class declare param communication with server
  */
 public class NetworkUtility {
-	public static int DEFAULT_TIME_OUT = 5*1000;
+	public static int DEFAULT_TIME_OUT = 20*1000;
 	private static ProgressDialog prDialog;
 	public static String METHOD="Method";
 	public static String ID="ID";
@@ -22,6 +22,7 @@ public class NetworkUtility {
 	public static String DATA="data";
 	public static String SUCCESS="Success";
 	public static String SUCCESS1="on_success";
+	public static String ERROR="on_error";
 	public static String FAIL="error";
 	//area
 	public static String AREA_SERVICE="AreaService";
@@ -40,8 +41,11 @@ public class NetworkUtility {
 	public static String SESSIONKEY="sessionKey";
 	public static String SESSION_USERNAME="SessionUserName";
 	public static String AUTHORIZATION="Authorization";
+	//log
+	public static String DEVIECESINFOBYDEVICEID="onGetDevicesInfoByDeviceID";
+	public static String DEVICEID="deviceID";
+	public static String DEVICEPROID="deviceproID";
 	
-   
 	/**
 	 * Check the network state.
 	 *

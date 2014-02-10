@@ -1,0 +1,56 @@
+<polymer-element name="form-gateway">
+<meta charset="UTF-8" /> 
+<template> <!-- Heading --> <input type='hidden'
+	id='current_page' /> <input type='hidden' id='show_per_page' />
+<div class="heading-buttons">
+	<h3 id="show">Danh sách Gateway</h3>
+	<div class="clearfix"></div>
+</div>
+<div class="separator bottom"></div>
+<!-- // Heading END -->
+<div class="innerLR">
+	<!-- Widget -->
+	<div class="widget">
+
+		<!-- Widget heading -->
+		<div class="widget-head">
+			<h4 class="heading glyphicons list">
+				<i></i>Danh sách Gateway
+			</h4>
+		</div>
+		<div class="widget-body">
+			<!-- Products table -->
+			<table
+				class="table table-bordered table-condensed table-striped table-primary table-vertical-center checkboxs">
+				<thead>
+					<tr>
+						<th style="width: 10%;" class="center">No</th>
+						<th class="center">Mac Address</th>
+						<th style="width: 20%;" class="center">Connected Server</th>
+						<th style="width: 15%;" class="center">Status</th>
+						<th style="width: 20%;" class="center">Action</th>
+					</tr>
+				</thead>
+				<tbody id="ListGateway">
+
+				</tbody>
+			</table>
+
+			<div class="separator top form-inline small">
+
+				<!-- Pagination -->
+				<div class="pagination pagination-small pull-right"
+					style="margin: 0;">
+					<ul id="pagination">
+					</ul>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+	</div>
+
+</div>
+</template>
+	<script type="application/dart" src="form_gateway.dart">
+	</script> 
+</polymer-element>
