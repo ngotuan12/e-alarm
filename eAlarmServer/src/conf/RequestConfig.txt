@@ -8,3 +8,5 @@
 	Class==com.ar.bean.GatewayBean
 /DeviceServices
 	Class==com.ar.bean.DeviceBean
+/ReportService
+	Class==com.ar.bean.ReportServiceBean

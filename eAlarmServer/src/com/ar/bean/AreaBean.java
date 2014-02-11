@@ -9,62 +9,50 @@ import com.ar.util.AppProcessor;
 import com.ar.util.Util;
 import com.fss.sql.Database;
 
-public class AreaBean extends AppProcessor
-{
-	public JSONArray ExcuteQuery(String Query, int TypeExcute) throws Exception
-	{
+public class AreaBean extends AppProcessor {
+	public JSONArray ExcuteQuery(String Query, int TypeExcute) throws Exception {
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
-		try
-		{
+		try {
 			// open connection
 			open();
 			// prepare
 			pstm = mcnMain.prepareStatement(Query);
-			if (TypeExcute == 0)
-			{
+			if (TypeExcute == 0) {
 				rs = pstm.executeQuery();
-			}
-			else
-			{
+			} else {
 				pstm.executeUpdate();
 				rs = null;
 			}
-			JSONArray arr = Util.convertToJSONArray(rs);
+			JSONArray arr = new JSONArray();
+			if (rs != null)
+				arr = Util.convertToJSONArray(rs);
 			return arr;
-		}
-		catch (Exception ex)
-		{
+		} catch (Exception ex) {
 			ex.printStackTrace();
 			throw ex;
-		}
-		finally
-		{
+		} finally {
 			Database.closeObject(pstm);
 			Database.closeObject(rs);
 			close();
 		}
 	}
 
-	public JSONArray GetActiveByParent(int ID) throws Exception
-	{
+	public JSONArray GetActiveByParent(int ID) throws Exception {
 		String strSQL = "SELECT id as ID,full_name as FullName,code as Code,name as Name,parent_id as ParentID,level as Level,status as Status,woodenleg as Woodenleg,lat as Lat,lng as Lng,type as Type "
 				+ "FROM area "
 				+ "WHERE status=1 AND parent_id = "
-				+ String.valueOf(ID)
-				+ " ORDER BY woodenleg";
+				+ String.valueOf(ID) + " ORDER BY woodenleg";
 		return ExcuteQuery(strSQL, 0);
 	}
 
-	private JSONArray GetByID(int ID) throws Exception
-	{
+	private JSONArray GetByID(int ID) throws Exception {
 		String strSQL = "SELECT id as ID,full_name as FullName,code as Code,name as Name,parent_id as ParentID,level as Level,status as Status,woodenleg as Woodenleg,lat as Lat,lng as Lng,type as Type "
 				+ "FROM area WHERE id = " + String.valueOf(ID);
 		return ExcuteQuery(strSQL, 0);
 	}
 
-	private void AddArea(AreaModel _Model) throws Exception
-	{
+	private void AddArea(AreaModel _Model) throws Exception {
 		String strSQL = "INSERT INTO area(code,name,parent_id,status,lat,lng,type) "
 				+ "VALUES('"
 				+ _Model.Code
@@ -80,8 +68,7 @@ public class AreaBean extends AppProcessor
 		ExcuteQuery(strSQL, 1);
 	}
 
-	private void UpdateArea(AreaModel _Model) throws Exception
-	{
+	private void UpdateArea(AreaModel _Model) throws Exception {
 		String strSQL = "UPDATE area SET code='" + _Model.Code + "',name='"
 				+ _Model.Name + "'," + "parent_id=" + _Model.ParentID
 				+ ",status=" + _Model.Status + ",lat=" + _Model.Lat + ",lng="
@@ -90,33 +77,27 @@ public class AreaBean extends AppProcessor
 		ExcuteQuery(strSQL, 1);
 	}
 
-	private void DisbleArea(int ID) throws Exception
-	{
+	private void DisbleArea(int ID) throws Exception {
 		String strSQL = "UPDATE area SET status=0 WHERE id=" + ID + "";
 		ExcuteQuery(strSQL, 1);
 	}
 
 	private JSONArray GetAllAreaActive() throws Exception {
 		String strSQL = "SELECT id as ID,full_name as FullName,code as Code,name as Name,parent_id as ParentID,level as Level,status as Status,woodenleg as Woodenleg,lat as Lat,lng as Lng,type as Type "
-				+ "FROM area "
-				+ "WHERE status=1 "
-				+ " ORDER BY woodenleg";
+				+ "FROM area " + "WHERE status=1 " + " ORDER BY woodenleg";
 		return ExcuteQuery(strSQL, 0);
 	}
-	
+
 	private JSONArray GetAllArea() throws Exception {
 		String strSQL = "SELECT id as ID,full_name as FullName,code as Code,name as Name,parent_id as ParentID,level as Level,status as Status,woodenleg as Woodenleg,lat as Lat,lng as Lng,type as Type "
-				+ "FROM area "
-				+ " ORDER BY woodenleg";
+				+ "FROM area " + " ORDER BY woodenleg";
 		return ExcuteQuery(strSQL, 0);
 	}
-	
+
 	@Override
-	public void doPost() throws Exception
-	{
+	public void doPost() throws Exception {
 		String Method = (String) request.getString("Method");
-		switch (Method)
-		{
+		switch (Method) {
 		case "GetByID":
 			int ID = Integer.parseInt((String) request.getString("ID"));
 			JSONArray GetByID = GetByID(ID);
@@ -182,18 +163,15 @@ public class AreaBean extends AppProcessor
 		}// TODO Auto-generated method stub
 	}
 
-
 	@Override
-	public void doGet() throws Exception
-	{
+	public void doGet() throws Exception {
 
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void doDelete() throws Exception
-	{
+	public void doDelete() throws Exception {
 		// TODO Auto-generated method stub
 	}
 }

@@ -38,6 +38,6 @@ Report
 		MaxDay==5
 		DefaultTime==1
 		DefaultDay==5
-ReportTemplate==D:/Projects/TC-2011/BIL/Billing App/Reports/Template/
-ClientGetReport==D:/Projects/TC-2011/BIL/Billing App/Reports/Out/
-ReportOut==D:/Projects/TC-2011/BIL/Billing App/Reports/Out/
+ExcelTemplatePath==F:/Workspaces/java-ee/eAlarmServer/src/report/template/
+TemplatePath==/report/sql/
+ReportOut==F:/Workspaces/java-ee/eAlarmServer/WebContent/report/
