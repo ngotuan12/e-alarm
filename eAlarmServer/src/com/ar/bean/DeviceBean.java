@@ -1,12 +1,14 @@
 package com.ar.bean;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
 import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONObject;
 
 import com.ar.util.AppProcessor;
 import com.ar.util.Util;
 import com.fss.sql.Database;
-import com.mysql.jdbc.PreparedStatement;
 
 public class DeviceBean extends AppProcessor
 {
@@ -201,18 +203,18 @@ public class DeviceBean extends AppProcessor
 		try
 		{
 			String strdevice_id = (String) request.getString("device_id");
-			String strinfor_id = (String) request.getString("infor_id");
+			String strdevice_pro_id = (String) request.getString("infor_id");
 			String strvalue = (String) request.getString("value");
 
 			// open connection
 			open();
-			strSQL = "UPDATE student SET device_id = ?, " + " infor_id = ? "
-					+ " value = ? " + " WHERE device_id = ? ";
+			strSQL = "UPDATE device_info SET value = ? "
+					+ " WHERE device_id = ? and device_pro_id = ?";
 			// prepare
 			pstm = mcnMain.prepareStatement(strSQL);
-			pstm.setString(1, strdevice_id);
-			pstm.setInt(2, Integer.parseInt(strinfor_id));
-			pstm.setString(3, strvalue);
+			pstm.setString(1, strvalue);
+			pstm.setInt(2, Integer.parseInt(strdevice_id));
+			pstm.setInt(3, Integer.parseInt(strdevice_pro_id));
 
 			int done = pstm.executeUpdate(strSQL);
 
@@ -748,9 +750,273 @@ public class DeviceBean extends AppProcessor
 		case "onGetAllDevicesWithPro":
 			onGetAllDevicesWithPro();
 			break;
+		case "onGetAllDevicePro":
+			onGetAllDevicePro();
+			break;
+		case "onGetDeviceProByID":
+			onGetDeviceProByID();
+			break;
+		case "onAddDevicePro":
+			onAddDevicePro();
+			break;
+		case "onDelDevicePro":
+			onDisableDevicePro();
+			break;
+		case "onEditDevicePro":
+			onEditDevicePro();
+			break;
 		default:
 			response.put("error", "you must enter the correct API name");
 			break;
+		}
+
+	}
+
+	private void onDisableDevicePro() throws Exception
+	{
+		String strSQL = "";
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+		try
+		{
+			String strDeviceProID = (String) request.getString("ID");
+			String status = (String) request.getString("status");
+			// open connection
+			open();
+			strSQL = "UPDATE device_properties SET status = ? "
+					+ " WHERE id = ? ";
+			// prepare
+			pstm = mcnMain.prepareStatement(strSQL);
+			pstm.setInt(1, Integer.parseInt(status));
+			pstm.setInt(2, Integer.parseInt(strDeviceProID));
+
+			int done = pstm.executeUpdate(strSQL);
+
+			if (done == 1)
+			{
+				// close statement
+				Database.closeObject(pstm);
+				Database.closeObject(rs);
+				// response
+				response.put("Mess", "edit sucess");
+				response.put("Mess", "Success");
+			}
+			else
+			{
+				// response
+				response.put("Mess", "have error with execute(validate data)");
+			}
+		}
+		catch (Exception ex)
+		{
+			ex.printStackTrace();
+			throw ex;
+		}
+		finally
+		{
+			close();
+		}
+
+	}
+
+	private void onEditDevicePro() throws Exception
+	{
+		String strSQL = "";
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+		try
+		{
+			String strdevice_pro_id = (String) request.getString("ID");
+			String strname = (String) request.getString("name");
+			String strcode = (String) request.getString("code");
+			String strdescription = (String) request.getString("description");
+			String strtype = (String) request.getString("type");
+			String strmin = (String) request.getString("min");
+			String strmax = (String) request.getString("max");
+
+			// open connection
+			open();
+			strSQL = "UPDATE device_properties SET name = ?, code = ?,description=?,type= ?, min = ?,max = ?"
+					+ " WHERE id = ?";
+			// prepare
+			pstm = mcnMain.prepareStatement(strSQL);
+			pstm.setString(1, strname);
+			pstm.setString(2, strcode);
+			pstm.setString(3, strdescription);
+			pstm.setString(4, strtype);
+			pstm.setDouble(5, Double.parseDouble(strmin));
+			pstm.setDouble(6, Double.parseDouble(strmax));
+			pstm.setInt(7, Integer.parseInt(strdevice_pro_id));
+
+			int done = pstm.executeUpdate(strSQL);
+
+			if (done == 1)
+			{
+				// close statement
+				Database.closeObject(pstm);
+				Database.closeObject(rs);
+				// response
+				response.put("Mess", "edit sucess");
+			}
+			else
+			{
+				// response
+				response.put("Mess", "have error with execute(validate data)");
+				response.put("Mess", "Success");
+			}
+		}
+		catch (Exception ex)
+		{
+			ex.printStackTrace();
+			throw ex;
+		}
+		finally
+		{
+			close();
+		}
+
+	}
+
+	private void onAddDevicePro() throws Exception
+	{
+		String strSQL = "";
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+		try
+		{
+			String strname = (String) request.getString("name");
+			String strcode = (String) request.getString("code");
+			String strdescription = (String) request.getString("description");
+			String strtype = (String) request.getString("type");
+			String strmin = (String) request.getString("min");
+			String strmax = (String) request.getString("max");
+
+			// open connection
+			open();
+			strSQL = "INSERT INTO device_properties VALUES (?,?,?,?,?,?)";
+			// prepare
+			pstm = mcnMain.prepareStatement(strSQL);
+			pstm.setString(1, strname);
+			pstm.setString(2, strcode);
+			pstm.setString(3, strdescription);
+			pstm.setString(4, strtype);
+			pstm.setDouble(5, Double.parseDouble(strmin));
+			pstm.setDouble(6, Double.parseDouble(strmax));
+
+			int done = pstm.executeUpdate(strSQL);
+
+			if (done == 1)
+			{
+				// close statement
+				Database.closeObject(pstm);
+				Database.closeObject(rs);
+				// response
+				response.put("Mess", "add sucess");
+			}
+			else
+			{
+				// response
+				response.put("Mess", "have error with execute(validate data)");
+				response.put("Mess", "Success");
+			}
+		}
+		catch (Exception ex)
+		{
+			ex.printStackTrace();
+			throw ex;
+		}
+		finally
+		{
+			close();
+		}
+
+	}
+
+	private void onGetDeviceProByID() throws Exception
+	{
+		String strSQL = "";
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+		try
+		{
+			String strDeviceProID = (String) request.getString("ID");
+			// open connection
+			open();
+			strSQL = "SELECT *" + " FROM device_properties "
+					+ "WHERE id = ? and status = 1";
+			// prepare
+			pstm = mcnMain.prepareStatement(strSQL);
+			pstm.setString(1, strDeviceProID.toUpperCase());
+			rs = pstm.executeQuery();
+			// get JSON data
+			JSONArray arr = Util.convertToJSONArray(rs);
+			// if account not exists
+			if (arr.length() == 0)
+			{
+				// close statement
+				Database.closeObject(pstm);
+				Database.closeObject(rs);
+				// response
+				response.put("Mess", "no device found");
+			}
+			else
+			{
+				JSONObject deviceInfo = (JSONObject) arr.get(0);
+				// response
+				response.put("device_pro", deviceInfo);
+				response.put("Mess", "Success");
+			}
+		}
+		catch (Exception ex)
+		{
+			ex.printStackTrace();
+			throw ex;
+		}
+		finally
+		{
+			close();
+		}
+	}
+
+	private void onGetAllDevicePro() throws Exception
+	{
+		String strSQL = "";
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+		try
+		{
+			// open connection
+			open();
+			strSQL = "SELECT *" + " FROM device_properties";
+			// prepare
+			pstm = mcnMain.prepareStatement(strSQL);
+			rs = pstm.executeQuery();
+			// get JSON data
+			JSONArray arr = Util.convertToJSONArray(rs);
+			// if account not exists
+			if (arr.length() == 0)
+			{
+				// close statement
+				Database.closeObject(pstm);
+				Database.closeObject(rs);
+				// response
+				response.put("Mess", "no device-pro found");
+			}
+			else
+			{
+				// response
+				response.put("all_devices_pro", arr);
+				response.put("Mess", "Success");
+			}
+		}
+		catch (Exception ex)
+		{
+			ex.printStackTrace();
+			throw ex;
+		}
+		finally
+		{
+			close();
 		}
 
 	}
