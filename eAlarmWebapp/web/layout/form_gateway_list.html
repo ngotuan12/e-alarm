@@ -1,0 +1,47 @@
+<link rel="import" href="form_gateway_list.html">
+<polymer-element name="form-gateway-list">
+<meta charset="UTF-8" />
+<template> <!-- Widget -->
+
+<div class="widget">
+	<!-- Widget heading -->
+	<div class="widget-head">
+		<h4 class="heading glyphicons list">
+			<i></i>Danh sách Gateway
+		</h4>
+	</div>
+	<div class="widget-body">
+		<!-- Products table -->
+		<table
+			class="table table-bordered table-condensed table-striped table-primary table-vertical-center checkboxs">
+			<thead>
+				<tr>
+					<th style="width: 10%;" class="center">No</th>
+					<th class="center">Mac Address</th>
+					<th style="width: 20%;" class="center">Connected Server</th>
+					<th style="width: 15%;" class="center">Status</th>
+					<th style="width: 20%;" class="center">Action</th>
+				</tr>
+			</thead>
+			<tbody id="ListGateway">
+			</tbody>
+		</table>
+		<button id="btnAdd" style="margin-top:10px; float: right;"
+			class="btn btn-icon btn-primary glyphicons circle_ok">
+			<i></i>Add
+		</button>
+		<div class="separator top form-inline small">
+
+			<!-- Pagination -->
+			<div class="pagination pagination-small pull-right"
+				style="margin: 0;">
+				<ul id="pagination">
+				</ul>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+</div>
+</div>
+</template> <script type="application/dart" src="form_gateway_list.dart">
+	</script> </polymer-element>
