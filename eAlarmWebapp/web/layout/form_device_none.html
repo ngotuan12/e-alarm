@@ -1,0 +1,105 @@
+<link rel="import" href="form_device.html">
+<polymer-element name="form-device-none">
+<meta charset="UTF-8" /> 
+	<template>
+	<!-- Heading --> <input type='hidden' id='current_page' /> <input
+				type='hidden' id='show_per_page' />
+			<div class="heading-buttons">
+				<h3 id="show">
+					Danh sách trạm<span> | ATM</span>
+				</h3>
+				<div class="buttons pull-right">
+					<a id="add" href="#" class="btn btn-primary btn-icon glyphicons circle_plus"><i></i>Thêm</a>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+			<div class="separator bottom"></div>
+			<!-- // Heading END -->
+			<div class="innerLR">
+				<!-- Widget -->
+				<div class="widget">
+					<!-- Widget heading -->
+					<div class="widget-head">
+						<h4 class="heading glyphicons list">
+							<i></i>Quản lý các trạm
+						</h4>
+					</div>
+					<!-- // Widget heading END -->
+			
+					<div class="widget-body">
+			
+						<!-- Total products & Sort by options -->
+						<div class="form-inline separator bottom small">
+							<span>Tổng số trạm: {{CurrentDevices.length;}}</span> <span
+								class="pull-right"> <label class="strong">Lựa chọn:</label>
+								<select id="areas" class="" data-style="btn-default btn-small">
+									<option value="-1">Địa bàn</option>
+									<template if="{{areas!=null}}"> <template
+										repeat="{{area in areas}}">
+									<option value="2">{{area["name"]}}</option>
+									</template> </template>
+								</select>
+								<button value="search" id="search">Tìm Kiếm</button>
+							</span>
+						</div>
+						<!-- // Total products & Sort by options END -->
+			
+						<!-- Products table -->
+						<table
+							class="table table-bordered table-condensed table-striped table-primary table-vertical-center checkboxs">
+							<thead>
+								<tr>
+									<th style="width: 1%;" class="center">STT</th>
+									<th>Địa chỉ</th>
+									<th style="width: 10%;" class="center">Thuộc tính</th>
+									<th class="center">Kinh tuyến</th>
+									<th class="center">Vĩ tuyến</th>
+									<th class="center">Trạng thái</th>
+									<th class="center" style="width: 60px;">Sửa/Xóa</th>
+								</tr>
+							</thead>
+							<tbody id="ListDevices">
+								<template if="{{devices!=null}}"> 
+								<template
+									repeat="{{device in devices}}">
+									<tr class="selectable">
+									<td class="center">{{CurrentDevices.indexOf(device)+1}}</td>
+									<td class="important">{{device["address"]}}</td>
+									<td class="important center">{{device["property"]}}</td>
+									<td class="important center">{{device["lat"]}}</td>
+									<td class="important center">{{device["lng"]}}</td>
+									<td class="important center">{{device["status"]}}</td>
+									<td class="center">
+										<button id='{{device["id"]}}' on-click="{{onEditDevice}}" class="btn-action glyphicons pencil btn-success"><i></i></button>
+										<button id='{{device["id"]}}' on-click="{{onDeleteDevice}}" class="btn-action glyphicons remove_2 btn-danger"><i></i></button>
+									</td>
+								</template> 
+								</template>
+								<template if="{{devices.length==0}}">
+									<p>No record</p>
+								</template>
+							</tbody>
+						</table>
+						<!-- // Products table END -->
+			
+						<!-- Options -->
+						<div class="separator top form-inline small">
+			
+							<!-- Pagination -->
+							<div class="pagination pagination-small pull-right"
+								style="margin: 0;">
+								<ul id="pagination">
+								</ul>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+						<!-- // Options END -->
+			
+					</div>
+				</div>
+				<!-- // Widget END -->
+			
+			</div>
+	</template>		
+	<script type="application/dart" src="form_device_none.dart"></script>
+</polymer-element>

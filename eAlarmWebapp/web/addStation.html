@@ -338,6 +338,7 @@ rel="stylesheet" />
 									<div class="row-fluid">
 										<!-- Column -->
 										<div class="span6">
+										<template if="{{device!=null}}"> 
 											<label>Địa bàn</label>
 											<select id="area" class="span10">
 												<option value="-1">Chọn địa bàn</option>
@@ -346,7 +347,7 @@ rel="stylesheet" />
 											<input id="address" type="text" class="span10" placeholder="Địa chỉ" disabled>
 											<label id="ErrorAddress" class="error"></label>
 											<label for="inputTitle">Tọa độ </label>
-											<input type="text" id="Lat" class="span5" value="" placeholder="Kinh tuyến" disabled/>
+											<input type="text" id="Lat" class="span5" value="111" placeholder="Kinh tuyến" disabled/>
 											<input type="text" id="Long" class="span5" value="" placeholder="Vĩ tuyến" disabled/>
 											<label id="ErrorLocation" class="error"></label>
 											<label for="inputTitle">Thuộc tính</label> 
@@ -363,6 +364,7 @@ rel="stylesheet" />
 												<option value="0">Hỏng</option>
 											</select>
 											<div class="separator"></div>
+											</template>
 										</div>
 										<!-- // Column END -->
 										<!-- Column -->
