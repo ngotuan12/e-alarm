@@ -18,12 +18,20 @@
 	<select id="selectorDistrict" style="margin: 5px">
 		<option value="-1">Quận/Huyện</option>
 	</select>
+	
 	<div style="width: 120px; float: right">
-	<button id="btnGetReport" class="btn btn-block btn-primary">Tạo báo cáo</button>
+	<button id="btnGetReport" class="btn btn-block btn-primary">Tải về</button>
+	</div>
+	
+	<div style="width: 120px; float: right; padding-right: 10px">
+	<button id="btnViewReport" class="btn btn-block btn-primary">Xem báo cáo</button>
 	</div>
 
 </div>
 </div>
+
+<iframe id="iframeReport" hidden="true" src="https://docs.google.com/file/d/0B3wCusJjGhqodzFhUkVLajNCWG8/preview" width="100%" height="500px"></iframe>
+
 </template>
  <script type="application/dart" src="form_report_device_by_area.dart">
 	</script>

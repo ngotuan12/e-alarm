@@ -10,7 +10,9 @@ class FormReportDeviceByArea extends PolymerElement
   SelectElement selectorCity;
   SelectElement selectorDistrict;
   ButtonElement btnGetReport;
-  List<Map> listArea;
+  ButtonElement btnViewReport;
+  IFrameElement iframeReport;
+  List<Map> listArea;	
 
   FormReportDeviceByArea.created() : super.created();
   bool get applyAuthorStyles => true;
@@ -21,9 +23,12 @@ class FormReportDeviceByArea extends PolymerElement
 		
 		selectorCity = this.shadowRoot.querySelector("#selectorCity");
 		selectorDistrict = this.shadowRoot.querySelector("#selectorDistrict");
+		iframeReport = this.shadowRoot.querySelector("#iframeReport");
 		btnGetReport = this.shadowRoot.querySelector("#btnGetReport");
+		btnViewReport = this.shadowRoot.querySelector("#btnViewReport");
 		
 		btnGetReport.onClick.listen(getReport);
+		btnViewReport.onClick.listen(viewReport);
 		
 		selectorCity.onChange.listen(onCityChange);
 		
@@ -90,15 +95,31 @@ class FormReportDeviceByArea extends PolymerElement
 	}
 	
 	void getReport(Event e){
+	iframeReport.hidden = true;
 	Responder responder = new Responder();
 	Map request = new Map();
 	request["Method"] = "DeviceReportByArea";
 	responder.onSuccess.listen((Map response)
 	{
-	
-	
-	
 	window.open(AppClient.url+"report/"+response["FileOut"],'_blank');
+	});
+	//error
+	responder.onError.listen((Map error)
+	{
+	Util.showNotifyError(error["message"]);
+	});
+	AppClient.sendMessage(request, AlarmServiceName.ReportService, AlarmServiceMethod.POST,responder);
+	}
+	
+	void viewReport(Event e){
+	iframeReport.hidden = true;
+	Responder responder = new Responder();
+	Map request = new Map();
+	request["Method"] = "DeviceReportByArea";
+	responder.onSuccess.listen((Map response)
+	{
+	String link =  AppClient.url+"report/"+response["FileOut"];
+	iframeReport.hidden = false;
 	});
 	//error
 	responder.onError.listen((Map error)
