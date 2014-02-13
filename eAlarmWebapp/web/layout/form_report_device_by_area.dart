@@ -101,7 +101,7 @@ class FormReportDeviceByArea extends PolymerElement
 	request["Method"] = "DeviceReportByArea";
 	responder.onSuccess.listen((Map response)
 	{
-	window.open(AppClient.url+"report/"+response["FileOut"],'_blank');
+	window.open(AppClient.url+"report/"+response["FileOut"], "_self");
 	});
 	//error
 	responder.onError.listen((Map error)
