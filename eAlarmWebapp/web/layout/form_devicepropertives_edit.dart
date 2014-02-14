@@ -59,18 +59,19 @@ class FormDevicesProEdit extends PolymerElement
          {
             Responder responder = new Responder();
             Map request = new Map();
-       if(DeviceCon!=null)
+       if(DeviceCon!=null){
              request["Method"] = "onEditDevicePro";
-       else
+             request["ID"]=txtDeviceProID.value.toString();
+       }else{
         request["Method"] = "onAddDevicePro";
-
-       request["ID"]=txtDeviceProID.value;
-       request["name"]=txtName.value;
-       request["code"]=txtCode.value;
-       request["description"]=txtDescription.value;       
-       request["type"]=txtType.value;
-       request["min"]=txtMin.value;
-       request["max"]=txtMax.value;
+       }
+       
+       request["name"]=txtName.value.toString();
+       request["code"]=txtCode.value.toString();
+       request["description"]=txtDescription.value.toString();       
+       request["type"]=txtType.value.toString();
+       request["min"]=txtMin.value.toString();
+       request["max"]=txtMax.value.toString();
        
        if(request["name"]=="" ||request["code"]==""||request["description"]==""||request["type"]==""||request["min"]==""||request["max"]=="")
        {

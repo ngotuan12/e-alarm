@@ -28,4 +28,9 @@ class FormDevicePropertives extends PolymerElement
       //currentDevicePro = toObservable(event.detail);
       currentAction = "NONE";
     }
+  void onAdd(CustomEvent event)
+    {
+    currentDevicePro = null;
+      currentAction = "EDIT";
+    }
 }

@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <template> 
   <template if="{{currentAction == 'NONE'}}">
-    <form-devicepropertives-list on-edit="{{onEdit}}"></form-devicepropertives-list> 
+    <form-devicepropertives-list on-edit="{{onEdit}}" on-add="{{onAdd}}"></form-devicepropertives-list> 
   </template> 
   <template if="{{currentAction == 'EDIT'}}">
     <form-devicepropertives-edit DeviceCon="{{currentDevicePro}}" on-goback={{onGoBack}}></form-devicepropertives-edit>
