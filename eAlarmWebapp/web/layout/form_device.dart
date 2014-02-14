@@ -1,14 +1,25 @@
 import 'package:polymer/polymer.dart';
-
+import 'dart:html';
 @CustomTag('form-device')
 class FormDevice extends PolymerElement
 {
-	// This lets the Bootstrap CSS "bleed through" into the Shadow DOM
-	// of this element.
-	bool get applyAuthorStyles => false;
+	@observable String currentAction;
+	@observable Map currentDevice;
+	static String getCurrentAction="NONE";
 	FormDevice.created() : super.created();
 	enteredView() 
 	{
+		currentAction=getCurrentAction;
 		super.enteredView();
 	}
+	void onEdit(CustomEvent event)
+	{
+		currentDevice = toObservable(event.detail);
+		currentAction = "EDIT";
+	}
+	void onGoback(CustomEvent event)
+    {
+      //currentDevice = toObservable(event.detail);
+      currentAction = "NONE";
+    }
 }
