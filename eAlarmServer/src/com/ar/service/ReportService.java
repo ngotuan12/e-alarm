@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.ar.util.DataHolder;
 import com.ar.util.Util;
 
 public class ReportService extends HttpServlet {
@@ -19,6 +20,7 @@ public class ReportService extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+		getReportPath();
 		try {
 			super.service(req, resp);
 			Util.processRequest(req, resp);
@@ -34,5 +36,10 @@ public class ReportService extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+	}
+	
+	private void getReportPath(){
+		String reportPath = getServletConfig().getServletContext().getRealPath("report");
+		DataHolder.setReportPath(reportPath);
 	}
 }

@@ -1,4 +1,4 @@
-<polymer-element name="form-report-device-by-area">
+<polymer-element name="form-report-issue-by-area">
 <meta charset="UTF-8" />
 <template>
 <style>
@@ -10,14 +10,14 @@
 				<i></i>Báo cáo theo địa bàn
 			</h4>
 		</div>
-<div class="widget-body" style="padding: 10px">
+<div class="widget-body" style="padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 50px">
 
-	<select id="selectorCity" style="margin: 5px;">
+	<!-- <select id="selectorCity"  hidden="true" style="margin: 5px;">
 	<option value="-1">Thành phố</option>
 	</select> 
-	<select id="selectorDistrict" style="margin: 5px">
+	<select id="selectorDistrict"  hidden="true" style="margin: 5px">
 		<option value="-1">Quận/Huyện</option>
-	</select>
+	</select> -->
 	
 	<div style="width: 120px; float: right">
 	<button id="btnGetReport" class="btn btn-block btn-primary">Tải về</button>
@@ -29,9 +29,9 @@
 
 </div>
 </div>
-<iframe id="iframeReport" hidden="true" src="https://docs.google.com/file/d/0B3wCusJjGhqoN0p0bm9YYVZJRmc/preview" width="100%" height="500px"></iframe>
+<iframe id="iframeReport" hidden="true" src="https://docs.google.com/file/d/0B3wCusJjGhqoWnhFNXJnSURlNXc/preview" width="100%" height="500px"></iframe>
 
 </template>
- <script type="application/dart" src="form_report_device_by_area.dart">
+ <script type="application/dart" src="form_report_issue_by_area.dart">
 	</script>
 </polymer-element>

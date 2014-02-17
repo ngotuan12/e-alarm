@@ -40,4 +40,4 @@ Report
 		DefaultDay==5
 ExcelTemplatePath==F:/Workspaces/java-ee/eAlarmServer/src/report/template/
 TemplatePath==/report/sql/
-ReportOut==F:/Workspaces/java-ee/eAlarmServer/WebContent/report/
+ReportOut==F:/Workspaces/java-ee/eAlarmServer/WebContent/report-tmp/

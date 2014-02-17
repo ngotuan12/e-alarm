@@ -5,6 +5,8 @@
 <link rel="import" href="tool_bar.html">
 <link rel="import" href="form_gatewaycommand.html">
 <link rel="import" href="form_devicepropertives.html">
+<link rel="import" href="form_report_device_by_area.html">
+<link rel="import" href="form_report_issue_by_area.html">
 
 <link rel="import" href="form_gateway.html">
 <polymer-element name="main-menu">
@@ -109,10 +111,13 @@
 				<form-gateway></form-gateway>
 			</template>
 			<template if="{{currentAction == 'FORM_DEVICE_PROPERTIES'}}">
-        <form-devicepropertives></form-devicepropertives>
-      </template>
-	  <template if="{{currentAction == 'FORM_REPORT_DEVICE_BY_AREA'}}">
+                <form-devicepropertives></form-devicepropertives>
+            </template>
+	        <template if="{{currentAction == 'FORM_REPORT_DEVICE_BY_AREA'}}">
 				<form-report-device-by-area></form-report-device-by-area>
+			</template>
+			<template if="{{currentAction == 'FORM_REPORT_ISSUE_BY_AREA'}}">
+				<form-report-issue-by-area></form-report-issue-by-area>
 			</template>
 		</div>
 		<!-- // Content END -->
