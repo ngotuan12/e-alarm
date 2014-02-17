@@ -1,14 +1,14 @@
+<link rel="import" href="form_device_none.html">
+<link rel="import" href="form_device_edit.html">
 <polymer-element name="form-device">
 <meta charset="UTF-8" /> 
-
 <template>
-<style>
-.h1{
-	font-size: 72px;
-	color: red;
-}
-</style>
-<h1 class = "h1">Form device</h1>
+	<template if="{{currentAction == 'NONE'}}">
+		<form-device-none on-edit="{{onEdit}}"></form-device-none>
+	</template>
+	<template if="{{currentAction == 'EDIT'}}">
+		<form-device-edit device="{{currentDevice}}" on-Goback={{onGoback}}></form-device-edit>
+	</template>
 </template>
 	<script type="application/dart" src="form_device.dart">
 	</script> 

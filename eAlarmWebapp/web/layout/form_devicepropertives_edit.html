@@ -1,0 +1,76 @@
+<link rel="import" href="form_devicepropertives_edit.html">
+<polymer-element name="form-devicepropertives-edit">
+<meta charset="UTF-8" />
+<template>
+<div class="form-horizontal" style="margin-bottom: 0;"
+  id="validateSubmitForm" >
+  <div class="widget" style="margin: 10px">
+    <div class="widget-head">
+      <h4 class="heading">Chỉnh sửa thông tin thuộc tính</h4>
+    </div>
+    <div class="widget-body">
+      <div class="row-fluid">
+        <div class="span6">
+          <!-- Group -->
+          <div class="control-group">
+            <label class="control-label">ID Devices Pro</label>
+            <div class="controls">
+              <input class="span12" id="txtDeviceProID" name="DeviceProID" type="text">
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label">Name</label>
+            <div class="controls">
+              <input class="span12" id="txtName" name="Name" type="text">
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label">Code</label>
+            <div class="controls">
+              <input class="span12" id="txtCode" name="Code" type="text">
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label">Description</label>
+            <div class="controls">
+              <input class="span12" id="txtDescription" name="Description" type="text">
+            </div>
+          </div>
+        </div>
+        <div class="span6">
+          <div class="control-group">
+            <label class="control-label">Type</label>
+            <div class="controls">
+              <input class="span12" id="txtType" name="Type" type="text">
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label">Min</label>
+            <div class="controls">
+              <input class="span12" id="txtMin" name="Min" type="text">
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label">Max</label>
+            <div class="controls">
+              <input class="span12" id="txtMax" name="Max" type="text">
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr class="separator">
+      <div class="form-actions">
+        <button type="submit" id="btnSave"
+          class="btn btn-icon btn-primary glyphicons circle_ok">
+          <i></i>Save
+        </button>
+        <button type="button" id="btnCancel"
+          class="btn btn-icon btn-default glyphicons circle_remove">
+          <i></i>Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+</template> <script type="application/dart" src="form_devicepropertives_edit.dart">
+  </script> </polymer-element>

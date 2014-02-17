@@ -1,0 +1,96 @@
+<link rel="import" href="form_device.html">
+<polymer-element name="form-device-edit">
+<meta charset="UTF-8" /> 
+	<template>
+	<div class="heading-buttons">
+					<h3>Thêm trạm<span> | ATM</span></h3>
+					<div class="buttons pull-right">
+						<a href="station.html" class="btn btn-default btn-icon glyphicons share"><i></i>Thoát</a> 
+							<button class="btn btn-primary btn-icon glyphicons ok_2" id="Save1"><i></i>Lưu</button>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+				<div class="separator bottom"></div>
+				<!-- // Heading END -->
+				<div class="innerLR">
+					<!-- Widget -->
+					<div class="widget widget-tabs">
+						<!-- Widget heading -->
+						<div class="widget-head">
+						<p id="suscess" class="suscess"></p>
+						</div>
+						<!-- // Widget heading END -->
+						<div class="widget-body">
+							<div class="tab-content">
+								<!-- Description -->
+								<div class="tab-pane active" id="productDescriptionTab">
+									<!-- Row -->
+									<div class="row-fluid">
+										<!-- Column -->
+										<div class="span6">
+										<template if="{{device!=null}}"> 
+											<label>Địa bàn</label>
+											<select id="area" class="span10">
+												<option value="-1">Chọn địa bàn</option>
+											</select>
+											<label for="inputTitle">Địa chỉ</label> 
+											<input id="address" type="text" value="{{device['address']}}" class="span10" placeholder="Địa chỉ" disabled>
+											<label id="ErrorAddress" class="error"></label>
+											<label for="inputTitle">Tọa độ </label>
+											<input type="text" id="Lat" class="span5" value="{{device['lat']}}" placeholder="Kinh tuyến" disabled/>
+											<input type="text" id="Long" class="span5" value="{{device['lng']}}" placeholder="Vĩ tuyến" disabled/>
+											<label id="ErrorLocation" class="error"></label>
+											<label for="inputTitle">Thuộc tính</label> 
+											<input type="checkbox"  id="temperature" class="property" value=""/>Nhiệt độ
+											<input type="checkbox"  id="humidity" class="property" value=""/>Độ ẩm
+											<input type="checkbox"  id="vibration" class="property" value=""/>Đổ rung
+											<input type="checkbox"  id="brightness" class="property" value=""/>Độ sáng
+											<label for="inputTitle">Mã cây ATM</label> 
+											<input id="code" type="text" class="span10" placeholder="Mã cây ATM">
+											<label id="ErrorCode" class="error"></label>
+											<label for="inputTitle" >trạng thái</label>
+											<select id="status" class="span5">
+												<template if="{{device['status']=='1'}}">
+												<option value="1" selected>Tốt</option>
+												<option value="0">Hỏng</option>
+												</template>
+												<template if="{{device['status']=='0'}}">
+												<option value="1">Tốt</option>
+												<option value="0" selected>Hỏng</option>
+												</template>
+											</select>
+											<div class="separator"></div>
+											</template>
+										</div>
+										<!-- // Column END -->
+										<!-- Column -->
+										<div class="span6">
+											<label for="inputTitle" >Tìm địa chỉ</label>
+											<input type="text" id="fullAddress" class="span10" value="{{device['address']}}" placeholder="Địa chỉ google" disabled/>
+											<button class="btn btn-primary btn-icon search" id="search" onclick="initialize();" disabled>Tìm</button>
+											<div id="show-map"></div>
+										</div>
+										<!-- // Column END -->
+									</div>
+									<!-- // Row END -->
+
+								</div>
+								<!-- // Description END -->
+							</div>
+						</div>
+					</div>
+					<!-- // Widget END -->
+
+					<!-- Bottom buttons -->
+					<div class="heading-buttons">
+						<div class="buttons pull-right" style="margin: 0;">
+							<a href="station.html" class="btn btn-default btn-icon glyphicons share"><i></i>Thoát</a>
+								<button class="btn btn-primary btn-icon glyphicons ok_2" id="Save2"><i></i>Lưu</button>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+					<!-- // Bottom buttons END -->
+				</div>
+	</template>		
+	<script type="application/dart" src="form_device_edit.dart"></script>
+</polymer-element>

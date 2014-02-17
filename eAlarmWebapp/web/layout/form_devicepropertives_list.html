@@ -1,0 +1,60 @@
+<polymer-element name="form-devicepropertives-list">
+<meta charset="UTF-8" /> 
+<template> <!-- Heading --> <input type='hidden'
+	id='current_page' /> <input type='hidden' id='show_per_page' />
+<div class="heading-buttons">
+	<h3 id="show">Danh sách thuộc tính thiết bị</h3>
+	<div class="clearfix"></div>
+</div>
+<div class="separator bottom"></div>
+<!-- // Heading END -->
+<div class="innerLR">
+	<!-- Widget -->
+	<div class="widget">
+
+		<!-- Widget heading -->
+		<div class="widget-head">
+			<h4 class="heading glyphicons list">
+				<i></i>Danh sách thuộc tính thiết bị
+			</h4>
+		</div>
+		<div class="widget-body">
+			<!-- Products table -->
+			<table
+				class="table table-bordered table-condensed table-striped table-primary table-vertical-center checkboxs">
+				<thead>
+					<tr>
+						<th style="width: 2%;" class="center">ID</th>
+						<th style="width: 25%;" class="center">Name</th>
+						<th style="width: 5%;" class="center">Code</th>
+						<th class="center">Description</th>
+						<th style="width: 10%;" class="center">Type</th>
+						<th style="width: 5%;" class="center">Min</th>
+						<th style="width: 5%;" class="center">Max</th>
+						<th style="width: 10%;" class="center">Action</th>
+					</tr>
+				</thead>
+				<tbody id="ListDevicesPro">
+				</tbody>
+			</table>
+      <button id="btnAdd" style="margin-top:10px; float: right;" class="btn btn-icon btn-primary glyphicons circle_ok">
+      <i></i>Add
+      </button>
+			<div class="separator top form-inline small">
+
+				<!-- Pagination -->
+				<div class="pagination pagination-small pull-right"
+					style="margin: 0;">
+					<ul id="pagination">
+					</ul>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+	</div>
+
+</div>
+</template>
+	<script type="application/dart" src="form_devicepropertives_list.dart">
+	</script> 
+</polymer-element>

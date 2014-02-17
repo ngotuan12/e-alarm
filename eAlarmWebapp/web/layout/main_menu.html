@@ -4,6 +4,8 @@
 <link rel="import" href="form_main.html">
 <link rel="import" href="tool_bar.html">
 <link rel="import" href="form_gatewaycommand.html">
+<link rel="import" href="form_devicepropertives.html">
+
 <link rel="import" href="form_gateway.html">
 <polymer-element name="main-menu">
 <meta charset="UTF-8" />
@@ -105,6 +107,12 @@
 			</template>
 			<template if="{{currentAction == 'FORM_GATEWAY'}}">
 				<form-gateway></form-gateway>
+			</template>
+			<template if="{{currentAction == 'FORM_DEVICE_PROPERTIES'}}">
+        <form-devicepropertives></form-devicepropertives>
+      </template>
+	  <template if="{{currentAction == 'FORM_REPORT_DEVICE_BY_AREA'}}">
+				<form-report-device-by-area></form-report-device-by-area>
 			</template>
 		</div>
 		<!-- // Content END -->
