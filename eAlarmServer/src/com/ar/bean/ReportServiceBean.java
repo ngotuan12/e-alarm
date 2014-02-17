@@ -85,7 +85,7 @@ public class ReportServiceBean extends AppProcessor
 			//fill data
 			report.fillDataToExcel();
 			//create file
-			createRealFile("dev_report");
+//			createRealFile("dev_report");
 			//return link
 			return strFileOut + ".xls";
 		} 
@@ -136,7 +136,7 @@ public class ReportServiceBean extends AppProcessor
 			//fill data
 			report.fillDataToExcel();
 			//create file
-			createRealFile("issue_report");
+//			createRealFile("issue_report");
 			//return link
 			return strFileOut + ".xls";
 		} 
