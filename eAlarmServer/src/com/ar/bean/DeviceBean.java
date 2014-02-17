@@ -664,15 +664,12 @@ public class DeviceBean extends AppProcessor
 		try
 		{
 			String strDeviceID = (String) request.getString("deviceID");
-			String strDeviceProID = (String) request.getString("deviceproID");
 			// open connection
 			open();
-			strSQL = "SELECT *" + " FROM device_infor "
-					+ "WHERE device_id = ? and device_pro_id= ?";
+			strSQL = "SELECT *" + " FROM device_infor " + "WHERE device_id = ?";
 			// prepare
 			pstm = mcnMain.prepareStatement(strSQL);
 			pstm.setString(1, strDeviceID.toUpperCase());
-			pstm.setString(2, strDeviceProID.toUpperCase());
 			rs = pstm.executeQuery();
 			// get JSON data
 			JSONArray arr = Util.convertToJSONArray(rs);
@@ -836,17 +833,24 @@ public class DeviceBean extends AppProcessor
 
 			// open connection
 			open();
-			strSQL = "UPDATE device_properties SET name = ?, code = ?,description=?,type= ?, min = ?,max = ?"
-					+ " WHERE id = ?";
+			// strSQL =
+			// "UPDATE device_properties SET name=?,code=?,description=?,type=?,min=?,max=?"
+			// + " WHERE id = ?";
+			strSQL = "UPDATE device_properties SET name='" + strname.toString()
+					+ "',code='" + strcode.toString() + "'," + "description='"
+					+ strdescription.toString() + "',type="
+					+ strtype.toString() + ",min=" + Double.parseDouble(strmin)
+					+ ",max=" + Double.parseDouble(strmax) + " WHERE id="
+					+ strdevice_pro_id + "";
 			// prepare
-			pstm = mcnMain.prepareStatement(strSQL);
-			pstm.setString(1, strname);
-			pstm.setString(2, strcode);
-			pstm.setString(3, strdescription);
-			pstm.setString(4, strtype);
-			pstm.setDouble(5, Double.parseDouble(strmin));
-			pstm.setDouble(6, Double.parseDouble(strmax));
-			pstm.setInt(7, Integer.parseInt(strdevice_pro_id));
+			// pstm = mcnMain.prepareStatement(strSQL);
+			// pstm.setString(1, strname);
+			// pstm.setString(2, strcode);
+			// pstm.setString(3, strdescription);
+			// pstm.setString(4, strtype);
+			// pstm.setDouble(5, Double.parseDouble(strmin));
+			// pstm.setDouble(6, Double.parseDouble(strmax));
+			// pstm.setInt(7, Integer.parseInt(strdevice_pro_id));
 
 			int done = pstm.executeUpdate(strSQL);
 
