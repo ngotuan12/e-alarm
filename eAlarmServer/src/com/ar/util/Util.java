@@ -92,7 +92,7 @@ public class Util
 			}
 			// request
 			StringBuilder stringBuilder = new StringBuilder(1000);
-			Scanner scanner = new Scanner(servletRequest.getInputStream());
+			Scanner scanner = new Scanner(servletRequest.getInputStream(),"utf-8");
 			while (scanner.hasNextLine())
 			{
 				stringBuilder.append(scanner.nextLine());
