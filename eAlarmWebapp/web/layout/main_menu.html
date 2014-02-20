@@ -112,15 +112,12 @@
 				<form-gateway></form-gateway>
 			</template>
 			<template if="{{currentAction == 'FORM_DEVICE_PROPERTIES'}}">
-                <form-devicepropertives></form-devicepropertives>
-            </template>
-	        <template if="{{currentAction == 'FORM_REPORT_DEVICE_BY_AREA'}}">
-        <form-devicepropertives></form-devicepropertives>
-      </template>
-      <template if="{{currentAction == 'FORM_EDIT_ACOUNT'}}">
-        <form-edit-account-detail></form-edit-account-detail>
-      </template>
-	  <template if="{{currentAction == 'FORM_REPORT_DEVICE_BY_AREA'}}">
+				<form-devicepropertives></form-devicepropertives> 
+			</template>
+			<template if="{{currentAction == 'FORM_EDIT_ACOUNT'}}"> 
+				<form-edit-account-detail></form-edit-account-detail>
+			</template>
+			<template if="{{currentAction == 'FORM_REPORT_DEVICE_BY_AREA'}}">
 				<form-report-device-by-area></form-report-device-by-area>
 			</template>
 			<template if="{{currentAction == 'FORM_REPORT_ISSUE_BY_AREA'}}">
