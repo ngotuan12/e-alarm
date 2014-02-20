@@ -1,13 +1,17 @@
 <link rel="import" href="form_device_none.html">
 <link rel="import" href="form_device_edit.html">
+<link rel="import" href="form_device_add.html">
 <polymer-element name="form-device">
 <meta charset="UTF-8" /> 
 <template>
 	<template if="{{currentAction == 'NONE'}}">
-		<form-device-none on-edit="{{onEdit}}"></form-device-none>
+		<form-device-none on-edit="{{onEdit}}" on-add="{{onAdd}}"></form-device-none>
 	</template>
 	<template if="{{currentAction == 'EDIT'}}">
-		<form-device-edit device="{{currentDevice}}" on-Goback={{onGoback}}></form-device-edit>
+		<form-device-edit device="{{currentDevice}}" on-Goback="{{onGoback}}"></form-device-edit>
+	</template>
+	<template if="{{currentAction == 'ADD'}}">
+		<form-device-add on-Goback="{{onGoback}}"></form-device-add>
 	</template>
 </template>
 	<script type="application/dart" src="form_device.dart">

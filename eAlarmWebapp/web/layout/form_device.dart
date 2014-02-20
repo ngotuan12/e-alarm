@@ -17,6 +17,11 @@ class FormDevice extends PolymerElement
 		currentDevice = toObservable(event.detail);
 		currentAction = "EDIT";
 	}
+	void onAdd(CustomEvent event)
+	{
+	  //currentDevice=toObservable(event.detail);
+	  currentAction="ADD";
+	}
 	void onGoback(CustomEvent event)
     {
       //currentDevice = toObservable(event.detail);
