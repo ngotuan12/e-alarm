@@ -1,6 +1,7 @@
 import 'package:polymer/polymer.dart';
 import 'dart:html';
 import '../src/util.dart';
+import 'package:crypto/crypto.dart';
 @CustomTag('form-edit-account-detail')
 class FormEditAccountDetail extends PolymerElement
 {
@@ -106,25 +107,32 @@ class FormEditAccountDetail extends PolymerElement
         {
             Responder responder = new Responder();
             Map request = new Map();
-          request["Method"] = "";
+           String a = txtFullName.value;
+          request["Method"] = "UpdateDetail";
         request["fullname"]=txtFullName.value;
         if(selectGender.selectedIndex==0)
-          request["sex"]="0";
+          request["gender"]="1";
         else
-          request["sex"]="1";
-        if(request["fullname"]=="" ||request["sex"]=="")
+          request["gender"]="0";
+        request["id"] = SessionUser.sessionUserInfor["id"].toString();
+        if(request["fullname"]=="" ||request["gender"]=="")
         {
-          Util.showNotifyError("Data input is  invalid");
+          Util.showNotifyError("Dữ liệu không đúng");
         }
         else
         {
-              responder.onSuccess.listen((Map response){});
+              responder.onSuccess.listen((Map response){
+              	Util.showNotifySuccess("Thay đổi chi tiết tài khoản thành công");
+              	dispatchEvent(new CustomEvent("goback",detail: ""));
+              });
               //error
               responder.onError.listen((Map error)
           {
                 Util.showNotifyError(error["message"]);
+                
+                
           });
-              AppClient.sendMessage(request, AlarmServiceName.PermissionService, AlarmServiceMethod.POST,responder);
+              AppClient.sendMessage(request, AlarmServiceName.UserService, AlarmServiceMethod.POST,responder);
         }
         }
         catch(err)
@@ -132,27 +140,51 @@ class FormEditAccountDetail extends PolymerElement
             Util.showNotifyError(err.toString());
         }
     }
+  void clearData1()
+  {
+  	txtinputPasswordNew.value = "";
+  	txtinputPasswordOld.value = "";
+  	txtinputPasswordNew2.value = "";
+  	
+  }
   void onSavePass()
      {
        try
-         {
-             Responder responder = new Responder();
+         {   
+                 Responder responder = new Responder();
              Map request = new Map();
-           request["Method"] = "";
-         request["pass"]=txtinputPasswordNew.value;
-         if(request["pass"]=="")
+             String passnew = txtinputPasswordNew.value;
+             String passold = txtinputPasswordOld.value;
+           request["Method"] = "UpdatePass";
+         
+         String md5hashnew = CryptoUtils.bytesToHex((new MD5()..add(passnew.codeUnits)).close());
+         request["newpassword"]= md5hashnew;
+         String md5hashold = CryptoUtils.bytesToHex((new MD5()..add(passold.codeUnits)).close());
+         request["id"] = SessionUser.sessionUserInfor["id"].toString();
+         if(txtinputPasswordOld.value==""||txtinputPasswordNew.value=="")
          {
-           Util.showNotifyError("Data input is  invalid");
+           Util.showNotifyError("Chưa nhập đủ dữ liệu");
+         }else if(md5hashold!=SessionUser.sessionPassWord.toString()){
+        	 String a = SessionUser.sessionUserInfor.toString();
+        	 Util.showNotifyError("Mật khẩu cũ không đúng");
          }
+         else if(txtinputPasswordNew.value!=txtinputPasswordNew2.value){
+                 	 Util.showNotifyError("Mật khẩu mới nhập không khớp");
+                  }
          else
          {
-               responder.onSuccess.listen((Map response){});
+               responder.onSuccess.listen((Map response){
+              	 Util.showNotifySuccess("Thay đổi mật khẩu thành công");
+              	 SessionUser.sessionPassWord = md5hashnew;
+                 clearData1();
+               });
+               
                //error
                responder.onError.listen((Map error)
            {
                  Util.showNotifyError(error["message"]);
            });
-               AppClient.sendMessage(request, AlarmServiceName.PermissionService, AlarmServiceMethod.POST,responder);
+               AppClient.sendMessage(request, AlarmServiceName.UserService, AlarmServiceMethod.POST,responder);
          }
          }
          catch(err)

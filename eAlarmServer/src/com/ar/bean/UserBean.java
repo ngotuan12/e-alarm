@@ -47,17 +47,19 @@ public class UserBean extends AppProcessor
 		}
 	}
 
-	public JSONArray UpdateNewPassword(String Password) throws Exception
+	public JSONArray UpdateNewPassword(String Password, String ID)
+			throws Exception
 	{
-		String strSQL = "UPDATE user SET password='" + Password + "";
+		String strSQL = "UPDATE user SET password='" + Password + "'"
+				+ " WHERE id='" + ID + "'";
 		return ExcuteQuery(strSQL, 1);
 	}
 
-	private void UpdateUserInfo(String Fullname, String gender)
+	private void UpdateUserInfo(String Fullname, String gender, String ID)
 			throws Exception
 	{
-		String strSQL = "UPDATE user SET fullname='" + Fullname + "',sex='"
-				+ gender + "";
+		String strSQL = "UPDATE user SET fullname=N'" + Fullname + "',sex='"
+				+ gender + "'" + " WHERE id=" + ID + "";
 		ExcuteQuery(strSQL, 1);
 	}
 
@@ -69,13 +71,13 @@ public class UserBean extends AppProcessor
 		{
 		case "UpdatePass":
 			String pass = request.getString("newpassword");
-			UpdateNewPassword(pass);
+			UpdateNewPassword(pass, request.getString("id").toString());
 			response.put("Mess", "Success");
 			break;
 		case "UpdateDetail":
 			String fullname = request.getString("fullname");
 			String gender = request.getString("gender");
-			UpdateUserInfo(fullname, gender);
+			UpdateUserInfo(fullname, gender, request.getString("id").toString());
 			response.put("Mess", "Success");
 			break;
 		default:

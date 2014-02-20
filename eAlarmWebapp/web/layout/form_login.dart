@@ -67,6 +67,7 @@ class FormLogin extends PolymerElement
 			SessionUser.sessionUserName = strUserName;
 			SessionUser.sessionKey = response["sessionKey"];
 			SessionUser.sessionUserInfor = response["userInfor"];
+			SessionUser.sessionPassWord = md5hash1;
 		});
 		//error
 		responder.onError.listen((Map response)
