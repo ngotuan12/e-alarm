@@ -2,19 +2,6 @@
 <polymer-element name="form-device-edit">
 <meta charset="UTF-8" /> 
 	<template>
-		<!-- Tìm địa điểm theo tên -->	
-		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
-		<script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
-		<!-- get lat,log from address on google map -->
-		<SCRIPT>
-			function initialize() 
-			{
-				google.maps.visualRefresh = true;
-				//var address=document.getElementById("fullAddress").value;
-				//alert(1);
-			}
-			//google.maps.event.addDomListener(window, 'load', initialize);
-		</SCRIPT>
 	<div class="heading-buttons">
 					<h3>Sửa trạm<span> | ATM</span></h3>
 					<div class="buttons pull-right">
@@ -53,11 +40,6 @@
 											<input type="text" id="lat" class="span5" value="" placeholder="Kinh tuyến" disabled/>
 											<input type="text" id="lng" class="span5" value="" placeholder="Vĩ tuyến" disabled/>
 											<label id="ErrorLocation" class="error"></label>
-											<label for="inputTitle">Thuộc tính</label> 
-											<input type="checkbox"  id="temperature" class="property" value=""/>Nhiệt độ
-											<input type="checkbox"  id="humidity" class="property" value=""/>Độ ẩm
-											<input type="checkbox"  id="vibration" class="property" value=""/>Đổ rung
-											<input type="checkbox"  id="brightness" class="property" value=""/>Độ sáng
 											<label for="inputTitle">Mã cây ATM</label> 
 											<input id="code" type="text" class="span10" value="" placeholder="Mã cây ATM">
 											<label id="ErrorCode" class="error"></label>
@@ -71,7 +53,7 @@
 										<div class="span6">
 											<label for="inputTitle" >Tìm địa chỉ</label>
 											<input type="text" id="fullAddress" class="span10" value="" placeholder="Địa chỉ google" disabled/>
-											<button class="btn btn-primary btn-icon search" id="search" onclick="initialize();">Tìm</button>
+											<button class="btn btn-primary btn-icon search" id="search" disabled>Tìm</button>
 											<div id="show-map"></div>
 										</div>
 										<!-- // Column END -->
@@ -88,8 +70,8 @@
 					<!-- Bottom buttons -->
 					<div class="heading-buttons">
 						<div class="buttons pull-right" style="margin: 0;">
-							<a href="#" class="btn btn-default btn-icon glyphicons share"><i></i>Thoát</a>
-								<button class="btn btn-primary btn-icon glyphicons ok_2" id="Save2"><i></i>Lưu</button>
+							<button href="#" id="btncancel" class="btn btn-default btn-icon glyphicons share"><i></i>Thoát</button>
+								<button id="btnSave" class="btn btn-primary btn-icon glyphicons ok_2" id="Save2"><i></i>Lưu</button>
 						</div>
 						<div class="clearfix"></div>
 					</div>
