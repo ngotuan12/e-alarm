@@ -73,4 +73,14 @@
 		<servlet-name>ReportService</servlet-name>
 		<url-pattern>/ReportService</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<description></description>
+		<display-name>UserService</display-name>
+		<servlet-name>UserService</servlet-name>
+		<servlet-class>com.ar.service.UserService</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UserService</servlet-name>
+		<url-pattern>/UserService</url-pattern>
+	</servlet-mapping>
 </web-app>
