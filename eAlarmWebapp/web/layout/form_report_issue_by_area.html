@@ -1,13 +1,19 @@
 <polymer-element name="form-report-issue-by-area">
 <meta charset="UTF-8" />
+<link rel="stylesheet" href="jquery-ui.css" >
+<script src="//code.jquery.com/jquery-1.9.1.js"></script>
+ <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+	  
 <template>
 <style>
 </style>
+
+
 <div class="widget">
 
 <div class="widget-head">
 			<h4 class="heading glyphicons list">
-				<i></i>Báo cáo theo địa bàn
+				<i></i>Báo cáo trạng thái hoạt động
 			</h4>
 		</div>
 <div class="widget-body" style="padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 50px">
@@ -19,6 +25,8 @@
 		<option value="-1">Quận/Huyện</option>
 	</select> -->
 	
+	<!-- <input type="text" id="inputDatePicker"></input> -->
+	
 	<div style="width: 120px; float: right">
 	<button id="btnGetReport" class="btn btn-block btn-primary">Tải về</button>
 	</div>
@@ -29,9 +37,15 @@
 
 </div>
 </div>
-<iframe id="iframeReport" hidden="true" src="https://docs.google.com/file/d/0B3wCusJjGhqoWnhFNXJnSURlNXc/preview" width="100%" height="500px"></iframe>
+<!-- <iframe id="iframeReport" hidden="true" src="https://docs.google.com/file/d/0B3wCusJjGhqoWnhFNXJnSURlNXc/preview" width="100%" height="500px"></iframe> -->
+<iframe id="iframeReport" hidden="true" width="100%" height="500px"></iframe>
 
 </template>
+
  <script type="application/dart" src="form_report_issue_by_area.dart">
 	</script>
+<script src="packages/browser/dart.js"></script>
+<script src="packages/browser/interop.js"></script>
+ 
+	
 </polymer-element>
