@@ -95,7 +95,6 @@ class FormReportDeviceByArea extends PolymerElement
 	}
 	
 	void getReport(Event e){
-	iframeReport.hidden = true;
 	Responder responder = new Responder();
 	Map request = new Map();
 	request["Method"] = "DeviceReportByArea";
@@ -120,6 +119,7 @@ class FormReportDeviceByArea extends PolymerElement
 	{
 	String link =  AppClient.url+"report/"+response["FileOut"];
 	iframeReport.hidden = false;
+	iframeReport.src = "https://docs.google.com/viewer?embedded=true&url=" + link;
 	});
 	//error
 	responder.onError.listen((Map error)

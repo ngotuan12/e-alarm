@@ -3,15 +3,18 @@ import 'dart:html';
 import 'dart:async';
 import 'dart:convert';
 import '../src/util.dart';
+import 'dart:js';
 @CustomTag('form-report-issue-by-area')
 class FormReportIssueByArea extends PolymerElement
 {
   
+
   SelectElement selectorCity;
   SelectElement selectorDistrict;
   ButtonElement btnGetReport;
   ButtonElement btnViewReport;
   IFrameElement iframeReport;
+  var datepicker;	
   List<Map> listArea;	
 
   FormReportIssueByArea.created() : super.created();
@@ -24,6 +27,7 @@ class FormReportIssueByArea extends PolymerElement
 		selectorCity = this.shadowRoot.querySelector("#selectorCity");
 		selectorDistrict = this.shadowRoot.querySelector("#selectorDistrict");
 		iframeReport = this.shadowRoot.querySelector("#iframeReport");
+		datepicker = this.shadowRoot.querySelector("#inputDatePicker");
 		btnGetReport = this.shadowRoot.querySelector("#btnGetReport");
 		btnViewReport = this.shadowRoot.querySelector("#btnViewReport");
 		
@@ -32,8 +36,10 @@ class FormReportIssueByArea extends PolymerElement
 		
 		selectorCity.onChange.listen(onCityChange);
 		
-		getCity();
+		final element = shadowRoot.querySelector("#inputDatePicker");
+		context.callMethod(r'$', [element]).callMethod('datepicker');
 		
+		getCity();
 		
   }
 	
@@ -95,7 +101,6 @@ class FormReportIssueByArea extends PolymerElement
 	}
 	
 	void getReport(Event e){
-	iframeReport.hidden = true;
 	Responder responder = new Responder();
 	Map request = new Map();
 	request["Method"] = "IssueReportByArea";
@@ -120,6 +125,7 @@ class FormReportIssueByArea extends PolymerElement
 	{
 	String link =  AppClient.url+"report/"+response["FileOut"];
 	iframeReport.hidden = false;
+	iframeReport.src = "https://docs.google.com/viewer?embedded=true&url=" + link;
 	});
 	//error
 	responder.onError.listen((Map error)
