@@ -5,6 +5,7 @@
 <link rel="import" href="tool_bar.html">
 <link rel="import" href="form_gatewaycommand.html">
 <link rel="import" href="form_devicepropertives.html">
+<link rel="import" href="form_edit_account_detail.html">
 
 <link rel="import" href="form_gateway.html">
 <polymer-element name="main-menu">
@@ -70,7 +71,7 @@
 					</p> <a class="img" href="#"><img src="style/images/avatar-style-dark.jpg" alt="Avatar" /></a> 
 					<span>
 						<ul>
-							<li><a href="#" class="glyphicons lock"><i></i>Tài khoản</a></li>
+							<li><a href="#" id="btnEditUser" class="glyphicons lock"><i></i>Tài khoản</a></li>
 							<li><a href="#" class="glyphicons keys"><i></i>Mật khẩu</a></li>
 							<li><a href="#" class="glyphicons eject"><i></i>Đăng xuất</a></li>
 						</ul>
@@ -110,6 +111,9 @@
 			</template>
 			<template if="{{currentAction == 'FORM_DEVICE_PROPERTIES'}}">
         <form-devicepropertives></form-devicepropertives>
+      </template>
+      <template if="{{currentAction == 'FORM_EDIT_ACOUNT'}}">
+        <form-edit-account-detail></form-edit-account-detail>
       </template>
 	  <template if="{{currentAction == 'FORM_REPORT_DEVICE_BY_AREA'}}">
 				<form-report-device-by-area></form-report-device-by-area>

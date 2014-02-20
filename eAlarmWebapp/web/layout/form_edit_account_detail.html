@@ -1,0 +1,160 @@
+<polymer-element name="form-edit-account-detail">
+<meta charset="UTF-8" /> 
+<template> <!-- Heading --> 
+<!-- Content -->
+<h3>My Account</h3>
+<div class="innerLR">
+
+  <!-- Widget -->
+  <div class="widget widget-tabs border-bottom-none">
+  
+    <!-- Widget heading -->
+    <div class="widget-head" id="account-nav">
+      <ul>
+        <li id="account-details"><a class="glyphicons edit active" href="#account-details" data-toggle="tab"><i></i>Account details</a></li>
+        <li id="account-settings"><a class="glyphicons settings" href="#account-settings" data-toggle="tab"><i></i>Account settings</a></li>
+      </ul>
+    </div>
+    <!-- // Widget heading END -->
+    
+    <div class="widget-body">
+        <div class="tab-content" style="padding: 0;">
+        
+          <!-- Tab content -->
+          <div class="tab-pane active" id="account-body-details">
+          
+            <!-- Row -->
+            <div class="row-fluid">
+            
+              <!-- Column -->
+              <div class="span6">
+              
+                <!-- Group -->
+                <div class="control-group">
+                  <label class="control-label">Username</label>
+                  <div class="controls">
+                    <input id="txtusername" type="text" value="" class="span10" disabled="disabled"/>
+                    <span style="margin: 0;" class="btn-action single glyphicons circle_question_mark" data-toggle="tooltip" data-placement="top" data-original-title="First name is mandatory"><i></i></span>
+                  </div>
+                </div>
+                <!-- // Group END -->
+                
+                <!-- Group -->
+                <div class="control-group">
+                  <label class="control-label">Full name</label>
+                  <div class="controls">
+                    <input id="txtfullname" type="text" value="" class="span10" />
+                    <span style="margin: 0;" class="btn-action single glyphicons circle_question_mark" data-toggle="tooltip" data-placement="top" data-original-title="Last name is mandatory"><i></i></span>
+                  </div>
+                </div>
+                <!-- // Group END -->
+                
+                <!-- Group -->
+                <div class="control-group">
+                  <label class="control-label">Date of create</label>
+                  <div class="controls">
+                    <div class="input-append">
+                      <input type="text" id="datepicker" class="span12" value="13/06/1988" disabled="disabled"/>
+                      <span class="add-on glyphicons calendar"><i></i></span>
+                    </div>
+                  </div>
+                </div>
+                <!-- // Group END -->
+                
+              </div>
+              <!-- // Column END -->
+              
+              <!-- Column -->
+              <div class="span6">
+              
+                <!-- Group -->
+                <div class="control-group">
+                  <label class="control-label">Gender</label>
+                  <div class="controls">
+                    <select id="selectGender" class="span12">
+                      <option value="1">Male</option>
+                      <option value="0">Female</option>
+                    </select>
+                  </div>
+                </div>
+                <!-- // Group END -->
+                
+              </div>
+              <!-- // Column END -->
+              
+            </div>
+            <!-- // Row END -->
+            
+            <div class="separator line bottom"></div>
+           
+            <!-- Group -->
+            
+            <!--  
+            <div class="control-group row-fluid">
+              <label class="control-label">About me</label>
+              <div class="controls">
+                <textarea id="mustHaveId" class="wysihtml5 span12" rows="5"></textarea>
+              </div>
+            </div>
+            
+           //-->
+            
+            <!-- // Group END -->
+            
+              <button type="button" id="btnSaveChangeUDetail" class="btn btn-icon btn-primary glyphicons circle_ok"><i></i>Save changes</button>
+           
+            </div>
+            
+          <!-- // Tab content END -->
+          
+          <!-- Tab content -->
+          <div class="tab-pane" id="account-body-settings">
+          
+            <!-- Row -->
+            <div class="row-fluid">
+            
+              <!-- Column -->
+              <div class="span3">
+                <strong>Change password</strong>
+                <p class="muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              </div>
+              <!-- // Column END -->
+              
+              <!-- Column -->
+              <div class="span9">
+                <label for="inputUsername">Username</label>
+                <input type="text" id="inputUsername" class="span10" value="john.doe2012" disabled="disabled" />
+                <span style="margin: 0;" class="btn-action single glyphicons circle_question_mark" data-toggle="tooltip" data-placement="top" data-original-title="Username can't be changed"><i></i></span>
+                <div class="separator"></div>
+                    
+                <label for="inputPasswordOld">Old password</label>
+                <input type="password" id="inputPasswordOld" class="span10" value="" placeholder="Leave empty for no change" />
+                <span style="margin: 0;" class="btn-action single glyphicons circle_question_mark" data-toggle="tooltip" data-placement="top" data-original-title="Leave empty if you don't wish to change the password"><i></i></span>
+                <div class="separator"></div>
+                
+                <label for="inputPasswordNew">New password</label>
+                <input type="password" id="inputPasswordNew" class="span12" value="" placeholder="Leave empty for no change" />
+                <div class="separator"></div>
+                
+                <label for="inputPasswordNew2">Repeat new password</label>
+                <input type="password" id="inputPasswordNew2" class="span12" value="" placeholder="Leave empty for no change" />
+                <div class="separator"></div>
+              </div>
+              <!-- // Column END -->
+              <button id="btnSaveChangePass" type="button" style="margin-top:10px; float: right;" class="btn btn-icon btn-primary glyphicons circle_ok"><i></i>Save changes</button>
+            </div>
+            <!-- // Row END -->
+            
+            
+            <!-- // Form actions END -->
+            
+          </div>
+          <!-- // Tab content END -->
+        </div>
+    </div>
+  </div>
+    
+</template>
+	<script type="application/dart" src="form_edit_account_detail.dart">
+	</script> 
+</polymer-element>

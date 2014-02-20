@@ -31,8 +31,46 @@
 <script type="application/dart">export 'package:polymer/init.dart';</script>
 <script src="packages/browser/dart.js"></script>
 <!-- import jquery -->
-<script src="http://code.jquery.com/jquery-latest.js"></script>
-<script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.1.1/js/bootstrap.min.js"></script>
+<!--
+<script type="text/javascript">
+require.config({
+    paths: {
+        jquery: 'style',
+        bootstrap: 'style/bootstrap-theme',
+    },
+    shim: {
+        'jquery': {
+            exports: '$'
+        },
+        'bootstrap': {
+            deps: ['jquery'],
+            exports: '$'
+        },
+    }
+});
+require(['app', ], function(App) {
+    App.initialize();
+});
+</script>
+
+<script src="style/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+
+<script src="style/bootstrap-theme/extend/bootstrap-select/bootstrap-select.js"></script>
+  <script src="style/bootstrap-theme/extend/bootstrap-toggle-buttons/static/js/jquery.toggle.buttons.js"></script>
+  <script src="style/bootstrap-theme/extend/bootstrap-hover-dropdown/twitter-bootstrap-hover-dropdown.min.js"></script>
+  <script src="style/bootstrap-theme/extend/jasny-bootstrap/js/jasny-bootstrap.min.js"></script>
+  <script src="style/bootstrap-theme/extend/jasny-bootstrap/js/bootstrap-fileupload.js"></script>
+  <script src="style/bootstrap-theme/extend/bootbox.js"></script>
+  <script src="style/bootstrap-theme/extend/bootstrap-wysihtml5/js/wysihtml5-0.3.0_rc2.min.js"></script>
+  <script src="style/bootstrap-theme/extend/bootstrap-wysihtml5/js/bootstrap-wysihtml5-0.0.2.js"></script>
+  
+  <script src="style/jquery.min.js"></script>
+  <script src="style/jquery.ui.touch-punch.min.js"></script>
+  <script src="style/jquery-ui-1.9.2.custom.min.js"></script>
+  <script src="style/modernizr.js"></script>
+  <script src="style/bootstrap-theme/js/bootstrap.min.js"></script> 
+  
+  //-->
 </head>
 <body class="login">
 	<main-application> </main-application>
