@@ -23,6 +23,7 @@ class MainMenu extends PolymerElement
 	UListElement ulModules;
 	SpanElement profile;
 	List<Map> listModule;
+	Element btnEditUser;
 	/*
 	 * @author TuanNA
 	 * @since:30/12/2013
@@ -43,10 +44,19 @@ class MainMenu extends PolymerElement
 		//module
 		ulModules = menu.querySelector("#module-content");
 		//user infor
+		
 		initUserInfor();
+		
+		btnEditUser = this.shadowRoot.querySelector("#btnEditUser");
+    btnEditUser.onClick.listen((event)=>loadEditUser());
 		//main menu
 		initMainMenu();
 		
+	}
+	
+	void loadEditUser()
+	{  
+	  currentAction = "FORM_EDIT_ACOUNT";
 	}
 	
 	void initMainMenu()

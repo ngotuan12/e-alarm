@@ -1,4 +1,3 @@
-
 import 'package:polymer/polymer.dart';
 import '../src/util.dart';
 import 'package:crypto/crypto.dart';

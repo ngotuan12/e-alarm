@@ -29,6 +29,7 @@ class ToolBar extends PolymerElement
 		//acount
 		LIElement liAccount = toolbar.querySelector("#account_nav");
 		liAccount.onClick.listen(onToogleNav);
+		
 		listToogle.add(liLanguage);
 		listToogle.add(liHelp);
 		listToogle.add(liAccount);
