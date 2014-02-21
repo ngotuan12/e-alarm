@@ -1,0 +1,19 @@
+<link rel="import" href="form_area_none.html">
+<link rel="import" href="form_area_add.html">
+<link rel="import" href="form_area_edit.html">
+<polymer-element name="form-area">
+<meta charset="UTF-8" /> 
+<template>
+	<template if="{{currentAction=='NONE'}}">
+		<form-area-none on-edit="{{onEdit}}" on-add="{{onAdd}}"></form-area-none>
+	</template>
+	<template if="{{currentAction=='ADD'}}">
+		<form-area-add on-goback="{{onGoBack}}"></form-area-add>
+	</template>
+	<template if="{{currentAction=='EDIT'}}">
+		<form-area-edit area="{{currentArea}}" on-goback={{onGoBack}}></form-area-edit>
+	</template>
+</template>
+	<script type="application/dart" src="form_area.dart">
+	</script> 
+</polymer-element>
