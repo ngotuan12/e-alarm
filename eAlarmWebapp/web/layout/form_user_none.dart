@@ -62,7 +62,7 @@ class FormUserNone extends PolymerElement
     }
     );
     //send to server
-    AppClient.sendMessage(request, AlarmServiceName.UserService, AlarmServiceMethod.POST,responder);    
+    AppClient.sendMessage(request, AlarmServiceName.UserManagementService, AlarmServiceMethod.POST,responder);    
   }
   /*
    * @author:diennd
