@@ -12,4 +12,5 @@ public class AreaModel
 	public double Lang;
 	public String Woodenleg;
 	public String Type;
+	public String FullName;
 }

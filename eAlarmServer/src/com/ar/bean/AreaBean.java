@@ -53,11 +53,13 @@ public class AreaBean extends AppProcessor {
 	}
 
 	private void AddArea(AreaModel _Model) throws Exception {
-		String strSQL = "INSERT INTO area(code,name,parent_id,status,lat,lng,type) "
+		String strSQL = "INSERT INTO area(code,name,full_name,parent_id,status,lat,lng,type) "
 				+ "VALUES('"
 				+ _Model.Code
 				+ "','"
 				+ _Model.Name
+				+ "','"
+				+_Model.FullName
 				+ "',"
 				+ _Model.ParentID
 				+ ","
@@ -69,8 +71,8 @@ public class AreaBean extends AppProcessor {
 	}
 
 	private void UpdateArea(AreaModel _Model) throws Exception {
-		String strSQL = "UPDATE area SET code='" + _Model.Code + "',name='"
-				+ _Model.Name + "'," + "parent_id=" + _Model.ParentID
+		String strSQL = "UPDATE area SET code='" + _Model.Code + "',name=N'"
+				+ _Model.Name + "'"+",full_name=N'"+_Model.FullName+"'"+ ",parent_id=" + _Model.ParentID
 				+ ",status=" + _Model.Status + ",lat=" + _Model.Lat + ",lng="
 				+ _Model.Lang + ",type=" + _Model.Type + "" + " WHERE id="
 				+ _Model.ID + "";
@@ -89,11 +91,14 @@ public class AreaBean extends AppProcessor {
 	}
 
 	private JSONArray GetAllArea() throws Exception {
-		String strSQL = "SELECT id as ID,full_name as FullName,code as Code,name as Name,parent_id as ParentID,level as Level,status as Status,woodenleg as Woodenleg,lat as Lat,lng as Lng,type as Type "
-				+ "FROM area " + " ORDER BY woodenleg";
+		String strSQL = "SELECT a1.id as ID,a2.name as NameParent,a1.full_name as FullName,a1.code as Code,a1.name as Name,a1.parent_id as ParentID,a1.level as Level,a1.status as Status,a1.woodenleg as Woodenleg,a1.lat as Lat,a1.lng as Lng,a1.type as Type "
+				+ "FROM area as a1,area as a2 "+"WHERE a1.parent_id=a2.id " + "ORDER BY a1.woodenleg";
 		return ExcuteQuery(strSQL, 0);
 	}
-
+	private void DeleteArea(int ID) throws Exception {
+		String strSQL = "DELETE FROM  area WHERE id ="+ ID + "";
+		ExcuteQuery(strSQL, 1);
+	}
 	@Override
 	public void doPost() throws Exception {
 		String Method = (String) request.getString("Method");
@@ -122,6 +127,7 @@ public class AreaBean extends AppProcessor {
 			_AreaModel.Lat = Double.parseDouble((String) request
 					.getString("Lat"));
 			_AreaModel.Type = (String) request.getString("Type");
+			_AreaModel.FullName=(String) request.getString("FullName");
 			AddArea(_AreaModel);
 			response.put("Mess", "Success");
 			break;
@@ -139,6 +145,7 @@ public class AreaBean extends AppProcessor {
 			_AreaModelUpdate.Lat = Double.parseDouble((String) request
 					.getString("Lat"));
 			_AreaModelUpdate.Type = (String) request.getString("Type");
+			_AreaModelUpdate.FullName=(String) request.getString("FullName");
 			UpdateArea(_AreaModelUpdate);
 			response.put("Mess", "Success");
 			break;
@@ -155,6 +162,11 @@ public class AreaBean extends AppProcessor {
 		case "GetAllArea":
 			JSONArray GetAllArea = GetAllArea();
 			response.put("ListArea", GetAllArea);
+			response.put("Mess", "Success");
+			break;
+		case "DeleteArea":
+			int IDArea = Integer.parseInt((String) request.getString("ID"));
+			DeleteArea(IDArea);
 			response.put("Mess", "Success");
 			break;
 		default:
