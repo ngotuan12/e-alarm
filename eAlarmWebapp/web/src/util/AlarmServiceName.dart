@@ -7,4 +7,5 @@ class AlarmServiceName
 	static final String GatewayService = "GatewayService";
 	static final String ReportService = "ReportService";
 	static final String UserService = "UserService";
+	static final String UserManagementService = "UserManagementService";
 }
