@@ -13,10 +13,10 @@
   overflow: hidden;
 }
 html{
-	height: 100%;
+	height: auto;
 }
 body {
-	height: 100%;
+	height: auto;
   font-family: 'Open Sans', sans-serif;
   background: #282828;
   font-size: 13px;
