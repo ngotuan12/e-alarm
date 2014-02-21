@@ -12,3 +12,5 @@
 	Class==com.ar.bean.ReportServiceBean
 /UserService
 	Class==com.ar.bean.UserBean
+/UserManagementService
+	Class==com.ar.bean.UserManagementBean

@@ -83,4 +83,14 @@
 		<servlet-name>UserService</servlet-name>
 		<url-pattern>/UserService</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<description></description>
+		<display-name>UserManagementService</display-name>
+		<servlet-name>UserManagementService</servlet-name>
+		<servlet-class>com.ar.service.UserManagementService</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UserManagementService</servlet-name>
+		<url-pattern>/UserManagementService</url-pattern>
+	</servlet-mapping>
 </web-app>
