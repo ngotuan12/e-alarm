@@ -1,0 +1,18 @@
+<link rel="import" href="form_user_none.html">
+<link rel="import" href="form_user_add.html">
+<link rel="import" href="form_user_edit.html">
+<polymer-element name="form-user">
+<meta charset="UTF-8" />
+<template>
+	<template if="{{currentAction=='NONE'}}">
+		<form-user-none on-edit="{{onEdit}}" on-add="{{onAdd}}""></form-user-none>
+	</template>
+	<template if="{{currentAction=='ADD'}}">
+		<form-user-add on-goback="{{onGoBack}}"></form-user-add>
+	</template>
+	<template if="{{currentAction=='EDIT'}}">
+		<form-user-edit user="{{currentUser}}"></form-user-edit>
+	</template>
+</template>
+<script type="application/dart" src="form_user.dart"></script> 
+</polymer-element>
