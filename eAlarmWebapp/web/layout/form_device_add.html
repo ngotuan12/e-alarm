@@ -2,14 +2,6 @@
 <polymer-element name="form-device-add">
 <meta charset="UTF-8" /> 
 	<template>
-	<div class="heading-buttons">
-					<h3>Thêm trạm<span> | ATM</span></h3>
-					<div class="buttons pull-right">
-						<button id="btnExit" class="btn btn-default btn-icon glyphicons share"><i></i>Thoát</button> 
-							<button class="btn btn-primary btn-icon glyphicons ok_2" id="Save1"><i></i>Lưu</button>
-					</div>
-					<div class="clearfix"></div>
-				</div>
 				<div class="separator bottom"></div>
 				<!-- // Heading END -->
 				<div class="innerLR">
@@ -17,6 +9,7 @@
 					<div class="widget widget-tabs">
 						<!-- Widget heading -->
 						<div class="widget-head">
+						<h3 class="heading">Thêm phòng máy</h3>
 						<p id="suscess" class="suscess"></p>
 						</div>
 						<!-- // Widget heading END -->
@@ -28,25 +21,44 @@
 									<div class="row-fluid">
 										<!-- Column -->
 										<div class="span6">
+											<label for="inputTitle">Mã phòng máy</label> 
+											<input id="code" type="text" class="span10" placeholder="<Mã phòng máy>">
+											<label for="inputTitle">Tên phòng máy</label> 
+											<input id="name" type="text" class="span10" placeholder="<Tên phòng máy>">
 											<label>Địa bàn</label>
 											<select id="area" class="span10">
 												<option value="-1">Chọn địa bàn</option>
 											</select>
 											<label for="inputTitle">Địa chỉ</label> 
-											<input id="address" type="text" value="" class="span10" placeholder="Địa chỉ" disabled>
+											<input id="address" type="text" value="" class="span10" placeholder="<Địa chỉ>" disabled>
 											<label id="ErrorAddress" class="error"></label>
-											<label for="inputTitle">Tọa độ </label>
-											<input type="text" id="Lat" class="span5" value="" placeholder="Kinh tuyến" disabled/>
-											<input type="text" id="Lng" class="span5" value="" placeholder="Vĩ tuyến" disabled/>
+											<!-- <label for="inputTitle">Tọa độ </label> -->
+											<input  type="hidden" id="Lat" class="span5" value="" placeholder="Kinh tuyến" disabled/>
+											<input  type="hidden" id="Lng" class="span5" value="" placeholder="Vĩ tuyến" disabled/>
 											<label id="ErrorLocation" class="error"></label>
-											<label for="inputTitle">Mã cây ATM</label> 
-											<input id="code" type="text" class="span10" placeholder="Mã cây ATM">
-											<label id="ErrorCode" class="error"></label>
-											<label for="inputTitle" >trạng thái</label>
-											<select id="status" class="span5">	
-												<option value="1" selected>Tốt</option>
-												<option value="0">Hỏng</option>
-											</select>
+											<label for="inputTitle">MAC</label> 
+											<input id="code" type="text" class="span10" placeholder="<Địa chỉ MAC>">
+											<div id="list-properties" style="margin: auto;padding: auto;">
+												<label for="inputTitle">Cảm biến</label>
+												<input type="checkbox" checked>Nhiệt độ
+												<input type="checkbox" >Độ ẩm
+												<input type="checkbox" >Độ rung
+												<input type="checkbox" checked>Nhiệt độ
+												<input type="checkbox" >Độ ẩm
+												<input type="checkbox" >Độ rung
+												<input type="checkbox" checked>Nhiệt độ
+												<input type="checkbox" >Độ ẩm
+												<input type="checkbox" >Độ rung
+												<input type="checkbox" checked>Nhiệt độ
+												<input type="checkbox" >Độ ẩm
+												<input type="checkbox" >Độ rung
+												<input type="checkbox" checked>Nhiệt độ
+												<input type="checkbox" >Độ ẩm
+												<input type="checkbox" >Độ rung
+												<input type="checkbox" checked>Nhiệt độ
+												<input type="checkbox" >Độ ẩm
+												<input type="checkbox" >Độ rung
+											</div>
 											<div class="separator"></div>
 										</div>
 										<!-- // Column END -->
