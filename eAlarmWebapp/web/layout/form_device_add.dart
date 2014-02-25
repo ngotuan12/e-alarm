@@ -8,7 +8,6 @@ class FormDeviceAdd extends PolymerElement
 {
   
   ButtonElement btnCancel;
-  ButtonElement btnExit;
   ButtonElement btnSearch;
   ButtonElement btnSave;
   TextInputElement txtAddress;
@@ -16,6 +15,7 @@ class FormDeviceAdd extends PolymerElement
   TextInputElement txtLat;
   TextInputElement txtLng;
   TextInputElement txtCode;
+  TextInputElement txtName;
   SelectElement selArea;
   SelectElement selStatus;
   List<Map> listAreas;
@@ -46,7 +46,6 @@ class FormDeviceAdd extends PolymerElement
 		selArea=this.shadowRoot.querySelector("#area");
 		selStatus=this.shadowRoot.querySelector("#status");
 		btnCancel=this.shadowRoot.querySelector("#btnCancel");
-		btnExit=this.shadowRoot.querySelector("#btnExit");
 		btnSave=this.shadowRoot.querySelector("#btnSave");
 		btnSearch=this.shadowRoot.querySelector("#btnSearch");
 		txtFullAddress=this.shadowRoot.querySelector("#fullAddress");
@@ -54,8 +53,8 @@ class FormDeviceAdd extends PolymerElement
 		txtLat=this.shadowRoot.querySelector("#Lat");
 		txtLng=this.shadowRoot.querySelector("#Lng");
 		txtCode=this.shadowRoot.querySelector("#code");
+		txtName =this.shadowRoot.querySelector("#name");
 		//event
-		btnExit.onClick.listen(onExit);
 		btnCancel.onClick.listen(onExit);
 		btnSearch.onClick.listen(onShowMap);
 		btnSave.onClick.listen(onSave);
@@ -79,7 +78,10 @@ class FormDeviceAdd extends PolymerElement
    */
   void onSave(Event e)
   {
-    checkData();
+    if(!isValidate())
+    {
+    	return;
+    }
     if(!error)
     {
       window.alert(selStatus.selectedIndex.toString()+"-"+txtAddress.value+"-"+txtCode.value+"-"+txtFullAddress.value+"-"+txtLat.value+"-"+txtLng.value+"-");
@@ -114,21 +116,34 @@ class FormDeviceAdd extends PolymerElement
    * @since :14/2/2014
    * @version:"1.0
    */
-  void checkData()
+  bool isValidate()
   {
-    error=false;
-    errorString="";
+	  if(txtCode.value.trim() =="")
+      {
+      	Util.showNotifyError("Trường mã phòng máy không được để trống");
+        txtCode.focus();
+        return false;
+      }
+	  if(txtName.value.trim() =="")
+	   {
+	   	Util.showNotifyError("Trường tên phòng máy không được để trống");
+	   	txtName.focus();
+	     return false;
+	   }
+	  if(selArea.selectedIndex==0)
+	  {
+		  Util.showNotifyError("Chưa chọn địa bàn");
+		  selArea.focus();
+          return false;  
+	  }
     //check lat lng
     if(txtLat.value.trim()==""||txtLng.value.trim()=="")
     {
-      error=true;
-      errorString+="Lat,lng can't empty"+", ";
+    	Util.showNotifyError("Không tìm thấy địa chỉ");
+    	txtAddress.focus();
+      return false;
     }
-    if(txtCode.value.trim() =="")
-    {
-      error=true;
-      errorString+="Code ATM can't empty"+", ";
-    }
+    
   }
   /*
    * @author: diennd
