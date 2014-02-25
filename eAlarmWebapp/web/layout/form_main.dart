@@ -16,13 +16,21 @@ class FormMain extends PolymerElement
 	Timer mytimer;
 	SelectElement slCity;
 	SelectElement slDistrict;
+	SelectElement slStatus;
 	OListElement olDevicesGood;
 	OListElement olDevicesError;
 	LIElement liError;
 	LIElement liNormal;
 	List<Map> listArea;
 	InfoWindow popupWindow;
-	List<MapTypeStyle> styles = 
+	DivElement divgoodATM;
+	DivElement diverrorATM;
+	DivElement divMapCanvas;
+	SpanElement spClick;
+	DivElement divRight;
+	List<Map> listProvince = [];
+	List<Map> AllDevices=[];
+	List<MapTypeStyle> styles =
 	[
 	     {
 	      "featureType": "poi",
@@ -37,7 +45,7 @@ class FormMain extends PolymerElement
 	      "stylers": [
 	      { "visibility": "off" }
 	      ]
-	    }	
+	    }
 	];
 	/*
 	 * @author ducdienpt
@@ -45,53 +53,101 @@ class FormMain extends PolymerElement
 	 * @company: ex-artisan
 	 * @version :1.0
 	 */
-	enteredView() 
+	enteredView()
 	{
 		super.enteredView();
 		slCity=this.shadowRoot.querySelector("#city-location");
 		slDistrict=this.shadowRoot.querySelector("#district-location");
+		slStatus=this.shadowRoot.querySelector("#selStatus");
 		olDevicesGood=this.shadowRoot.querySelector("#ol-devicesGood");
 		olDevicesError=this.shadowRoot.querySelector("#ol-devicesError");
-		liNormal=this.shadowRoot.querySelector("#normal");
-		liError=this.shadowRoot.querySelector("#error");
-		liNormal.onClick.listen(changeColorNormal);
-		liError.onClick.listen(changeColorError);
+		spClick=this.shadowRoot.querySelector("#spClick");
+    	divRight=this.shadowRoot.querySelector("#divRight");
+    	divMapCanvas=this.shadowRoot.querySelector("#map-canvas");
+//		liNormal=this.shadowRoot.querySelector("#normal");
+//		liError=this.shadowRoot.querySelector("#error");
+//		divgoodATM=this.shadowRoot.querySelector("#goodATM");
+//		diverrorATM=this.shadowRoot.querySelector("#errorATM");
+//		liNormal.onClick.listen(onListAtmChange);
+//		liError.onClick.listen(onListAtmChange);
+
 		//Event
 		slCity.onChange.listen(onChooseCity);
 		slDistrict.onChange.listen(onChooseDistric);
+//		spClick.onClick.listen(onShow);
 		//popup window
 		popupWindow = createPopupInfor();
 		//init
+		
 		init();
+		//
 		//sys data
 //		var oneSecond = new Duration(seconds:60);
 //		mytimer = new Timer.periodic(oneSecond, updateData);
 		//default background for status atm
-		liError.style.background='#d71c00';
-		liNormal.style.background='#64625f';
+		//liError.style.background='#d71c00';
+		//liNormal.style.background='#64625f';
 	}
+	void onShow(Event e)
+	{
+//		divMapCanvas.style.width="100%";
+//		divRight.style.width="0%";
+	}
+//	void onListAtmChange(Event event)
+//	{
+//	  if(event.currentTarget == liNormal)
+//	  {
+//		liNormal.style.background='#008000';
+//		liError.style.background='#64625f';
+//		  divgoodATM.classes.add("active");
+//		  if(diverrorATM.classes.contains("active"))
+//		  {
+//			  diverrorATM.classes.remove("active");
+//		  }
+//	  }
+//	  else if(event.currentTarget == liError)
+//	  {
+//		  liError.style.background='#d71c00';
+//		  liNormal.style.background='#64625f';
+//		diverrorATM.classes.add("active");
+//		if(divgoodATM.classes.contains("active"))
+//		{
+//			divgoodATM.classes.remove("active");
+//		}
+//	  }
+//	}
 	/*
 	 * @DienND
 	 * @since 27/12/2013
 	 * @company ex-artisan
 	 * @version 1.0
 	 */
-	void changeColorNormal(Event e)
-	{
-	liNormal.style.background='#008000';
-		liError.style.background='#64625f';
-	}
+//	void changeColorNormal(Event e)
+//	{
+//	liNormal.style.background='#008000';
+//		liError.style.background='#64625f';
+//		diverrorATM.classes.clear();
+//		divgoodATM.classes.clear();
+//
+//    diverrorATM.classes.add("tab-pane");
+//    divgoodATM.classes.add("tab-pane active");
+//	}
 	/*
 	 * @DienND
 	 * @since 27/12/2013
 	 * @company ex-artisan
 	 * @version 1.0
 	 */
-	void changeColorError(Event e)
-	{
-		liError.style.background='#d71c00';
-		liNormal.style.background='#64625f';
-	}
+//	void changeColorError(Event e)
+//	{
+//		liError.style.background='#d71c00';
+//		liNormal.style.background='#64625f';
+//    diverrorATM.classes.clear();
+//    divgoodATM.classes.clear();
+//
+//    diverrorATM.classes.add("tab-pane active");
+//    divgoodATM.classes.add("tab-pane");
+//	}
 	/*
 	 * @DienND
 	 * @since 27/12/2013
@@ -119,7 +175,7 @@ class FormMain extends PolymerElement
 			if(slCity.selectedIndex!=0)
 			{
 				Map area = JSON.decode(opt.value);
-				if(area["Type"].toString()=="2")
+				if(area["type"].toString()=="2")
 				{
 					showLocation(area);
 				}
@@ -129,13 +185,13 @@ class FormMain extends PolymerElement
 		{
 			//data
 			Map area = JSON.decode(opt.value);
-			if(area["Type"]=="3")
+			if(area["type"]=="3")
 			{
 				//show device
 				//change center
 				final mapOptions = new MapOptions()
 				..zoom = 14
-				..center = new LatLng(area["Lat"], area["Lng"])
+				..center = new LatLng(area["lat"], area["lng"])
 				..mapTypeId = MapTypeId.ROADMAP
 				..styles = styles;
 				final map = new GMap(this.shadowRoot.querySelector("#map-canvas"), mapOptions);
@@ -168,20 +224,21 @@ class FormMain extends PolymerElement
 		final map = new GMap(this.shadowRoot.querySelector("#map-canvas"), mapOptions);
 		//get data
 		Map request = new Map();
-		request["Method"] = "GetAllAreaActive";
+		request["Method"] = "onFormMainLoad";
 		//Listen
 		Responder responder = new Responder();
 		//success
 		responder.onSuccess.listen((Map response)
 		{
-			List<Map> temp=response['ListAreaActive'];
+			AllDevices=response['device_list'];
+			List<Map> temp=response['area_list'];
 			listArea = filterByType(temp, ["2"]);
 			//init Option Select
 			for(int i=0;i<listArea.length;i++)
 			{
 				//option
 				Map element= listArea[i];
-				String name=element['Name'];
+				String name=element['name'];
 				OptionElement op = new Element.option();
 				op.text=name;
 				op.value = JSON.encode(element);
@@ -190,6 +247,8 @@ class FormMain extends PolymerElement
 			}
 			//Show area on map
 			showArea(listArea, map);
+			initListProvince(listArea);
+			
 		});
 		//error
 		responder.onError.listen((Map error)
@@ -198,7 +257,103 @@ class FormMain extends PolymerElement
 		}
 		);
 		//send to server
-		AppClient.sendMessage(request, AlarmServiceName.AreaService, AlarmServiceMethod.POST,responder);
+		AppClient.sendMessage(request, AlarmServiceName.DeviceService, AlarmServiceMethod.POST,responder);
+	}
+
+	void initListProvince(List<Map> listProvince)
+	{
+		DivElement divProvinces = this.shadowRoot.querySelector("#list-province");
+		for(int i=0;i<listProvince.length;i++)
+		{
+			List<Map> listDevices=filterDeviceByAreaCode(AllDevices, listProvince[i]["area_code"]);
+			//check status
+			switch(slStatus.selectedIndex.toString())
+			{
+				case '0':listDevices=filterByStatus(listDevices,['1','2']);
+					break;
+				case '1':listDevices=filterByStatus(listDevices,['1']);
+					break;
+				case '2':listDevices=filterByStatus(listDevices,['2']);
+					break;
+				default:listDevices=filterByStatus(listDevices,['1','2']);
+					break;
+			}
+			//new item
+			DivElement province = new DivElement();
+			province.className = "widget widget-activity margin-none";
+			province.attributes["data-toggle"]= "collapse-widget";
+			province.attributes["data-collapse-closed"]= "true";
+			//item head
+			DivElement provinceHead = new DivElement();
+			provinceHead.className = "widget-head";
+			provinceHead.appendHtml("<span id=\"spClick\" class=\"collapse-toggle\" style=\"float: left;\"></span>");
+			provinceHead.appendHtml("<h4 class=\"heading\">"+listProvince[i]["name"]+"</h4><span class=\"count\" style=\"float: right;\">"+listDevices.length.toString()+"</span>");
+			//Add listener
+			provinceHead.querySelector("#spClick").onClick.listen(onProvinceToogle);
+			//item body
+			DivElement provinceBody = new DivElement();
+			provinceBody.id = "province-body";
+			provinceBody.className = "widget-body collapse";
+			provinceBody.style.height = "0px";
+			provinceBody.innerHtml = "<div class=\"tab-content\">"
+									+"<div class=\"tab-pane\" id=\"tab-pane\">"
+									+"<div class=\"list\" id=\"list\">"
+									+"</div>"
+									+"</div>"
+									+"</div>";
+//			provinceBody.appendHtml("<div class=\"tab-content\">");
+//			provinceBody.appendHtml("<div class=\"tab-pane\" id=\"tab-pane\">");
+//			provinceBody.appendHtml("<div class=\"list\" id=\"list\">");
+//			provinceBody.appendHtml("</div>");
+//			provinceBody.appendHtml("</div>");
+//			provinceBody.appendHtml("</div>");
+			
+			Element el=provinceBody.querySelector("#list");
+			
+			initListDeviceError(el, listDevices);
+			//add children
+			province.children.add(provinceHead);
+			province.children.add(provinceBody);
+			divProvinces.children.add(province);
+//			listProvince.add({"":""});
+		}
+	}
+	void onProvinceToogle(Event event)
+	{
+		Element target = event.currentTarget;
+		Element headProvince = target.parent;
+		Element divProvince = headProvince.parent;
+		Element bodyProvince = divProvince.children[1];
+		Element tabPane = divProvince.querySelector(".tab-pane");
+		if(divProvince.attributes["data-collapse-closed"]=="true")
+		{
+			divProvince.attributes["data-collapse-closed"]="false";
+			bodyProvince.className = "widget-body in collapse";
+			bodyProvince.style.height = "auto";
+			tabPane.classes.add("active");
+		}
+		else
+		{
+			divProvince.attributes["data-collapse-closed"]="true";
+			bodyProvince.className = "widget-body collapse";
+			bodyProvince.style.height = "0px";
+			tabPane.classes.remove("active");
+		}
+		print(event.target);
+	}
+	void initListDeviceError(Element elList,List<Map> listError)
+	{
+		for(int i=0;i<listError.length;i++)
+		{
+			LIElement item = new LIElement();
+			item.className = "double";
+			AnchorElement aItem=new AnchorElement();
+			aItem.href="#";
+			aItem.text=listError[i]['address'];
+			//item.appendHtml("<span class=\"ellipsis\"> <a href=\"#\">"+listError[i]['address']+"</a> : nhiệt độ vượt ngưỡng</span>");
+			item.children.add(aItem);
+			elList.children.add(item);
+		}
 	}
 	/*
 	 * @DienND
@@ -218,8 +373,8 @@ class FormMain extends PolymerElement
 		op.text="Quận/Huyện";
 		slDistrict.children.add(op);
 		//remove all li in ul-Devices
-		olDevicesGood.children.clear();
-		olDevicesError.children.clear();
+//		olDevicesGood.children.clear();
+//		olDevicesError.children.clear();
 		//check selectedIndex
 		if(slCity.selectedIndex==0)
 		{
@@ -229,7 +384,7 @@ class FormMain extends PolymerElement
 		{
 			//data
 			Map area = JSON.decode(opt.value);
-			if(area["Type"]=="2")
+			if(area["type"]=="2")
 			{
 				showLocation(area);
 			}
@@ -244,8 +399,8 @@ class FormMain extends PolymerElement
 	void onChooseDistric(Event e)
 	{
 		//remove all li in ul-Devices
-		olDevicesGood.children.clear();
-		olDevicesError.children.clear();
+//		olDevicesGood.children.clear();
+//		olDevicesError.children.clear();
 		//selected
 		OptionElement opt = slDistrict.children.elementAt(slDistrict.selectedIndex);
 		//check selectedIndex
@@ -260,7 +415,7 @@ class FormMain extends PolymerElement
 			slDistrict.children.add(op);
 			OptionElement opt = slCity.children.elementAt(slCity.selectedIndex);
 			Map area = JSON.decode(opt.value);
-			if(area["Type"]=="2")
+			if(area["type"]=="2")
 			{
 				showLocation(area);
 			}
@@ -269,14 +424,14 @@ class FormMain extends PolymerElement
 		{
 			//data
 			Map area = JSON.decode(opt.value);
-			if(area["Type"]=="3")
+			if(area["type"]=="3")
 			{
-				
+
 				//show device
 				//change center
 				final mapOptions = new MapOptions()
 				..zoom = 14
-				..center = new LatLng(area["Lat"], area["Lng"])
+				..center = new LatLng(area["lat"], area["lng"])
 				..mapTypeId = MapTypeId.ROADMAP
 				..styles = styles;
 				final map = new GMap(this.shadowRoot.querySelector("#map-canvas"), mapOptions);
@@ -295,7 +450,7 @@ class FormMain extends PolymerElement
 		//change center
 		final mapOptions = new MapOptions()
 		..zoom = 14
-		..center = new LatLng(location["Lat"], location["Lng"])
+		..center = new LatLng(location["lat"], location["lng"])
 		..mapTypeId = MapTypeId.ROADMAP
 		..styles = styles;
 		final map = new GMap(this.shadowRoot.querySelector("#map-canvas"), mapOptions);
@@ -334,6 +489,7 @@ class FormMain extends PolymerElement
 		//send to server
 		AppClient.sendMessage(request, AlarmServiceName.DeviceService, AlarmServiceMethod.POST,responder);
 	}
+	
 	/*
 	 * @ducdienpt
 	 * @Since 15/12/2013
@@ -345,7 +501,7 @@ class FormMain extends PolymerElement
 		//get data
 		Map request = new Map();
 		request["Method"] = "onGetAllDevicesByAreaID";
-		request["area_id"]=area["ID"];
+		request["area_id"]=area["id"];
 		//Listen
 		Responder responder = new Responder();
 		//success
@@ -368,6 +524,35 @@ class FormMain extends PolymerElement
 	}
 	/*
 	 * @ducdienpt
+	 * @since 25/12/2013
+	 * @company :ex-artisan
+	 * @version :1.0
+	 */
+	void allDevices()
+	{
+		//get data
+    		Map request = new Map();
+    		request["Method"] = "allDevices";
+    		//Listen
+    		Responder responder = new Responder();
+    		//success
+    		responder.onSuccess.listen((Map response)
+    		{
+	    		AllDevices=response['device_list'];
+	    		List<Map> temp=response['area_list'];
+	    		initListProvince(temp);
+    		});
+    		//error
+    		responder.onError.listen((Map error)
+    		{
+    			Util.showNotifyError(error["message"]);
+    		}
+    		);
+    		//send to server
+    		AppClient.sendMessage(request, AlarmServiceName.DeviceService, AlarmServiceMethod.POST,responder);
+	}
+	/*
+	 * @ducdienpt
 	 * @since 18/12/2013
 	 * @company:ex-artisan
 	 * @version : 1.0
@@ -376,7 +561,7 @@ class FormMain extends PolymerElement
 		//get data
 		Map request = new Map();
 		request["Method"] = "GetActiveByParent";
-		request["ID"]=area["ID"];
+		request["ID"]=area["id"];
 		//Listen
 		Responder responder = new Responder();
 		//success
@@ -402,7 +587,7 @@ class FormMain extends PolymerElement
 			//getAllDeviceByAreaId(area, map);
 			getAllDevice(map, area);
 		});
-		
+
 		//error
 		responder.onError.listen((Map error)
 		{
@@ -420,39 +605,42 @@ class FormMain extends PolymerElement
 	void showDevices(List<Map> devices,final GMap map)
 	{
 		int count = 0;
-		Timer timer = new Timer.periodic(new Duration(milliseconds: 50), (Timer timer)
+		if(devices!=null&&devices.length>0)
 		{
-		
-			showDevice(devices[count],map);
-			count++;
-			if(count==devices.length)
+			Timer timer = new Timer.periodic(new Duration(milliseconds: 50), (Timer timer)
 			{
-				timer.cancel();
-			}
-		});
+
+				showDevice(devices[count],map);
+				count++;
+				if(count==devices.length)
+				{
+					timer.cancel();
+				}
+			});
+		}
 	}
-	
+
 	void showDevice(Map device,final GMap map)
 	{
 		//add into ul_devices
-		LIElement liDevice=new LIElement();
-		liDevice.style.marginTop="5px";
-		liDevice.style.marginLeft="5px";
-		liDevice.style.borderBottom="1px solid #616161";
-		ImageElement img=new ImageElement();
-		img.style.width='16px';
-		img.style.height='16px';
-		img.style.marginRight='10px';
-		AnchorElement aDevice=new AnchorElement();
-		aDevice.style.textDecoration="none";
-		aDevice.style.color="#fff";
-		aDevice.href="#";
-		aDevice.onMouseOver.listen((event)=>aDevice.style.color='gray');
-		aDevice.onMouseLeave.listen((event)=>aDevice.style.color='#fff');
-		liDevice.onMouseOver.listen((event)=>aDevice.style.color='gray');
-		liDevice.onMouseLeave.listen((event)=>aDevice.style.color='#fff');
+//		LIElement liDevice=new LIElement();
+//		liDevice.style.marginTop="5px";
+//		liDevice.style.marginLeft="5px";
+//		liDevice.style.borderBottom="1px solid #616161";
+//		ImageElement img=new ImageElement();
+//		img.style.width='16px';
+//		img.style.height='16px';
+//		img.style.marginRight='10px';
+//		AnchorElement aDevice=new AnchorElement();
+//		aDevice.style.textDecoration="none";
+//		aDevice.style.color="#fff";
+//		aDevice.href="#";
+//		aDevice.onMouseOver.listen((event)=>aDevice.style.color='gray');
+//		aDevice.onMouseLeave.listen((event)=>aDevice.style.color='#fff');
+//		liDevice.onMouseOver.listen((event)=>aDevice.style.color='gray');
+//		liDevice.onMouseLeave.listen((event)=>aDevice.style.color='#fff');
 		//split data
-		
+
 		List parts = device['address'].split(',');
 		String temp="";
 		if(slDistrict.selectedIndex>0)
@@ -469,15 +657,15 @@ class FormMain extends PolymerElement
 				temp+=parts[i]+",";
 			}
 		}
-		aDevice.text=temp.substring(0,temp.length-1);
+		//aDevice.text=temp.substring(0,temp.length-1);
 		//check status
 		if(device["status"]=="1")
 		{
-			img.src='images/ATMs/BlueV.png';
+			//img.src='images/ATMs/BlueV.png';
 			//aDevice.children.add(img);
-			liDevice.children.add(img);
-			liDevice.children.add(aDevice);
-			olDevicesGood.children.add(liDevice);
+			//liDevice.children.add(img);
+			//liDevice.children.add(aDevice);
+			//olDevicesGood.children.add(liDevice);
 			//new marker
 			Marker marker = new Marker
 			(
@@ -489,19 +677,19 @@ class FormMain extends PolymerElement
 				..icon='images/ATMs/marker_blue.png'
 			);
 			//add listener
-			liDevice.onClick.listen((event) =>showMarkerInfor(device,marker,map));
-			marker.onClick.listen((e) 
+			//liDevice.onClick.listen((event) =>showMarkerInfor(device,marker,map));
+			marker.onClick.listen((e)
 			{
 				showMarkerInfor(device,marker,map);
 			});
 		}
 		else
 		{
-			img.src='images/ATMs/RedX.png';
+			//img.src='images/ATMs/RedX.png';
 			//aDevice.children.add(img);
-			liDevice.children.add(img);
-			liDevice.children.add(aDevice);
-			olDevicesError.children.add(liDevice);
+			//liDevice.children.add(img);
+			//liDevice.children.add(aDevice);
+			//olDevicesError.children.add(liDevice);
 			//new marker
 			Marker marker = new Marker
 			(
@@ -512,10 +700,10 @@ class FormMain extends PolymerElement
 			..animation = Animation.DROP
 			..icon='images/ATMs/marker_red.png'
 			);
-			
+
 			//add listener
-			liDevice.onClick.listen((event) =>showMarkerInfor(device,marker,map));
-			marker.onClick.listen((e) 
+			//liDevice.onClick.listen((event) =>showMarkerInfor(device,marker,map));
+			marker.onClick.listen((e)
 			{
 			showMarkerInfor(device,marker,map);
 			});
@@ -531,18 +719,17 @@ class FormMain extends PolymerElement
 	{
 		for(int i =0;i<areas.length;i++)
 		{
-			
 			//data
 			Map area = areas[i];
 			//marker
 			Marker marker = new Marker
 			(
 				new MarkerOptions()
-				..position = new LatLng(area["Lat"], area["Lng"])
+				..position = new LatLng(area["lat"], area["lng"])
 				..map = map
-				..title = area["Name"]
+				..title = area["name"]
 			);
-			marker.onClick.listen((e) 
+			marker.onClick.listen((e)
 			{
 				slCity.selectedIndex = i+1;
 				showLocation(areas[i]);
@@ -560,7 +747,7 @@ class FormMain extends PolymerElement
 		//show popup
 		popupWindow.open(map, marker);
 		//show chart
-		AlarmServiceChart.load().then((_) 
+		AlarmServiceChart.load().then((_)
 		{
 		int sliderValue() => int.parse('8');
 		// Create a Guage after the library has been loaded.
@@ -661,7 +848,7 @@ class FormMain extends PolymerElement
 			left_content.style.fontFamily="Arial";
 			left_content.style.height="70%";
 			left_content.style.width="100%";
-			
+
 				//create div left,right in div left_content
 				DivElement left_content_left=new DivElement();
 				left_content_left.id="left_content_left";
@@ -731,7 +918,7 @@ class FormMain extends PolymerElement
 					divStatuSensorContent.style.fontFamily="Arial";
 					divStatuSensorContent.style.height="73%";
 					divStatuSensorContent.style.width="100%";
-						//create div 
+						//create div
 						DivElement divStatuSensorContentup=new DivElement();
 						divStatuSensorContentup.id="divStatuSensorContentup";
 						divStatuSensorContentup.style.color="#000";
@@ -745,7 +932,7 @@ class FormMain extends PolymerElement
 							divStatuSensorContentup1.style.height="100%";
 							divStatuSensorContentup1.style.width="34%";
 							divStatuSensorContentup1.style.float="left";
-								//text 
+								//text
 							divStatuSensorContentup1.innerHtml='''
 								<p class="l_h_content_1"><img class="l_h_content_img" src="images/ATMs/ic_green.png" alt="blue"></p>
 								<p class="l_h_content_1">Cửa ngoài</p>
@@ -758,7 +945,7 @@ class FormMain extends PolymerElement
 							divStatuSensorContentup2.style.height="100%";
 							divStatuSensorContentup2.style.width="33%";
 							divStatuSensorContentup2.style.float="left";
-								//text 
+								//text
 							divStatuSensorContentup2.innerHtml='''
 								<p class="l_h_content_1"><img class="l_h_content_img" src="images/ATMs/ic_red.png" alt="red"></p>
 								<p class="l_h_content_1">Nhiệt độ</p>
@@ -770,7 +957,7 @@ class FormMain extends PolymerElement
 							divStatuSensorContentup3.style.height="100%";
 							divStatuSensorContentup3.style.width="33%";
 							divStatuSensorContentup3.style.float="left";
-								//text 
+								//text
 							divStatuSensorContentup3.innerHtml='''
 								<p class="l_h_content_1"><img class="l_h_content_img" src="images/ATMs/ic_green.png" alt="blue"></p>
 								<p class="l_h_content_1">Cửa trên</p>
@@ -793,7 +980,7 @@ class FormMain extends PolymerElement
 							divStatuSensorContentdown1.style.height="100%";
 							divStatuSensorContentdown1.style.width="34%";
 							divStatuSensorContentdown1.style.float="left";
-							//text 
+							//text
 							divStatuSensorContentdown1.innerHtml='''
 							<p class="l_h_content_1"><img class="l_h_content_img" src="images/ATMs/ic_green.png" alt="blue"></p>
 							<p class="l_h_content_1">Cửa ngoài</p>
@@ -806,7 +993,7 @@ class FormMain extends PolymerElement
 							divStatuSensorContentdown2.style.height="100%";
 							divStatuSensorContentdown2.style.width="33%";
 							divStatuSensorContentdown2.style.float="left";
-							//text 
+							//text
 							divStatuSensorContentdown2.innerHtml='''
 							<p class="l_h_content_1"><img class="l_h_content_img" src="images/ATMs/ic_green.png" alt="bule"></p>
 							<p class="l_h_content_1">Cửa kẹt</p>
@@ -818,7 +1005,7 @@ class FormMain extends PolymerElement
 							divStatuSensorContentdown3.style.height="100%";
 							divStatuSensorContentdown3.style.width="33%";
 							divStatuSensorContentdown3.style.float="left";
-							//text 
+							//text
 							divStatuSensorContentdown3.innerHtml='''
 							<p class="l_h_content_1"><img class="l_h_content_img" src="images/ATMs/ic_red.png" alt="red"></p>
 							<p class="l_h_content_1">Tiếp đất</p>
@@ -866,7 +1053,7 @@ class FormMain extends PolymerElement
 		return locations.where((location){
 			for(int i=0;i<listType.length;i++)
 			{
-				if(listType[i]==location["Type"])
+				if(listType[i]==location["type"])
 				{
 					return true;
 				}
@@ -893,5 +1080,35 @@ class FormMain extends PolymerElement
 		return false;
 		}).toList();
 	}
+	/*
+	 * @author: ducdienpt
+	 * @since: 19/12/2013
+	 * @company: ex-artisan
+	 * @vesion :1.0
+	 */
+	List<Map> filterByStatus(List<Map> locations,List<String> listStatus)
+	{
+		return locations.where((location){
+		for(int i=0;i<listStatus.length;i++)
+		{
+		if(listStatus[i]==location["status"])
+		{
+		return true;
+		}
+		}
+		return false;
+		}).toList();
+	}
 	
+	List<Map> filterDeviceByAreaCode(List<Map> devices,String area_code)
+	{
+		return devices.where((device){
+			String device_area = device["area_code"];
+			if(device_area.indexOf(area_code)==0)
+			{
+				return true;
+			}
+			return false;
+		}).toList();
+	}
 }

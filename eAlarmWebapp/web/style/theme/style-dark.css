@@ -7440,13 +7440,6 @@ div.glyphicons.glyphicon-primary i:before {
 #themer.themer-advanced .wrapper ul li.advanced {
   display: block;
 }
-#map-canvas{
-	width: 75%;
-	height: 550px;
-	float: left;
-	color:#000;
-	font-family: Arial;
-}
 .show-click{
 	width:300px;
 	Height:180px;

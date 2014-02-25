@@ -2,40 +2,41 @@
 <meta charset="UTF-8" />
 <template>
 <style>
+#map-canvas {
+	width: 70%;
+	min-height: 550px;
+	max-height: 1000px;
+	height: 100%;
+	float: left;
+	color: #000;
+	font-family: Arial;
+}
+
+#list-province {
+	float: right;
+	width: 30%;
+	min-height: 550px;
+	height: auto;
+}
+#row-fluid{
+	height: 100%;
+}
 </style>
 <div id="location">
 	<select id="city-location">
 	</select> <select id="district-location">
 		<option value="-1">Quận/Huyện</option>
 	</select>
+	<select id="selStatus">
+		<option value="-1">Tất cả</option>
+		<option value="0">Tốt</option>
+		<option value="1" selected>Hỏng</option>
+		
+	</select>
 </div>
-<div id="map-canvas"></div>
-<div id="show-device" class="slimScrollDiv">
-	<div class="divice-head">
-		<div class="widget widget-tabs">
-			<!-- Widget heading -->
-			<div class="divice-head">
-				<ul>
-					<li id="normal" class="goodATM active"><a href="#goodATM"
-						data-toggle="tab" class="glyphicons picture">ATM tốt</a></li>
-					<li id="error" class="errorATM "><a href="#errorATM"
-						data-toggle="tab" class="glyphicons font">ATM hỏng</a></li>
-				</ul>
-			</div>
-			<!-- // Widget heading END -->
-		</div>
-	</div>
-	<div class="divice-content">
-		<div class="tab-content">
-			<div class="tab-pane active" id="goodATM">
-				<ol id="ol-devicesGood">
-				</ol>
-			</div>
-			<div class="tab-pane " id="errorATM">
-				<ol id="ol-devicesError">
-				</ol>
-			</div>
-		</div>
+<div class="row-fluid">
+	<div id="map-canvas"></div>
+	<div id="list-province">
 	</div>
 </div>
 
