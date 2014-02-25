@@ -93,4 +93,15 @@
 		<servlet-name>UserManagementService</servlet-name>
 		<url-pattern>/UserManagementService</url-pattern>
 	</servlet-mapping>
+	<!-- Device management -->
+	<servlet>
+		<description></description>
+		<display-name>DeviceManagementService</display-name>
+		<servlet-name>DeviceManagementService</servlet-name>
+		<servlet-class>com.ar.service.DeviceManagementService</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DeviceManagementService</servlet-name>
+		<url-pattern>/DeviceManagementService</url-pattern>
+	</servlet-mapping>
 </web-app>

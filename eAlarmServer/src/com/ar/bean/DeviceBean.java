@@ -711,6 +711,9 @@ public class DeviceBean extends AppProcessor
 		String request_type = request.getString("Method");
 		switch (request_type)
 		{
+		case "onFormMainLoad":
+			onFormMainLoad();
+			break;
 		case "onGetDevicesInfoByDeviceID":
 			onGetDevicesInfoByDeviceID();
 			break;
@@ -1029,5 +1032,47 @@ public class DeviceBean extends AppProcessor
 	{
 
 	}
-
+	/**
+	 * @author ducdienpt
+	 * @since 25/02/2014
+	 * @version 1.0
+	 * @throws Exception
+	 */
+	public void onFormMainLoad() throws Exception
+	{
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+		String strSQL	= "";	
+		try 
+		{
+			//area list
+			strSQL = "SELECT * FROM area WHERE staus = '1' ORDER BY woodenleg";
+			//open connection
+			open();
+			//prepare
+			pstm = mcnMain.prepareStatement(strSQL);
+			//exec
+			rs = pstm.executeQuery();
+			//response
+			response.put("area_list", Util.convertToJSONArray(rs));
+			//devices list
+			strSQL = "SELECT * FROM device";
+			//prepare
+			pstm = mcnMain.prepareStatement(strSQL);
+			//exec
+			rs = pstm.executeQuery();
+			response.put("device_list", Util.convertToJSONArray(rs));
+		} 
+		catch (Exception e) 
+		{
+			e.printStackTrace();
+			throw e;
+		}
+		finally
+		{
+			Database.closeObject(rs);
+			Database.closeObject(pstm);
+			close();
+		}
+	}
 }

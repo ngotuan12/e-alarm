@@ -14,3 +14,5 @@
 	Class==com.ar.bean.UserBean
 /UserManagementService
 	Class==com.ar.bean.UserManagementBean
+/DeviceManagementService
+	Class==com.ar.bean.DeviceManagementBean
