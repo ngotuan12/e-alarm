@@ -21,14 +21,21 @@
 									<div class="row-fluid">
 										<!-- Column -->
 										<div class="span6">
+											<!-- Mã Phòng Máy -->
 											<label for="inputTitle">Mã phòng máy</label> 
 											<input id="code" type="text" class="span10" placeholder="<Mã phòng máy>">
+											<!-- Tên phòng máy -->
 											<label for="inputTitle">Tên phòng máy</label> 
 											<input id="name" type="text" class="span10" placeholder="<Tên phòng máy>">
+											<!-- Mac adress -->
+											<label for="inputTitle">MAC</label> 
+											<input id="code" type="text" class="span10" placeholder="<Địa chỉ MAC>">
+											<!-- Area -->
 											<label>Địa bàn</label>
 											<select id="area" class="span10">
 												<option value="-1">Chọn địa bàn</option>
 											</select>
+											<!-- Adress -->
 											<label for="inputTitle">Địa chỉ</label> 
 											<input id="address" type="text" value="" class="span10" placeholder="<Địa chỉ>" disabled>
 											<label id="ErrorAddress" class="error"></label>
@@ -36,28 +43,10 @@
 											<input  type="hidden" id="Lat" class="span5" value="" placeholder="Kinh tuyến" disabled/>
 											<input  type="hidden" id="Lng" class="span5" value="" placeholder="Vĩ tuyến" disabled/>
 											<label id="ErrorLocation" class="error"></label>
-											<label for="inputTitle">MAC</label> 
-											<input id="code" type="text" class="span10" placeholder="<Địa chỉ MAC>">
-											<div id="list-properties" style="margin: auto;padding: auto;">
-												<label for="inputTitle">Cảm biến</label>
-												<input type="checkbox" checked>Nhiệt độ
-												<input type="checkbox" >Độ ẩm
-												<input type="checkbox" >Độ rung
-												<input type="checkbox" checked>Nhiệt độ
-												<input type="checkbox" >Độ ẩm
-												<input type="checkbox" >Độ rung
-												<input type="checkbox" checked>Nhiệt độ
-												<input type="checkbox" >Độ ẩm
-												<input type="checkbox" >Độ rung
-												<input type="checkbox" checked>Nhiệt độ
-												<input type="checkbox" >Độ ẩm
-												<input type="checkbox" >Độ rung
-												<input type="checkbox" checked>Nhiệt độ
-												<input type="checkbox" >Độ ẩm
-												<input type="checkbox" >Độ rung
-												<input type="checkbox" checked>Nhiệt độ
-												<input type="checkbox" >Độ ẩm
-												<input type="checkbox" >Độ rung
+											<!-- Properties -->
+											<label for="inputTitle">Cảm biến</label>
+											<div id="list-properties" class="row-fluid">
+												
 											</div>
 											<div class="separator"></div>
 										</div>
