@@ -1046,7 +1046,7 @@ public class DeviceBean extends AppProcessor
 		try 
 		{
 			//area list
-			strSQL = "SELECT * FROM area WHERE staus = '1' ORDER BY woodenleg";
+			strSQL = "SELECT * FROM area WHERE status = '1' ORDER BY woodenleg";
 			//open connection
 			open();
 			//prepare
