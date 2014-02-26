@@ -3,7 +3,7 @@
 <template>
 <style>
 #map-canvas {
-	width: 70%;
+	width: 80%;
 	min-height: 550px;
 	max-height: 1000px;
 	height: 100%;
@@ -13,8 +13,8 @@
 }
 
 #list-province {
-	float: right;
-	width: 30%;
+	float: left;
+	width: 20%;
 	min-height: 550px;
 	height: auto;
 }
@@ -24,13 +24,14 @@
 </style>
 <div id="location">
 	<select id="city-location">
-	</select> <select id="district-location">
+	</select> 
+	<!-- <select id="district-location">
 		<option value="-1">Quận/Huyện</option>
-	</select>
+	</select> -->
 	<select id="selStatus">
 		<option value="-1">Tất cả</option>
-		<option value="0">Tốt</option>
-		<option value="1" selected>Hỏng</option>
+		<option value="1">Tốt</option>
+		<option value="2">Hỏng</option>
 		
 	</select>
 </div>

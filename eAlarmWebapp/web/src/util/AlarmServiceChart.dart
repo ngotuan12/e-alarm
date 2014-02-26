@@ -13,10 +13,8 @@ class AlarmServiceChart
 	 */
 	AlarmServiceChart(Element element, Map options,Map device)
 	{
-		List<Map> InforDevices=device["list"];
-		//querySelector("#nameDevice").text=device["address"];
-		final data=[['Ngày', InforDevices[0]["name"], InforDevices[1]["name"],'Độ Rung'],['2 hôm trước',InforDevices[0]["value"],InforDevices[1]["value"],10],['Hôm qua',  2,      87,6],['Hôm nay',  21,       65,9]];
-		final vis = context["google"]["visualization"];
+		List data=[['Ngày', 'Nhiệt độ', 'Độ ẩm','Độ Rung'],['2 hôm trước',65,32,10],['Hôm qua',  2,      87,6],['Hôm nay',  21,       65,9]];
+		JsObject vis = context["google"]["visualization"];
 		jsTable = vis.callMethod('arrayToDataTable', [new JsObject.jsify(data)]);
 		jsChart = new JsObject(vis["LineChart"], [element]);
 		jsOptions = new JsObject.jsify(options);

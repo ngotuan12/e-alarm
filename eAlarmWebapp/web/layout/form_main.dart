@@ -15,7 +15,6 @@ class FormMain extends PolymerElement
 	bool get applyAuthorStyles => true;
 	Timer mytimer;
 	SelectElement slCity;
-	SelectElement slDistrict;
 	SelectElement slStatus;
 	OListElement olDevicesGood;
 	OListElement olDevicesError;
@@ -30,23 +29,28 @@ class FormMain extends PolymerElement
 	DivElement divRight;
 	List<Map> listProvince = [];
 	List<Map> AllDevices=[];
+	GMap map;
+	int count=0;
 	List<MapTypeStyle> styles =
 	[
-	     {
-	      "featureType": "poi",
-	      //"elementType": "bus",
-	      "stylers": [
-	        { "visibility": "off" }
-	      ]
-	    },
 		{
-	      "featureType": "transit",
-	      //"elementType": "bus",
-	      "stylers": [
-	      { "visibility": "off" }
-	      ]
-	    }
+			"featureType": "poi",
+			//"elementType": "bus",
+			"stylers": 
+			[
+				{ "visibility": "off" }
+			]
+		},
+		{
+			"featureType": "transit",
+			//"elementType": "bus",
+			"stylers": 
+			[
+				{ "visibility": "off" }
+			]
+		}
 	];
+	List<Map> markers = []; 
 	/*
 	 * @author ducdienpt
 	 * @since:12/12/2013
@@ -57,147 +61,19 @@ class FormMain extends PolymerElement
 	{
 		super.enteredView();
 		slCity=this.shadowRoot.querySelector("#city-location");
-		slDistrict=this.shadowRoot.querySelector("#district-location");
 		slStatus=this.shadowRoot.querySelector("#selStatus");
 		olDevicesGood=this.shadowRoot.querySelector("#ol-devicesGood");
 		olDevicesError=this.shadowRoot.querySelector("#ol-devicesError");
 		spClick=this.shadowRoot.querySelector("#spClick");
     	divRight=this.shadowRoot.querySelector("#divRight");
     	divMapCanvas=this.shadowRoot.querySelector("#map-canvas");
-//		liNormal=this.shadowRoot.querySelector("#normal");
-//		liError=this.shadowRoot.querySelector("#error");
-//		divgoodATM=this.shadowRoot.querySelector("#goodATM");
-//		diverrorATM=this.shadowRoot.querySelector("#errorATM");
-//		liNormal.onClick.listen(onListAtmChange);
-//		liError.onClick.listen(onListAtmChange);
-
 		//Event
 		slCity.onChange.listen(onChooseCity);
-		slDistrict.onChange.listen(onChooseDistric);
-//		spClick.onClick.listen(onShow);
+		slStatus.onChange.listen(onChooseStatus);
 		//popup window
 		popupWindow = createPopupInfor();
 		//init
-		
 		init();
-		//
-		//sys data
-//		var oneSecond = new Duration(seconds:60);
-//		mytimer = new Timer.periodic(oneSecond, updateData);
-		//default background for status atm
-		//liError.style.background='#d71c00';
-		//liNormal.style.background='#64625f';
-	}
-	void onShow(Event e)
-	{
-//		divMapCanvas.style.width="100%";
-//		divRight.style.width="0%";
-	}
-//	void onListAtmChange(Event event)
-//	{
-//	  if(event.currentTarget == liNormal)
-//	  {
-//		liNormal.style.background='#008000';
-//		liError.style.background='#64625f';
-//		  divgoodATM.classes.add("active");
-//		  if(diverrorATM.classes.contains("active"))
-//		  {
-//			  diverrorATM.classes.remove("active");
-//		  }
-//	  }
-//	  else if(event.currentTarget == liError)
-//	  {
-//		  liError.style.background='#d71c00';
-//		  liNormal.style.background='#64625f';
-//		diverrorATM.classes.add("active");
-//		if(divgoodATM.classes.contains("active"))
-//		{
-//			divgoodATM.classes.remove("active");
-//		}
-//	  }
-//	}
-	/*
-	 * @DienND
-	 * @since 27/12/2013
-	 * @company ex-artisan
-	 * @version 1.0
-	 */
-//	void changeColorNormal(Event e)
-//	{
-//	liNormal.style.background='#008000';
-//		liError.style.background='#64625f';
-//		diverrorATM.classes.clear();
-//		divgoodATM.classes.clear();
-//
-//    diverrorATM.classes.add("tab-pane");
-//    divgoodATM.classes.add("tab-pane active");
-//	}
-	/*
-	 * @DienND
-	 * @since 27/12/2013
-	 * @company ex-artisan
-	 * @version 1.0
-	 */
-//	void changeColorError(Event e)
-//	{
-//		liError.style.background='#d71c00';
-//		liNormal.style.background='#64625f';
-//    diverrorATM.classes.clear();
-//    divgoodATM.classes.clear();
-//
-//    diverrorATM.classes.add("tab-pane active");
-//    divgoodATM.classes.add("tab-pane");
-//	}
-	/*
-	 * @DienND
-	 * @since 27/12/2013
-	 * @company ex-artisan
-	 * @version 1.0
-	 */
-	void updateData(Timer _)
-	{
-		//remove all li in ul-Devices
-		olDevicesGood.children.clear();
-		olDevicesError.children.clear();
-		//selected
-		OptionElement opt = slDistrict.children.elementAt(slDistrict.selectedIndex);
-		//check selectedIndex
-		if(slDistrict.selectedIndex==0)
-		{
-			//remove all option in slDistric
-			slDistrict.children.clear();
-			//add default
-			OptionElement op=new OptionElement();
-			op.value="-1";
-			op.text="Quận/Huyện";
-			slDistrict.children.add(op);
-			OptionElement opt = slCity.children.elementAt(slCity.selectedIndex);
-			if(slCity.selectedIndex!=0)
-			{
-				Map area = JSON.decode(opt.value);
-				if(area["type"].toString()=="2")
-				{
-					showLocation(area);
-				}
-			}
-		}
-		else
-		{
-			//data
-			Map area = JSON.decode(opt.value);
-			if(area["type"]=="3")
-			{
-				//show device
-				//change center
-				final mapOptions = new MapOptions()
-				..zoom = 14
-				..center = new LatLng(area["lat"], area["lng"])
-				..mapTypeId = MapTypeId.ROADMAP
-				..styles = styles;
-				final map = new GMap(this.shadowRoot.querySelector("#map-canvas"), mapOptions);
-				getAllDeviceByAreaId(area, map);
-			}
-		}
 	}
 	/*
 	 * @DienND
@@ -214,14 +90,8 @@ class FormMain extends PolymerElement
 		op.value="-1";
 		op.text="Tỉnh/Thành Phố";
 		slCity.children.add(op);
-		//Google map
-		final mapOptions = new MapOptions()
-		..keyboardShortcuts=true
-		..zoom = 5
-		..center = new LatLng(14.058324, 108.277199)
-		..mapTypeId = MapTypeId.ROADMAP
-		..styles = styles;
-		final map = new GMap(this.shadowRoot.querySelector("#map-canvas"), mapOptions);
+		//init google map
+		initGoogleMap();
 		//get data
 		Map request = new Map();
 		request["Method"] = "onFormMainLoad";
@@ -231,8 +101,8 @@ class FormMain extends PolymerElement
 		responder.onSuccess.listen((Map response)
 		{
 			AllDevices=response['device_list'];
-			List<Map> temp=response['area_list'];
-			listArea = filterByType(temp, ["2"]);
+			List<Map> areas=response['area_list'];
+			listArea = filterByType(areas, ["2"]);
 			//init Option Select
 			for(int i=0;i<listArea.length;i++)
 			{
@@ -245,10 +115,10 @@ class FormMain extends PolymerElement
 				//add are
 				slCity.children.add(op);
 			}
-			//Show area on map
-			showArea(listArea, map);
-			initListProvince(listArea);
-			
+			//init area on map
+			showArea(listArea);
+			//init list device by province
+			showAreaList(listArea);
 		});
 		//error
 		responder.onError.listen((Map error)
@@ -258,38 +128,53 @@ class FormMain extends PolymerElement
 		);
 		//send to server
 		AppClient.sendMessage(request, AlarmServiceName.DeviceService, AlarmServiceMethod.POST,responder);
+		//default value
+		slStatus.selectedIndex = 2;
 	}
-
-	void initListProvince(List<Map> listProvince)
+	/*
+	 * 
+	 */
+	void initGoogleMap()
+	{
+		MapOptions mapOptions = new MapOptions()
+			..keyboardShortcuts=true
+			..zoom = 5
+			..center = new LatLng(14.058324, 108.277199)
+			..mapTypeId = MapTypeId.ROADMAP
+			..styles = styles;
+		map = new GMap(this.shadowRoot.querySelector("#map-canvas"), mapOptions);
+	}
+	/*
+	 * 
+	 */
+	void showAreaList(List<Map> listProvince)
 	{
 		DivElement divProvinces = this.shadowRoot.querySelector("#list-province");
+		
+		divProvinces.children.clear();
 		for(int i=0;i<listProvince.length;i++)
 		{
-			List<Map> listDevices=filterDeviceByAreaCode(AllDevices, listProvince[i]["area_code"]);
-			//check status
-			switch(slStatus.selectedIndex.toString())
-			{
-				case '0':listDevices=filterByStatus(listDevices,['1','2']);
-					break;
-				case '1':listDevices=filterByStatus(listDevices,['1']);
-					break;
-				case '2':listDevices=filterByStatus(listDevices,['2']);
-					break;
-				default:listDevices=filterByStatus(listDevices,['1','2']);
-					break;
-			}
+			Map area = listProvince[i];
+			//status
+			OptionElement selectedStatus = slStatus.children.elementAt(slStatus.selectedIndex);
+			String strStatus = null;
+			if(selectedStatus.value !="-1")
+				strStatus = selectedStatus.value;
+			List<Map> devices=getListDevices(area_code:area["area_code"],status:strStatus);
 			//new item
 			DivElement province = new DivElement();
 			province.className = "widget widget-activity margin-none";
 			province.attributes["data-toggle"]= "collapse-widget";
 			province.attributes["data-collapse-closed"]= "true";
-			//item head
+			//item head <button type="button" class="btn btn-success hidden-phone">Success</button>
 			DivElement provinceHead = new DivElement();
 			provinceHead.className = "widget-head";
 			provinceHead.appendHtml("<span id=\"spClick\" class=\"collapse-toggle\" style=\"float: left;\"></span>");
-			provinceHead.appendHtml("<h4 class=\"heading\">"+listProvince[i]["name"]+"</h4><span class=\"count\" style=\"float: right;\">"+listDevices.length.toString()+"</span>");
+			provinceHead.appendHtml("<h4 class=\"heading\">"+listProvince[i]["name"]+"</h4><span class=\"\" style=\"background: #484848;color: #ffffff;border-radius: 3px 3px 3px 3px;text-shadow: none;font-weight: 700;font-size: 10px;padding: 1px 8px;-moz-border-radius: 3px 3px 3px 3px;-webkit-border-radius: 3px 3px 3px 3px;top: 12px;right: 15px;margin-top:10px;line-height: normal;border: 1px solid #484848;box-shadow: 0 0 0 1px #282828 inset;float:right;\">"+devices.length.toString()+"</span>");
 			//Add listener
 			provinceHead.querySelector("#spClick").onClick.listen(onProvinceToogle);
+//			provinceHead.querySelector("#spClick").onClick.listen(onChangeCity);
+//			provinceHead.querySelector("#spClick").onClick.listen(onChooseCity);
 			//item body
 			DivElement provinceBody = new DivElement();
 			provinceBody.id = "province-body";
@@ -297,27 +182,34 @@ class FormMain extends PolymerElement
 			provinceBody.style.height = "0px";
 			provinceBody.innerHtml = "<div class=\"tab-content\">"
 									+"<div class=\"tab-pane\" id=\"tab-pane\">"
-									+"<div class=\"list\" id=\"list\">"
-									+"</div>"
+									+"<ul class=\"list\" id=\"list\">"
+									+"</ul>"
 									+"</div>"
 									+"</div>";
-//			provinceBody.appendHtml("<div class=\"tab-content\">");
-//			provinceBody.appendHtml("<div class=\"tab-pane\" id=\"tab-pane\">");
-//			provinceBody.appendHtml("<div class=\"list\" id=\"list\">");
-//			provinceBody.appendHtml("</div>");
-//			provinceBody.appendHtml("</div>");
-//			provinceBody.appendHtml("</div>");
-			
 			Element el=provinceBody.querySelector("#list");
-			
-			initListDeviceError(el, listDevices);
+			showDeviceList(el,area, devices);
 			//add children
 			province.children.add(provinceHead);
 			province.children.add(provinceBody);
 			divProvinces.children.add(province);
-//			listProvince.add({"":""});
 		}
 	}
+	/*
+	 * @author:diennd
+	 * @since:26/2/2014
+	 * @company:ex-artisan
+	 * @version:1.0
+	 */
+	void onChangeCity(Event event)
+	{
+		slCity.selectedIndex=2;
+	}
+	/*
+	 * @author:diennd
+	 * @since:26/2/2014
+	 * @company:ex-artisan
+	 * @version:1.0
+	 */
 	void onProvinceToogle(Event event)
 	{
 		Element target = event.currentTarget;
@@ -339,21 +231,83 @@ class FormMain extends PolymerElement
 			bodyProvince.style.height = "0px";
 			tabPane.classes.remove("active");
 		}
-		print(event.target);
 	}
-	void initListDeviceError(Element elList,List<Map> listError)
+	/*
+	 * 
+	 */
+	void showDeviceList(Element elList,Map area,List<Map> listDevice)
 	{
-		for(int i=0;i<listError.length;i++)
+		for(int i=0;i<listDevice.length;i++)
 		{
 			LIElement item = new LIElement();
 			item.className = "double";
-			AnchorElement aItem=new AnchorElement();
-			aItem.href="#";
-			aItem.text=listError[i]['address'];
-			//item.appendHtml("<span class=\"ellipsis\"> <a href=\"#\">"+listError[i]['address']+"</a> : nhiệt độ vượt ngưỡng</span>");
-			item.children.add(aItem);
+			item.attributes["device"] = JSON.encode(listDevice[i]);
+			item.attributes["area"] = JSON.encode(area);
+			SpanElement spItem=new SpanElement();
+			//spItem.className="ellipsis";
+			spItem.style.textOverflow="ellipsis";
+			spItem.style.whiteSpace="nowrap";
+			spItem.style.maxWidth="75%";
+			SpanElement spItem1=new SpanElement();
+			spItem1.className="glyphicons activity-icon envelope";
+			ImageElement img=new ImageElement();
+			img.style.width='13px';
+			img.style.height='13px';
+			//check status
+			if(listDevice[i]['status']=="1")
+				img.src='images/ATMs/BlueV.png';
+			else
+				img.src='images/ATMs/RedX.png';
+			spItem.text=listDevice[i]['address'];
+			spItem1.children.add(img);
+			item.children.add(spItem1);
+			item.children.add(spItem);
 			elList.children.add(item);
+			//event
+			item.onClick.listen(onDeviceClick);
 		}
+	}
+	/*
+	 * 
+	 */
+	void onDeviceClick(Event event)
+	{
+		LIElement target = event.currentTarget;
+		Map area = JSON.decode(target.attributes["area"]);
+		Map device = JSON.decode(target.attributes["device"]);
+		if(slCity.selectedIndex==0)
+		{
+			clearMarker();
+			//change selected index
+			for(int i= 1 ;i<slCity.children.length;i++)
+			{
+				OptionElement option = slCity.children.elementAt(i);
+				if(target.attributes["area"]==option.value)
+				{
+					slCity.selectedIndex = i;
+					break;
+				}
+			}
+			if(slCity.selectedIndex==0)
+			{
+				Util.showNotifyError("Không tìm thấy địa bàn");
+				return;
+			}
+			//status
+			OptionElement selectedStatus = slStatus.children.elementAt(slStatus.selectedIndex);
+			String strStatus = null;
+			if(selectedStatus.value !="-1")
+				strStatus = selectedStatus.value;
+			//set map option
+			map.zoom = 12;
+			map.center = new LatLng(area["lat"], area["lng"]);
+			//
+			showDevices(getListDevices(area_code: area["area_code"], status: strStatus),isTimer: false);
+			//
+			showMarkerInfor(device);
+		}
+		else
+			showMarkerInfor(device);
 	}
 	/*
 	 * @DienND
@@ -363,81 +317,38 @@ class FormMain extends PolymerElement
 	 */
 	void onChooseCity(Event e)
 	{
-		//selected
-		OptionElement opt = slCity.children.elementAt(slCity.selectedIndex);
-		//remove all option in slDistric
-		slDistrict.children.clear();
-		//add default
-		OptionElement op=new OptionElement();
-		op.value="-1";
-		op.text="Quận/Huyện";
-		slDistrict.children.add(op);
-		//remove all li in ul-Devices
-//		olDevicesGood.children.clear();
-//		olDevicesError.children.clear();
-		//check selectedIndex
-		if(slCity.selectedIndex==0)
-		{
-		init();
-		}
-		else
-		{
-			//data
-			Map area = JSON.decode(opt.value);
-			if(area["type"]=="2")
-			{
-				showLocation(area);
-			}
-		}
+		updateMap();
 	}
 	/*
-	 * @DienND
-	 * @since 13/12/2013
-	 * @company: ex-artisan
-	 * @Version: 1.0
+	 * 
 	 */
-	void onChooseDistric(Event e)
+	void clearMarker()
 	{
-		//remove all li in ul-Devices
-//		olDevicesGood.children.clear();
-//		olDevicesError.children.clear();
-		//selected
-		OptionElement opt = slDistrict.children.elementAt(slDistrict.selectedIndex);
-		//check selectedIndex
-		if(slDistrict.selectedIndex==0)
+		for(int i = 0;i<markers.length;i++)
 		{
-			//remove all option in slDistric
-			slDistrict.children.clear();
-			//add default
-			OptionElement op=new OptionElement();
-			op.value="-1";
-			op.text="Quận/Huyện";
-			slDistrict.children.add(op);
-			OptionElement opt = slCity.children.elementAt(slCity.selectedIndex);
-			Map area = JSON.decode(opt.value);
-			if(area["type"]=="2")
-			{
-				showLocation(area);
-			}
+			Map data = markers[i];
+			Marker marker = data["marker"];
+			marker.map = null;
 		}
-		else
-		{
-			//data
-			Map area = JSON.decode(opt.value);
-			if(area["type"]=="3")
-			{
-
-				//show device
-				//change center
-				final mapOptions = new MapOptions()
-				..zoom = 14
-				..center = new LatLng(area["lat"], area["lng"])
-				..mapTypeId = MapTypeId.ROADMAP
-				..styles = styles;
-				final map = new GMap(this.shadowRoot.querySelector("#map-canvas"), mapOptions);
-				getAllDeviceByAreaId(area, map);
-			}
-		}
+		markers.clear();
+	}
+	/*
+	 * 
+	 */
+	Marker addMarker(num lat,num lng,String value,{Animation animation:null,String title: null, String icon: null})
+	{
+		Marker marker = new Marker();
+		marker.map = map;
+		marker.position = new LatLng(lat, lng);
+		if(animation!=null)
+			marker.animation = animation;
+		if(title!=null)
+			marker.title = title;
+		if(icon!=null)
+			marker.icon = icon;
+		//add to list
+		markers.add({"marker":marker,"value":value});
+		return marker;
 	}
 	/*
 	 * @TuanNA
@@ -445,172 +356,88 @@ class FormMain extends PolymerElement
 	 * @company: ex-artisan
 	 * @Version: 1.0
 	 */
-	void showLocation(Map location)
+	void updateMap()
 	{
-		//change center
-		final mapOptions = new MapOptions()
-		..zoom = 14
-		..center = new LatLng(location["lat"], location["lng"])
-		..mapTypeId = MapTypeId.ROADMAP
-		..styles = styles;
-		final map = new GMap(this.shadowRoot.querySelector("#map-canvas"), mapOptions);
-		//show area
-		getAllAreaById(location,map);
-	}
-	/*
-	 * @ducdienpt
-	 * @since 25/12/2013
-	 * @company :ex-artisan
-	 * @version :1.0
-	 */
-	void getAllDevice(final GMap map,Map area)
-	{
-	//get data
-		Map request = new Map();
-		request["Method"] = "onGetAllDevicesWithPro";
-		//Listen
-		Responder responder = new Responder();
-		//success
-		responder.onSuccess.listen((Map response)
+		Map location = null;
+		if(slCity.selectedIndex == 0)
 		{
-		List<Map> temp=response['all_devices_byarea_info'];
-		//filter order areaId
-		List<Map> listDevices = filterByAreaCode(temp, [area['Code']]);
-		//Show devices on map
-		if(listDevices !=null)
-		showDevices(listDevices, map);
-		});
-		//error
-		responder.onError.listen((Map error)
-		{
-			Util.showNotifyError(error["message"]);
+			showArea(listArea);
 		}
-		);
-		//send to server
-		AppClient.sendMessage(request, AlarmServiceName.DeviceService, AlarmServiceMethod.POST,responder);
+		else
+		{
+			OptionElement selectedArea = slCity.children.elementAt(slCity.selectedIndex);
+			location = JSON.decode(selectedArea.value);
+			//clear marker
+			clearMarker();
+			//set map option
+			map.zoom = 12;
+			map.center = new LatLng(location["lat"], location["lng"]);
+			//status
+			OptionElement selectedStatus = slStatus.children.elementAt(slStatus.selectedIndex);
+			String strStatus = null;
+			if(selectedStatus.value !="-1")
+				strStatus = selectedStatus.value;
+			//get devices by area
+			List<Map> devices = getListDevices(area_code: location["area_code"],status: strStatus);
+			//show device
+			showDevices(devices);
+			//show list
+			showAreaList([location]);
+		}
+		
+	}
+	List<Map> getListDevices({String area_code:null,String status:null})
+	{
+		List<Map> devices = AllDevices;
+		if(area_code!=null)
+		{
+			devices =  devices.where((device)
+			{
+				String device_area = device["area_code"];
+				if(device_area.indexOf(area_code)==0)
+				{
+					return true;
+				}
+				return false;
+			}).toList();
+		}
+		if(status!=null)
+		{
+			devices = devices.where((device)
+			{
+				if(status == device["status"])
+				{
+					return true;
+				}
+				return false;
+			}).toList();
+		}
+		return devices;
 	}
 	
-	/*
-	 * @ducdienpt
-	 * @Since 15/12/2013
-	 * @company :ex-artisan
-	 * @Version 1.0
-	 */
-	void getAllDeviceByAreaId(Map area,final GMap map)
-	{
-		//get data
-		Map request = new Map();
-		request["Method"] = "onGetAllDevicesByAreaID";
-		request["area_id"]=area["id"];
-		//Listen
-		Responder responder = new Responder();
-		//success
-		responder.onSuccess.listen((Map response)
-		{
-		List<Map> listDevices=response['all_devices_byarea_info'];
-		//Show devices on map
-		if(listDevices !=null)
-			showDevices(listDevices, map);
-		});
-		//error
-		responder.onError.listen((Map error)
-		{
-			Util.showNotifyError(error["message"]);
-		}
-		);
-		//send to server
-		AppClient.sendMessage(request, AlarmServiceName.DeviceService, AlarmServiceMethod.POST,responder);
-
-	}
-	/*
-	 * @ducdienpt
-	 * @since 25/12/2013
-	 * @company :ex-artisan
-	 * @version :1.0
-	 */
-	void allDevices()
-	{
-		//get data
-    		Map request = new Map();
-    		request["Method"] = "allDevices";
-    		//Listen
-    		Responder responder = new Responder();
-    		//success
-    		responder.onSuccess.listen((Map response)
-    		{
-	    		AllDevices=response['device_list'];
-	    		List<Map> temp=response['area_list'];
-	    		initListProvince(temp);
-    		});
-    		//error
-    		responder.onError.listen((Map error)
-    		{
-    			Util.showNotifyError(error["message"]);
-    		}
-    		);
-    		//send to server
-    		AppClient.sendMessage(request, AlarmServiceName.DeviceService, AlarmServiceMethod.POST,responder);
-	}
-	/*
-	 * @ducdienpt
-	 * @since 18/12/2013
-	 * @company:ex-artisan
-	 * @version : 1.0
-	 */
-	void getAllAreaById(Map area,final GMap map){
-		//get data
-		Map request = new Map();
-		request["Method"] = "GetActiveByParent";
-		request["ID"]=area["id"];
-		//Listen
-		Responder responder = new Responder();
-		//success
-		responder.onSuccess.listen((Map response)
-		{
-			List<Map> listAreas=response['ListArea'];
-			//Show areas on Select
-			if(listAreas !=null)
-			{
-				for(int i=0;i<listAreas.length;i++)
-				{
-					//option
-					Map element= listAreas[i];
-					String name=element['Name'];
-					OptionElement op = new Element.option();
-					op.text=name;
-					op.value = JSON.encode(element);
-					//add are
-					slDistrict.children.add(op);
-				}
-			}
-			//show device
-			//getAllDeviceByAreaId(area, map);
-			getAllDevice(map, area);
-		});
-
-		//error
-		responder.onError.listen((Map error)
-		{
-			Util.showNotifyError(error["message"]);
-		});
-		//send to server
-		AppClient.sendMessage(request, AlarmServiceName.AreaService, AlarmServiceMethod.POST,responder);
-	}
 	/*
 	 * @Diennd
 	 * @since 13/12/2013
 	 * @company: ex-artisan
 	 * @Version: 1.0
 	 */
-	void showDevices(List<Map> devices,final GMap map)
+	void showDevices(List<Map> devices,{bool isTimer:true})
 	{
-		int count = 0;
 		if(devices!=null&&devices.length>0)
-		{
+		{	
+			if(!isTimer)
+			{
+				for(int i=0;i<devices.length;i++)
+				{
+					showDevice(devices[i]);
+				}
+				return;
+			}
+			int count = 0;
 			Timer timer = new Timer.periodic(new Duration(milliseconds: 50), (Timer timer)
 			{
 
-				showDevice(devices[count],map);
+				showDevice(devices[count]);
 				count++;
 				if(count==devices.length)
 				{
@@ -619,95 +446,25 @@ class FormMain extends PolymerElement
 			});
 		}
 	}
-
-	void showDevice(Map device,final GMap map)
+	/*
+	 * @author:diennd
+	 * @since 26/2/2014
+	 * @company:ex-artisan
+	 * @version:1.0
+	 */
+	void showDevice(Map device)
 	{
-		//add into ul_devices
-//		LIElement liDevice=new LIElement();
-//		liDevice.style.marginTop="5px";
-//		liDevice.style.marginLeft="5px";
-//		liDevice.style.borderBottom="1px solid #616161";
-//		ImageElement img=new ImageElement();
-//		img.style.width='16px';
-//		img.style.height='16px';
-//		img.style.marginRight='10px';
-//		AnchorElement aDevice=new AnchorElement();
-//		aDevice.style.textDecoration="none";
-//		aDevice.style.color="#fff";
-//		aDevice.href="#";
-//		aDevice.onMouseOver.listen((event)=>aDevice.style.color='gray');
-//		aDevice.onMouseLeave.listen((event)=>aDevice.style.color='#fff');
-//		liDevice.onMouseOver.listen((event)=>aDevice.style.color='gray');
-//		liDevice.onMouseLeave.listen((event)=>aDevice.style.color='#fff');
-		//split data
-
-		List parts = device['address'].split(',');
-		String temp="";
-		if(slDistrict.selectedIndex>0)
-		{
-			for(int i=0;i<parts.length-2;i++)
-			{
-				temp+=parts[i]+",";
-			}
-		}
-		else
-		{
-			for(int i=0;i<parts.length-1;i++)
-			{
-				temp+=parts[i]+",";
-			}
-		}
-		//aDevice.text=temp.substring(0,temp.length-1);
+		Marker marker;
 		//check status
 		if(device["status"]=="1")
-		{
-			//img.src='images/ATMs/BlueV.png';
-			//aDevice.children.add(img);
-			//liDevice.children.add(img);
-			//liDevice.children.add(aDevice);
-			//olDevicesGood.children.add(liDevice);
-			//new marker
-			Marker marker = new Marker
-			(
-				new MarkerOptions()
-				..position = new LatLng(device["lat"], device["lng"])
-				..map = map
-				..title = device["code"]
-				..animation = Animation.DROP
-				..icon='images/ATMs/marker_blue.png'
-			);
-			//add listener
-			//liDevice.onClick.listen((event) =>showMarkerInfor(device,marker,map));
-			marker.onClick.listen((e)
-			{
-				showMarkerInfor(device,marker,map);
-			});
-		}
+			marker = addMarker(device["lat"], device["lng"], JSON.encode(device), animation: Animation.DROP, title:device["code"] , icon:"images/ATMs/marker_blue.png" );
 		else
+			marker = addMarker(device["lat"], device["lng"], JSON.encode(device), animation: Animation.DROP, title:device["code"] , icon:"images/ATMs/marker_red.png" );
+		//add listener
+		marker.onClick.listen((e)
 		{
-			//img.src='images/ATMs/RedX.png';
-			//aDevice.children.add(img);
-			//liDevice.children.add(img);
-			//liDevice.children.add(aDevice);
-			//olDevicesError.children.add(liDevice);
-			//new marker
-			Marker marker = new Marker
-			(
-			new MarkerOptions()
-			..position = new LatLng(device["lat"], device["lng"])
-			..map = map
-			..title = device["code"]
-			..animation = Animation.DROP
-			..icon='images/ATMs/marker_red.png'
-			);
-
-			//add listener
-			//liDevice.onClick.listen((event) =>showMarkerInfor(device,marker,map));
-			marker.onClick.listen((e)
-			{
-			showMarkerInfor(device,marker,map);
-			});
-		}
+			showMarkerInfor(device);
+		});
 	}
 	/*
 	 * @TuanNA
@@ -715,26 +472,33 @@ class FormMain extends PolymerElement
 	 * @company: ex-artisan
 	 * @Version: 1.0
 	 */
-	void showArea(List<Map> areas,final GMap map)
+	void showArea(List<Map> areas)
 	{
+		//clear marker
+		clearMarker();
+		//set zoom
+		map.zoom = 5;
+		map.center = new LatLng(14.058324, 108.277199);
+		//show marker
 		for(int i =0;i<areas.length;i++)
 		{
 			//data
 			Map area = areas[i];
+			//get devices error
+			List<Map> devices = getListDevices(area_code: area['area_code'], status: '2');
 			//marker
-			Marker marker = new Marker
-			(
-				new MarkerOptions()
-				..position = new LatLng(area["lat"], area["lng"])
-				..map = map
-				..title = area["name"]
-			);
+			Marker marker;
+			if(devices !=null && devices.length>0)
+				marker = addMarker(area["lat"], area["lng"], JSON.encode(area),title:area["name"]);
+			else
+				marker = addMarker(area["lat"], area["lng"], JSON.encode(area),title:area["name"]);
 			marker.onClick.listen((e)
 			{
 				slCity.selectedIndex = i+1;
-				showLocation(areas[i]);
+				updateMap();
 			});
 		}
+		showAreaList(listArea);
 	}
 	/*
 	 * @TuanNA
@@ -742,17 +506,33 @@ class FormMain extends PolymerElement
 	 * @company: ex-artisan
 	 * @Version: 1.0
 	 */
-	void showMarkerInfor(Map device,Marker marker,final GMap map)
+	void showMarkerInfor(Map device)
 	{
+		Marker marker;
+		//
+		for(int i=0;i<markers.length;i++)
+		{
+			Map value = JSON.decode(markers[i]["value"]);
+			if(value["id"]==device["id"])
+			{
+				marker = markers[i]["marker"];
+				break;
+			}
+		}
+		if(marker ==null)
+		{
+			Util.showNotifyError("Không tìm thấy địa điểm!");
+			return;
+		}
 		//show popup
 		popupWindow.open(map, marker);
 		//show chart
 		AlarmServiceChart.load().then((_)
 		{
-		int sliderValue() => int.parse('8');
-		// Create a Guage after the library has been loaded.
-		final DivElement visualization1 = this.shadowRoot.querySelector('#content_right');
-		AlarmServiceChart gauge = new AlarmServiceChart(visualization1,{ 'title': 'Biểu đồ'},device);
+			int sliderValue() => int.parse('8');
+			// Create a Guage after the library has been loaded.
+			final DivElement visualization1 = this.shadowRoot.querySelector('#content_right');
+			AlarmServiceChart gauge = new AlarmServiceChart(visualization1,{ 'title': 'Biểu đồ'},device);
 		});
 	}
 	/*
@@ -1081,25 +861,15 @@ class FormMain extends PolymerElement
 		}).toList();
 	}
 	/*
-	 * @author: ducdienpt
-	 * @since: 19/12/2013
-	 * @company: ex-artisan
-	 * @vesion :1.0
+	 * @author:diennd
+	 * @since:26/2/2014
+	 * @company:ex-artisan
+	 * @version:1.0
 	 */
-	List<Map> filterByStatus(List<Map> locations,List<String> listStatus)
+	void onChooseStatus(Event e)
 	{
-		return locations.where((location){
-		for(int i=0;i<listStatus.length;i++)
-		{
-		if(listStatus[i]==location["status"])
-		{
-		return true;
-		}
-		}
-		return false;
-		}).toList();
+		updateMap();
 	}
-	
 	List<Map> filterDeviceByAreaCode(List<Map> devices,String area_code)
 	{
 		return devices.where((device){
