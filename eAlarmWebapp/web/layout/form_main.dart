@@ -255,9 +255,9 @@ class FormMain extends PolymerElement
 			img.style.height='13px';
 			//check status
 			if(listDevice[i]['status']=="1")
-				img.src='images/ATMs/BlueV.png';
+				img.src='style/icons/BlueV.png';
 			else
-				img.src='images/ATMs/RedX.png';
+				img.src='style/icons/RedX.png';
 			spItem.text=listDevice[i]['address'];
 			spItem1.children.add(img);
 			item.children.add(spItem1);
@@ -457,9 +457,9 @@ class FormMain extends PolymerElement
 		Marker marker;
 		//check status
 		if(device["status"]=="1")
-			marker = addMarker(device["lat"], device["lng"], JSON.encode(device), animation: Animation.DROP, title:device["code"] , icon:"images/ATMs/marker_blue.png" );
+			marker = addMarker(device["lat"], device["lng"], JSON.encode(device), animation: Animation.DROP, title:device["code"] , icon:"style/icons/marker_blue.png" );
 		else
-			marker = addMarker(device["lat"], device["lng"], JSON.encode(device), animation: Animation.DROP, title:device["code"] , icon:"images/ATMs/marker_red.png" );
+			marker = addMarker(device["lat"], device["lng"], JSON.encode(device), animation: Animation.DROP, title:device["code"] , icon:"style/icons/marker_red.png" );
 		//add listener
 		marker.onClick.listen((e)
 		{
@@ -714,7 +714,7 @@ class FormMain extends PolymerElement
 							divStatuSensorContentup1.style.float="left";
 								//text
 							divStatuSensorContentup1.innerHtml='''
-								<p class="l_h_content_1"><img class="l_h_content_img" src="images/ATMs/ic_green.png" alt="blue"></p>
+								<p class="l_h_content_1"><img class="l_h_content_img" src="style/icons/ic_green.png" alt="blue"></p>
 								<p class="l_h_content_1">Cửa ngoài</p>
 								''';
 								//create div
@@ -727,7 +727,7 @@ class FormMain extends PolymerElement
 							divStatuSensorContentup2.style.float="left";
 								//text
 							divStatuSensorContentup2.innerHtml='''
-								<p class="l_h_content_1"><img class="l_h_content_img" src="images/ATMs/ic_red.png" alt="red"></p>
+								<p class="l_h_content_1"><img class="l_h_content_img" src="style/icons/ic_red.png" alt="red"></p>
 								<p class="l_h_content_1">Nhiệt độ</p>
 								''';
 							DivElement divStatuSensorContentup3=new DivElement();
@@ -739,7 +739,7 @@ class FormMain extends PolymerElement
 							divStatuSensorContentup3.style.float="left";
 								//text
 							divStatuSensorContentup3.innerHtml='''
-								<p class="l_h_content_1"><img class="l_h_content_img" src="images/ATMs/ic_green.png" alt="blue"></p>
+								<p class="l_h_content_1"><img class="l_h_content_img" src="style/icons/ic_green.png" alt="blue"></p>
 								<p class="l_h_content_1">Cửa trên</p>
 								''';
 							//add
@@ -762,7 +762,7 @@ class FormMain extends PolymerElement
 							divStatuSensorContentdown1.style.float="left";
 							//text
 							divStatuSensorContentdown1.innerHtml='''
-							<p class="l_h_content_1"><img class="l_h_content_img" src="images/ATMs/ic_green.png" alt="blue"></p>
+							<p class="l_h_content_1"><img class="l_h_content_img" src="style/icons/ic_green.png" alt="blue"></p>
 							<p class="l_h_content_1">Cửa ngoài</p>
 							''';
 							//create div
@@ -775,7 +775,7 @@ class FormMain extends PolymerElement
 							divStatuSensorContentdown2.style.float="left";
 							//text
 							divStatuSensorContentdown2.innerHtml='''
-							<p class="l_h_content_1"><img class="l_h_content_img" src="images/ATMs/ic_green.png" alt="bule"></p>
+							<p class="l_h_content_1"><img class="l_h_content_img" src="style/icons/ic_green.png" alt="bule"></p>
 							<p class="l_h_content_1">Cửa kẹt</p>
 							''';
 							DivElement divStatuSensorContentdown3=new DivElement();
@@ -787,7 +787,7 @@ class FormMain extends PolymerElement
 							divStatuSensorContentdown3.style.float="left";
 							//text
 							divStatuSensorContentdown3.innerHtml='''
-							<p class="l_h_content_1"><img class="l_h_content_img" src="images/ATMs/ic_red.png" alt="red"></p>
+							<p class="l_h_content_1"><img class="l_h_content_img" src="style/icons/ic_red.png" alt="red"></p>
 							<p class="l_h_content_1">Tiếp đất</p>
 							''';
 							//add
