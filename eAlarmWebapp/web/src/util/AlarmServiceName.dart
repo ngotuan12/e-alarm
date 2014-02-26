@@ -8,4 +8,5 @@ class AlarmServiceName
 	static final String ReportService = "ReportService";
 	static final String UserService = "UserService";
 	static final String UserManagementService = "UserManagementService";
+	static final String DeviceManagementService = "DeviceManagementService";
 }
