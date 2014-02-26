@@ -391,7 +391,7 @@ public class DeviceBean extends AppProcessor
 			close();
 		}
 	}
-
+	
 	public void onGetAllDevicesWithPro() throws Exception
 	{
 		String strSQL = "";
@@ -1056,7 +1056,7 @@ public class DeviceBean extends AppProcessor
 			//response
 			response.put("area_list", Util.convertToJSONArray(rs));
 			//devices list
-			strSQL = "SELECT * FROM device";
+			strSQL = "SELECT * FROM device ORDER BY area_code,status";
 			//prepare
 			pstm = mcnMain.prepareStatement(strSQL);
 			//exec
