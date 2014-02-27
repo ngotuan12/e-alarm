@@ -24,6 +24,8 @@ class MainMenu extends PolymerElement
 	SpanElement profile;
 	List<Map> listModule;
 	Element btnEditUser;
+	Element btnChangePass;
+	Element btnLogOut;
 	/*
 	 * @author TuanNA
 	 * @since:30/12/2013
@@ -48,16 +50,34 @@ class MainMenu extends PolymerElement
 		initUserInfor();
 		
 		btnEditUser = this.shadowRoot.querySelector("#btnEditUser");
+		btnChangePass = this.shadowRoot.querySelector("#btnChangePass");
+		btnLogOut = this.shadowRoot.querySelector("#btnLogOut");
+		btnLogOut.onClick.listen((event)=>logout());
+		btnChangePass.onClick.listen((event)=>loadPassChange());
     btnEditUser.onClick.listen((event)=>loadEditUser());
 		//main menu
 		initMainMenu();
 		
 	}
-	
+	void logout()
+	{
+			SessionValue.main.isLogin = false;
+//    	SessionUser.sessionUserName = null;
+//    	SessionUser.sessionKey = null;
+//    	SessionUser.sessionUserInfor = null;
+//    	SessionUser.sessionPassWord = null;
+    	Util.showNotifySuccess("Logout Success");
+		
+	}
 	void loadEditUser()
 	{  
 	  currentAction = "FORM_EDIT_ACOUNT";
 	}
+	
+	void loadPassChange()
+  	{  
+  	  currentAction = "FORM_PASS_CHANGE";
+  	}
 	
 	void initMainMenu()
 	{

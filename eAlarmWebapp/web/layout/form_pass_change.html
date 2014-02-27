@@ -1,0 +1,55 @@
+<polymer-element name="form-pass-change">
+<meta charset="UTF-8" /> 
+<template>
+<!-- Content -->
+<h3>Thay đổi mật khẩu cá nhân</h3>
+<div class="innerLR">    
+          
+          <!-- Tab content -->
+          <div class="tab-pane" id="account-body-settings">
+          
+            <!-- Row -->
+            <div class="row-fluid">
+            
+              <!-- Column -->
+              <div class="span3">
+                <strong>Thay đổi mật khẩu</strong>
+                <p class="muted">Vui lòng nhập mật khẩu cũ và mật khẩu mới để thay đổi mật khẩu</p>
+              </div>
+              <!-- // Column END -->
+              
+              <!-- Column -->
+              <div class="span9">
+                <label for="inputUsername">Tên đăng nhập</label>
+                <input type="text" id="inputUsername" class="span10" value="john.doe2012" disabled="disabled" />
+                <span style="margin: 0;" class="btn-action single glyphicons circle_question_mark" data-toggle="tooltip" data-placement="top" data-original-title="Tên đăng nhập không đổi được"><i></i></span>
+                <div class="separator"></div>
+                    
+                <label for="inputPasswordOld">Mật khẩu cũ</label>
+                <input type="password" id="inputPasswordOld" class="span10" value="" placeholder="Mật khẩu cũ" />
+                <span style="margin: 0;" class="btn-action single glyphicons circle_question_mark" data-toggle="tooltip" data-placement="top" data-original-title="Nhập mật khẩu cũ hiện đang sử dụng"><i></i></span>
+                <div class="separator"></div>
+                
+                <label for="inputPasswordNew">Mật khẩu mới</label>
+                <input type="password" id="inputPasswordNew" class="span12" value="" placeholder="Mật khẩu mới" />
+                <div class="separator"></div>
+                
+                <label for="inputPasswordNew2">Nhập lại mật khẩu mới</label>
+                <input type="password" id="inputPasswordNew2" class="span12" value="" placeholder="Nhập lại mật khẩu" />
+                <div class="separator"></div>
+              </div>
+              <!-- // Column END -->
+              <button id="btnSaveChangePass" type="button" style="margin-top:10px; float: right;" class="btn btn-icon btn-primary glyphicons circle_ok"><i></i>Lưu thay đổi</button>
+            </div>
+            <!-- // Row END -->
+            
+            
+            <!-- // Form actions END -->
+            
+          </div>
+          <!-- // Tab content END -->
+        </div>
+</template>
+	<script type="application/dart" src="form_pass_change.dart">
+	</script> 
+</polymer-element>

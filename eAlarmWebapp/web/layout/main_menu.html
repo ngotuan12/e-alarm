@@ -6,6 +6,7 @@
 <link rel="import" href="form_devicepropertives.html">
 <link rel="import" href="form_report_device_by_area.html">
 <link rel="import" href="form_edit_account_detail.html">
+<link rel="import" href="form_pass_change.html">
 <link rel="import" href="form_report_issue_by_area.html">
 <link rel="import" href="form_area.html">
 <link rel="import" href="form_user.html">
@@ -77,8 +78,8 @@
 					<span>
 						<ul>
 							<li><a href="#" id="btnEditUser" class="glyphicons lock"><i></i>Tài khoản</a></li>
-							<li><a href="#" class="glyphicons keys"><i></i>Mật khẩu</a></li>
-							<li><a href="#" class="glyphicons eject"><i></i>Đăng xuất</a></li>
+							<li><a href="#" id="btnChangePass" class="glyphicons keys"><i></i>Mật khẩu</a></li>
+							<li><a href="#" id="btnLogOut" class="glyphicons eject"><i></i>Đăng xuất</a></li>
 						</ul>
 					</span>
 				</span>
@@ -128,6 +129,9 @@
 			</template>
 			<template if="{{currentAction=='FORM_USER_MANAGEMENT'}}">
 				<form-user></form-user>
+			</template>
+			<template if="{{currentAction == 'FORM_PASS_CHANGE'}}"> 
+				<form-pass-change></form-pass-change>
 			</template>
 		</div>
 		<!-- // Content END -->
