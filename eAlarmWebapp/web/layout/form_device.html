@@ -8,10 +8,10 @@
 		<form-device-none on-edit="{{onEdit}}" on-add="{{onAdd}}"></form-device-none>
 	</template>
 	<template if="{{currentAction == 'EDIT'}}">
-		<form-device-edit device="{{currentDevice}}" on-Goback="{{onGoback}}"></form-device-edit>
+		<form-device-add on-Goback="{{onGoback}}" action="{{currentAction}}" device="{{currentDevice}}"></form-device-add>
 	</template>
 	<template if="{{currentAction == 'ADD'}}">
-		<form-device-add on-Goback="{{onGoback}}"></form-device-add>
+		<form-device-add on-Goback="{{onGoback}}" action="{{currentAction}}"></form-device-add>
 	</template>
 </template>
 	<script type="application/dart" src="form_device.dart">

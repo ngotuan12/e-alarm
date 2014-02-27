@@ -164,13 +164,13 @@ class FormDeviceNone extends PolymerElement
 	  listDevices=toObservable([]);
 		//get data
 		Map request = new Map();
-	  request["Method"] = "onGetAllDevicesWithPro";
+	  request["Method"] = "form_device_none_load";
 	  //Listen
 	  Responder responder = new Responder();
 		//success
 		responder.onSuccess.listen((Map response)
 		{
-		  listDevices=response['all_devices_byarea_info'];
+		  listDevices=response['device_list'];
 		  CurrentDevices=listDevices;
 		  totalDevice.text="Tổng số trạm: "+ CurrentDevices.length.toString();
 		  Pagination();
@@ -182,7 +182,7 @@ class FormDeviceNone extends PolymerElement
 		}
 		);
 		//send to server
-//		AppClient.sendMessage(request, AlarmServiceName.DeviceService, AlarmServiceMethod.POST,responder);
+		AppClient.sendMessage(request, AlarmServiceName.DeviceManagementService, AlarmServiceMethod.POST,responder);
 	}
 	
 	/*
