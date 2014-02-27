@@ -39,7 +39,7 @@ public class AreaBean extends AppProcessor {
 	}
 
 	public JSONArray GetActiveByParent(int ID) throws Exception {
-		String strSQL = "SELECT id,full_name,code,name,parent_id,level,status,woodenleg,lat,lng,type "
+		String strSQL = "SELECT id,full_name,area_code,code,name,parent_id,level,status,woodenleg,lat,lng,type "
 				+ "FROM area "
 				+ "WHERE status=1 AND parent_id = "
 				+ String.valueOf(ID) + " ORDER BY woodenleg";
@@ -85,13 +85,13 @@ public class AreaBean extends AppProcessor {
 	}
 
 	private JSONArray GetAllAreaActive() throws Exception {
-		String strSQL = "SELECT id,full_name,code,name,parent_id,level,status,woodenleg,lat,lng,type "
+		String strSQL = "SELECT id,full_name,area_code,code,name,parent_id,level,status,woodenleg,lat,lng,type "
 				+ "FROM area " + "WHERE status=1 " + " ORDER BY woodenleg";
 		return ExcuteQuery(strSQL, 0);
 	}
 
 	private JSONArray GetAllArea() throws Exception {
-		String strSQL = "SELECT a1.id,a2.name as parent_name,a1.full_name,a1.code,a1.name,a1.parent_id,a1.level,a1.status,a1.woodenleg,a1.lat,a1.lng,a1.type "
+		String strSQL = "SELECT a1.id,a1.area_code,a2.name as parent_name,a1.full_name,a1.code,a1.name,a1.parent_id,a1.level,a1.status,a1.woodenleg,a1.lat,a1.lng,a1.type "
 				+ "FROM area as a1,area as a2 "+"WHERE a1.parent_id=a2.id " + "ORDER BY a1.woodenleg";
 		return ExcuteQuery(strSQL, 0);
 	}
