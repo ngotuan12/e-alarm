@@ -70,14 +70,15 @@ class FormDevicesProEdit extends PolymerElement
        }else{
         request["Method"] = "onAddDevicePro";
        }
-       request["min_alarm"] = txtMinWarning.value.toString();
-       request["max_alarm"] = txtMaxWarning.value.toString();
-       request["name"]=txtName.value.toString();
-       request["code"]=txtCode.value.toString();
-       request["description"]=txtDescription.value.toString();       
-       request["type"]=txtType.value.toString();
-       request["min"]=txtMin.value.toString();
-       request["max"]=txtMax.value.toString();
+       request["min_Alarm"] = txtMinWarning.value;
+       request["max_Alarm"] = txtMaxWarning.value;
+       request["name"]=txtName.value;
+       request["code"]=txtCode.value;
+       request["description"]=txtDescription.value;       
+       request["type"]=txtType.value;
+       request["symbol"]=txtCode.value;
+       request["min"]=txtMin.value;
+       request["max"]=txtMax.value;
        
        if(request["min_alarm"]=="" ||request["max_alarm"]=="" ||request["name"]=="" ||request["code"]==""||request["description"]==""||request["type"]==""||request["min"]==""||request["max"]=="")
        {
@@ -88,10 +89,18 @@ class FormDevicesProEdit extends PolymerElement
              responder.onSuccess.listen((Map response)
         {
          dispatchEvent(new CustomEvent("goback",detail:""));
+         if(DeviceCon!=null){
+        	 Util.showNotifySuccess("Thay đổi chi tiết thuộc tính thiết bị thành công");
+                }else{
+                	insertbydevice();
+                	Util.showNotifySuccess("Thêm mới chi tiết thuộc tính thiết bị thành công");
+                }
+         
              });
              //error
              responder.onError.listen((Map error)
         {
+            	  Util.showNotifyError(error.toString());
                Util.showNotifyError(error["message"]);
         });
              AppClient.sendMessage(request, AlarmServiceName.DeviceService, AlarmServiceMethod.POST,responder);
@@ -101,6 +110,28 @@ class FormDevicesProEdit extends PolymerElement
          {
             Util.showNotifyError(err.toString());
          }
+  }
+  void insertbydevice(){
+  	try
+     	{
+           Responder responder1 = new Responder();
+           Map request = new Map();
+					request["Method"] = "onFixDeviceInfo";
+					responder1.onSuccess.listen((Map response)
+           {
+            	 Util.showNotifySuccess("Thêm mới vào thông tin thiết bị thành công");
+           });
+           //error
+					responder1.onError.listen((Map error)
+            {
+                   Util.showNotifyError(error["message"]);
+            });
+            AppClient.sendMessage(request, AlarmServiceName.DeviceService, AlarmServiceMethod.POST,responder1);          
+             }
+             catch(err)
+             {
+                Util.showNotifyError(err.toString());
+             }
   }
   
   void onCancel()

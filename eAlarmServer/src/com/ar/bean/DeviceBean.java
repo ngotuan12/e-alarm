@@ -9,6 +9,8 @@ import org.codehaus.jettison.json.JSONObject;
 import com.ar.util.AppProcessor;
 import com.ar.util.Util;
 import com.fss.sql.Database;
+import com.fss.util.AppException;
+import com.mysql.jdbc.Statement;
 
 public class DeviceBean extends AppProcessor
 {
@@ -320,6 +322,46 @@ public class DeviceBean extends AppProcessor
 				// response
 				response.put("all_devices_info", arr);
 				response.put("Mess", "Success");
+			}
+		}
+		catch (Exception ex)
+		{
+			ex.printStackTrace();
+			throw ex;
+		}
+		finally
+		{
+			close();
+		}
+	}
+
+	public JSONArray onGetAllDevices1() throws Exception
+	{
+		String strSQL = "";
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+		try
+		{
+			// open connection
+			open();
+			strSQL = "SELECT * FROM device";
+			// prepare
+			pstm = mcnMain.prepareStatement(strSQL);
+			rs = pstm.executeQuery();
+			// get JSON data
+			JSONArray arr = Util.convertToJSONArray(rs);
+			// if account not exists
+			if (arr.length() == 0)
+			{
+				// close statement
+				Database.closeObject(pstm);
+				Database.closeObject(rs);
+				// response
+				return arr;
+			}
+			else
+			{
+				return arr;
 			}
 		}
 		catch (Exception ex)
@@ -699,6 +741,7 @@ public class DeviceBean extends AppProcessor
 			close();
 		}
 	}
+
 	public void onGetDevicesByAreaCodeStatus() throws Exception
 	{
 		String strSQL = "";
@@ -711,10 +754,11 @@ public class DeviceBean extends AppProcessor
 			// open connection
 			open();
 			strSQL = "SELECT id,code,area_id,area_code,address,lat,lng,status"
-					+ " FROM device " + "where area_code LIKE "+"'"+strAreaCode+"%' ";
-			if(strStatus.contentEquals("2") ||strStatus.contentEquals("1"))
+					+ " FROM device " + "where area_code LIKE " + "'"
+					+ strAreaCode + "%' ";
+			if (strStatus.contentEquals("2") || strStatus.contentEquals("1"))
 			{
-				strSQL+=" AND status= "+strStatus;
+				strSQL += " AND status= " + strStatus;
 			}
 			// prepare
 			pstm = mcnMain.prepareStatement(strSQL);
@@ -761,9 +805,10 @@ public class DeviceBean extends AppProcessor
 			close();
 		}
 	}
+
 	public void doGet() throws Exception
 	{
-		
+
 	}
 
 	@Override
@@ -905,13 +950,12 @@ public class DeviceBean extends AppProcessor
 
 			// open connection
 			open();
-			strSQL = "UPDATE device_properties SET name='" + strname + "'"
-					+ "',code='" + strcode + "'" + "',description='"
-					+ strdescription + "'" + "',symbol='" + strSymbol + "'"
-					+ "',min='" + strmin + "'" + "',max='" + strmax + "'"
-					+ "',min_alarm='" + strminAlarm + "'" + "',max_alarm='"
-					+ strmaxAlarm + "'" + " WHERE id='" + strdevice_pro_id
-					+ "'";
+			strSQL = "UPDATE device_properties SET name=N'" + strname
+					+ "',code='" + strcode + "',description=N'"
+					+ strdescription + "',symbol='" + strSymbol + "',min='"
+					+ strmin + "',max='" + strmax + "',min_alarm='"
+					+ strminAlarm + "',max_alarm='" + strmaxAlarm + "'"
+					+ " WHERE id='" + strdevice_pro_id + "'";
 
 			pstm = mcnMain.prepareStatement(strSQL);
 			int done = pstm.executeUpdate(strSQL);
@@ -953,54 +997,52 @@ public class DeviceBean extends AppProcessor
 			String strname = (String) request.getString("name");
 			String strcode = (String) request.getString("code");
 			String strdescription = (String) request.getString("description");
-			String strSymbol = (String) request.getString("type");
+			String strSymbol = (String) request.getString("symbol");
 			String strmin = (String) request.getString("min");
 			String strmax = (String) request.getString("max");
 			String strminAlarm = (String) request.getString("min_Alarm");
 			String strmaxAlarm = (String) request.getString("max_Alarm");
+			String strtype = (String) request.getString("type");
 
 			// open connection
 			open();
-			strSQL = "INSERT INTO device_properties (name,code,description,symbol,min,max,min_alarm,max_alarm) VALUES ('"
+			strSQL = "INSERT INTO device_properties (name,code,description,symbol,min,max,min_alarm,max_alarm,type) VALUES ('"
 					+ strname
-					+ "'"
 					+ "','"
 					+ strcode
-					+ "'"
 					+ "','"
 					+ strdescription
-					+ "'"
 					+ "','"
 					+ strSymbol
-					+ "'"
 					+ "','"
 					+ strmin
-					+ "'"
 					+ "','"
 					+ strmax
-					+ "'"
 					+ "','"
 					+ strminAlarm
-					+ "'" + "','" + strmaxAlarm + "')";
+					+ "','"
+					+ strmaxAlarm
+					+ "','"
+					+ strtype + "')";
+			// prepare
+			pstm = mcnMain.prepareStatement(strSQL,
+					Statement.RETURN_GENERATED_KEYS);
+			pstm.executeUpdate();
+			// get inserted key
+			rs = pstm.getGeneratedKeys();
+			int iPropertyID;
+			if (rs.next()) iPropertyID = rs.getInt(1);
+			else throw new AppException("EAS-DEVICCE-001",
+					"Can't insert property!");
+			// Close statement
+			rs.close();
+			pstm.close();
+			// insert device infor
+			strSQL = "INSERT INTO device_infor(device_id,device_pro_id) select id,"
+					+ iPropertyID + " from device";
 			// prepare
 			pstm = mcnMain.prepareStatement(strSQL);
-
-			int done = pstm.executeUpdate(strSQL);
-
-			if (done == 1)
-			{
-				// close statement
-				Database.closeObject(pstm);
-				Database.closeObject(rs);
-				// response
-				response.put("Mess", "add sucess");
-			}
-			else
-			{
-				// response
-				response.put("Mess", "have error with execute(validate data)");
-				response.put("Mess", "Success");
-			}
+			pstm.executeUpdate(strSQL);
 		}
 		catch (Exception ex)
 		{
@@ -1009,6 +1051,8 @@ public class DeviceBean extends AppProcessor
 		}
 		finally
 		{
+			Database.closeObject(rs);
+			Database.closeObject(pstm);
 			close();
 		}
 
@@ -1151,7 +1195,7 @@ public class DeviceBean extends AppProcessor
 			close();
 		}
 	}
-	
+
 	/**
 	 * @author ducdienpt
 	 * @since 25/02/2014
@@ -1162,16 +1206,18 @@ public class DeviceBean extends AppProcessor
 	{
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
-		String strSQL	= "";
-		try 
+		String strSQL = "";
+		try
 		{
 			String StrDeviceId = (String) request.getString("device_id");
-			strSQL="SELECT a.id,a.device_pro_id,a.device_id,b.code,b.name,a.value "
-					+"FROM device_infor a,device_properties b "
-					+"where a.device_pro_id = b.id "
-					+"AND a.status = '1' "
-					+"AND a.device_id= "+StrDeviceId+" "
-					+"ORDER BY a.device_pro_id";
+			strSQL = "SELECT a.id,a.device_pro_id,a.device_id,b.code,b.name,a.value "
+					+ "FROM device_infor a,device_properties b "
+					+ "where a.device_pro_id = b.id "
+					+ "AND a.status = '1' "
+					+ "AND a.device_id= "
+					+ StrDeviceId
+					+ " "
+					+ "ORDER BY a.device_pro_id";
 			// open connection
 			open();
 			// prepare
@@ -1194,8 +1240,8 @@ public class DeviceBean extends AppProcessor
 				response.put("all_devices_pro", arr);
 				response.put("Mess", "Success");
 			}
-		} 
-		catch (Exception e) 
+		}
+		catch (Exception e)
 		{
 			e.printStackTrace();
 			throw e;
@@ -1206,6 +1252,6 @@ public class DeviceBean extends AppProcessor
 			Database.closeObject(pstm);
 			close();
 		}
-		
+
 	}
 }
