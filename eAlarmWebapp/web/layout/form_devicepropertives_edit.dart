@@ -10,12 +10,14 @@ class FormDevicesProEdit extends PolymerElement
     FormDevicesProEdit.created() : super.created();
     @published Map DeviceCon;
     
-  InputElement txtDeviceProID=new InputElement(type:"text"); 
+//  InputElement txtDeviceProID=new InputElement(type:"text"); 
   InputElement txtCode=new InputElement(type:"text");
   InputElement txtDescription=new InputElement(type:"text");
   InputElement txtType=new InputElement(type:"text");
   InputElement txtMin=new InputElement(type:"text");
   InputElement txtMax=new InputElement(type:"text");
+  InputElement txtMinWarning=new InputElement(type:"text");
+  InputElement txtMaxWarning=new InputElement(type:"text");
   ButtonElement btnSave=new ButtonElement();
   ButtonElement btnCancel=new ButtonElement();
   InputElement txtName=new InputElement(type:"text");
@@ -32,24 +34,27 @@ class FormDevicesProEdit extends PolymerElement
     btnCancel=this.shadowRoot.querySelector("#btnCancel");
     btnSave.onClick.listen((event)=>onSaveData());
     btnCancel.onClick.listen((event)=>onCancel());
-    txtDeviceProID=this.shadowRoot.querySelector("#txtDeviceProID");
+//    txtDeviceProID=this.shadowRoot.querySelector("#txtDeviceProID");
     txtName=this.shadowRoot.querySelector("#txtName");
     txtCode=this.shadowRoot.querySelector("#txtCode");
     txtDescription=this.shadowRoot.querySelector("#txtDescription");
     txtType=this.shadowRoot.querySelector("#txtType");
     txtMin=this.shadowRoot.querySelector("#txtMin");
     txtMax=this.shadowRoot.querySelector("#txtMax");
-    txtDeviceProID.disabled=true;
+    txtMinWarning=this.shadowRoot.querySelector("#txtMinWar");
+    txtMaxWarning=this.shadowRoot.querySelector("#txtMaxWar");
+//    txtDeviceProID.disabled=true;
     if(DeviceCon!=null)
     {
-      txtDeviceProID.value=DeviceCon["id"].toString();
+//      txtDeviceProID.value=DeviceCon["id"].toString();
       txtName.value =DeviceCon["name"].toString();
       txtCode.value=DeviceCon["code"].toString();
       txtDescription.value=DeviceCon["description"].toString();
       txtType.value=DeviceCon["type"].toString();
       txtMin.value=DeviceCon["min"].toString();
       txtMax.value=DeviceCon["max"].toString();
-    
+      txtMinWarning.value = DeviceCon["min_alarm"].toString();
+      txtMaxWarning.value = DeviceCon["max_alarm"].toString();
     }
   }
   
@@ -61,11 +66,12 @@ class FormDevicesProEdit extends PolymerElement
             Map request = new Map();
        if(DeviceCon!=null){
              request["Method"] = "onEditDevicePro";
-             request["ID"]=txtDeviceProID.value.toString();
+             request["ID"]=DeviceCon["id"].toString();
        }else{
         request["Method"] = "onAddDevicePro";
        }
-       
+       request["min_alarm"] = txtMinWarning.value.toString();
+       request["max_alarm"] = txtMaxWarning.value.toString();
        request["name"]=txtName.value.toString();
        request["code"]=txtCode.value.toString();
        request["description"]=txtDescription.value.toString();       
@@ -73,7 +79,7 @@ class FormDevicesProEdit extends PolymerElement
        request["min"]=txtMin.value.toString();
        request["max"]=txtMax.value.toString();
        
-       if(request["name"]=="" ||request["code"]==""||request["description"]==""||request["type"]==""||request["min"]==""||request["max"]=="")
+       if(request["min_alarm"]=="" ||request["max_alarm"]=="" ||request["name"]=="" ||request["code"]==""||request["description"]==""||request["type"]==""||request["min"]==""||request["max"]=="")
        {
         Util.showNotifyError("Data input is  invalid");
        }

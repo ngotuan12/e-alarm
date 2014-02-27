@@ -1,7 +1,6 @@
 import 'package:polymer/polymer.dart';
 import 'dart:html';
 import '../src/util.dart';
-import 'package:crypto/crypto.dart';
 @CustomTag('form-edit-account-detail')
 class FormEditAccountDetail extends PolymerElement
 {
@@ -17,22 +16,22 @@ class FormEditAccountDetail extends PolymerElement
   InputElement txtusername=new InputElement(type:"text"); 
   InputElement txtdatepicker=new InputElement(type:"text"); 
   
-  InputElement txtinputUsername=new InputElement(type:"text"); 
-  InputElement txtinputPasswordOld=new InputElement(type:"text"); 
-  InputElement txtinputPasswordNew=new InputElement(type:"text"); 
-  InputElement txtinputPasswordNew2=new InputElement(type:"text"); 
+//  InputElement txtinputUsername=new InputElement(type:"text"); 
+//  InputElement txtinputPasswordOld=new InputElement(type:"text"); 
+//  InputElement txtinputPasswordNew=new InputElement(type:"text"); 
+//  InputElement txtinputPasswordNew2=new InputElement(type:"text"); 
   
   ButtonElement btnSaveChangeDetail=new ButtonElement();
-  ButtonElement btnSaveChangePass=new ButtonElement();
+//  ButtonElement btnSaveChangePass=new ButtonElement();
   
   SelectElement selectGender=new SelectElement();
   
   
-  LIElement liAccountDetails = new LIElement();
-  DivElement divAccountDetails = new DivElement();
-  LIElement liAccountSettings = new LIElement();
-  DivElement divAccountSettings = new DivElement();
-  DivElement widgethead = new DivElement();
+//  LIElement liAccountDetails = new LIElement();
+//  DivElement divAccountDetails = new DivElement();
+//  LIElement liAccountSettings = new LIElement();
+//  DivElement divAccountSettings = new DivElement();
+  //DivElement widgethead = new DivElement();
   
   enteredView() 
   {
@@ -41,17 +40,17 @@ class FormEditAccountDetail extends PolymerElement
   }
   void init()
   {
-  	widgethead = this.shadowRoot.querySelector("#account-nav");
-        liAccountDetails = widgethead.querySelector("#account-details");
-        liAccountDetails.onClick.listen(onAccountnav);
-    divAccountDetails = this.shadowRoot.querySelector("#account-body-details");
+  	//widgethead = this.shadowRoot.querySelector("#account-nav");
+//        liAccountDetails = widgethead.querySelector("#account-details");
+//        liAccountDetails.onClick.listen(onAccountnav);
+//    divAccountDetails = this.shadowRoot.querySelector("#account-body-details");
+//                    
+//     liAccountSettings = widgethead.querySelector("#account-settings");
+//     liAccountSettings.onClick.listen(onAccountnav);
+//     divAccountSettings = this.shadowRoot.querySelector("#account-body-settings");
                     
-     liAccountSettings = widgethead.querySelector("#account-settings");
-     liAccountSettings.onClick.listen(onAccountnav);
-     divAccountSettings = this.shadowRoot.querySelector("#account-body-settings");
-                    
-      listToogle.add({"header":liAccountDetails,"list":divAccountDetails});
-      listToogle.add({"header":liAccountSettings,"list":divAccountSettings});
+//      listToogle.add({"header":liAccountDetails,"list":divAccountDetails});
+//      listToogle.add({"header":liAccountSettings,"list":divAccountSettings});
         
         txtFullName = this.shadowRoot.querySelector("#txtfullname");
         txtusername = this.shadowRoot.querySelector("#txtusername");
@@ -72,13 +71,13 @@ class FormEditAccountDetail extends PolymerElement
         btnSaveChangeDetail.onClick.listen((event)=>onSaveData());
         
         
-        txtinputUsername=this.shadowRoot.querySelector("#inputUsername");
-        txtinputPasswordOld=this.shadowRoot.querySelector("#inputPasswordOld");
-        txtinputPasswordNew=this.shadowRoot.querySelector("#inputPasswordNew");
-        txtinputPasswordNew2=this.shadowRoot.querySelector("#inputPasswordNew2");
-        txtinputUsername.value = SessionUser.sessionUserInfor["username"];
-        btnSaveChangePass=this.shadowRoot.querySelector("#btnSaveChangePass");
-        btnSaveChangePass.onClick.listen((event)=>onSavePass());
+//        txtinputUsername=this.shadowRoot.querySelector("#inputUsername");
+//        txtinputPasswordOld=this.shadowRoot.querySelector("#inputPasswordOld");
+//        txtinputPasswordNew=this.shadowRoot.querySelector("#inputPasswordNew");
+//        txtinputPasswordNew2=this.shadowRoot.querySelector("#inputPasswordNew2");
+//        txtinputUsername.value = SessionUser.sessionUserInfor["username"];
+//        btnSaveChangePass=this.shadowRoot.querySelector("#btnSaveChangePass");
+//        btnSaveChangePass.onClick.listen((event)=>onSavePass());
         
         
   }
@@ -140,56 +139,56 @@ class FormEditAccountDetail extends PolymerElement
             Util.showNotifyError(err.toString());
         }
     }
-  void clearData1()
-  {
-  	txtinputPasswordNew.value = "";
-  	txtinputPasswordOld.value = "";
-  	txtinputPasswordNew2.value = "";
-  	
-  }
-  void onSavePass()
-     {
-       try
-         {   
-                 Responder responder = new Responder();
-             Map request = new Map();
-             String passnew = txtinputPasswordNew.value;
-             String passold = txtinputPasswordOld.value;
-           request["Method"] = "UpdatePass";
-         
-         String md5hashnew = CryptoUtils.bytesToHex((new MD5()..add(passnew.codeUnits)).close());
-         request["newpassword"]= md5hashnew;
-         String md5hashold = CryptoUtils.bytesToHex((new MD5()..add(passold.codeUnits)).close());
-         request["id"] = SessionUser.sessionUserInfor["id"].toString();
-         if(txtinputPasswordOld.value==""||txtinputPasswordNew.value=="")
-         {
-           Util.showNotifyError("Chưa nhập đủ dữ liệu");
-         }else if(md5hashold!=SessionUser.sessionPassWord.toString()){
-        	 String a = SessionUser.sessionUserInfor.toString();
-        	 Util.showNotifyError("Mật khẩu cũ không đúng");
-         }
-         else if(txtinputPasswordNew.value!=txtinputPasswordNew2.value){
-                 	 Util.showNotifyError("Mật khẩu mới nhập không khớp");
-                  }
-         else
-         {
-               responder.onSuccess.listen((Map response){
-              	 Util.showNotifySuccess("Thay đổi mật khẩu thành công");
-              	 SessionUser.sessionPassWord = md5hashnew;
-                 clearData1();
-               });
-               
-               //error
-               responder.onError.listen((Map error)
-           {
-                 Util.showNotifyError(error["message"]);
-           });
-               AppClient.sendMessage(request, AlarmServiceName.UserService, AlarmServiceMethod.POST,responder);
-         }
-         }
-         catch(err)
-         {
-             Util.showNotifyError(err.toString());
-         }
-     }
+//  void clearData1()
+//  {
+//  	txtinputPasswordNew.value = "";
+//  	txtinputPasswordOld.value = "";
+//  	txtinputPasswordNew2.value = "";
+//  	
+//  }
+//  void onSavePass()
+//     {
+//       try
+//         {   
+//                 Responder responder = new Responder();
+//             Map request = new Map();
+//             String passnew = txtinputPasswordNew.value;
+//             String passold = txtinputPasswordOld.value;
+//           request["Method"] = "UpdatePass";
+//         
+//         String md5hashnew = CryptoUtils.bytesToHex((new MD5()..add(passnew.codeUnits)).close());
+//         request["newpassword"]= md5hashnew;
+//         String md5hashold = CryptoUtils.bytesToHex((new MD5()..add(passold.codeUnits)).close());
+//         request["id"] = SessionUser.sessionUserInfor["id"].toString();
+//         if(txtinputPasswordOld.value==""||txtinputPasswordNew.value=="")
+//         {
+//           Util.showNotifyError("Chưa nhập đủ dữ liệu");
+//         }else if(md5hashold!=SessionUser.sessionPassWord.toString()){
+//        	 String a = SessionUser.sessionUserInfor.toString();
+//        	 Util.showNotifyError("Mật khẩu cũ không đúng");
+//         }
+//         else if(txtinputPasswordNew.value!=txtinputPasswordNew2.value){
+//                 	 Util.showNotifyError("Mật khẩu mới nhập không khớp");
+//                  }
+//         else
+//         {
+//               responder.onSuccess.listen((Map response){
+//              	 Util.showNotifySuccess("Thay đổi mật khẩu thành công");
+//              	 SessionUser.sessionPassWord = md5hashnew;
+//                 clearData1();
+//               });
+//               
+//               //error
+//               responder.onError.listen((Map error)
+//           {
+//                 Util.showNotifyError(error["message"]);
+//           });
+//               AppClient.sendMessage(request, AlarmServiceName.UserService, AlarmServiceMethod.POST,responder);
+//         }
+//         }
+//         catch(err)
+//         {
+//             Util.showNotifyError(err.toString());
+//         }
+//     }
 }

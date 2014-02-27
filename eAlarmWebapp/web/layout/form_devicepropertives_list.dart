@@ -65,10 +65,6 @@ class FormDevicePropertives extends PolymerElement
         row.classes.add("selectable");
         
         //column
-        TableCellElement colId=new TableCellElement();
-        colId.classes.add("center");
-        colId.appendHtml(depro["id"].toString());
-        
         TableCellElement colName=new TableCellElement();
         colName.classes.add("center");
         colName.appendHtml(depro["name"].toString());
@@ -93,6 +89,14 @@ class FormDevicePropertives extends PolymerElement
         colMax.classes.add("center");
         colMax.appendHtml(depro["max"].toString());
         
+        TableCellElement colMinAlarm=new TableCellElement();
+        colMinAlarm.classes.add("center");
+        colMinAlarm.appendHtml(depro["min_alarm"].toString());
+                
+        TableCellElement colMaxAlarm=new TableCellElement();
+        colMaxAlarm.classes.add("center");
+        colMaxAlarm.appendHtml(depro["max_alarm"].toString());
+        
         TableCellElement colAction=new TableCellElement();
         colAction.classes.add("center");
         ButtonElement btnEdit=new ButtonElement();
@@ -108,13 +112,14 @@ class FormDevicePropertives extends PolymerElement
         colAction.children.add(btnEdit);
         colAction.children.add(btnDelete);
         //add column
-        row.children.add(colId);
         row.children.add(colName);
         row.children.add(colCode);
         row.children.add(colDescription);
         row.children.add(colType);
         row.children.add(colMin);
         row.children.add(colMax);
+        row.children.add(colMinAlarm);
+        row.children.add(colMaxAlarm);
         row.children.add(colAction);
         
         String deviceproID= depro["id"].toString();

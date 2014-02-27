@@ -391,7 +391,7 @@ public class DeviceBean extends AppProcessor
 			close();
 		}
 	}
-	
+
 	public void onGetAllDevicesWithPro() throws Exception
 	{
 		String strSQL = "";
@@ -897,31 +897,23 @@ public class DeviceBean extends AppProcessor
 			String strname = (String) request.getString("name");
 			String strcode = (String) request.getString("code");
 			String strdescription = (String) request.getString("description");
-			String strtype = (String) request.getString("type");
+			String strSymbol = (String) request.getString("type");
 			String strmin = (String) request.getString("min");
 			String strmax = (String) request.getString("max");
+			String strminAlarm = (String) request.getString("min_Alarm");
+			String strmaxAlarm = (String) request.getString("max_Alarm");
 
 			// open connection
 			open();
-			// strSQL =
-			// "UPDATE device_properties SET name=?,code=?,description=?,type=?,min=?,max=?"
-			// + " WHERE id = ?";
-			strSQL = "UPDATE device_properties SET name='" + strname.toString()
-					+ "',code='" + strcode.toString() + "'," + "description='"
-					+ strdescription.toString() + "',type="
-					+ strtype.toString() + ",min=" + Double.parseDouble(strmin)
-					+ ",max=" + Double.parseDouble(strmax) + " WHERE id="
-					+ strdevice_pro_id + "";
-			// prepare
-			// pstm = mcnMain.prepareStatement(strSQL);
-			// pstm.setString(1, strname);
-			// pstm.setString(2, strcode);
-			// pstm.setString(3, strdescription);
-			// pstm.setString(4, strtype);
-			// pstm.setDouble(5, Double.parseDouble(strmin));
-			// pstm.setDouble(6, Double.parseDouble(strmax));
-			// pstm.setInt(7, Integer.parseInt(strdevice_pro_id));
+			strSQL = "UPDATE device_properties SET name='" + strname + "'"
+					+ "',code='" + strcode + "'" + "',description='"
+					+ strdescription + "'" + "',symbol='" + strSymbol + "'"
+					+ "',min='" + strmin + "'" + "',max='" + strmax + "'"
+					+ "',min_alarm='" + strminAlarm + "'" + "',max_alarm='"
+					+ strmaxAlarm + "'" + " WHERE id='" + strdevice_pro_id
+					+ "'";
 
+			pstm = mcnMain.prepareStatement(strSQL);
 			int done = pstm.executeUpdate(strSQL);
 
 			if (done == 1)
@@ -961,21 +953,37 @@ public class DeviceBean extends AppProcessor
 			String strname = (String) request.getString("name");
 			String strcode = (String) request.getString("code");
 			String strdescription = (String) request.getString("description");
-			String strtype = (String) request.getString("type");
+			String strSymbol = (String) request.getString("type");
 			String strmin = (String) request.getString("min");
 			String strmax = (String) request.getString("max");
+			String strminAlarm = (String) request.getString("min_Alarm");
+			String strmaxAlarm = (String) request.getString("max_Alarm");
 
 			// open connection
 			open();
-			strSQL = "INSERT INTO device_properties VALUES (?,?,?,?,?,?)";
+			strSQL = "INSERT INTO device_properties (name,code,description,symbol,min,max,min_alarm,max_alarm) VALUES ('"
+					+ strname
+					+ "'"
+					+ "','"
+					+ strcode
+					+ "'"
+					+ "','"
+					+ strdescription
+					+ "'"
+					+ "','"
+					+ strSymbol
+					+ "'"
+					+ "','"
+					+ strmin
+					+ "'"
+					+ "','"
+					+ strmax
+					+ "'"
+					+ "','"
+					+ strminAlarm
+					+ "'" + "','" + strmaxAlarm + "')";
 			// prepare
 			pstm = mcnMain.prepareStatement(strSQL);
-			pstm.setString(1, strname);
-			pstm.setString(2, strcode);
-			pstm.setString(3, strdescription);
-			pstm.setString(4, strtype);
-			pstm.setDouble(5, Double.parseDouble(strmin));
-			pstm.setDouble(6, Double.parseDouble(strmax));
 
 			int done = pstm.executeUpdate(strSQL);
 
@@ -1099,6 +1107,7 @@ public class DeviceBean extends AppProcessor
 	{
 
 	}
+
 	/**
 	 * @author ducdienpt
 	 * @since 25/02/2014
@@ -1109,28 +1118,28 @@ public class DeviceBean extends AppProcessor
 	{
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
-		String strSQL	= "";	
-		try 
+		String strSQL = "";
+		try
 		{
-			//area list
+			// area list
 			strSQL = "SELECT * FROM area WHERE status = '1' ORDER BY woodenleg";
-			//open connection
+			// open connection
 			open();
-			//prepare
+			// prepare
 			pstm = mcnMain.prepareStatement(strSQL);
-			//exec
+			// exec
 			rs = pstm.executeQuery();
-			//response
+			// response
 			response.put("area_list", Util.convertToJSONArray(rs));
-			//devices list
+			// devices list
 			strSQL = "SELECT * FROM device ORDER BY area_code,status";
-			//prepare
+			// prepare
 			pstm = mcnMain.prepareStatement(strSQL);
-			//exec
+			// exec
 			rs = pstm.executeQuery();
 			response.put("device_list", Util.convertToJSONArray(rs));
-		} 
-		catch (Exception e) 
+		}
+		catch (Exception e)
 		{
 			e.printStackTrace();
 			throw e;
