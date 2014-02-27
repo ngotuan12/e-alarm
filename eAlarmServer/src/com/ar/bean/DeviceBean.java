@@ -699,10 +699,71 @@ public class DeviceBean extends AppProcessor
 			close();
 		}
 	}
+	public void onGetDevicesByAreaCodeStatus() throws Exception
+	{
+		String strSQL = "";
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+		try
+		{
+			String strAreaCode = (String) request.getString("area_code");
+			String strStatus = (String) request.getString("status");
+			// open connection
+			open();
+			strSQL = "SELECT id,code,area_id,area_code,address,lat,lng,status"
+					+ " FROM device " + "where area_code LIKE "+"'"+strAreaCode+"%' ";
+			if(strStatus.contentEquals("2") ||strStatus.contentEquals("1"))
+			{
+				strSQL+=" AND status= "+strStatus;
+			}
+			// prepare
+			pstm = mcnMain.prepareStatement(strSQL);
+			rs = pstm.executeQuery();
+			// get JSON data
+			JSONArray arr = Util.convertToJSONArray(rs);
+			// if account not exists
+			if (arr.length() == 0)
+			{
+				// close statement
+				Database.closeObject(pstm);
+				Database.closeObject(rs);
+				// response
+				response.put("Mess", "no device found");
+			}
+			else
+			{
+				// response
+				JSONArray Acooked = new JSONArray();
+				JSONObject Ocooked = new JSONObject();
+				for (int i = 0; i < arr.length(); i++)
+				{
 
+					Ocooked = arr.getJSONObject(i);
+					Ocooked.put("list",
+							(Object) onGetDevicesInfoByDeviceID(Integer
+									.parseInt(arr.getJSONObject(i).getString(
+											"id"))));
+					Acooked.put(Ocooked);
+
+				}
+
+				response.put("all_devices_byarea_info", Acooked);
+				response.put("Mess", "Success");
+			}
+		}
+		catch (Exception ex)
+		{
+			ex.printStackTrace();
+			throw ex;
+		}
+		finally
+		{
+			close();
+		}
+	}
 	public void doGet() throws Exception
 	{
-		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
@@ -716,6 +777,9 @@ public class DeviceBean extends AppProcessor
 			break;
 		case "onGetDevicesInfoByDeviceID":
 			onGetDevicesInfoByDeviceID();
+			break;
+		case "onGetDevicesByAreaCodeStatus":
+			onGetDevicesByAreaCodeStatus();
 			break;
 		case "onGetDevicesByID":
 			onGetDevicesByID();
@@ -764,6 +828,9 @@ public class DeviceBean extends AppProcessor
 			break;
 		case "onEditDevicePro":
 			onEditDevicePro();
+			break;
+		case "onGetDevicePropertyByID":
+			onGetDevicePropertyByID();
 			break;
 		default:
 			response.put("error", "you must enter the correct API name");
@@ -1074,5 +1141,62 @@ public class DeviceBean extends AppProcessor
 			Database.closeObject(pstm);
 			close();
 		}
+	}
+	
+	/**
+	 * @author ducdienpt
+	 * @since 25/02/2014
+	 * @version 1.0
+	 * @throws Exception
+	 */
+	public void onGetDevicePropertyByID() throws Exception
+	{
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+		String strSQL	= "";
+		try 
+		{
+			String StrDeviceId = (String) request.getString("device_id");
+			strSQL="SELECT a.id,a.device_pro_id,a.device_id,b.code,b.name,a.value "
+					+"FROM device_infor a,device_properties b "
+					+"where a.device_pro_id = b.id "
+					+"AND a.status = '1' "
+					+"AND a.device_id= "+StrDeviceId+" "
+					+"ORDER BY a.device_pro_id";
+			// open connection
+			open();
+			// prepare
+			pstm = mcnMain.prepareStatement(strSQL);
+			rs = pstm.executeQuery();
+			// get JSON data
+			JSONArray arr = Util.convertToJSONArray(rs);
+			// if account not exists
+			if (arr.length() == 0)
+			{
+				// close statement
+				Database.closeObject(pstm);
+				Database.closeObject(rs);
+				// response
+				response.put("Mess", "no device-pro found");
+			}
+			else
+			{
+				// response
+				response.put("all_devices_pro", arr);
+				response.put("Mess", "Success");
+			}
+		} 
+		catch (Exception e) 
+		{
+			e.printStackTrace();
+			throw e;
+		}
+		finally
+		{
+			Database.closeObject(rs);
+			Database.closeObject(pstm);
+			close();
+		}
+		
 	}
 }
