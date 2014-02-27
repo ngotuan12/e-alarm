@@ -7555,6 +7555,7 @@ line-height: 25px;
 text-align: center;
 }
 p.l_h_status{
+	margin-top:10px;
 	margin-left: 10px;
 	font-family: arial;
 }
