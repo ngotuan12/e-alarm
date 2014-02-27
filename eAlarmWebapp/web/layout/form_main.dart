@@ -100,7 +100,24 @@ class FormMain extends PolymerElement
 		//success
 		responder.onSuccess.listen((Map response)
 		{
-			AllDevices=response['device_list'];
+		    //get device
+		    Map devRequest = new Map();
+			devRequest['Method'] = 'onGetDevicesByAreaCodeStatus';
+			devRequest['area_code'] = 'VN';
+			devRequest['status'] = 0;
+			
+			Responder devResponder = new Responder();
+			devResponder.onSuccess.listen((Map res){
+//			print(res.toString());
+			 AllDevices = res['all_devices_byarea_info'];
+			});
+			devResponder.onError.listen((Map error)
+			{
+			Util.showNotifyError(error["message"]);
+		});
+			//AppClient.sendMessage(devRequest, AlarmServiceName.DeviceService, AlarmServiceMethod.POST,devResponder);
+		
+		    AllDevices=response['device_list'];
 			List<Map> areas=response['area_list'];
 			listArea = filterByType(areas, ["2"]);
 			//init Option Select
@@ -509,31 +526,50 @@ class FormMain extends PolymerElement
 	void showMarkerInfor(Map device)
 	{
 		Marker marker;
-		//
-		for(int i=0;i<markers.length;i++)
-		{
-			Map value = JSON.decode(markers[i]["value"]);
-			if(value["id"]==device["id"])
-			{
-				marker = markers[i]["marker"];
-				break;
-			}
-		}
-		if(marker ==null)
-		{
-			Util.showNotifyError("Không tìm thấy địa điểm!");
-			return;
-		}
-		//show popup
-		popupWindow.open(map, marker);
-		//show chart
-		AlarmServiceChart.load().then((_)
-		{
-			int sliderValue() => int.parse('8');
-			// Create a Guage after the library has been loaded.
-			final DivElement visualization1 = this.shadowRoot.querySelector('#content_right');
-			AlarmServiceChart gauge = new AlarmServiceChart(visualization1,{ 'title': 'Biểu đồ'},device);
-		});
+				//
+        		for(int i=0;i<markers.length;i++)
+        		{
+        			Map value = JSON.decode(markers[i]["value"]);
+        			if(value["id"]==device["id"])
+        			{
+        				marker = markers[i]["marker"];
+        				break;
+        			}
+        		}
+        		if(marker ==null)
+        		{
+        			Util.showNotifyError("Không tìm thấy địa điểm!");
+        			return;
+        		}
+		List dev = new List();
+		 Map devRequest = new Map();
+       			devRequest['Method'] = 'onGetDevicePropertyByID';
+       			devRequest['device_id'] = device['id'];
+       			
+       			Responder devResponder = new Responder();
+       			devResponder.onSuccess.listen((Map res){
+			print(res.toString());
+       			 dev = res['all_devices_pro'];
+       			popupWindow.content = createContent(device, dev);
+                 		//show popup
+                 		popupWindow.open(map, marker);
+                 		//show chart
+                 		AlarmServiceChart.load().then((_)
+                 		{
+                 			int sliderValue() => int.parse('8');
+                 			// Create a Guage after the library has been loaded.
+                 			final DivElement visualization1 = this.shadowRoot.querySelector('#content_right');
+                 			AlarmServiceChart gauge = new AlarmServiceChart(visualization1,{ 'title': 'Biểu đồ'},device);
+                 		});
+       			});
+       			devResponder.onError.listen((Map error)
+       			{
+       			Util.showNotifyError(error["message"]);
+       		});
+       	AppClient.sendMessage(devRequest, AlarmServiceName.DeviceService, AlarmServiceMethod.POST,devResponder);
+		
+		
+		
 	}
 	/*
 	 * @TuanNA
@@ -810,7 +846,7 @@ class FormMain extends PolymerElement
 		DivElement content = new DivElement();
 		content.id="solo";
 		content.style.width="650px";
-		content.style.height="400px";
+		//content.style.height="400px";
 		content.children.add(content_left);
 		content.children.add(content_right);
 		//infor window
@@ -822,6 +858,157 @@ class FormMain extends PolymerElement
 		//return
 		return popup;
 	}
+	
+	/**
+	 * Create content for info window
+	 * @author anhNvt
+	 * @param device the data of device
+	 * @return content the content for info window
+	 */
+	dynamic createContent(Map device, List dev){
+//		print(dev.toString());
+		int numberRecorde=0;
+		numberRecorde=(dev!=null)?dev.length:0;
+		//right
+		DivElement content_right=new DivElement();
+		content_right.id="content_right";
+		content_right.style.height="200px";
+		content_right.style.width="650px";
+		//left
+		DivElement content_left=new DivElement();
+		content_left.id="content_left";
+		content_left.style.color="#000";
+		content_left.style.fontFamily="Arial";
+		content_left.style.height="200px";
+		content_left.style.width="650px";
+			//left_header
+			DivElement left_header=new DivElement();
+			left_header.id="left_header";
+			left_header.style.color="#000";
+			left_header.style.fontFamily="Arial";
+			left_header.style.height="30%";
+			left_header.style.width="99%";
+			//change color
+			switch(device['status'])
+			{
+				case '0' :
+					left_header.style.background = '#c0c0c0';
+					break;
+				case '1':
+					left_header.style.background = '#24dd58';
+					break;
+				case '2':
+					left_header.style.background = '#e80d15';
+					break;
+				case '3' :
+					left_header.style.background = '#daa520';
+					break;
+				default:
+					left_header.style.background = '#c0c0c0';
+					break;
+			}
+			left_header.style.padding="15px 0px 0px 10px";
+			//add text head
+				SpanElement spCode=new SpanElement();
+				spCode.style.color="#fff";
+				spCode.style.fontFamily="Open Sans', sans-serif";
+				spCode.style.fontSize="18px";
+				spCode.text=device['code'];
+				
+				BRElement br=new BRElement();
+				
+				SpanElement spAddress=new SpanElement();
+				spAddress.style.color="#fff";
+				spAddress.style.fontFamily="Open Sans', sans-serif";
+				spAddress.style.fontSize="14px";
+				spAddress.text= device['address'];
+			//left_head add span element
+				left_header.children.add(spCode);
+				left_header.children.add(br);
+				left_header.children.add(br);
+				left_header.children.add(spAddress);
+			//left_content
+			DivElement left_content=new DivElement();
+			left_content.id="left_header";
+			left_content.style.color="#000";
+			left_content.style.fontFamily="Arial";
+			left_content.style.height="60%";
+			left_content.style.width="100%";
+			left_content.style.border="1px solid #616161";
+			left_content.style.overflowY="scroll";
+			left_content.style.overflowX="hidden";
+
+				//create div left,right in div left_content
+				DivElement left_content_left=new DivElement();
+				left_content_left.id="left_content_left";
+				left_content_left.style.color="#000";
+				left_content_left.style.fontFamily="Arial";
+				left_content_left.style.height="95%";
+				left_content_left.style.width="48%";
+				left_content_left.style.float="left";
+				left_content_left.style.float="red";
+					//content
+					DivElement divStatusDeviceContent=new DivElement();
+					divStatusDeviceContent.id="divStatuSensor";
+					divStatusDeviceContent.style.color="#000";
+					divStatusDeviceContent.style.fontFamily="Arial";
+					divStatusDeviceContent.style.height="73%";
+					divStatusDeviceContent.style.width="100%";
+					//add text
+					int i=0;
+					if(dev !=null)
+					{
+						String strDevContent = '';
+						for(i=0;i<(dev.length/2);i++){
+							strDevContent+='<p>' + dev[i]['name'] + ': ' + dev[i]['value'].toString();
+						}
+					divStatusDeviceContent.innerHtml=strDevContent;
+					}
+					//add div
+					left_content_left.children.add(divStatusDeviceContent);
+				//create div left,right in div left_content
+				DivElement left_content_right=new DivElement();
+				left_content_right.id="left_content_right";
+				left_content_right.style.color="#000";
+				left_content_right.style.fontFamily="Arial";
+				left_content_right.style.height="95%";
+				left_content_right.style.width="48%";
+				left_content_right.style.float="right";
+					//content
+					DivElement divStatuSensorContent=new DivElement();
+					divStatuSensorContent.id="divStatuSensor";
+					divStatuSensorContent.style.color="#000";
+					divStatuSensorContent.style.fontFamily="Arial";
+					divStatuSensorContent.style.height="73%";
+					divStatuSensorContent.style.width="100%";
+					//add text
+					if(dev !=null)
+					{
+						String strDevContent = '';
+						for(int j=i;j<dev.length;j++){
+							strDevContent+='<p>' + dev[j]['name'] + ': ' + dev[j]['value'].toString();
+						}
+						divStatuSensorContent.innerHtml=strDevContent;
+					}
+					//add div
+					left_content_right.children.add(divStatuSensorContent);
+				//add left right in div left_content
+				left_content.children.add(left_content_left);
+				left_content.children.add(left_content_right);
+			//content_left add
+			content_left.children.add(left_header);
+			content_left.children.add(left_content);
+		//content
+		DivElement content = new DivElement();
+		content.id="solo";
+		content.style.width="650px";
+		content.style.height="400px";
+		content.children.add(content_left);
+		content.children.add(content_right);
+	
+	return content;
+	}
+	
 	/*
 	 * @TuanNA
 	 * @since 13/12/2013
