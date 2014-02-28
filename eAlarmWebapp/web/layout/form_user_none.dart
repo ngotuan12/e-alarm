@@ -44,7 +44,7 @@ class FormUserNone extends PolymerElement
   {
     //get data
     Map request = new Map();
-    request["Method"] = "GetAllUser";
+    request["Method"] = "onGetAllUser";
     //Listen
     Responder responder = new Responder();
     //success
@@ -273,7 +273,7 @@ class FormUserNone extends PolymerElement
               ButtonElement btnDelete=new ButtonElement();
               btnDelete.className="btn-action glyphicons remove_2 btn-danger";
               btnDelete.appendHtml("<i></i>");
-              btnDelete.onClick.listen((event)=>onDeleteUser(user["ID"].toString()));
+              btnDelete.onClick.listen((event)=>onDeleteUser(user,i));
                                           
               colAction.children.add(btnEdit);
               colAction.children.add(btnDelete);
@@ -318,8 +318,38 @@ class FormUserNone extends PolymerElement
   * @company:ex-artisan
   * @version:1.0
   */
-  void onDeleteUser(String Id)
+  void onDeleteUser(Map u,int order)
   {
-    window.alert(Id);
+  	bool confirm = window.confirm("Bạn có muốn xóa người dùng "+u["FullName"]+" không ?");
+    if(confirm){
+    	deleteUser(u["ID"].toString(),order);
+    }else{
+      print("no delete"+u["name"]);
+    }
   }
+  void deleteUser(String id,int order)
+  {
+  	try
+  	{
+        Responder responder = new Responder();
+        Map request = new Map();
+        request["Method"] = "onDeleteUser";
+        request["id"]=id.toString();
+         
+        responder.onSuccess.listen((Map response){
+         		Util.showNotifySuccess("Xóa thành công");
+         		tblUser.children.removeAt(order);
+        });
+        //error
+        responder.onError.listen((Map error)
+        {
+          Util.showNotifyError(error["message"]);
+    		});
+        AppClient.sendMessage(request, AlarmServiceName.UserManagementService, AlarmServiceMethod.POST,responder);
+        }
+        catch(err)
+        {
+          Util.showNotifyError(err.toString());
+        }
+  	}
 }

@@ -1,13 +1,14 @@
 <polymer-element name="form-user-add">
 <meta charset="UTF-8" />
 <template>
+	<h3>Thêm account</h3>
 	<!-- Wrapper -->
 	<div id="login">
 		<div class="wrapper signup">
 				<!-- Box -->
 				<div class="widget">
 					<div class="widget-head">
-						<h3 class="heading">Create Account</h3>
+						<h3 class="heading">Add Account</h3>
 						<div class="pull-right">
 							Already a member?
 							<a href="index.html" class="btn btn-inverse btn-mini">Sign in</a>
@@ -25,15 +26,18 @@
 							<div class="span6">
 								<div class="innerR">
 									<label class="strong">Username</label>
-									<input type="text" class="input-block-level" placeholder="Your Username"/>
+									<input type="text" id="txtUsername" class="input-block-level" placeholder="Your Username"/>
+									
 									<label class="strong">Password</label>
-									<input type="password" class="input-block-level" placeholder="Your Password"/>
+									<input type="password" id="txtPass" class="input-block-level" placeholder="Your Password"/>
 									<label class="strong">Confirm Password</label>
-									<input type="password" class="input-block-level" placeholder="Confirm Password"/>
+									<input type="password" id="txtPass2" class="input-block-level" placeholder="Confirm Password"/>
+									
 									<label class="strong">Email</label>
 									<input type="text" id="txtEmail" class="input-block-level" placeholder="Nhập Email"/>
 									<label class="strong">Số điện thoại</label>
-									<input type="text" id="txtPhone" class="input-block-level" placeholder="Nhập số điện thoại"/>								
+									<input type="text" id="txtPhone" class="input-block-level" placeholder="Nhập số điện thoại"/>	
+									
 								</div>
 							</div>
 							<!-- // Column END -->
@@ -42,20 +46,21 @@
 							<div class="span6">
 								<div class="innerL">
 									<label class="strong">FullName</label>
-									<input type="text" class="input-block-level" placeholder="Your Email Address"/>
+									<input type="text" id="txtfullname" class="input-block-level" placeholder="Your Full Name"/>
 									<label class="strong">Address</label>
-									<input type="text" class="input-block-level" placeholder="Confirm Your Email Address"/>
+									<input type="text" id="txtaddress" class="input-block-level" placeholder="Confirm Your Email Address"/>
 									<label class="strong">BirthDay</label>
-									<input type="date" class="input-block-level "/>
+									<input type="date" id="txtbirthday" class="input-block-level "/>
+														
 									<label class=""strong">Status</label>
-									<select id="Status" class=""strong">
-										<option value="1" selected>1</option>
-										<option value="0">0</option>
-									</select>					
+									<select id="selstatus" class=""strong">
+										<option value="0">Disable</option>
+										<option value="1">Enable</option>										
+									</select>							
 									<label class="strong">Sex</label>				
-									<select id="sex" class=""strong">
-										<option value="1" selected>Nam</option>
+									<select id="selgender" class=""strong">
 										<option value="0">Nữ</option>
+										<option value="1">Nam</option>										
 									</select>
 								</div>
 							</div>

@@ -2,84 +2,88 @@
 <polymer-element name="form-devicepropertives-edit">
 <meta charset="UTF-8" />
 <template>
-<div class="form-horizontal" style="margin-bottom: 0;"
-  id="validateSubmitForm" >
-  <div class="widget" style="margin: 10px">
-    <div class="widget-head">
-      <h4 class="heading">Chỉnh sửa thông tin thuộc tính</h4>
-    </div>
-    <div class="widget-body">
-      <div class="row-fluid">
-        <div class="span6">
-          <!-- Group -->
-          <div class="control-group">
-            <label class="control-label">Name</label>
-            <div class="controls">
-              <input class="span12" id="txtName" name="Name" type="text">
-            </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label">Code</label>
-            <div class="controls">
-              <input class="span12" id="txtCode" name="Code" type="text">
-            </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label">Description</label>
-            <div class="controls">
-              <input class="span12" id="txtDescription" name="Description" type="text">
-            </div>
-          </div>
-        </div>
-        <div class="span6">
-          <div class="control-group">
-						<label class="control-label">Type</label>
-						<div class="controls">
-							<select class="span12" id="selType" name="Status">
-								<option value="0">Giá trị</option>
-								<option value="1">ON-OFF</option>
-							</select>
+<h3>Thông tin cảm biến</h3>
+	<!-- Wrapper -->
+	<div id="login">
+		<div class="wrapper signup">
+				<!-- Box -->
+				<div class="widget">
+					<div class="widget-head">
+						<h3 class="heading">Device Propertives</h3>
+						<div class="pull-right">
+							Already a member?
+							<a href="index.html" class="btn btn-inverse btn-mini">Sign in</a>
 						</div>
 					</div>
-          <div class="control-group">
-            <label class="control-label">Min</label>
-            <div class="controls">
-              <input class="span12" id="txtMin" name="Min" type="text">
-            </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label">Max</label>
-            <div class="controls">
-              <input class="span12" id="txtMax" name="Max" type="text">
-            </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label">Min Alarm</label>
-            <div class="controls">
-              <input class="span12" id="txtMinWar" name="MinWar" type="text">
-            </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label">Max Alarm</label>
-            <div class="controls">
-              <input class="span12" id="txtMaxWar" name="MaxWar" type="text">
-            </div>
-          </div>
-        </div>
-      </div>
-      <hr class="separator">
-      <div class="form-actions">
-        <button type="submit" id="btnSave"
-          class="btn btn-icon btn-primary glyphicons circle_ok">
-          <i></i>Save
-        </button>
-        <button type="button" id="btnCancel"
-          class="btn btn-icon btn-default glyphicons circle_remove">
-          <i></i>Cancel
-        </button>
-      </div>
-    </div>
-  </div>
+					<div class="widget-body">
+			
+						<!-- Form -->
+						<form method="post" action="index.html?lang=en&amp;layout_type=fixed&amp;menu_position=menu-left&amp;style=style-dark">
+						
+						<!-- Row -->
+						<div class="row-fluid row-merge">
+						
+							<!-- Column -->
+							<div class="span6">
+								<div class="innerR">
+									<label class="strong">Name</label>
+									<input type="text" id="txtName" class="input-block-level" placeholder="Tên Thiết bị"/>
+									
+									<label class="strong">Code</label>
+									<input type="text" id="txtCode" class="input-block-level" placeholder="Mã thuộc tính"/>
+									<label class="strong">Description</label>
+									<input type="text" id="txtDescription" class="input-block-level" placeholder="Miêu tả"/>
+									
+									<label class="strong">Type</label>
+									<select id="selType" class=""strong">
+										<option value="0">Giá trị</option>
+										<option value="1">ON-OFF</option>										
+									</select>
+							</div>
 </div>
+							<!-- // Column END -->
+							
+							<!-- Column -->
+							<div class="span6">
+								<div class="innerL">
+									<label class="strong">Min</label>
+									<input type="text" id="txtMin" class="input-block-level" placeholder="Giá trị nhỏ nhất"/>
+									<label class="strong">Max</label>
+									<input type="text" id="txtMax" class="input-block-level" placeholder="Giá trị lớn nhất"/>
+									<label class="strong">Min Alarm</label>
+									<input type="text" id="txtMinWar" class="input-block-level" placeholder="Giá trị nhỏ nhất cho phép"/>
+									<label class="strong">Max Alarm</label>
+									<input type="text" id="txtMaxWar" class="input-block-level" placeholder="Giá trị lớn nhất cho phép"/>			
+									
+								</div>
+							</div>
+							<!-- // Column END -->
+							
+						</div>
+						<!-- // Row END -->
+						</div>
+						</form>
+						<!-- // Form END -->
+			
+			
+					</div>
+					<!-- // Box END -->
+					
+				</div>
+				
+		</div>
+		
+	</div>
+	<!-- // Wrapper END -->	
+<!-- Bottom buttons -->
+					<div class="heading-buttons">
+						<div class="buttons pull-right" style="margin: 0;">
+							<button id="btnCancel" class="btn btn-default btn-icon glyphicons share"><i></i>Thoát</button>
+								<button id="btnSave" class="btn btn-primary btn-icon glyphicons ok_2" id="Save2"><i></i>Lưu</button>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+					<!-- // Bottom buttons END -->
+
 </template> <script type="application/dart" src="form_devicepropertives_edit.dart">
   </script> </polymer-element>
