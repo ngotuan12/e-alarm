@@ -756,7 +756,7 @@ public class DeviceBean extends AppProcessor
 			strSQL = "SELECT id,code,area_id,area_code,address,lat,lng,status"
 					+ " FROM device " + "where area_code LIKE " + "'"
 					+ strAreaCode + "%' ";
-			if (strStatus.contentEquals("2") || strStatus.contentEquals("1"))
+			if (strStatus.contentEquals("2") || strStatus.contentEquals("1")|| strStatus.contentEquals("0"))
 			{
 				strSQL += " AND status= " + strStatus;
 			}
