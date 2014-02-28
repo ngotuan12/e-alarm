@@ -25,6 +25,8 @@ class FormDeviceNone extends PolymerElement
 	List<LIElement> pages = [];
 	FormDeviceNone.created() : super.created();
 	List<Map> listElementDevice = [];
+	DivElement tabPane;
+	List<Map> tabs = [];
 	enteredView() 
 	{
 		try
@@ -35,6 +37,7 @@ class FormDeviceNone extends PolymerElement
 			ancAdd=this.shadowRoot.querySelector("#add");
 			tblDevices = this.shadowRoot.querySelector("#ListDevices");
 			btnAdd=this.shadowRoot.querySelector("#btnAdd");
+			tabPane=this.shadowRoot.querySelector("#device-detail");
 			//action
 			btnAdd.onClick.listen(onAddDevice);
 			init();
@@ -44,14 +47,14 @@ class FormDeviceNone extends PolymerElement
 			Util.showNotifyError(err.toString());
 		}
 	}
-	/*
+	/**
 	 * author: diennd
 	 */
 	void onAddDevice(Event e)
 	{
 	  dispatchEvent(new CustomEvent("add",detail:""));
 	}
-	/*
+	/**
    * author: diennd
    */
 	void showRecord()
@@ -102,7 +105,7 @@ class FormDeviceNone extends PolymerElement
               ButtonElement btnDelete=new ButtonElement();
               btnDelete.className="btn-action glyphicons remove_2 btn-danger";
               btnDelete.appendHtml("<i></i>");
-              btnDelete.onClick.listen((event)=>onDeleteDevice(Device["id"].toString()));
+              btnDelete.onClick.listen((event)=>onDeleteDevice(Device));
                                           
               colAction.children.add(btnEdit);
               colAction.children.add(btnDelete);
@@ -124,19 +127,239 @@ class FormDeviceNone extends PolymerElement
 	}
 	void onSelectedDevice(Event event)
 	{
-		Element selected = event.currentTarget;
-		print(selected.attributes["data"]);
+		if(event.target ==btnSearch)
+		{
+			return;	
+		}
+		else if(event.currentTarget is TableRowElement)
+		{
+			Element selected = event.currentTarget;
+    		setSelectedDevice(JSON.decode(selected.attributes["data"]));
+		}
 	}
-	/*
+	/**
+	 * @author: TuanNA
+	 * @since 28/02/2014
+	 * @version 1.0
+	 */
+	void setSelectedDevice(Map device)
+	{
+		int iDeviceID = device["id"];
+		//request
+		Map request = new Map();
+		request["Method"] = "get_device_detail";
+		request["device_id"] = iDeviceID; 
+		
+		//responder
+		Responder responder = new Responder();
+		responder.onSuccess.listen((Map response){
+			clearTab();
+			List<Map> properties = response["properties"];
+			//properties
+			initDeviceProperties(device,properties);
+			//
+			initDeviceCommandLog();
+			//
+			initConfiguration();
+			setSelectedTabIndex(0);
+		});
+		responder.onError.listen((Map error){
+			Util.showNotifyError(error["message"]);
+		});
+		//send request
+		AppClient.sendMessage(request, AlarmServiceName.DeviceManagementService, AlarmServiceMethod.POST, responder);
+	}
+	/**
+	 * @author tuanna
+	 * @since 28/02/2014
+	 */
+	void initDeviceCommandLog()
+	{
+		DivElement content = new DivElement();
+		addTab("Lịch sử tác động", content);
+	}
+	/**
+	 * @author tuanna
+	 * @since 28/02/2014
+	 */
+	void initConfiguration()
+	{
+		DivElement content = new DivElement();
+		addTab("Cấu hình", content);
+	}
+	/**
+	 * @author tuanna
+	 */
+	void initDeviceProperties(Map device,List<Map> properties)
+	{
+		DivElement content = new DivElement();
+		//name and address
+		SpanElement span = new SpanElement();
+		span.style.fontSize = "18px";
+		span.appendHtml(device["code"]+" - "+device["name"]+"<img class=\"l_h_content_img\" style=\"margin:-3px 0px 0px 10px\" src=\"style/icons/ic_red.png\" alt=\"blue\">"
+				+"<br><p style=\"font-size: 12px;\">"+device["address"]
+				+"<br> Connected server: "+ Util.nvl(device["connected_server"],"not connect")
+				+"<br>MAC: "+device["mac_add"]+" </p>");
+		//add children
+		content.children.add(span);
+		//properties
+		//div
+		DivElement divListProperties = new DivElement();
+		divListProperties.className = "properties";
+		//ul
+		UListElement ul = new UListElement();
+		ul.className = "ulListProperties";
+		divListProperties.children.add(ul);
+		//init
+		for(int i=0;i<properties.length;i++)
+		{
+			Map property = properties[i];
+			LIElement li = new LIElement();
+			li.className = "liListProperties";
+			SpanElement span = new SpanElement();
+			
+			if(property["alarm_status"]=="1")
+			{
+				span.className = "normal";
+				span.appendHtml(property["name"]+"<br><strong>  "+property["value"].toString()+" "+property["symbol"]+"</strong>");
+			}
+			else
+			{
+				span.className = "error";
+				span.appendHtml(property["name"]+"<br><strong>  "+property["value"].toString()+" "+property["symbol"]+"</strong>");
+			}
+			li.children.add(span);
+			ul.children.add(li);
+		}
+		//clear fix
+		DivElement divClear = new DivElement();
+		divClear.className ="Clear";
+		divListProperties.children.add(divClear);
+		//add list
+		content.children.add(divListProperties);
+		//chart
+//		DivElement divChart = new DivElement();
+//		divChart.style.height ="300px";
+//		divChart.style.width = "100%";
+//		divChart.style.margin = "auto";
+//		//add chart
+//		content.children.add(divChart);
+//		AlarmServiceChart.load().then((_)
+//		{
+//			// Create a Guage after the library has been loaded.
+//			AlarmServiceChart gauge = new AlarmServiceChart(divChart,{ 'title': 'Biểu đồ'},device);
+//		});
+//		window.onResize.listen((__){
+//			AlarmServiceChart.load().then((_)
+//    		{
+//    			// Create a Guage after the library has been loaded.
+//    			AlarmServiceChart gauge = new AlarmServiceChart(divChart,{ 'title': 'Biểu đồ'},device);
+//    		});
+//		});
+		//
+		addTab("Thông số", content);
+	}
+	/**
+	 * @author TuanNA
+	 * @since 28/02/2014
+	 * @version 1.0
+	 */
+	void addTab(String tabName,DivElement content)
+	{
+		//header
+		UListElement listHeader = tabPane.querySelector("#device-detail-header");
+		LIElement header = new LIElement();
+		header.appendHtml("<a style=\"cursor: pointer;\" data-toggle=\"tab\"class=\"glyphicons star\"><i></i>"+tabName+"</a>");
+		//listener
+		header.onClick.listen(onTabChange);
+		listHeader.children.add(header);
+		//content
+		DivElement listContent = tabPane.querySelector("#device-detail-content");
+		content.classes.add("tab-pane");
+		listContent.children.add(content);
+		//
+		tabs.add({"header":header,"content":content});
+	}
+	/**
+	 * 
+	 */
+	void clearTab()
+	{
+		UListElement listHeader = tabPane.querySelector("#device-detail-header");
+		listHeader.children.clear();
+		DivElement listContent = tabPane.querySelector("#device-detail-content");
+		listContent.children.clear();
+		tabs.clear();
+	}
+	/**
+	 * @author: TuanNA
+	 * @since: 29/02/2014
+	 * @version: 1.0
+	 */
+	void onTabChange(Event event)
+	{
+		LIElement target = event.currentTarget;
+		for(int i =0;i<tabs.length;i++)
+		{
+			LIElement header = tabs[i]["header"];
+			if(target==header)
+			{
+				setSelectedTabIndex(i);
+				break;
+			}
+		}
+	}
+	/**
+	 * @author: TuanNA
+	 * @since: 28/02/2014
+	 * @version: 1.0
+	 */
+	void setSelectedTabIndex(int selectedIndex)
+	{
+		for(int i =0;i<tabs.length;i++)
+		{
+			LIElement header = tabs[i]["header"];
+			DivElement content = tabs[i]["content"];
+			if(i==selectedIndex)
+			{
+				header.className = "active";
+				content.classes.add("active");
+			}
+			else 
+			{
+				if(header.classes.contains("active"))
+				{
+					header.className = "";
+				}
+				if(content.classes.contains("active"))
+				{
+					content.classes.remove("active");
+				}
+			}
+		}
+	}
+	/**
+	 * 
+	 */
+	void initDeviceConfiguration()
+	{
+		
+	}
+	/**
 	 * @author :diennd
 	 * @since :12/2/2014
 	 * @version:1.0
 	 */
-	void onDeleteDevice(String idDevice)
+	void onDeleteDevice(Map device)
 	{
-	  
+		bool isComfirm = window.confirm("Bạn thực sự muốn xoá "+device["name"]+"-"+device["code"]+ "?");
+		if(isComfirm)
+		{
+			//delete
+			print("delete");
+		}
 	}
-	/*
+	/**
      * @author :diennd
      * @since :12/2/2014
      * @version:1.0
@@ -152,7 +375,7 @@ class FormDeviceNone extends PolymerElement
           //dispatch event
           dispatchEvent(new CustomEvent("edit",detail:device));
     }
-	/*
+	/**
 	 * @author:diennd
 	 * @date:20/1/2014
 	 * @company:Ex-artisan
@@ -170,10 +393,13 @@ class FormDeviceNone extends PolymerElement
 		//success
 		responder.onSuccess.listen((Map response)
 		{
-		  listDevices=response['device_list'];
-		  CurrentDevices=listDevices;
-		  totalDevice.text="Tổng số trạm: "+ CurrentDevices.length.toString();
-		  Pagination();
+			listDevices=response['device_list'];
+			CurrentDevices=listDevices;
+			totalDevice.text="Tổng số trạm: "+ CurrentDevices.length.toString();
+			Pagination();
+			//set selected device
+			if(listDevices!=null&&listDevices.length>0)
+				setSelectedDevice(listDevices[0]);
 		});
 		//error
 		responder.onError.listen((Map error)
@@ -185,7 +411,7 @@ class FormDeviceNone extends PolymerElement
 		AppClient.sendMessage(request, AlarmServiceName.DeviceManagementService, AlarmServiceMethod.POST,responder);
 	}
 	
-	/*
+	/**
 	 * @author:diennd
 	 * @date:20/1/2014
 	 * @company:Ex-artisan
@@ -251,7 +477,7 @@ class FormDeviceNone extends PolymerElement
 		LIElement target = event.currentTarget;
 		setSelectedPageIndex(int.parse(target.id));
 	}
-	/*
+	/**
 	 * @author: diennd
 	 * @since: 21/1/2014
 	 * @company:Ex-artisan
@@ -304,7 +530,7 @@ class FormDeviceNone extends PolymerElement
 			}
 		showRecord();
 	}
-	/*
+	/**
 	 * @author: diennd
 	 * @since: 21/1/2014
 	 * @company:Ex-artisan
@@ -317,7 +543,7 @@ class FormDeviceNone extends PolymerElement
 		 setSelectedPageIndex(currentSelectedPageIndex-1);
 		}
 	}
-	/*
+	/**
 	 * @author: diennd
 	 * @since: 21/1/2014
 	 * @company:Ex-artisan
@@ -331,7 +557,7 @@ class FormDeviceNone extends PolymerElement
 		}
 		
 	}
-	/*
+	/**
 	 * @author: diennd
 	 * @since: 21/1/2014
 	 * @company:Ex-artisan
@@ -347,7 +573,7 @@ class FormDeviceNone extends PolymerElement
 			return false;
 		}).toList();
 	}
-	/*
+	/**
 	 * @author: diennd
 	 * @since: 21/1/2014
 	 * @company:Ex-artisan
@@ -381,7 +607,7 @@ class FormDeviceNone extends PolymerElement
 	}
 }
 
-/*
+	/**
    * @diennd
    * @since 12/2/2014
    * @company: ex-artisan

@@ -1,10 +1,56 @@
 <link rel="import" href="form_device.html">
 <polymer-element name="form-device-none">
-<meta charset="UTF-8" /> 
-	<template>
-	<!-- Heading --> 
-	<input type='hidden' id='current_page' /> 
-	<input type='hidden' id='show_per_page' />
+<meta charset="UTF-8" />
+<style>
+</style>
+<template>
+<style>
+.properties {
+	
+}
+
+.properties ul {
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+
+.properties ul {
+	margin: 0px;
+	padding: 5px;
+	list-style: none;
+}
+
+.properties ul li {
+	width: 45%;
+	color: #fffff;
+	float: left;
+	margin-left: 10px;
+	min-height: 25px;
+	line-height: 25px;
+	font-size: 14px;
+	font-family: Calibri;
+}
+
+.properties ul li span.error{
+	color: #fff;
+}
+.properties ul li span.error strong{
+	color: red;
+}
+.properties ul li span.normal strong{
+	color: green;
+}
+.Clear {
+	clear: both;
+}
+
+.FooterPopup {
+	padding: 10px;
+}
+</style>
+<!-- Heading --> <input type='hidden' id='current_page' /> <input
+	type='hidden' id='show_per_page' />
 <div class="heading-buttons">
 	<h3 id="show">
 		Danh sách trạm<span> | ATM</span>
@@ -20,8 +66,9 @@
 <div class="separator bottom"></div>
 <!-- // Heading END -->
 
-<div class="widget" style="height:100%;">
-	<div class="widget-body" style="height:100%;border: 10px;border-color: white;">
+<div class="widget" style="height: 100%;">
+	<div class="widget-body"
+		style="height: 100%; border: 10px; border-color: white;">
 		<div class="filter-bar">
 			<form>
 				<!-- Select -->
@@ -37,13 +84,11 @@
 				<div class="clearfix"></div>
 			</form>
 		</div>
-		<!-- Total products & Sort by options -->
 		<div class="form-inline separator bottom small">
-		<span id="totalDevice"></span>
+			<span id="totalDevice"></span>
 		</div>
-		<!-- // Total products & Sort by options END -->
 
-		<!-- Products table -->
+		<!-- device list -->
 		<table
 			class="table table-bordered table-condensed table-striped table-primary table-vertical-center checkboxs">
 			<thead>
@@ -60,11 +105,8 @@
 			<tbody id="ListDevices">
 			</tbody>
 		</table>
-		<!-- // Products table END -->
-
 		<!-- Options -->
 		<div class="separator top form-inline small">
-
 			<!-- Pagination -->
 			<div class="pagination pagination-small pull-right"
 				style="margin: 0;">
@@ -74,38 +116,17 @@
 			<div class="clearfix"></div>
 		</div>
 		<!-- // Options END -->
-		<!-- device properties -->
-		<!-- <template if="{{listDevices.length>0}}"> -->
-		<div class="widget widget-tabs widget-quick">
-			<!-- Widget heading -->
+		<!-- device detail -->
+		<div id="device-detail" class="widget widget-tabs widget-quick">
 			<div class="widget-head">
-				<ul>
-					<li class="active"><a href="#reviewsTab" data-toggle="tab"
-						class="glyphicons star"><i></i>Thông tin</a></li>
-					<li class=""><a href="#deliveryTab" data-toggle="tab"
-						class="glyphicons car"><i></i>Cấu hình</a></li>
-					<li class=""><a href="#deliveryTab" data-toggle="tab"
-						class="glyphicons car"><i></i>Lịch sử tác động</a></li>
-					<li class=""><a href="#deliveryTab" data-toggle="tab"
-						class="glyphicons car"><i></i>Lịch sử sự cố</a></li>	
+				<ul id="device-detail-header">
 				</ul>
 			</div>
-			<!-- // Widget heading END -->
 			<div class="widget-body">
-				<div class="tab-content">
-					<div class="tab-pane active" id="deliveryTab">
-						<!-- <div id="device-properties-chart" style="margin: auto;width: 100%;height: 300px">
-						</div> -->
-					</div>
-					<!-- // Delivery Tab END -->
-				</div>
+				<div class="tab-content" id="device-detail-content"></div>
 			</div>
 		</div>
-		<!-- </template> -->
-		<!-- end device properties -->
 	</div>
 </div>
 
-</template>		
-	<script type="application/dart" src="form_device_none.dart"></script>
-</polymer-element>
+</template> <script type="application/dart" src="form_device_none.dart"></script> </polymer-element>

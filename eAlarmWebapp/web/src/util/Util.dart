@@ -89,4 +89,15 @@ class Util
 			SessionValue.main.listNotify.remove(newError);
 		} );
 	}
+	static String nvl(dynamic obj,String nullValue)
+	{
+		if(obj==null)
+		{
+			return nullValue;
+		}
+		else
+		{
+			return obj.toString();
+		}
+	}
 }
