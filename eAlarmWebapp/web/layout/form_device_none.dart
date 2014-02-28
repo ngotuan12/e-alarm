@@ -70,7 +70,7 @@ class FormDeviceNone extends PolymerElement
 				row.classes.add("selectable");
 				row.attributes["data"] = JSON.encode(devices[i]);
 				String type="";
-				String status ="<img class=\"l_h_content_img\" style=\"margin:-3px 0px 0px 0px\" src=\"style/icons/ic_blue.png\" alt=\"blue\">";
+				String status ="<img class=\"l_h_content_img\" style=\"margin:-3px 0px 0px 0px\" src=\"style/icons/marker_gray.png\" alt=\"blue\">";
 				if(device["status"]=="1")
 				{
 					status = "<img class=\"l_h_content_img\" style=\"margin:-3px 0px 0px 0px\" src=\"style/icons/ic_green.png\" alt=\"blue\">";
