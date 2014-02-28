@@ -13,7 +13,7 @@ class FormDevicesProEdit extends PolymerElement
 //  InputElement txtDeviceProID=new InputElement(type:"text"); 
   InputElement txtCode=new InputElement(type:"text");
   InputElement txtDescription=new InputElement(type:"text");
-  InputElement txtType=new InputElement(type:"text");
+  SelectElement selType=new SelectElement();
   InputElement txtMin=new InputElement(type:"text");
   InputElement txtMax=new InputElement(type:"text");
   InputElement txtMinWarning=new InputElement(type:"text");
@@ -38,11 +38,12 @@ class FormDevicesProEdit extends PolymerElement
     txtName=this.shadowRoot.querySelector("#txtName");
     txtCode=this.shadowRoot.querySelector("#txtCode");
     txtDescription=this.shadowRoot.querySelector("#txtDescription");
-    txtType=this.shadowRoot.querySelector("#txtType");
+    selType=this.shadowRoot.querySelector("#selType");
     txtMin=this.shadowRoot.querySelector("#txtMin");
     txtMax=this.shadowRoot.querySelector("#txtMax");
     txtMinWarning=this.shadowRoot.querySelector("#txtMinWar");
     txtMaxWarning=this.shadowRoot.querySelector("#txtMaxWar");
+    selType.onChange.listen((event)=>onChangeType());
 //    txtDeviceProID.disabled=true;
     if(DeviceCon!=null)
     {
@@ -50,14 +51,53 @@ class FormDevicesProEdit extends PolymerElement
       txtName.value =DeviceCon["name"].toString();
       txtCode.value=DeviceCon["code"].toString();
       txtDescription.value=DeviceCon["description"].toString();
-      txtType.value=DeviceCon["type"].toString();
+      
+      if(DeviceCon["type"].toString()=="1")
+      {
+      	selType.selectedIndex=0;
+      }
+      else{
+      	selType.selectedIndex=1;
+      	txtMin.disabled = true;
+      	txtMax.disabled = true;
+        txtMinWarning.disabled = true;
+        txtMaxWarning.disabled = true;
+      }
+      
       txtMin.value=DeviceCon["min"].toString();
       txtMax.value=DeviceCon["max"].toString();
       txtMinWarning.value = DeviceCon["min_alarm"].toString();
       txtMaxWarning.value = DeviceCon["max_alarm"].toString();
     }
   }
-  
+  void onChangeType()
+  {
+  	if(selType.selectedIndex==0){
+  		txtMin.disabled = false;
+      txtMax.disabled = false;
+      txtMinWarning.disabled = false;
+      txtMaxWarning.disabled = false;
+      if(DeviceCon==null)
+      {
+        txtMin.value="";
+        txtMax.value="";
+        txtMinWarning.value = "";
+        txtMaxWarning.value = "";
+      }
+  	}else if(selType.selectedIndex==1){
+  		txtMin.disabled = true;
+      txtMax.disabled = true;
+      txtMinWarning.disabled = true;
+      txtMaxWarning.disabled = true;
+      if(DeviceCon==null)
+      {
+      	txtMin.value="0";
+        txtMax.value="1";
+        txtMinWarning.value = "0";
+        txtMaxWarning.value = "1000";
+      }
+  	}
+  }
   void onSaveData()
   {
     try
@@ -75,7 +115,13 @@ class FormDevicesProEdit extends PolymerElement
        request["name"]=txtName.value;
        request["code"]=txtCode.value;
        request["description"]=txtDescription.value;       
-       request["type"]=txtType.value;
+       if(selType.selectedIndex==0)
+       {
+      	 request["type"]= 1;
+       }
+       else if(selType.selectedIndex==1){
+      	 request["type"]= 2;
+       }
        request["symbol"]=txtCode.value;
        request["min"]=txtMin.value;
        request["max"]=txtMax.value;

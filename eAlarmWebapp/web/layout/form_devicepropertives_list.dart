@@ -48,9 +48,38 @@ class FormDevicePropertives extends PolymerElement
     {
      dispatchEvent(new CustomEvent("edit",detail:ID));
     }
-    void onDeleteGateway(String ID)
+    void onDeleteGateway(Map Depro)
     {
-     dispatchEvent(new CustomEvent("edit",detail:ID));
+     	bool confirm = window.confirm("Bạn có muốn xóa thuộc tính thiết bị "+Depro["name"]+" không ?");
+     	if(confirm){
+     		deleteProAndRelation(Depro["id"].toString());
+     	}else{
+     		print("no delete"+Depro["name"]);
+     	}
+    }
+    void deleteProAndRelation(String id){
+    	try
+      {
+         Responder responder = new Responder();
+         Map request = new Map();
+         request["Method"] = "onDelDevicePro";
+         request["ID"]=id.toString();
+     
+         responder.onSuccess.listen((Map response){
+         		Util.showNotifySuccess("Xóa thành công");
+         });
+         //error
+         responder.onError.listen((Map error)
+         {
+           Util.showNotifyError(error["message"]);
+					});
+          AppClient.sendMessage(request, AlarmServiceName.DeviceService, AlarmServiceMethod.POST,responder);
+          
+         }
+           catch(err)
+         {
+           Util.showNotifyError(err.toString());
+         }
     }
   void showRecord()
     {
@@ -107,7 +136,7 @@ class FormDevicePropertives extends PolymerElement
         ButtonElement btnDelete=new ButtonElement();
         btnDelete.className="btn-action glyphicons remove_2 btn-danger";
         btnDelete.appendHtml("<i></i>");
-        btnDelete.onClick.listen((event)=>onDeleteGateway(depro["id"].toString()));
+        btnDelete.onClick.listen((event)=>onDeleteGateway(depro));
               
         colAction.children.add(btnEdit);
         colAction.children.add(btnDelete);
@@ -163,7 +192,7 @@ class FormDevicePropertives extends PolymerElement
       ulPagination.children.clear();
       pages.clear();
       //number records in a page
-      show_per_page=5;
+      show_per_page=10;
       int number_pages=(CurrentDevices.length/show_per_page).ceil();
       if(number_pages>0)
       {

@@ -869,7 +869,7 @@ public class DeviceBean extends AppProcessor
 			onAddDevicePro();
 			break;
 		case "onDelDevicePro":
-			onDisableDevicePro();
+			onDeleteDevicePro();
 			break;
 		case "onEditDevicePro":
 			onEditDevicePro();
@@ -884,45 +884,36 @@ public class DeviceBean extends AppProcessor
 
 	}
 
-	private void onDisableDevicePro() throws Exception
+	private void onDeleteDevicePro() throws Exception
 	{
 		String strSQL = "";
 		PreparedStatement pstm = null;
-		ResultSet rs = null;
 		try
 		{
-			String strDeviceProID = (String) request.getString("ID");
-			String status = (String) request.getString("status");
+			String strDeviceProID = request.getString("ID");
 			// open connection
 			open();
-			strSQL = "UPDATE device_properties SET status = ? "
-					+ " WHERE id = ? ";
+			strSQL = "DELETE FROM device_properties WHERE id='"
+					+ strDeviceProID + "'";
 			// prepare
 			pstm = mcnMain.prepareStatement(strSQL);
-			pstm.setInt(1, Integer.parseInt(status));
-			pstm.setInt(2, Integer.parseInt(strDeviceProID));
+			pstm.executeUpdate(strSQL);
+			// Close statement
+			pstm.close();
+			// response
+			strSQL = "DELETE FROM device_infor WHERE device_pro_id='"
+					+ strDeviceProID + "'";
+			// prepare
+			pstm = mcnMain.prepareStatement(strSQL);
+			pstm.executeUpdate(strSQL);
 
-			int done = pstm.executeUpdate(strSQL);
+			response.put("Mess", "delete sucess");
+			response.put("Mess", "Success");
 
-			if (done == 1)
-			{
-				// close statement
-				Database.closeObject(pstm);
-				Database.closeObject(rs);
-				// response
-				response.put("Mess", "edit sucess");
-				response.put("Mess", "Success");
-			}
-			else
-			{
-				// response
-				response.put("Mess", "have error with execute(validate data)");
-			}
 		}
 		catch (Exception ex)
 		{
 			ex.printStackTrace();
-			throw ex;
 		}
 		finally
 		{
