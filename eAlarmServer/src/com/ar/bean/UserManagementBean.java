@@ -2,7 +2,6 @@ package com.ar.bean;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.text.SimpleDateFormat;
 
 import org.codehaus.jettison.json.JSONArray;
 
@@ -53,7 +52,7 @@ public class UserManagementBean extends AppProcessor
 	{
 		String strSQL = "select id as ID,dept_id as IdDept,owner_id as OwnerID,username as UserName,"
 				+ "password as Password,status as Status,sex as Sex,email as Email,phone as Phone,"
-				+ "id_no as IDNo,address as Address,birth_day as BirthDay,create_date as CreateDate,fullname as FullName,email,phone"
+				+ "id_no as IDNo,address as Address,DATE_FORMAT(birth_day,'%Y-%m-%d') as BirthDay,create_date as CreateDate,fullname as FullName,email,phone"
 				+ " from user";
 		return ExcuteQuery(strSQL, 0);
 	}
@@ -74,10 +73,8 @@ public class UserManagementBean extends AppProcessor
 				+ fullname
 				+ "','"
 				+ address
-				+ "','"
-				+ bithday
-				+ "','"
-				+ status + "','" + sex + "')";
+				+ "',str_to_date('"
+				+ bithday + "','%Y-%m-%d'),'" + status + "','" + sex + "')";
 		// prepare
 		ExcuteQuery(strSQL, 1);
 	}
@@ -121,25 +118,19 @@ public class UserManagementBean extends AppProcessor
 			response.put("Mess", "Success");
 			break;
 		case "onAddUser":
-			String bday = request.getString("birth_day");
-			SimpleDateFormat format = new SimpleDateFormat("yyyy-mm-dd");
-			java.util.Date parsed = format.parse(bday);
-			java.sql.Date sqlDate = new java.sql.Date(parsed.getTime());
 			AddUser(request.getString("username"),
 					request.getString("password"), request.getString("email"),
 					request.getString("phone"), request.getString("fullname"),
-					request.getString("address"), bday,
+					request.getString("address"),
+					request.getString("birth_day"),
 					request.getString("status"), request.getString("sex"));
 			response.put("Mess", "Success");
 			break;
 		case "onEditUser":
-			String bday1 = request.getString("birth_day");
-			SimpleDateFormat format1 = new SimpleDateFormat("yyyy-mm-dd");
-			java.util.Date parsed1 = format1.parse(bday1);
-			java.sql.Date sqlDate1 = new java.sql.Date(parsed1.getTime());
 			EditUser(request.getString("username"), request.getString("email"),
 					request.getString("phone"), request.getString("fullname"),
-					request.getString("address"), bday1,
+					request.getString("address"),
+					request.getString("birth_day"),
 					request.getString("status"), request.getString("sex"),
 					request.getString("id"));
 			response.put("Mess", "Success");
