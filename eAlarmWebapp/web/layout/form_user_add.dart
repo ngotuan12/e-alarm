@@ -118,11 +118,11 @@ class FormUserAdd extends PolymerElement{
 
           if(regExpMail.hasMatch(email)&&regExpPhone.hasMatch(phone)){
           	return true;
-          }else if(regExpMail.hasMatch(email)){
+          }else if(!regExpMail.hasMatch(email)){
           	Util.showNotifyError("Địa chỉ email không đúng");
            // print("Email:"+regExpMail.hasMatch(email).toString()+"======="+" Phone"+regExpPhone.hasMatch(phone).toString());
           	return false;
-          }else if(regExpPhone.hasMatch(phone)){
+          }else if(!regExpPhone.hasMatch(phone)){
           	Util.showNotifyError("Số phone không đúng ");
            // print("Email:"+regExpMail.hasMatch(email).toString()+"======="+" Phone"+regExpPhone.hasMatch(phone).toString());
           	return false;
