@@ -1,85 +1,82 @@
 <polymer-element name="form-edit-account-detail">
 <meta charset="UTF-8" /> 
-<template> <!-- Heading --> 
-<!-- Content -->
-<h3>Tài khoản cá nhân</h3>
-<div class="innerLR">
-          <!-- Tab content -->
-          <div class="tab-pane active" id="account-body-details">
-          
-            <!-- Row -->
-            <div class="row-fluid">
-            
-              <!-- Column -->
-              <div class="span6">
-              
-                <!-- Group -->
-                <div class="control-group">
-                  <label class="control-label">Tên đăng nhập</label>
-                  <div class="controls">
-                    <input id="txtusername" type="text" value="" class="span10" disabled="disabled"/>
-                    <span style="margin: 0;" class="btn-action single glyphicons circle_question_mark" data-toggle="tooltip" data-placement="top" data-original-title="Tên đăng nhập không thể để thay đổi"><i></i></span>
-                  </div>
-                </div>
-                <!-- // Group END -->
-                
-                <!-- Group -->
-                <div class="control-group">
-                  <label class="control-label">Tên đầy đủe</label>
-                  <div class="controls">
-                    <input id="txtfullname" type="text" value="" class="span10" />
-                    <span style="margin: 0;" class="btn-action single glyphicons circle_question_mark" data-toggle="tooltip" data-placement="top" data-original-title="Họ và tên người sử dụng"><i></i></span>
-                  </div>
-                </div>
-                <!-- // Group END -->
-                
-                <!-- Group -->
-                <div class="control-group">
-                  <label class="control-label">Ngày tạo</label>
-                  <div class="controls">
-                    <div class="input-append">
-                      <input type="text" id="datepicker" class="span12" value="13/06/1988" disabled="disabled"/>
-                      <span class="add-on glyphicons calendar"><i></i></span>
-                    </div>
-                  </div>
-                </div>
-                <!-- // Group END -->
-                
-              </div>
-              <!-- // Column END -->
-              
-              <!-- Column -->
-              <div class="span6">
-              
-                <!-- Group -->
-                <div class="control-group">
-                  <label class="control-label">Giới tính</label>
+<template> 
+<h3>Sửa thông tin người dùng</h3>
+	<!-- Wrapper -->
+	<div id="login">
+		<div class="wrapper signup">
+				<!-- Box -->
+				<div class="widget">
+					<div class="widget-head">
+						<h3 class="heading">User Detail</h3>
+						<div class="pull-right">
+							Already a member?
+							<a href="index.html" class="btn btn-inverse btn-mini">Sign in</a>
+						</div>
+					</div>
+					<div class="widget-body">
+			
+						<!-- Form -->
+						<form method="post" action="index.html?lang=en&amp;layout_type=fixed&amp;menu_position=menu-left&amp;style=style-dark">
+						
+						<!-- Row -->
+						<div class="row-fluid row-merge">
+						
+							<!-- Column -->
+							<div class="span6">
+								<div class="innerR">
+									<label class="strong">Tên đăng nhập</label>
+									<input type="text" id="txtusername" class="input-block-level" disabled="disabled" placeholder="Your Username"/>
+									
+									<label class="strong">Tên đầy đủ</label>
+									<input type="text" id="txtfullname" class="input-block-level" placeholder="Your Password"/>
+									
+								</div>
+							</div>
+							<!-- // Column END -->
+							
+							<!-- Column -->
+							<div class="span6">
+								<div class="innerL">
+									<label class="strong">Ngày tạo</label>
+									<input type="text" id="datepicker" class="span12" value="13/06/1988" disabled="disabled"/>
+									
+									<label class="control-label">Giới tính</label>
                   <div class="controls">
                     <select id="selectGender" class="span12">
                       <option value="1">Nam</option>
                       <option value="0">Nữ</option>
                     </select>
-                  </div>
-                </div>
-                <!-- // Group END -->
-                
-              </div>
-              <!-- // Column END -->
-              
-            </div>
-            <!-- // Row END -->
-            
-            <div class="separator line bottom"></div>
-            
-            <!-- // Group END -->
-            
-              <button type="button" id="btnSaveChangeUDetail" class="btn btn-icon btn-primary glyphicons circle_ok"><i></i>Lưu thay đổi</button>
-           
-            </div>
-            
-          <!-- // Tab content END -->
-        </div>
-
+								</div>
+							</div>
+							<!-- // Column END -->
+							
+						</div>
+						<!-- // Row END -->
+						
+						</form>
+						<!-- // Form END -->
+			
+			
+					</div>
+					<!-- // Box END -->
+					
+				</div>
+				
+		</div>
+		
+	</div>
+	<!-- // Wrapper END -->	
+<!-- Bottom buttons -->
+					<div class="heading-buttons">
+						<div class="buttons pull-right" style="margin: 0;">
+								<button type="button" id="btnSaveChangeUDetail" class="btn btn-icon btn-primary glyphicons circle_ok"><i></i>Lưu thay đổi</button>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+					<!-- // Bottom buttons END -->
+				</div>
+</template>
 </template>
 	<script type="application/dart" src="form_edit_account_detail.dart">
 	</script> 

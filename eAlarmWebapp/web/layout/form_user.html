@@ -11,7 +11,7 @@
 		<form-user-add on-goback="{{onGoBack}}"></form-user-add>
 	</template>
 	<template if="{{currentAction=='EDIT'}}">
-		<form-user-edit user="{{currentUser}}"></form-user-edit>
+		<form-user-edit user="{{currentUser}}" on-goback="{{onGoBack}}"></form-user-edit>
 	</template>
 </template>
 <script type="application/dart" src="form_user.dart"></script> 
