@@ -4799,6 +4799,10 @@ textarea {
   color: #8ec657;
   font-weight: 600;
 }
+.table-primary tbody td.has-error {
+  color: red;
+  font-weight: 600;
+}
 .table-primary tbody td.actions {
   padding-right: 1px;
 }

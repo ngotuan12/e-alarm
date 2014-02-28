@@ -1,15 +1,7 @@
-<link rel="import" href="form_area.html">
-<polymer-element name="form-area-add">
+<link rel="import" href="form_device.html">
+<polymer-element name="form-device-add">
 <meta charset="UTF-8" /> 
 	<template>
-	<div class="heading-buttons">
-					<h3>Thêm khu vực<span></span></h3>
-					<div class="buttons pull-right">
-						<button id="btnExit" class="btn btn-default btn-icon glyphicons share"><i></i>Thoát</button> 
-							<button class="btn btn-primary btn-icon glyphicons ok_2" id="Save1"><i></i>Lưu</button>
-					</div>
-					<div class="clearfix"></div>
-				</div>
 				<div class="separator bottom"></div>
 				<!-- // Heading END -->
 				<div class="innerLR">
@@ -17,6 +9,7 @@
 					<div class="widget widget-tabs">
 						<!-- Widget heading -->
 						<div class="widget-head">
+						<h3 class="heading">Thêm phòng máy</h3>
 						<p id="suscess" class="suscess"></p>
 						</div>
 						<!-- // Widget heading END -->
@@ -28,32 +21,51 @@
 									<div class="row-fluid">
 										<!-- Column -->
 										<div class="span6">
-										<!-- 	<label>Khu vực</label>
+											<!-- Mã Phòng Máy -->
+											<label for="inputTitle">Mã phòng máy</label> 
+											<input id="code" type="text" class="span10" placeholder="<Mã phòng máy>">
+											<!-- Tên phòng máy -->
+											<label for="inputTitle">Tên phòng máy</label> 
+											<input id="name" type="text" class="span10" placeholder="<Tên phòng máy>">
+											<!-- Mac adress -->
+											<label for="inputTitle">MAC</label> 
+											<input id="mac_add" type="text" class="span10" placeholder="<Địa chỉ MAC>">
+											<!-- Area -->
+											<label>Địa bàn</label>
 											<select id="area" class="span10">
-											</select> -->
-											<label for="inputTitle">Địa chỉ</label> 
-											<input id="address" type="text" value="" class="span10" placeholder="Địa chỉ">
-											<label id="ErrorAddress" class="error"></label>
-											<label for="inputTitle">Mã địa bàn</label> 
-											<input id="code" type="text" class="span10" placeholder="Mã địa bàn">
-											<label id="ErrorCode" class="error"></label>
-											<label for="inputTitle">trạng thái </label>
-											<select id="status" class="span5">	
-												<option value="1" selected>Kích hoạt</option>
-												<option value="0">Không kích hoạt</option>
+												<option value="-1">Chọn địa bàn</option>
 											</select>
-<!-- 											<label for="inputTitle">Phân Loại </label>
-											<select id="type" class="span5">
-											</select> -->
+											<!-- Adress -->
+											<label for="inputTitle">Địa chỉ</label> 
+											<input id="address" type="text" value="" class="span10" placeholder="<Địa chỉ>">
+											<label id="ErrorAddress" class="error"></label>
+											<!-- <label for="inputTitle">Tọa độ </label> -->
+											<input  type="hidden" id="Lat" class="span5" value="" placeholder="Kinh tuyến" disabled/>
+											<input  type="hidden" id="Lng" class="span5" value="" placeholder="Vĩ tuyến" disabled/>
+											<label id="ErrorLocation" class="error"></label>
+											<!-- Properties -->
+											<label for="inputTitle">Cảm biến</label>
+											<div id="list-properties" class="row-fluid">
+												
+											</div>
 											<div class="separator"></div>
 										</div>
 										<!-- // Column END -->
 										<!-- Column -->
 										<div class="span6">
-											<label for="inputTitle" >Địa chỉ</label>
-											<input type="text" id="fullAddress" class="span12" value="" placeholder="Địa chỉ google" readonly/>
-
+											<div>
+												<label for="inputTitle" >Địa chỉ đầy đủ <input type="text" id="fullAddress" class="span10" style="width: 100%;"value="" placeholder="Địa chỉ google" disabled/></label>
+												
+												<!-- <button id="btnSearch" class="btn btn-primary btn-icon search"  disabled>Tìm</button> -->
+											</div>
 											<div id="show-map"></div>
+											<div style="margin-top: 10px;"class="heading-buttons">
+												<div class="buttons pull-right" style="margin: 0;">
+													<button id="btnCancel" href="station.html" class="btn btn-default btn-icon glyphicons share"><i></i>Thoát</button>
+														<button id="btnSave" class="btn btn-primary btn-icon glyphicons ok_2" ><i></i>Lưu</button>
+												</div>
+												<div class="clearfix"></div>
+											</div>
 										</div>
 										<!-- // Column END -->
 									</div>
@@ -67,15 +79,9 @@
 					<!-- // Widget END -->
 
 					<!-- Bottom buttons -->
-					<div class="heading-buttons">
-						<div class="buttons pull-right" style="margin: 0;">
-							<button id="btnCancel" class="btn btn-default btn-icon glyphicons share"><i></i>Thoát</button>
-								<button id="btnSave" class="btn btn-primary btn-icon glyphicons ok_2"><i></i>Lưu</button>
-						</div>
-						<div class="clearfix"></div>
-					</div>
+					
 					<!-- // Bottom buttons END -->
 				</div>
 	</template>		
-	<script type="application/dart" src="form_area_add.dart"></script>
+	<script type="application/dart" src="form_device_add.dart"></script>
 </polymer-element>
