@@ -117,7 +117,7 @@ class FormMain extends PolymerElement
 		});
 			//AppClient.sendMessage(devRequest, AlarmServiceName.DeviceService, AlarmServiceMethod.POST,devResponder);
 		
-		    AllDevices=response['device_list'];
+			AllDevices=response['device_list'];
 			List<Map> areas=response['area_list'];
 			listArea = filterByType(areas, ["2"]);
 			//init Option Select
@@ -273,8 +273,10 @@ class FormMain extends PolymerElement
 			//check status
 			if(listDevice[i]['status']=="1")
 				img.src='style/icons/BlueV.png';
-			else
-				img.src='style/icons/RedX.png';
+			else if(listDevice[i]['status']=="0")
+				img.src='style/icons/GrayX.png';
+				else
+					img.src='style/icons/RedX.png';
 			spItem.text=listDevice[i]['address'];
 			spItem1.children.add(img);
 			item.children.add(spItem1);
@@ -475,8 +477,10 @@ class FormMain extends PolymerElement
 		//check status
 		if(device["status"]=="1")
 			marker = addMarker(device["lat"], device["lng"], JSON.encode(device), animation: Animation.DROP, title:device["code"] , icon:"style/icons/marker_blue.png" );
-		else
-			marker = addMarker(device["lat"], device["lng"], JSON.encode(device), animation: Animation.DROP, title:device["code"] , icon:"style/icons/marker_red.png" );
+		else if(device["status"]=="0")
+				marker = addMarker(device["lat"], device["lng"], JSON.encode(device), animation: Animation.DROP, title:device["code"] , icon:"style/icons/marker_gray.png" );
+			else
+				marker = addMarker(device["lat"], device["lng"], JSON.encode(device), animation: Animation.DROP, title:device["code"] , icon:"style/icons/marker_red.png" );
 		//add listener
 		marker.onClick.listen((e)
 		{
@@ -527,46 +531,46 @@ class FormMain extends PolymerElement
 	{
 		Marker marker;
 				//
-        		for(int i=0;i<markers.length;i++)
-        		{
-        			Map value = JSON.decode(markers[i]["value"]);
-        			if(value["id"]==device["id"])
-        			{
-        				marker = markers[i]["marker"];
-        				break;
-        			}
-        		}
-        		if(marker ==null)
-        		{
-        			Util.showNotifyError("Không tìm thấy địa điểm!");
-        			return;
-        		}
+		for(int i=0;i<markers.length;i++)
+		{
+			Map value = JSON.decode(markers[i]["value"]);
+			if(value["id"]==device["id"])
+			{
+				marker = markers[i]["marker"];
+				break;
+			}
+		}
+		if(marker ==null)
+		{
+			Util.showNotifyError("Không tìm thấy địa điểm!");
+			return;
+		}
 		List dev = new List();
 		 Map devRequest = new Map();
-       			devRequest['Method'] = 'onGetDevicePropertyByID';
-       			devRequest['device_id'] = device['id'];
-       			
-       			Responder devResponder = new Responder();
-       			devResponder.onSuccess.listen((Map res){
+			devRequest['Method'] = 'onGetDevicePropertyByID';
+			devRequest['device_id'] = device['id'];
+			
+			Responder devResponder = new Responder();
+			devResponder.onSuccess.listen((Map res){
 			print(res.toString());
-       			 dev = res['all_devices_pro'];
-       			popupWindow.content = createContent(device, dev);
-                 		//show popup
-                 		popupWindow.open(map, marker);
-                 		//show chart
-                 		AlarmServiceChart.load().then((_)
-                 		{
-                 			int sliderValue() => int.parse('8');
-                 			// Create a Guage after the library has been loaded.
-                 			final DivElement visualization1 = this.shadowRoot.querySelector('#content_right');
-                 			AlarmServiceChart gauge = new AlarmServiceChart(visualization1,{ 'title': 'Biểu đồ'},device);
-                 		});
-       			});
-       			devResponder.onError.listen((Map error)
-       			{
-       			Util.showNotifyError(error["message"]);
-       		});
-       	AppClient.sendMessage(devRequest, AlarmServiceName.DeviceService, AlarmServiceMethod.POST,devResponder);
+			 dev = res['all_devices_pro'];
+			popupWindow.content = createContent(device, dev);
+		//show popup
+		popupWindow.open(map, marker);
+		//show chart
+		AlarmServiceChart.load().then((_)
+		{
+			int sliderValue() => int.parse('8');
+			// Create a Guage after the library has been loaded.
+			final DivElement visualization1 = this.shadowRoot.querySelector('#content_right');
+			AlarmServiceChart gauge = new AlarmServiceChart(visualization1,{ 'title': 'Biểu đồ'},device);
+		});
+			});
+			devResponder.onError.listen((Map error)
+			{
+			Util.showNotifyError(error["message"]);
+		});
+	AppClient.sendMessage(devRequest, AlarmServiceName.DeviceService, AlarmServiceMethod.POST,devResponder);
 		
 		
 		
@@ -579,276 +583,8 @@ class FormMain extends PolymerElement
 	 */
 	InfoWindow createPopupInfor()
 	{
-		//right
-		DivElement content_right=new DivElement();
-		content_right.id="content_right";
-		content_right.style.height="200px";
-		content_right.style.width="650px";
-		//left
-		DivElement content_left=new DivElement();
-		content_left.id="content_left";
-		content_left.style.color="#000";
-		content_left.style.fontFamily="Arial";
-		content_left.style.height="200px";
-		content_left.style.width="650px";
-			//left_header
-			DivElement left_header=new DivElement();
-			left_header.id="left_header";
-			left_header.style.color="#000";
-			left_header.style.fontFamily="Arial";
-			left_header.style.height="30%";
-			left_header.style.width="100%";
-				// left
-				DivElement left_header_left=new DivElement();
-				left_header_left.id="left_header";
-				left_header_left.style.color="#000";
-				left_header_left.style.fontFamily="Arial";
-				left_header_left.style.height="95%";
-				left_header_left.style.width="25%";
-				left_header_left.style.float="left";
-					//create tag select
-					SelectElement slProperty=new SelectElement();
-					slProperty.id="properties";
-					slProperty.style.width="100%";
-						//create option
-						OptionElement opProperty=new OptionElement();
-						opProperty.text="Thuộc tính";
-						opProperty.value="-1";
-						opProperty.style.width="100%";
-						//add option
-						slProperty.children.add(opProperty);
-					//add tag select
-					left_header_left.children.add(slProperty);
-				// center
-				DivElement left_header_content=new DivElement();
-				left_header_content.id="left_header";
-				left_header_content.style.color="#000";
-				left_header_content.style.fontFamily="Arial";
-				left_header_content.style.height="100%";
-				left_header_content.style.width="50%";
-				left_header_content.style.fontSize="12";
-				left_header_content.style.float="left";
-					//add text
-				left_header_content.innerHtml='''
-						<p class="l_h_content" id='title'></p>
-					''';
-				// right
-				DivElement left_header_right=new DivElement();
-				left_header_right.id="left_header";
-				left_header_right.style.color="#000";
-				left_header_right.style.fontFamily="Arial";
-				left_header_right.style.height="100%";
-				left_header_right.style.width="25%";
-				left_header_right.style.float="left";
-					//create tag select
-					SelectElement slATM=new SelectElement();
-					slATM.id="atm";
-					slATM.style.width="100%";
-					//create option
-					OptionElement opATM=new OptionElement();
-					opATM.text="ATM liên quan";
-					opATM.value="-1";
-					opATM.style.width="100%";
-					//add option
-					slATM.children.add(opATM);
-					//add tag select
-					left_header_right.children.add(slATM);
-				//add left,center,right
-				left_header.children.add(left_header_left);
-				left_header.children.add(left_header_content);
-				left_header.children.add(left_header_right);
-			//left_content
-			DivElement left_content=new DivElement();
-			left_content.id="left_header";
-			left_content.style.color="#000";
-			left_content.style.fontFamily="Arial";
-			left_content.style.height="70%";
-			left_content.style.width="100%";
-
-				//create div left,right in div left_content
-				DivElement left_content_left=new DivElement();
-				left_content_left.id="left_content_left";
-				left_content_left.style.color="#000";
-				left_content_left.style.fontFamily="Arial";
-				left_content_left.style.border="1px solid #616161";
-				left_content_left.style.height="95%";
-				left_content_left.style.width="48%";
-				left_content_left.style.float="left";
-					//create head,content
-					DivElement divStatusDeviceHeader=new DivElement();
-					divStatusDeviceHeader.id="divStatusDevice";
-					divStatusDeviceHeader.style.color="#000";
-					divStatusDeviceHeader.style.fontFamily="Arial";
-					divStatusDeviceHeader.style.borderBottom="1px solid #616161";
-					divStatusDeviceHeader.style.height="25%";
-					divStatusDeviceHeader.style.width="100%";
-					divStatusDeviceHeader.style.background="#F5F5F5";
-						//add text
-					divStatusDeviceHeader.innerHtml='''
-						<p class="l_h_content">Trạng thái thiết bị</p>
-						''';
-					//divStatusDevice.style.borderBottom="1px solid #616161";
-					DivElement divStatusDeviceContent=new DivElement();
-					divStatusDeviceContent.id="divStatuSensor";
-					divStatusDeviceContent.style.color="#000";
-					divStatusDeviceContent.style.fontFamily="Arial";
-					divStatusDeviceContent.style.height="73%";
-					divStatusDeviceContent.style.width="100%";
-					//add text
-					divStatusDeviceContent.innerHtml='''
-						<p class="l_h_status" id="aaaaaaa">Điện áp ắc quy(V):tốt</p>
-						<p class="l_h_status">Nhiệt độ:31C</p>
-						<p class="l_h_status">Độ ẩm:80%</p>
-						<p class="l_h_status">Thiết bị trên bo mạch:Bình thường</p>
-						<p class="l_h_status">Thiết bị trên Ethernet:Bình thường</p>
-						''';
-					//add div
-					left_content_left.children.add(divStatusDeviceHeader);
-					left_content_left.children.add(divStatusDeviceContent);
-				//create div left,right in div left_content
-				DivElement left_content_right=new DivElement();
-				left_content_right.id="left_content_right";
-				left_content_right.style.color="#000";
-				left_content_right.style.fontFamily="Arial";
-				left_content_right.style.border="1px solid #616161";
-				left_content_right.style.height="95%";
-				left_content_right.style.width="48%";
-				left_content_right.style.float="right";
-					//create head,content
-					DivElement divStatuSensorHeader=new DivElement();
-					divStatuSensorHeader.id="divStatusDevice";
-					divStatuSensorHeader.style.color="#000";
-					divStatuSensorHeader.style.fontFamily="Arial";
-					divStatuSensorHeader.style.borderBottom="1px solid #616161";
-					divStatuSensorHeader.style.height="25%";
-					divStatuSensorHeader.style.width="100%";
-					divStatuSensorHeader.style.background="#F5F5F5";
-						//add text
-						divStatuSensorHeader.innerHtml='''
-						<p class="l_h_content">Trạng thái cảm biến</p>
-						''';
-					//divStatusDevice.style.borderBottom="1px solid #616161";
-					DivElement divStatuSensorContent=new DivElement();
-					divStatuSensorContent.id="divStatuSensor";
-					divStatuSensorContent.style.color="#000";
-					divStatuSensorContent.style.fontFamily="Arial";
-					divStatuSensorContent.style.height="73%";
-					divStatuSensorContent.style.width="100%";
-						//create div
-						DivElement divStatuSensorContentup=new DivElement();
-						divStatuSensorContentup.id="divStatuSensorContentup";
-						divStatuSensorContentup.style.color="#000";
-						divStatuSensorContentup.style.fontFamily="Arial";
-						divStatuSensorContentup.style.height="50%";
-						divStatuSensorContentup.style.width="100%";
-							DivElement divStatuSensorContentup1=new DivElement();
-							divStatuSensorContentup1.id="divStatuSensorContentup1";
-							divStatuSensorContentup1.style.color="#000";
-							divStatuSensorContentup1.style.fontFamily="Arial";
-							divStatuSensorContentup1.style.height="100%";
-							divStatuSensorContentup1.style.width="34%";
-							divStatuSensorContentup1.style.float="left";
-								//text
-							divStatuSensorContentup1.innerHtml='''
-								<p class="l_h_content_1"><img class="l_h_content_img" src="style/icons/ic_green.png" alt="blue"></p>
-								<p class="l_h_content_1">Cửa ngoài</p>
-								''';
-								//create div
-							DivElement divStatuSensorContentup2=new DivElement();
-							divStatuSensorContentup2.id="divStatuSensorContentup2";
-							divStatuSensorContentup2.style.color="#000";
-							divStatuSensorContentup2.style.fontFamily="Arial";
-							divStatuSensorContentup2.style.height="100%";
-							divStatuSensorContentup2.style.width="33%";
-							divStatuSensorContentup2.style.float="left";
-								//text
-							divStatuSensorContentup2.innerHtml='''
-								<p class="l_h_content_1"><img class="l_h_content_img" src="style/icons/ic_red.png" alt="red"></p>
-								<p class="l_h_content_1">Nhiệt độ</p>
-								''';
-							DivElement divStatuSensorContentup3=new DivElement();
-							divStatuSensorContentup3.id="divStatuSensorContentup3";
-							divStatuSensorContentup3.style.color="#000";
-							divStatuSensorContentup3.style.fontFamily="Arial";
-							divStatuSensorContentup3.style.height="100%";
-							divStatuSensorContentup3.style.width="33%";
-							divStatuSensorContentup3.style.float="left";
-								//text
-							divStatuSensorContentup3.innerHtml='''
-								<p class="l_h_content_1"><img class="l_h_content_img" src="style/icons/ic_green.png" alt="blue"></p>
-								<p class="l_h_content_1">Cửa trên</p>
-								''';
-							//add
-							divStatuSensorContentup.children.add(divStatuSensorContentup1);
-							divStatuSensorContentup.children.add(divStatuSensorContentup2);
-							divStatuSensorContentup.children.add(divStatuSensorContentup3);
-						DivElement divStatuSensorContentdown=new DivElement();
-						divStatuSensorContentdown.id="divStatuSensorContentdown";
-						divStatuSensorContentdown.style.color="#000";
-						divStatuSensorContentdown.style.fontFamily="Arial";
-						divStatuSensorContentdown.style.height="50%";
-						divStatuSensorContentdown.style.width="100%";
-							//create div
-							DivElement divStatuSensorContentdown1=new DivElement();
-							divStatuSensorContentdown1.id="divStatuSensorContentup1";
-							divStatuSensorContentdown1.style.color="#000";
-							divStatuSensorContentdown1.style.fontFamily="Arial";
-							divStatuSensorContentdown1.style.height="100%";
-							divStatuSensorContentdown1.style.width="34%";
-							divStatuSensorContentdown1.style.float="left";
-							//text
-							divStatuSensorContentdown1.innerHtml='''
-							<p class="l_h_content_1"><img class="l_h_content_img" src="style/icons/ic_green.png" alt="blue"></p>
-							<p class="l_h_content_1">Cửa ngoài</p>
-							''';
-							//create div
-							DivElement divStatuSensorContentdown2=new DivElement();
-							divStatuSensorContentdown2.id="divStatuSensorContentup2";
-							divStatuSensorContentdown2.style.color="#000";
-							divStatuSensorContentdown2.style.fontFamily="Arial";
-							divStatuSensorContentdown2.style.height="100%";
-							divStatuSensorContentdown2.style.width="33%";
-							divStatuSensorContentdown2.style.float="left";
-							//text
-							divStatuSensorContentdown2.innerHtml='''
-							<p class="l_h_content_1"><img class="l_h_content_img" src="style/icons/ic_green.png" alt="bule"></p>
-							<p class="l_h_content_1">Cửa kẹt</p>
-							''';
-							DivElement divStatuSensorContentdown3=new DivElement();
-							divStatuSensorContentdown3.id="divStatuSensorContentup3";
-							divStatuSensorContentdown3.style.color="#000";
-							divStatuSensorContentdown3.style.fontFamily="Arial";
-							divStatuSensorContentdown3.style.height="100%";
-							divStatuSensorContentdown3.style.width="33%";
-							divStatuSensorContentdown3.style.float="left";
-							//text
-							divStatuSensorContentdown3.innerHtml='''
-							<p class="l_h_content_1"><img class="l_h_content_img" src="style/icons/ic_red.png" alt="red"></p>
-							<p class="l_h_content_1">Tiếp đất</p>
-							''';
-							//add
-							divStatuSensorContentdown.children.add(divStatuSensorContentdown1);
-							divStatuSensorContentdown.children.add(divStatuSensorContentdown2);
-							divStatuSensorContentdown.children.add(divStatuSensorContentdown3);
-						//add div
-						divStatuSensorContent.children.add(divStatuSensorContentup);
-						divStatuSensorContent.children.add(divStatuSensorContentdown);
-					//add div
-					left_content_right.children.add(divStatuSensorHeader);
-					left_content_right.children.add(divStatuSensorContent);
-				//add left right in div left_content
-				left_content.children.add(left_content_left);
-				left_content.children.add(left_content_right);
-			//content_left add
-			content_left.children.add(left_header);
-			content_left.children.add(left_content);
 		//content
 		DivElement content = new DivElement();
-		content.id="solo";
-		content.style.width="650px";
-		//content.style.height="400px";
-		content.children.add(content_left);
-		content.children.add(content_right);
 		//infor window
 		InfoWindow popup = new InfoWindow
 		(
@@ -866,53 +602,63 @@ class FormMain extends PolymerElement
 	 * @return content the content for info window
 	 */
 	dynamic createContent(Map device, List dev){
-//		print(dev.toString());
-		int numberRecorde=0;
-		numberRecorde=(dev!=null)?dev.length:0;
-		//right
+		//top
 		DivElement content_right=new DivElement();
 		content_right.id="content_right";
 		content_right.style.height="200px";
-		content_right.style.width="650px";
-		//left
+		content_right.style.width="100%";
+		//bottom
 		DivElement content_left=new DivElement();
 		content_left.id="content_left";
+		content_left.style.height="200px";
 		content_left.style.color="#000";
 		content_left.style.fontFamily="Arial";
-		content_left.style.height="200px";
-		content_left.style.width="650px";
+		
+		content_left.style.width="100%";
+		content_left.style.border="1px solid #689c35";
 			//left_header
 			DivElement left_header=new DivElement();
 			left_header.id="left_header";
 			left_header.style.color="#000";
 			left_header.style.fontFamily="Arial";
-			left_header.style.height="30%";
-			left_header.style.width="99%";
+			left_header.style.height="25%";
+			left_header.style.width="100%";
+			left_header.style.paddingTop="10px";
 			//change color
 			switch(device['status'])
 			{
-				case '0' :
+				case '0' ://disconnect
 					left_header.style.background = '#c0c0c0';
+					left_header.style.backgroundRepeat="repeat-x";
+					left_header.style.borderBottom="1px solid #a5a5a5";
+					content_left.style.border="1px solid #a5a5a5";
 					break;
-				case '1':
-					left_header.style.background = '#24dd58';
+				case '1'://good
+					left_header.style.background = '#9dce6e';
+					left_header.style.backgroundRepeat="repeat-x";
+					left_header.style.borderBottom="1px solid #689c35";
+					content_left.style.border="1px solid #689c35";
 					break;
-				case '2':
+				case '2'://error
 					left_header.style.background = '#e80d15';
-					break;
-				case '3' :
-					left_header.style.background = '#daa520';
+					left_header.style.backgroundRepeat="repeat-x";
+					left_header.style.borderBottom="1px solid #910207";
+					content_left.style.border="1px solid #910207";
 					break;
 				default:
-					left_header.style.background = '#c0c0c0';
+					left_header.style.background = '#9dce6e';
+					left_header.style.backgroundRepeat="repeat-x";
+					left_header.style.borderBottom="1px solid #689c35";
+					content_left.style.border="1px solid #689c35";
 					break;
 			}
-			left_header.style.padding="15px 0px 0px 10px";
 			//add text head
 				SpanElement spCode=new SpanElement();
 				spCode.style.color="#fff";
 				spCode.style.fontFamily="Open Sans', sans-serif";
 				spCode.style.fontSize="18px";
+				spCode.style.paddingTop="10px";
+				spCode.style.paddingLeft="10px";
 				spCode.text=device['code'];
 				
 				BRElement br=new BRElement();
@@ -921,10 +667,11 @@ class FormMain extends PolymerElement
 				spAddress.style.color="#fff";
 				spAddress.style.fontFamily="Open Sans', sans-serif";
 				spAddress.style.fontSize="14px";
+				spAddress.style.marginTop="1000px";
+				spAddress.style.paddingLeft="10px";
 				spAddress.text= device['address'];
 			//left_head add span element
 				left_header.children.add(spCode);
-				left_header.children.add(br);
 				left_header.children.add(br);
 				left_header.children.add(spAddress);
 			//left_content
@@ -932,12 +679,10 @@ class FormMain extends PolymerElement
 			left_content.id="left_header";
 			left_content.style.color="#000";
 			left_content.style.fontFamily="Arial";
-			left_content.style.height="60%";
+			left_content.style.height="69%";
 			left_content.style.width="100%";
-			left_content.style.border="1px solid #616161";
 			left_content.style.overflowY="scroll";
 			left_content.style.overflowX="hidden";
-
 				//create div left,right in div left_content
 				DivElement left_content_left=new DivElement();
 				left_content_left.id="left_content_left";
@@ -960,9 +705,13 @@ class FormMain extends PolymerElement
 					{
 						String strDevContent = '';
 						for(i=0;i<(dev.length/2);i++){
-							strDevContent+='<p>' + dev[i]['name'] + ': ' + dev[i]['value'].toString();
+							strDevContent+='<p class="l_h_status">' + dev[i]['name'] + ': ' + dev[i]['value'].toString();
 						}
 					divStatusDeviceContent.innerHtml=strDevContent;
+					}
+					else
+					{
+						divStatusDeviceContent.innerHtml='<p class="l_h_status">Không có cảm biến</p>';
 					}
 					//add div
 					left_content_left.children.add(divStatusDeviceContent);
@@ -986,7 +735,7 @@ class FormMain extends PolymerElement
 					{
 						String strDevContent = '';
 						for(int j=i;j<dev.length;j++){
-							strDevContent+='<p>' + dev[j]['name'] + ': ' + dev[j]['value'].toString();
+							strDevContent+='<p class="l_h_status">' + dev[j]['name'] + ': ' + dev[j]['value'].toString();
 						}
 						divStatuSensorContent.innerHtml=strDevContent;
 					}
@@ -1000,7 +749,6 @@ class FormMain extends PolymerElement
 			content_left.children.add(left_content);
 		//content
 		DivElement content = new DivElement();
-		content.id="solo";
 		content.style.width="650px";
 		content.style.height="400px";
 		content.children.add(content_left);

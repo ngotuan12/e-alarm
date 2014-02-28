@@ -63,7 +63,7 @@ class FormAreaNone extends PolymerElement
         if(listAreas!=null)
         {
           CurrentAreas=listAreas;
-          totalAreas.text="Tổng số trạm: "+ CurrentAreas.length.toString();
+          totalAreas.text="Tổng số : "+ CurrentAreas.length.toString();
           Pagination();
         }
       });
@@ -251,31 +251,34 @@ class FormAreaNone extends PolymerElement
                                   
               TableCellElement colName=new TableCellElement();
               colName.classes.add("important");
-              colName.appendHtml(area['Name']);
+              colName.appendHtml(area['name']);
               
               TableCellElement colAddress=new TableCellElement();
               colAddress.classes.add("important");
-              colAddress.appendHtml((area['FullName']!=null)?area['FullName']:"");
+              colAddress.appendHtml((area['full_name']!=null)?area['full_name']:"");
                                   
               TableCellElement colCode=new TableCellElement();
               colCode.classes.add("important center");  
-              colCode.appendHtml(area["Code"].toString());
+              colCode.appendHtml(area["code"].toString());
                                   
               TableCellElement colNameParent=new TableCellElement();
               colNameParent.classes.add("important center");  
-              colNameParent.appendHtml(area["NameParent"].toString());
+              colNameParent.appendHtml(area["parent_name"].toString());
               
               TableCellElement colLevel=new TableCellElement();
               colLevel.classes.add("important center");
-              colLevel.appendHtml(area["Level"].toString());
+              colLevel.appendHtml(area["level"].toString());
                                   
               TableCellElement colType=new TableCellElement();
               colType.classes.add("important center");
-              colType.appendHtml(area["Type"].toString());
+              colType.appendHtml(area["type"].toString());
                                   
               TableCellElement colStatus=new TableCellElement();
               colStatus.classes.add("important center");
-              colStatus.appendHtml(area["Status"].toString());
+              if(area["status"]=="1")
+              	colStatus.appendHtml("Kích hoạt");
+              else
+            	colStatus.appendHtml("Không kích hoạt");
                                     
               TableCellElement colAction=new TableCellElement();
               colAction.classes.add("center");
@@ -288,7 +291,7 @@ class FormAreaNone extends PolymerElement
               ButtonElement btnDelete=new ButtonElement();
               btnDelete.className="btn-action glyphicons remove_2 btn-danger";
               btnDelete.appendHtml("<i></i>");
-              btnDelete.onClick.listen((event)=>onDeleteArea(area["ID"].toString()));
+              btnDelete.onClick.listen((event)=>onDeleteArea(area["id"].toString()));
                                           
               colAction.children.add(btnEdit);
               colAction.children.add(btnDelete);

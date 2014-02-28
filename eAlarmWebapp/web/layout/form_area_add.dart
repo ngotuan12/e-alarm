@@ -16,9 +16,9 @@ class FormAreaAdd extends PolymerElement
   String Lat;
   String Lng;
   TextInputElement txtCode;
-  SelectElement selArea;
+  //SelectElement selArea;
   SelectElement selStatus;
-  SelectElement selType;
+//  SelectElement selType;
   List<Map> listAreas;
   bool error=false;
   String errorString="";
@@ -45,9 +45,9 @@ class FormAreaAdd extends PolymerElement
   enteredView() 
   {
     super.enteredView();
-    selArea=this.shadowRoot.querySelector("#area");
+    //selArea=this.shadowRoot.querySelector("#area");
     selStatus=this.shadowRoot.querySelector("#status");
-    selType=this.shadowRoot.querySelector("#type");
+//    selType=this.shadowRoot.querySelector("#type");
     btnCancel=this.shadowRoot.querySelector("#btnCancel");
     btnExit=this.shadowRoot.querySelector("#btnExit");
     btnSave=this.shadowRoot.querySelector("#btnSave");
@@ -60,7 +60,7 @@ class FormAreaAdd extends PolymerElement
     btnCancel.onClick.listen(onExit);
     //btnSearch.onClick.listen(onShowMap);
     btnSave.onClick.listen(onSave);
-    selArea.onChange.listen(onChangeFullName);
+    //selArea.onChange.listen(onChangeFullName);
     txtAddress.onInput.listen(onChangeFullName);
     txtAddress.onChange.listen(onShowMap);
     //Load
@@ -84,16 +84,14 @@ class FormAreaAdd extends PolymerElement
       request["Name"]=txtAddress.value.trim();
       request["FullName"]=txtFullAddress.value.trim();
       //option
-      if(selArea.selectedIndex >0)
-      {
-        OptionElement op =selArea.children.elementAt(selArea.selectedIndex);
-        Map element = JSON.decode(op.value);
-        request["ParentID"]=element['ID'];
-      }
+
+//        OptionElement op =selArea.children.elementAt(selArea.selectedIndex);
+//        Map element = JSON.decode(op.value);
+        request["ParentID"]='1';
       request["Status"]=(selStatus.selectedIndex==0)?"1":"0";       
       request["Lang"]=double.parse(Lng);
       request["Lat"]=double.parse(Lat);
-      request["Type"]=(selType.selectedIndex+1).toString();
+      request["Type"]='2';
       responder.onSuccess.listen((Map response)
       {
         Util.showNotifySuccess("Add new record sucess");
@@ -122,7 +120,7 @@ class FormAreaAdd extends PolymerElement
     error=false;
     errorString="";
     //check lat lng
-    if(Lat==""||Lng=="")
+    if(Lat==""||Lng==""||Lat==null||Lng==null)
     {
       error=true;
       errorString+="Lat,lng can't empty"+", ";
@@ -138,7 +136,7 @@ class FormAreaAdd extends PolymerElement
       for(int i=0;i<listAreas.length;i++)
       {
         Map area=listAreas[i];
-        if(area['Code'].toString().toUpperCase()==txtCode.value.trim().toUpperCase())
+        if(area['code'].toString().toUpperCase()==txtCode.value.trim().toUpperCase())
         {
           error=true;
           errorString+="Code ATM is already exists";
@@ -155,23 +153,14 @@ class FormAreaAdd extends PolymerElement
     {
       Lat="";
       Lng="";
-      OptionElement opt = selArea.children.elementAt(selArea.selectedIndex);
-      if(selArea.selectedIndex>0)
-      {
-        //data
-          Map area = JSON.decode(opt.value);
-          if(area !=null)
-            txtFullAddress.value=area["FullName"];
-      }
-      else
+//      OptionElement opt = selArea.children.elementAt(selArea.selectedIndex);
+//        //data
+//          Map area = JSON.decode(opt.value);
+//          if(area !=null)
+            txtFullAddress.value='Việt Nam';
+      if(txtAddress.value=="")
       {
         txtFullAddress.value="";
-      }
-      if(e.target==selArea)
-      {
-        txtAddress.value="";
-        
-        txtAddress.disabled=(selArea.selectedIndex>0)?false:true;
       }
       if(e.target==txtAddress)
       {
@@ -244,11 +233,11 @@ class FormAreaAdd extends PolymerElement
   void init()
   {
     //add option in select tag
-     for(int i=0;i<5;i++)
-     {
-       OptionElement op=new OptionElement(data: (i+1).toString(), value: (i+1).toString(), selected: false);
-       selType.children.add(op);
-     }
+//     for(int i=0;i<5;i++)
+//     {
+//       OptionElement op=new OptionElement(data: (i+1).toString(), value: (i+1).toString(), selected: false);
+//       selType.children.add(op);
+//     }
   //Google map
     codeAddress();
   //areas
@@ -282,7 +271,7 @@ class FormAreaAdd extends PolymerElement
           new MarkerOptions()
               ..position = new LatLng(results[0].geometry.location.lat, results[0].geometry.location.lng)
               ..map = map
-              ..title = 'Viet Nam'
+              ..title = 'Việt Nam'
         );          
       } 
       else
@@ -300,12 +289,12 @@ class FormAreaAdd extends PolymerElement
   void ShowAreas()
   {
     //refresh data
-    selArea.children.clear();
+//    selArea.children.clear();
     //contructor option
-    OptionElement op=new OptionElement();
-    op.value="-1";
-    op.text="Chọn địa bàn";
-    selArea.children.add(op);
+//    OptionElement op=new OptionElement();
+//    op.value="-1";
+//    op.text="Chọn khu vực";
+//    selArea.children.add(op);
     //get data
     Map request = new Map();
     request["Method"] = "GetAllAreaActive";
@@ -326,40 +315,41 @@ class FormAreaAdd extends PolymerElement
           {
             //option
             Map element= areaProvinces[i];
-            String name=element['Name'];
+            String name=element['name'];
             OptionElement op = new Element.option();
-            op.text='==>'+name;
+            op.text=name;
+            op.selected=true;
             op.value = JSON.encode(element);
             //add option
-            selArea.children.add(op);
+//            selArea.children.add(op);
             //filter by ParentID provice
-            List<Map> areaProvices=filterByParentID(listAreas, [element['ID']]);
+            List<Map> areaProvices=filterByParentID(listAreas, [element['id']]);
             if(areaProvices !=null)
             {
               for(int i=0;i<areaProvices.length;i++)
               {
                 //option
                 Map element= areaProvices[i];
-                String name=element['Name'];
+                String name=element['name'];
                 OptionElement op = new Element.option();
                 op.text="==> ==>"+name;
                 op.value = JSON.encode(element);
                 //add are
-                selArea.children.add(op);
+               // selArea.children.add(op);
                 //filter by ParentID district
-                List<Map> areaDistricts=filterByParentID(listAreas, [element['ID']]);
+                List<Map> areaDistricts=filterByParentID(listAreas, [element['id']]);
                 if(areaDistricts !=null)
                 {
                   for(int i=0;i<areaDistricts.length;i++)
                   {
                     //option
                     Map element= areaDistricts[i];
-                    String name=element['Name'];
+                    String name=element['name'];
                     OptionElement op = new Element.option();
                     op.text="==> ==> ==>"+name;
                     op.value = JSON.encode(element);
                     //add are
-                    selArea.children.add(op);
+                    //selArea.children.add(op);
                    }
                  }
                }
@@ -388,7 +378,7 @@ class FormAreaAdd extends PolymerElement
     {
       for(int i=0;i<listType.length;i++)
       {
-        if(listType[i]==location["ParentID"])
+        if(listType[i]==location["parent_id"])
         {
           return true;
         }
@@ -407,7 +397,7 @@ class FormAreaAdd extends PolymerElement
     {
       for(int i=0;i<listLevel.length;i++)
       {
-        if(listLevel[i]==location["Level"])
+        if(listLevel[i]==location["level"])
         {
           return true;
         }
