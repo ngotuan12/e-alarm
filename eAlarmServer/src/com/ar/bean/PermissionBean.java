@@ -69,7 +69,7 @@ public class PermissionBean extends AppProcessor
 					strPassword);
 			// session
 			String strDate = StringUtil.format(
-					new Date(System.currentTimeMillis() + 300000L),
+					new Date(System.currentTimeMillis() + 300000*12L),
 					"dd/MM/yyyy HH:mm:ss");
 			JSONObject json = new JSONObject();
 			json.put("username", strUserName);
