@@ -36,10 +36,10 @@
 	color: #fff;
 }
 .properties ul li span.error strong{
-	color: red;
+	font-size: 20px;
 }
 .properties ul li span.normal strong{
-	color: green;
+	font-size: 20px;
 }
 .Clear {
 	clear: both;
@@ -53,7 +53,7 @@
 	type='hidden' id='show_per_page' />
 <div class="heading-buttons">
 	<h3 id="show">
-		Danh sách trạm<span> | ATM</span>
+		Danh sách phòng máy
 	</h3>
 	<div class="buttons pull-right">
 		<button id="btnAdd" href="#"
@@ -84,22 +84,19 @@
 				<div class="clearfix"></div>
 			</form>
 		</div>
-		<div class="form-inline separator bottom small">
-			<span id="totalDevice"></span>
-		</div>
-
 		<!-- device list -->
 		<table
 			class="table table-bordered table-condensed table-striped table-primary table-vertical-center checkboxs">
 			<thead>
 				<tr>
-					<th style="width: 1%;" class="center">STT</th>
-					<th>Địa chỉ</th>
-					<th style="width: 10%;" class="center">Mã trạm</th>
-					<th class="center">Kinh tuyến</th>
-					<th class="center">Vĩ tuyến</th>
-					<th class="center">Trạng thái</th>
-					<th class="center" style="width: 60px;">Sửa/Xóa</th>
+					<th style="width: 1%; " class="center">STT</th>
+					<th style="width: 30%;" class="center" >Địa chỉ</th>
+					<th style="width: 5%;" class="center">mã</th>
+					<th style="width: 11%;" class="center">tên</th>
+					<th style="width: 15%;" class="center">mac</th>
+					<th style="width: 15%;" class="center">server</th>
+					<th style="width: 3%;" class="center"></th>
+					<th style="width: 80px;"class="center" ></th>
 				</tr>
 			</thead>
 			<tbody id="ListDevices">
@@ -110,6 +107,7 @@
 			<!-- Pagination -->
 			<div class="pagination pagination-small pull-right"
 				style="margin: 0;">
+				<span style="float: left;margin-right: 10px;margin-top: 3px;" id="totalDevice"></span>	 
 				<ul id="pagination">
 				</ul>
 			</div>

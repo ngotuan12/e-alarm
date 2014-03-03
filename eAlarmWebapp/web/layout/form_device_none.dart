@@ -59,79 +59,89 @@ class FormDeviceNone extends PolymerElement
    */
 	void showRecord()
 	{
-	  tblDevices.children.clear();
-	  if(CurrentDevices!=null)
-          {
-            for(int i=0;i<devices.length;i++)
-            {
-              Map Device=devices[i];
-              //row
-              TableRowElement row = new TableRowElement();
-              row.classes.add("selectable");
-              row.attributes["data"] = JSON.encode(devices[i]);
-              //column
-              TableCellElement colId=new TableCellElement();
-              colId.classes.add("center");
-              colId.appendHtml((++stt).toString());
-                                  
-              TableCellElement colAddress=new TableCellElement();
-              colAddress.classes.add("important");
-              colAddress.appendHtml(Device['address']);
-                                  
-              TableCellElement colCode=new TableCellElement();
-              colCode.classes.add("important center");  
-              colCode.appendHtml(Device["code"].toString());
-                                  
-              TableCellElement colLat=new TableCellElement();
-              colLat.classes.add("important center");
-              colLat.appendHtml(Device["lat"].toString());
-                                  
-              TableCellElement colLng=new TableCellElement();
-              colLng.classes.add("important center");
-              colLng.appendHtml(Device["lng"].toString());
-                                  
-              TableCellElement colStatus=new TableCellElement();
-              colStatus.classes.add("important center");
-              colStatus.appendHtml(Device["status"].toString());
-                                    
-              TableCellElement colAction=new TableCellElement();
-              colAction.classes.add("center");
-                                    
-              ButtonElement btnEdit=new ButtonElement();
-              btnEdit.className="btn-action glyphicons pencil btn-success";
-              btnEdit.appendHtml("<i></i>");
-              btnEdit.onClick.listen((event)=>onEditDevice(Device));
-                                    
-              ButtonElement btnDelete=new ButtonElement();
-              btnDelete.className="btn-action glyphicons remove_2 btn-danger";
-              btnDelete.appendHtml("<i></i>");
-              btnDelete.onClick.listen((event)=>onDeleteDevice(Device));
-                                          
-              colAction.children.add(btnEdit);
-              colAction.children.add(btnDelete);
-                                    
-               //add column
-               row.children.add(colId);
-               row.children.add(colAddress);
-               row.children.add(colCode);
-               row.children.add(colLat);
-               row.children.add(colLng);
-               row.children.add(colStatus);
-               row.children.add(colAction);
-               //listener
-               row.onClick.listen(onSelectedDevice);
-               //add row
-               tblDevices.children.add(row);
-            }
-          }
+		tblDevices.children.clear();
+		if(CurrentDevices!=null)
+		{
+			for(int i=0;i<devices.length;i++)
+			{
+				Map device=devices[i];
+				//row
+				TableRowElement row = new TableRowElement();
+				row.classes.add("selectable");
+				row.attributes["data"] = JSON.encode(devices[i]);
+				String type="";
+				String status ="<img class=\"l_h_content_img\" style=\"margin:-3px 0px 0px 0px\" src=\"style/icons/marker_gray.png\" alt=\"blue\">";
+				if(device["status"]=="1")
+				{
+					status = "<img class=\"l_h_content_img\" style=\"margin:-3px 0px 0px 0px\" src=\"style/icons/ic_green.png\" alt=\"blue\">";
+					type = "important";
+				}
+				else if(device["status"]=="2")
+				{
+					status = "<img class=\"l_h_content_img\" style=\"margin:-3px 0px 0px 0px\" src=\"style/icons/ic_red.png\" alt=\"blue\">";
+					type = "has-error";
+				}
+				type = "important";
+				//STT
+				addCell(row,(i+1).toString(),align: "center",type: type);
+				//Address
+				addCell(row, device["address"],align: "left",type: type);
+				//code
+				addCell(row,device["code"],align: "center",type: type);
+				//name
+				addCell(row,device["name"],align: "center",type: type);
+				//mac_add
+				addCell(row,device["mac_add"],align: "center",type: type);
+				//connected server
+				addCell(row,Util.nvl(device["connected_server"],"Not connect"),align: "center",type: type);
+				//status
+				addCell(row,status,align: "center",type: type);
+				//action
+				TableCellElement colAction=new TableCellElement();
+				colAction.classes.add("center");
+				
+				ButtonElement btnEdit=new ButtonElement();
+				btnEdit.className="btn-action glyphicons pencil btn-success";
+				btnEdit.appendHtml("<i></i>");
+				btnEdit.onClick.listen((event)=>onEditDevice(device));
+				
+				ButtonElement btnDelete=new ButtonElement();
+				btnDelete.className="btn-action glyphicons remove_2 btn-danger";
+				btnDelete.appendHtml("<i></i>");
+				btnDelete.onClick.listen((event)=>onDeleteDevice(device));
+				
+				colAction.children.add(btnEdit);
+				colAction.children.add(btnDelete);
+				
+				//add column
+				row.children.add(colAction);
+				//listener
+				row.onClick.listen(onSelectedDevice);
+				//add row
+				tblDevices.children.add(row);
+			}
+}
 	}
+	/**
+	 * 
+	 */
+	void addCell(TableRowElement row,String content,{bool isAction:false,String type:null,String align:null})
+	{
+		TableCellElement colId=new TableCellElement();
+		if(align!=null)
+			colId.classes.add(align);
+		if(type!=null)
+			colId.classes.add(type);
+		colId.appendHtml(content);
+		//add column
+		row.children.add(colId);
+	}
+	/**
+	 * 
+	 */
 	void onSelectedDevice(Event event)
 	{
-		if(event.target ==btnSearch)
-		{
-			return;	
-		}
-		else if(event.currentTarget is TableRowElement)
+		if(event.target is TableCellElement)
 		{
 			Element selected = event.currentTarget;
     		setSelectedDevice(JSON.decode(selected.attributes["data"]));
