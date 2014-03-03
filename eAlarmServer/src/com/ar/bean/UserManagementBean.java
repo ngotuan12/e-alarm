@@ -51,7 +51,7 @@ public class UserManagementBean extends AppProcessor
 	private JSONArray GetAllUser() throws Exception
 	{
 		String strSQL = "select id as ID,dept_id as IdDept,owner_id as OwnerID,username as UserName,"
-				+ "password as Password,status as Status,sex as Sex,email as Email,phone as Phone,"
+				+ "password as Password,(case when status = '1' then 'Kích Hoạt' else 'Không Kích Hoạt' end) Status,sex as Sex,email as Email,phone as Phone,"
 				+ "id_no as IDNo,address as Address,DATE_FORMAT(birth_day,'%Y-%m-%d') as BirthDay,create_date as CreateDate,fullname as FullName,email,phone"
 				+ " from user";
 		return ExcuteQuery(strSQL, 0);
