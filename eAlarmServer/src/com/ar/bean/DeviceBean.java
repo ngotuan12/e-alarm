@@ -948,15 +948,16 @@ public class DeviceBean extends AppProcessor
 			String strmax = (String) request.getString("max");
 			String strminAlarm = (String) request.getString("min_Alarm");
 			String strmaxAlarm = (String) request.getString("max_Alarm");
-
+			String strType = (String) request.getString("type");
 			// open connection
 			open();
 			strSQL = "UPDATE device_properties SET name=N'" + strname
 					+ "',code='" + strcode + "',description=N'"
 					+ strdescription + "',symbol='" + strSymbol + "',min='"
 					+ strmin + "',max='" + strmax + "',min_alarm='"
-					+ strminAlarm + "',max_alarm='" + strmaxAlarm + "'"
-					+ " WHERE id='" + strdevice_pro_id + "'";
+					+ strminAlarm + "',type='" + strType + "',max_alarm='"
+					+ strmaxAlarm + "'" + " WHERE id='" + strdevice_pro_id
+					+ "'";
 
 			pstm = mcnMain.prepareStatement(strSQL);
 			int done = pstm.executeUpdate(strSQL);
