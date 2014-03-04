@@ -1,7 +1,6 @@
 import 'package:polymer/polymer.dart';
 import 'dart:html';
 import 'dart:convert';
-import 'dart:async';
 import '../src/util.dart';
 @CustomTag('form-device-none')
 class FormDeviceNone extends PolymerElement
@@ -28,6 +27,9 @@ class FormDeviceNone extends PolymerElement
 	List<Map> listElementDevice = [];
 	DivElement tabPane;
 	List<Map> tabs = [];
+	
+	Map<String,Element> currentDeviceDetail = {};
+	
 	enteredView() 
 	{
 		try
@@ -171,6 +173,8 @@ class FormDeviceNone extends PolymerElement
 		responder.onSuccess.listen((Map response){
 			clearTab();
 			List<Map> properties = response["properties"];
+			//clear detail
+			currentDeviceDetail.clear();
 			//properties
 			initDeviceProperties(device,properties);
 			//command log
@@ -218,6 +222,7 @@ class FormDeviceNone extends PolymerElement
 		//name, status, address
 		SpanElement span = new SpanElement();
 		span.style.fontSize = "18px";
+		span.id = "spanDeviceInfor";
 		String strImgStatus;
 		//img status
 		if(device["status"]=="0")
@@ -245,6 +250,7 @@ class FormDeviceNone extends PolymerElement
 		//ul
 		UListElement ul = new UListElement();
 		ul.className = "ulListProperties";
+		ul.id = "ulDeviceProperties";
 		divListProperties.children.add(ul);
 		//init
 		for(int i=0;i<properties.length;i++)
@@ -252,6 +258,7 @@ class FormDeviceNone extends PolymerElement
 			Map property = properties[i];
 			LIElement li = new LIElement();
 			li.className = "liListProperties";
+			li.id = property["code"];
 			li.attributes["value"] = JSON.encode(property); 
 			SpanElement span = new SpanElement();
 			
@@ -303,7 +310,46 @@ class FormDeviceNone extends PolymerElement
 	 */
 	void onUpdateProperties(Map properties)
 	{
+		//update device infor
+		SpanElement span = this.shadowRoot.querySelector("#spanDeviceInfor");
+		//update list sensor
+		UListElement ul = this.shadowRoot.querySelector("#ulDeviceProperties");
+		for(int i=0;i<properties.keys.length;i++)
+		{
+			LIElement li = ul.querySelector("#"+properties.keys.elementAt(i));
+			if(li!=null)
+			{
+				li.children.clear();
+				Map property = JSON.decode(li.attributes["value"]);
+				property["value"] = properties[properties.keys.elementAt(i)];
+				String strAlarmStatus = "1";
+				if(property["value"]>=property["max_alarm"]||property["value"]<=property["min_alarm"])
+				{
+					strAlarmStatus = "0";
+				}
+				property["alarm_status"] = strAlarmStatus;
+				
+				SpanElement span = new SpanElement();
+    			if(property["alarm_status"]=="1")
+    			{
+    				span.className = "normal";
+    				span.appendHtml(property["name"]+"<br><strong>  "+property["value"].toString()+" "+property["symbol"]+"</strong>");
+    			}
+    			else
+    			{
+    				span.className = "error";
+    				span.appendHtml(property["name"]+"<br><strong>  "+property["value"].toString()+" "+property["symbol"]+"</strong>");
+    			}
+    			//
+    			li.attributes["value"] = JSON.encode(property);
+    			//
+    			li.children.add(span);
+				//print(properties.keys.elementAt(i)+properties[properties.keys.elementAt(i)].toString());
+			}
+		}
 		
+//		ul.children.clear();
+		//
 	}
 	/**
 	 *@author TuanNA
@@ -316,11 +362,13 @@ class FormDeviceNone extends PolymerElement
 		AppClient.websocket.onMessage.listen((MessageEvent e) {
 			try
 			{
+				print(e.data);
 				Map response = JSON.decode(e.data);
 				switch(response["handle"])
 				{
 					case "update_device_properties":
-						
+						Map properties = response["infors"];
+						onUpdateProperties(properties);
 						break;
 					default:
 						break;
@@ -334,9 +382,13 @@ class FormDeviceNone extends PolymerElement
 		});
 	}
 	/**
-	 * 
+	 * @author: TuanNA
+	 * @since: 04/03/2014
+	 * @version: 1.0
+	 * @company
+	 * @params:
 	 */
-	void updateDeviceProperties()
+	void updateDeviceProperties(Map properties)
 	{
 		
 	}

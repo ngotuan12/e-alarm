@@ -20,87 +20,40 @@
 						href="?page=blank&amp;layout_type=fixed&amp;menu_position=menu-left&amp;style=style-dark&amp;lang=en"
 						title="English"><img class="IconCountry"
 							src="style/images/lang/en.png" alt="English"> English</a></li>
-					<li><a
-						href="?page=blank&amp;layout_type=fixed&amp;menu_position=menu-left&amp;style=style-dark&amp;lang=ro"
-						title="Romanian"><img class="IconCountry"
-							src="style/images/lang/ro.png" alt="Romanian"> Romanian</a></li>
-					<li><a
-						href="?page=blank&amp;layout_type=fixed&amp;menu_position=menu-left&amp;style=style-dark&amp;lang=it"
-						title="Italian"><img class="IconCountry"
-							src="style/images/lang/it.png" alt="Italian"> Italian</a></li>
-					<li><a
-						href="?page=blank&amp;layout_type=fixed&amp;menu_position=menu-left&amp;style=style-dark&amp;lang=fr"
-						title="French"><img class="IconCountry"
-							src="style/images/lang/fr.png" alt="French"> French</a></li>
-					<li><a
-						href="?page=blank&amp;layout_type=fixed&amp;menu_position=menu-left&amp;style=style-dark&amp;lang=pl"
-						title="Polish"><img class="IconCountry"
-							src="style/images/lang/pl.png" alt="Polish"> Polish</a></li>
 				</ul></li>
 			<!-- // Language menu END -->
 
 			<!-- Dropdown -->
 			<li class="dropdown dd-1 visible-desktop" id="help_nav"><a
-				href="#" data-toggle="dropdown" class="glyphicons shield"><i></i>Hướng
-					dẫn <span class="caret"></span></a>
+				href="#" data-toggle="dropdown" class="glyphicons shield"><i></i>Trợ giúp 
+				<span class="caret"></span></a>
 				<ul class="dropdown-menu pull-right">
 
-					<li class="dropdown submenu"><a href="#"
-						class="dropdown-toggle glyphicons bell" data-toggle="dropdown"><i></i>Level
-							2</a>
-						<ul class="dropdown-menu submenu-show submenu-hide pull-left">
-							<li class="dropdown submenu"><a href="#"
-								class="dropdown-toggle" data-toggle="dropdown">Level 2.1</a>
-								<ul class="dropdown-menu submenu-show submenu-hide pull-left">
-									<li><a href="#">Level 2.1.1</a></li>
-									<li><a href="#">Level 2.1.2</a></li>
-									<li><a href="#">Level 2.1.3</a></li>
-									<li><a href="#">Level 2.1.4</a></li>
-								</ul></li>
-							<li class="dropdown submenu"><a href="#"
-								class="dropdown-toggle" data-toggle="dropdown">Level 2.2</a>
-								<ul class="dropdown-menu submenu-show submenu-hide pull-left">
-									<li><a href="#">Level 2.2.1</a></li>
-									<li><a href="#">Level 2.2.2</a></li>
-								</ul></li>
-						</ul></li>
-
-					<li><a href="" class="glyphicons settings"><i></i>Some
-							option</a></li>
-					<li><a href="" class="glyphicons bell"><i></i>Some other
-							option</a></li>
-					<li><a href="" class="glyphicons bell"><i></i>Other option</a></li>
+					<li><a href="" class="glyphicons bell"><i></i>Hướng dẫn</a></li>
+					<li><a href="" class="glyphicons settings"><i></i>Hệ thống</a></li>
+					<li><a href="" class="glyphicons bell"><i></i>Liên hệ </a></li>
 
 				</ul></li>
 			<!-- // Dropdown END -->
 
 			<!-- Profile / Logout menu -->
-			<li class="account dropdown dd-1" id="account_nav"><a href="#"
-				data-toggle="dropdown" class="glyphicons logout lock"> ducdienpt
-					<i></i> <span class="caret"></span>
-			</a>
+			<li class="account dropdown dd-1" id="account_nav">
 				<ul class="dropdown-menu pull-right">
-					<li><a
-						href="my_account.html?lang=en&amp;layout_type=fixed&amp;menu_position=menu-left&amp;style=style-dark"
-						class="glyphicons cogwheel">Settings<i></i></a></li>
-					<li><a
-						href="my_account.html?lang=en&amp;layout_type=fixed&amp;menu_position=menu-left&amp;style=style-dark"
-						class="glyphicons camera">My Photos<i></i></a></li>
-					<li class="profile"><span> <span class="heading">Profile
-								<a
-								href="my_account.html?lang=en&amp;layout_type=fixed&amp;menu_position=menu-left&amp;style=style-dark"
-								class="pull-right">edit</a>
-						</span> <span class="img"></span> <span class="details"> <a
-								href="my_account.html?lang=en&amp;layout_type=fixed&amp;menu_position=menu-left&amp;style=style-dark">ducdienpt</a>
-								@ex-artisan.com
-						</span> <span class="clearfix"></span>
-					</span></li>
+					<li class="profile">
+						<span> 
+							<span class="heading">Profile </span>  
+							<span class="details"> Email: <a>{{email}}</a></span>
+							<span class="details"> Ngày tạo: </span>
+							<span class="clearfix"></span>
+						</span>
+					</li>
 					<li><span> <a
-							class="btn btn-default btn-mini pull-right"
-							href="login.html?lang=en&amp;layout_type=fixed&amp;menu_position=menu-left&amp;style=style-dark">Sign
-								Out</a>
+							class="btn btn-default btn-mini pull-right">Sign Out</a>
 					</span></li>
-				</ul></li>
+				</ul> <a href="#" data-toggle="dropdown" class="glyphicons logout lock">
+					{{userName}} <i></i> <span class="caret"></span>
+			</a>
+			</li>
 			<!-- // Profile / Logout menu END -->
 
 		</ul>

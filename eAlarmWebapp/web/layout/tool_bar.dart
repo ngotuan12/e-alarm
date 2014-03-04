@@ -1,5 +1,6 @@
 import 'package:polymer/polymer.dart';
 import 'dart:html';
+import '../src/util.dart';
 @CustomTag('tool-bar')
 class ToolBar extends PolymerElement
 {
@@ -10,6 +11,8 @@ class ToolBar extends PolymerElement
 	// This lets the Bootstrap CSS "bleed through" into the Shadow DOM
   	// of this element.
 	bool get applyAuthorStyles => true;
+	@observable String userName = SessionUser.sessionUserName;
+	@observable String email = Util.nvl(SessionUser.sessionUserInfor["email"],"");
 	/*
 	 * @author TuanNA
 	 * @since:03/01/2014
