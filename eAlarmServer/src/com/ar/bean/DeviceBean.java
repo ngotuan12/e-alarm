@@ -880,6 +880,9 @@ public class DeviceBean extends AppProcessor
 		case "onGetDevicePropertyByID":
 			onGetDevicePropertyByID();
 			break;
+		case "get_device_detail_by_id":
+			getDeviceDetailByDeviceId();
+			break;
 		default:
 			response.put("error", "you must enter the correct API name");
 			break;
@@ -1247,5 +1250,48 @@ public class DeviceBean extends AppProcessor
 			close();
 		}
 
+	}
+	/**
+	 * @author TuanNA
+	 * @throws Exception
+	 */
+	public void getDeviceDetailByDeviceId() throws Exception
+	{
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+		String strSQL = "";
+		try
+		{
+			int iDeviceID = request.getInt("device_id");
+			// device properties
+			strSQL = "SELECT a.id,a.status,b.name,b.code,b.symbol,a.value, "
+					+ "b.min_alarm,b.max_alarm, "
+					+ "(CASE WHEN a.value<= b.min_alarm or a.value>=b.max_alarm THEN '0' "
+					+ "ELSE '1' end) alarm_status "
+					+ "FROM device_infor a,device_properties b "
+					+ "WHERE a.device_pro_id = b.id "
+					+ "AND a.device_id = ? AND status = '1' ";
+			// open connection
+			open();
+			// Prepare
+			pstm = mcnMain.prepareStatement(strSQL);
+			// set parameter
+			pstm.setInt(1, iDeviceID);
+			// execute
+			rs = pstm.executeQuery();
+			// response
+			response.put("properties", Util.convertToJSONArray(rs));
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			throw e;
+		}
+		finally
+		{
+			Database.closeObject(rs);
+			Database.closeObject(pstm);
+			close();
+		}
 	}
 }
