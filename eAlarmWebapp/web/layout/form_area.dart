@@ -20,7 +20,7 @@ class FormArea extends PolymerElement
    */
   void onAdd(CustomEvent event)
   {
-    currentAction="ADD";
+	currentAction="ADD";
   }
   /*
    * @author:diennd
