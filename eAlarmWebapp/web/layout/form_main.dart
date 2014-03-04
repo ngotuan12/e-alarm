@@ -146,7 +146,7 @@ class FormMain extends PolymerElement
 		//send to server
 		AppClient.sendMessage(request, AlarmServiceName.DeviceService, AlarmServiceMethod.POST,responder);
 		//default value
-		slStatus.selectedIndex = 2;
+		slStatus.selectedIndex = 0;
 	}
 	/*
 	 * 
