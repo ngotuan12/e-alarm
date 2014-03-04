@@ -195,6 +195,7 @@ class MainMenu extends PolymerElement
 		Element target = event.currentTarget;
 		print(target.attributes["name"]);
 		currentAction = target.attributes["name"];
+		AppClient.forceCloseWebsocket();
 	}
 	void toogleForm()
 	{
