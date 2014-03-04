@@ -29,8 +29,7 @@ public class DeviceBean extends AppProcessor
 					+ "(CASE WHEN a.value<= b.min_alarm or a.value>=b.max_alarm THEN '0' "
 					+ "ELSE '1' end) alarm_status "
 					+ "FROM device_infor a,device_properties b "
-					+ "WHERE a.device_pro_id = b.id "
-					+ "AND a.device_id = ? AND status = '1' ";
+					+ "WHERE a.device_pro_id = b.id " + "AND a.device_id = ? ";
 			// prepare
 			pstm = mcnMain.prepareStatement(strSQL);
 			pstm.setInt(1, deviceID);
@@ -117,11 +116,10 @@ public class DeviceBean extends AppProcessor
 			String strDeviceID = (String) request.getString("deviceID");
 			// open connection
 			open();
-			strSQL = "SELECT *" + " FROM device "
-					+ "WHERE id = ? and status = 1";
+			strSQL = "SELECT *" + " FROM device " + "WHERE id = ? ";
 			// prepare
 			pstm = mcnMain.prepareStatement(strSQL);
-			pstm.setString(1, strDeviceID.toUpperCase());
+			pstm.setString(1, strDeviceID);
 			rs = pstm.executeQuery();
 			// get JSON data
 			JSONArray arr = Util.convertToJSONArray(rs);
