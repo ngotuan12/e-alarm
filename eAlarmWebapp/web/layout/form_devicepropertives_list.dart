@@ -11,6 +11,9 @@ class FormDevicePropertives extends PolymerElement
   //String deviceproID;
   Element tblDevicePro;
   
+  InputElement txtNameSearch = new InputElement(type: "text");
+    InputElement txtCodeSearch = new InputElement(type: "text");
+    SelectElement selTypeSearch = new SelectElement();
   UListElement ulPagination;
     InputElement inCurrent_page;
     InputElement inShow_per_page;
@@ -21,6 +24,7 @@ class FormDevicePropertives extends PolymerElement
     int currentSelectedPageIndex = 0;
     int show_per_page;
     int stt=0;
+    List<Map> listDeviceProSearch;
   @observable List CurrentDevices=toObservable([]);
   @observable static List allDevice=toObservable([]);
     @observable static List listDevices=toObservable([]);
@@ -31,13 +35,43 @@ class FormDevicePropertives extends PolymerElement
   enteredView() 
   {
     super.enteredView();
+    txtNameSearch = this.shadowRoot.querySelector("#txtNameSearch");
+        txtNameSearch.onKeyUp.listen((event)=>handlerOnchageSearch());
+        
+        txtCodeSearch = this.shadowRoot.querySelector("#txtCodeSearch");
+        txtCodeSearch.onKeyUp.listen((event)=>handlerOnchageSearch());
+        
+        selTypeSearch = this.shadowRoot.querySelector("#selTypeSearch");
+        selTypeSearch.onChange.listen((event)=>handlerOnchageSearch());
+    
     btnAdd=this.shadowRoot.querySelector("#btnAdd");
     btnAdd.onClick.listen((event)=>onAddGateway());
         tblDevices = this.shadowRoot.querySelector("#ListDevicesPro");
-        //action
-        //ancAdd.onClick.listen((Event)=>FormDevicePropertives.getCurrentAction="ADD");
-       // btnSearch.onClick.listen(Search);
-        init();
+    
+     
+    //action
+    //ancAdd.onClick.listen((Event)=>FormDevicePropertives.getCurrentAction="ADD");
+   // btnSearch.onClick.listen(Search);
+    init();
+  }
+  void handlerOnchageSearch(){
+  			String inputName = txtNameSearch.value;
+    		String inputCode = txtCodeSearch.value;
+    		String selType = selTypeSearch.value;
+    		stt = 0;
+    		listDeviceProSearch= new List<Map>();
+    		for(int i=0;i<CurrentDevices.length;i++)
+    		{
+    			Map user = CurrentDevices[i];
+    			String nameofdepro = user["name"];
+    			String codeofdepro = user["code"];
+    			String statusofdepro = user["Typeaa"];
+    			if(nameofdepro.toLowerCase().contains(inputName)&&codeofdepro.toLowerCase().contains(inputCode)&&statusofdepro == selType){
+    				listDeviceProSearch.add(CurrentDevices[i]);
+    			}
+    		}
+    		PaginationSearch(listDeviceProSearch);
+    		showRecordSearch(listDeviceProSearch);
   }
   
   void onAddGateway()
@@ -81,6 +115,87 @@ class FormDevicePropertives extends PolymerElement
            Util.showNotifyError(err.toString());
          }
     }
+    void showRecordSearch(List<Map> depro11)
+        {
+          tblDevices.children.clear();
+          if(depro11!=null)
+                {
+                  for(int i=0;i<depro11.length;i++)
+                  {
+                    Map depro=depro11[i];
+            //row
+            TableRowElement row = new TableRowElement();
+            row.classes.add("selectable");
+            
+            //column
+            TableCellElement colName=new TableCellElement();
+            colName.classes.add("center");
+            colName.appendHtml(depro["name"].toString());
+            
+            TableCellElement colCode=new TableCellElement();
+            colCode.classes.add("center");
+            colCode.appendHtml(depro["code"].toString());
+            
+            TableCellElement colDescription=new TableCellElement();
+            colDescription.classes.add("center");
+            colDescription.appendHtml(depro["description"].toString());
+            
+            TableCellElement colType=new TableCellElement();
+            colType.classes.add("center");
+            colType.appendHtml(depro["Typeaa"].toString());
+            
+            TableCellElement colMin=new TableCellElement();
+            colMin.classes.add("center");
+            colMin.appendHtml(depro["min"].toString());
+            
+            TableCellElement colMax=new TableCellElement();
+            colMax.classes.add("center");
+            colMax.appendHtml(depro["max"].toString());
+            
+            TableCellElement colMinAlarm=new TableCellElement();
+            colMinAlarm.classes.add("center");
+            colMinAlarm.appendHtml(depro["min_alarm"].toString());
+                    
+            TableCellElement colMaxAlarm=new TableCellElement();
+            colMaxAlarm.classes.add("center");
+            colMaxAlarm.appendHtml(depro["max_alarm"].toString());
+            
+            TableCellElement colSymbol=new TableCellElement();
+            colSymbol.classes.add("center");
+            colSymbol.appendHtml(depro["symbol"].toString());
+            
+            TableCellElement colAction=new TableCellElement();
+            colAction.classes.add("center");
+            ButtonElement btnEdit=new ButtonElement();
+            btnEdit.className="btn-action glyphicons pencil btn-success";
+            btnEdit.appendHtml("<i></i>");
+            btnEdit.onClick.listen((event)=>onEditGateway(depro));
+                  
+            ButtonElement btnDelete=new ButtonElement();
+            btnDelete.className="btn-action glyphicons remove_2 btn-danger";
+            btnDelete.appendHtml("<i></i>");
+            btnDelete.onClick.listen((event)=>onDeleteGateway(depro));
+                  
+            colAction.children.add(btnEdit);
+            colAction.children.add(btnDelete);
+            //add column
+            row.children.add(colName);
+            row.children.add(colCode);
+            row.children.add(colDescription);
+            row.children.add(colType);
+            row.children.add(colMin);
+            row.children.add(colMax);
+            row.children.add(colMinAlarm);
+            row.children.add(colMaxAlarm);
+            row.children.add(colSymbol);        
+            row.children.add(colAction);
+            
+            String deviceproID= depro["id"].toString();
+            //add row
+            tblDevices.children.add(row);
+                  }
+                }
+        }
   void showRecord()
     {
       tblDevices.children.clear();
@@ -108,7 +223,7 @@ class FormDevicePropertives extends PolymerElement
         
         TableCellElement colType=new TableCellElement();
         colType.classes.add("center");
-        colType.appendHtml(depro["type"].toString());
+        colType.appendHtml(depro["Typeaa"].toString());
         
         TableCellElement colMin=new TableCellElement();
         colMin.classes.add("center");
@@ -125,6 +240,10 @@ class FormDevicePropertives extends PolymerElement
         TableCellElement colMaxAlarm=new TableCellElement();
         colMaxAlarm.classes.add("center");
         colMaxAlarm.appendHtml(depro["max_alarm"].toString());
+        
+        TableCellElement colSymbol=new TableCellElement();
+        colSymbol.classes.add("center");
+        colSymbol.appendHtml(depro["symbol"].toString());
         
         TableCellElement colAction=new TableCellElement();
         colAction.classes.add("center");
@@ -149,6 +268,7 @@ class FormDevicePropertives extends PolymerElement
         row.children.add(colMax);
         row.children.add(colMinAlarm);
         row.children.add(colMaxAlarm);
+        row.children.add(colSymbol);        
         row.children.add(colAction);
         
         String deviceproID= depro["id"].toString();
@@ -237,6 +357,61 @@ class FormDevicePropertives extends PolymerElement
         devices=toObservable([]);
       }
     }
+  
+  void PaginationSearch(List<Map> litsearchdepro)
+      {   
+        ulPagination=this.shadowRoot.querySelector("#pagination");
+        inCurrent_page=this.shadowRoot.querySelector("#current_page");
+        inShow_per_page=this.shadowRoot.querySelector("#show_per_page");
+        //remove all pages
+        ulPagination.children.clear();
+        pages.clear();
+        //number records in a page
+        show_per_page=10;
+        int number_pages=(litsearchdepro.length/show_per_page).ceil();
+        if(number_pages>0)
+        {
+          LIElement liPagePrevious=new LIElement();
+          liPagePrevious.id="PagePrevious";
+          liPagePrevious.classes.add("disabled");
+          liPagePrevious.onClick.listen(previous);
+          AnchorElement aPageStart=new AnchorElement();
+          aPageStart.href="#";
+          aPageStart.text="<<";
+          liPagePrevious.children.add(aPageStart);
+          ulPagination.children.add(liPagePrevious);
+          //init page
+          if(number_pages>=1)
+          {
+            for(int i=0;i<number_pages;i++)
+            {
+              LIElement liPage=new LIElement();
+              liPage.id = i.toString();
+              AnchorElement aPage=new AnchorElement();
+              aPage.href="#";
+              aPage.text=(i+1).toString();
+              liPage.children.add(aPage);
+              ulPagination.children.add(liPage);
+              liPage.onClick.listen(go_to_page);
+              pages.add(liPage);
+            }
+          }
+          LIElement liPageNext=new LIElement();
+          liPageNext.id="PageNext";
+          liPageNext.onClick.listen(next);
+          AnchorElement aPageEnd=new AnchorElement();
+          aPageEnd.href="#";
+          aPageEnd.text=">>";
+          liPageNext.children.add(aPageEnd);
+          ulPagination.children.add(liPageNext);
+          //set selected page 1
+          setSelectedPageIndex(0);
+        }
+        else
+        {
+          devices=toObservable([]);
+        }
+      }
     
     void go_to_page(Event event)
     {

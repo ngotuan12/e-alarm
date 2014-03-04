@@ -46,11 +46,11 @@ class FormUserEdit extends PolymerElement
     txtPhone=this.shadowRoot.querySelector("#txtPhone");
     txtEmail=this.shadowRoot.querySelector("#txtEmail");
         //event
-    DateTime a = DateTime.parse(user["BirthDay"]+" 17:39:47.667");
+    DateTime a = DateTime.parse((user["BirthDay"]!=null)?user["BirthDay"]:"" +" 17:39:47.667");
 
     txtbirthday.valueAsDate = a;
-    txtUsername.value = user["UserName"];
-    txtfullname.value = user["FullName"];
+    txtUsername.value = (user["UserName"]!=null)?user["UserName"]:"";
+    txtfullname.value = (user["FullName"]!=null)?user["FullName"]:"";
     
     
     
@@ -59,19 +59,20 @@ class FormUserEdit extends PolymerElement
 
 //    txtPass=this.shadowRoot.querySelector("#txtPass");
 //   	txtPass2=this.shadowRoot.querySelector("#txtPass2");
-    if(user["Status"]==0){
+    if(user["Status"]=="0"){
     	selstatus.selectedIndex = 0; 
-    }else if(user["Sex"]==0){
+    }else{
     	selstatus.selectedIndex = 1; 
     }
-    if(user["Sex"]==0){
-      selgender.selectedIndex = 0; 
-    }else if(user["Sex"]==1){
-    	selgender.selectedIndex = 1; 
+    
+    if(user["Sex"]=="0"){
+      selgender.selectedIndex=0; 
+    }else{
+    	selgender.selectedIndex=1;
     }     
-    txtPhone.value = user["phone"];
-    txtEmail.value = user["email"];
-    txtaddress.value = user["Address"];
+    txtPhone.value = (user["phone"]!=null)?user["phone"]:"";
+    txtEmail.value = (user['email']!=null)?user['email']:"";
+    txtaddress.value = (user["Address"]!=null)?user["Address"]:"" ;
     
     btnCancel.onClick.listen(onExit);
     btnSave.onClick.listen(onSave);

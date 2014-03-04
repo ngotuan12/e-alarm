@@ -943,7 +943,7 @@ public class DeviceBean extends AppProcessor
 			String strname = (String) request.getString("name");
 			String strcode = (String) request.getString("code");
 			String strdescription = (String) request.getString("description");
-			String strSymbol = (String) request.getString("type");
+			String strSymbol = (String) request.getString("symbol");
 			String strmin = (String) request.getString("min");
 			String strmax = (String) request.getString("max");
 			String strminAlarm = (String) request.getString("min_Alarm");
@@ -1114,7 +1114,7 @@ public class DeviceBean extends AppProcessor
 		{
 			// open connection
 			open();
-			strSQL = "SELECT *" + " FROM device_properties";
+			strSQL = "SELECT *,(case when type = '1' then 'Cảm Biến' else 'Công Tắc' end) Typeaa FROM device_properties";
 			// prepare
 			pstm = mcnMain.prepareStatement(strSQL);
 			rs = pstm.executeQuery();
@@ -1255,6 +1255,7 @@ public class DeviceBean extends AppProcessor
 		}
 
 	}
+
 	/**
 	 * @author TuanNA
 	 * @throws Exception

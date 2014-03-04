@@ -55,33 +55,19 @@ class FormUserNone extends PolymerElement
 		String inputEmail = txtEmailSearch.value;
 		String selStatus = selStatusSearch.value;
 		stt = 0;
-//		listSearchUsers=filterUser(inputName,inputEmail,selStatus);
+		listSearchUsers= new List<Map>();
 		for(int i=0;i<CurrentUsers.length;i++)
 		{
 			Map user = CurrentUsers[i];
 			String nameofuser = user["FullName"];
 			String emailofuser = user["Email"];
 			String statusofuser = user["Status"];
-			if(nameofuser.contains(inputName)&&emailofuser.contains(inputEmail)&&statusofuser == selStatus){
+			if(nameofuser.toLowerCase().contains(inputName)&&emailofuser.toLowerCase().contains(inputEmail)&&statusofuser == selStatus){
 				listSearchUsers.add(CurrentUsers[i]);
 			}
-		}
-		
+		}		
 		showRecordSearch(listSearchUsers);
 	}
-  /**
-   * @author
-   * @since
-   * @version
-   * @company
-   * @param
-   */
-//	List filterUser(String strFullName,String strEmail,String strStatus)
-//	{
-//		return CurrentUsers.where((element){
-//			return Util.nvl(element["FullName"],"").contains(strFullName)&&Util.nvl(element["Email"],"").contains(strEmail)&&element["Status"].contains(strStatus);
-//		}).toList();
-//	}
  /*
   * @author:diennd
   * @since:19/2/2014
