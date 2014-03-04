@@ -12,6 +12,11 @@ class FormUserNone extends PolymerElement
   ButtonElement btnAdd;
   AnchorElement ancAdd;
   Element tblUser;
+  List<Map> listSearchUsers;
+  InputElement txtNameSearch = new InputElement(type: "text");
+  InputElement txtEmailSearch = new InputElement(type: "text");
+  SelectElement selStatusSearch = new SelectElement();
+  
   int currentSelectedPageIndex = 0;
   int show_per_page;
   int stt=0;
@@ -24,6 +29,15 @@ class FormUserNone extends PolymerElement
   enteredView() 
   {
     super.enteredView();
+    txtNameSearch = this.shadowRoot.querySelector("#txtNameSearch");
+    txtNameSearch.onKeyUp.listen((event)=>handlerOnchageSearch());
+    
+    txtEmailSearch = this.shadowRoot.querySelector("#txtEmailSearch");
+    txtEmailSearch.onKeyUp.listen((event)=>handlerOnchageSearch());
+    
+    selStatusSearch = this.shadowRoot.querySelector("#selStatusSearch");
+    selStatusSearch.onChange.listen((event)=>handlerOnchageSearch());
+    
     totalUsers=this.shadowRoot.querySelector("#totalUsers");
     btnSearch=this.shadowRoot.querySelector("#search");
     ancAdd=this.shadowRoot.querySelector("#add");
@@ -34,6 +48,40 @@ class FormUserNone extends PolymerElement
     //Load
     init();
   }
+  
+  
+  void handlerOnchageSearch(){
+		String inputName = txtNameSearch.value;
+		String inputEmail = txtEmailSearch.value;
+		String selStatus = selStatusSearch.value;
+		stt = 0;
+//		listSearchUsers=filterUser(inputName,inputEmail,selStatus);
+		for(int i=0;i<CurrentUsers.length;i++)
+		{
+			Map user = CurrentUsers[i];
+			String nameofuser = user["FullName"];
+			String emailofuser = user["Email"];
+			String statusofuser = user["Status"];
+			if(nameofuser.contains(inputName)&&emailofuser.contains(inputEmail)&&statusofuser == selStatus){
+				listSearchUsers.add(CurrentUsers[i]);
+			}
+		}
+		
+		showRecordSearch(listSearchUsers);
+	}
+  /**
+   * @author
+   * @since
+   * @version
+   * @company
+   * @param
+   */
+//	List filterUser(String strFullName,String strEmail,String strStatus)
+//	{
+//		return CurrentUsers.where((element){
+//			return Util.nvl(element["FullName"],"").contains(strFullName)&&Util.nvl(element["Email"],"").contains(strEmail)&&element["Status"].contains(strStatus);
+//		}).toList();
+//	}
  /*
   * @author:diennd
   * @since:19/2/2014
@@ -52,7 +100,7 @@ class FormUserNone extends PolymerElement
     {
       listUsers=response['ListUser'];
       CurrentUsers=listUsers;
-      totalUsers.text="Tổng số trạm: "+ CurrentUsers.length.toString();
+      totalUsers.text="Tổng số: "+ CurrentUsers.length.toString();
       Pagination();
     });
     //error
@@ -292,6 +340,78 @@ class FormUserNone extends PolymerElement
             }
           }
   } 
+  
+  void showRecordSearch(List a)
+    {
+      tblUser.children.clear();
+      if(CurrentUsers!=null)
+            {
+              for(int i=0;i<a.length;i++)
+              {
+                Map user=a[i];
+                //row
+                TableRowElement row = new TableRowElement();
+                row.classes.add("selectable");
+                //column
+                TableCellElement colId=new TableCellElement();
+                colId.classes.add("center");
+                colId.appendHtml((++stt).toString());
+                                    
+                TableCellElement colFullName=new TableCellElement();
+                colFullName.classes.add("important");
+                colFullName.appendHtml((user['FullName']!=null)?user['FullName']:"");
+                
+                TableCellElement colUserName=new TableCellElement();
+                colUserName.classes.add("important");
+                colUserName.appendHtml((user['UserName']!=null)?user['UserName']:"");
+                                    
+                TableCellElement colSex=new TableCellElement();
+                colSex.classes.add("important center");
+                if(user['Sex']!=null)
+                 colSex.appendHtml((user['Sex'].toString()=='1')?"Nam":"Nữ");
+                                    
+                TableCellElement colEmail=new TableCellElement();
+                colEmail.classes.add("important center");
+                colEmail.appendHtml((user['Email']!=null)?user['Email']:"");
+                
+                TableCellElement colPhone=new TableCellElement();
+                colPhone.classes.add("important center");
+                colPhone.appendHtml((user['Phone']!=null)?user['Phone']:"");
+                                    
+                TableCellElement colStatus=new TableCellElement();
+                colStatus.classes.add("important center");
+                colStatus.appendHtml((user['Status']!=null)?user['Status']:"");
+                                      
+                TableCellElement colAction=new TableCellElement();
+                colAction.classes.add("center");
+                                      
+                ButtonElement btnEdit=new ButtonElement();
+                btnEdit.className="btn-action glyphicons pencil btn-success";
+                btnEdit.appendHtml("<i></i>");
+                btnEdit.onClick.listen((event)=>onEditUser(user));
+                                      
+                ButtonElement btnDelete=new ButtonElement();
+                btnDelete.className="btn-action glyphicons remove_2 btn-danger";
+                btnDelete.appendHtml("<i></i>");
+                btnDelete.onClick.listen((event)=>onDeleteUser(user,i));
+                                            
+                colAction.children.add(btnEdit);
+                colAction.children.add(btnDelete);
+                                      
+                 //add column
+                 row.children.add(colId);
+                 row.children.add(colFullName);
+                 row.children.add(colUserName);
+                 row.children.add(colSex);           
+                 row.children.add(colEmail);
+                 row.children.add(colPhone);
+                 row.children.add(colStatus);    
+                 row.children.add(colAction);
+                 //add row
+                 tblUser.children.add(row);
+              }
+            }
+    } 
  /*
   * @author:diennd
   * @since:19/2/2014
