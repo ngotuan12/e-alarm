@@ -7558,10 +7558,35 @@ font-family: arial;
 line-height: 25px;
 text-align: center;
 }
+p.l_h_alert{
+	margin-left: 30px;
+	line-height:10px;
+	font-family: arial;
+	color:red;
+}
 p.l_h_status{
-	margin-top:10px;
+	margin-left: 30px;
+	line-height:10px;
+	font-family: arial;
+}
+p.l_h_status_good{
+	margin-left: 30px;
+	line-height:10px;
+	font-family: arial;
+	color: #9dce6e;
+}
+p.l_h_status_error{
+	margin-left: 30px;
+	line-height:10px;
+	font-family: arial;
+	color: red;
+}
+p.l_h_header{
+	margin-top:5px;
 	margin-left: 10px;
 	font-family: arial;
+	line-height: 15px;
+	font-size: 12px;
 }
 p.l_h_content_1{
 	font-family: arial;
@@ -7656,4 +7681,8 @@ img.l_h_content_img{
 #show-device .divice-head ul li.active a i:before {
   color: #fff;
   text-shadow: none;
+}
+div.Clear
+{
+    clear:both;
 }
