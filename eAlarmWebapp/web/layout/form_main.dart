@@ -325,8 +325,8 @@ class FormMain extends PolymerElement
 			//
 			showMarkerInfor(device);
 		}
-		else
-			showMarkerInfor(device);
+			else
+				showMarkerInfor(device);
 	}
 	/*
 	 * @DienND
@@ -547,24 +547,24 @@ class FormMain extends PolymerElement
 		}
 		List dev = new List();
 		 Map devRequest = new Map();
-			devRequest['Method'] = 'onGetDevicePropertyByID';
+			devRequest['Method'] = 'get_device_detail_by_id';
 			devRequest['device_id'] = device['id'];
 			
 			Responder devResponder = new Responder();
 			devResponder.onSuccess.listen((Map res){
 			print(res.toString());
-			 dev = res['all_devices_pro'];
+			 dev = res['properties'];
 			popupWindow.content = createContent(device, dev);
 		//show popup
 		popupWindow.open(map, marker);
 		//show chart
-		AlarmServiceChart.load().then((_)
-		{
-			int sliderValue() => int.parse('8');
-			// Create a Guage after the library has been loaded.
-			final DivElement visualization1 = this.shadowRoot.querySelector('#content_right');
-			AlarmServiceChart gauge = new AlarmServiceChart(visualization1,{ 'title': 'Biểu đồ'},device);
-		});
+//		AlarmServiceChart.load().then((_)
+//		{
+//			int sliderValue() => int.parse('8');
+//			// Create a Guage after the library has been loaded.
+//			final DivElement visualization1 = this.shadowRoot.querySelector('#content_right');
+//			AlarmServiceChart gauge = new AlarmServiceChart(visualization1,{ 'title': 'Biểu đồ'},device);
+//		});
 			});
 			devResponder.onError.listen((Map error)
 			{
@@ -602,63 +602,20 @@ class FormMain extends PolymerElement
 	 * @return content the content for info window
 	 */
 	dynamic createContent(Map device, List dev){
-		//top
-		DivElement content_right=new DivElement();
-		content_right.id="content_right";
-		content_right.style.height="200px";
-		content_right.style.width="100%";
-		//bottom
-		DivElement content_left=new DivElement();
-		content_left.id="content_left";
-		content_left.style.height="200px";
-		content_left.style.color="#000";
-		content_left.style.fontFamily="Arial";
-		
-		content_left.style.width="100%";
-		content_left.style.border="1px solid #689c35";
-			//left_header
-			DivElement left_header=new DivElement();
-			left_header.id="left_header";
-			left_header.style.color="#000";
-			left_header.style.fontFamily="Arial";
-			left_header.style.height="25%";
-			left_header.style.width="100%";
-			left_header.style.paddingTop="10px";
-			//change color
-			switch(device['status'])
-			{
-				case '0' ://disconnect
-					left_header.style.background = '#c0c0c0';
-					left_header.style.backgroundRepeat="repeat-x";
-					left_header.style.borderBottom="1px solid #a5a5a5";
-					content_left.style.border="1px solid #a5a5a5";
-					break;
-				case '1'://good
-					left_header.style.background = '#9dce6e';
-					left_header.style.backgroundRepeat="repeat-x";
-					left_header.style.borderBottom="1px solid #689c35";
-					content_left.style.border="1px solid #689c35";
-					break;
-				case '2'://error
-					left_header.style.background = '#e80d15';
-					left_header.style.backgroundRepeat="repeat-x";
-					left_header.style.borderBottom="1px solid #910207";
-					content_left.style.border="1px solid #910207";
-					break;
-				default:
-					left_header.style.background = '#9dce6e';
-					left_header.style.backgroundRepeat="repeat-x";
-					left_header.style.borderBottom="1px solid #689c35";
-					content_left.style.border="1px solid #689c35";
-					break;
-			}
+			//divHeader
+			DivElement divHeader=new DivElement();
+			divHeader.id="left_header";
+			divHeader.style.color="#000";
+			divHeader.style.fontFamily="Arial";
+			//divHeader.style.width="340px";
+			divHeader.style.paddingTop="10px";
+			divHeader.style.paddingLeft="10px";
+			divHeader.style.paddingBottom="10px";
 			//add text head
 				SpanElement spCode=new SpanElement();
 				spCode.style.color="#fff";
 				spCode.style.fontFamily="Open Sans', sans-serif";
 				spCode.style.fontSize="18px";
-				spCode.style.paddingTop="10px";
-				spCode.style.paddingLeft="10px";
 				spCode.text=device['code'];
 				
 				BRElement br=new BRElement();
@@ -667,94 +624,122 @@ class FormMain extends PolymerElement
 				spAddress.style.color="#fff";
 				spAddress.style.fontFamily="Open Sans', sans-serif";
 				spAddress.style.fontSize="14px";
-				spAddress.style.marginTop="1000px";
-				spAddress.style.paddingLeft="10px";
 				spAddress.text= device['address'];
 			//left_head add span element
-				left_header.children.add(spCode);
-				left_header.children.add(br);
-				left_header.children.add(spAddress);
-			//left_content
-			DivElement left_content=new DivElement();
-			left_content.id="left_header";
-			left_content.style.color="#000";
-			left_content.style.fontFamily="Arial";
-			left_content.style.height="69%";
-			left_content.style.width="100%";
-			left_content.style.overflowY="scroll";
-			left_content.style.overflowX="hidden";
-				//create div left,right in div left_content
-				DivElement left_content_left=new DivElement();
-				left_content_left.id="left_content_left";
-				left_content_left.style.color="#000";
-				left_content_left.style.fontFamily="Arial";
-				left_content_left.style.height="95%";
-				left_content_left.style.width="48%";
-				left_content_left.style.float="left";
-				left_content_left.style.float="red";
+				divHeader.children.add(spCode);
+				divHeader.children.add(br);
+				divHeader.children.add(spAddress);
+			//divContent
+			DivElement divContent=new DivElement();
+			divContent.id="divHeader";
+			divContent.style.color="#000";
+			divContent.style.fontFamily="Arial";
+			divContent.style.width="100%";
+					//header
+					DivElement divContentHeader=new DivElement();
+					divContentHeader.style.width="100%";
+					divContentHeader.style.float="left";
+					divContentHeader.innerHtml='<p class="l_h_header">Thông tin cảm biến</p>';
 					//content
-					DivElement divStatusDeviceContent=new DivElement();
-					divStatusDeviceContent.id="divStatuSensor";
-					divStatusDeviceContent.style.color="#000";
-					divStatusDeviceContent.style.fontFamily="Arial";
-					divStatusDeviceContent.style.height="73%";
-					divStatusDeviceContent.style.width="100%";
-					//add text
-					int i=0;
+					DivElement divContentContent=new DivElement();
+					divContentContent.id="divStatuSensor";
+					divContentContent.style.color="#000";
+					divContentContent.style.fontFamily="Arial";
+					divContentContent.style.height="73%";
+					divContentContent.style.width="100%";
+					//infor
+					//divFooter
+			DivElement divFooter=new DivElement();
+			divFooter.style.width="100%";
+			divFooter.style.fontFamily="Arial";
+			divFooter.style.float="left";
+			//
+			Element p=new Element.p();
+			p.className="l_h_header";
+			p.text="===============================================";
+			divFooter.children.add(p);
+			//
+			Element pAlert=new Element.p();
+			pAlert.className="l_h_header";
+			pAlert.text="Cảnh báo";
+			divFooter.children.add(pAlert);
 					if(dev !=null)
 					{
-						String strDevContent = '';
-						for(i=0;i<(dev.length/2);i++){
-							strDevContent+='<p class="l_h_status">' + dev[i]['name'] + ': ' + dev[i]['value'].toString();
+						for(int i=0;i<dev.length;i++)
+						{
+							DivElement divContentContentleft=new DivElement();
+							divContentContentleft.style.float="left";
+							divContentContentleft.style.width="50%";
+							divContentContentleft.innerHtml='<p class="l_h_status">' + dev[i]['name'].toString();
+							//add text
+							DivElement divContentContentRight=new DivElement();
+							divContentContentRight.style.width="50%";
+							divContentContentRight.style.float="left";
+							//check status_alarm
+							if(dev[i]['alarm_status']=="0")
+							{
+								divContentContentRight.innerHtml='<p class="l_h_status_error">' + dev[i]['value'].toString()+' '+dev[i]['code'];
+								//show alert
+								Element pInfor=new Element.p();
+								p.style.width="100%";
+								pInfor.className="l_h_alert";
+								if(dev[i]['value']<dev[i]['min_alarm'])
+									pInfor.text=dev[i]['name'].toString()+" thấp !!!";
+								else if(dev[i]['value']>=dev[i]['max_alarm'])
+										pInfor.text=dev[i]['name'].toString()+" cao !!!";
+								divFooter.children.add(pInfor);
+							}
+							else
+							{
+								divContentContentRight.innerHtml='<p class="l_h_status_good">' + dev[i]['value'].toString()+' '+dev[i]['code'];
+							}
+							divContentContent.children.add(divContentContentleft);
+							divContentContent.children.add(divContentContentRight);
 						}
-					divStatusDeviceContent.innerHtml=strDevContent;
-					}
-					else
-					{
-						divStatusDeviceContent.innerHtml='<p class="l_h_status">Không có cảm biến</p>';
 					}
 					//add div
-					left_content_left.children.add(divStatusDeviceContent);
-				//create div left,right in div left_content
-				DivElement left_content_right=new DivElement();
-				left_content_right.id="left_content_right";
-				left_content_right.style.color="#000";
-				left_content_right.style.fontFamily="Arial";
-				left_content_right.style.height="95%";
-				left_content_right.style.width="48%";
-				left_content_right.style.float="right";
-					//content
-					DivElement divStatuSensorContent=new DivElement();
-					divStatuSensorContent.id="divStatuSensor";
-					divStatuSensorContent.style.color="#000";
-					divStatuSensorContent.style.fontFamily="Arial";
-					divStatuSensorContent.style.height="73%";
-					divStatuSensorContent.style.width="100%";
-					//add text
-					if(dev !=null)
-					{
-						String strDevContent = '';
-						for(int j=i;j<dev.length;j++){
-							strDevContent+='<p class="l_h_status">' + dev[j]['name'] + ': ' + dev[j]['value'].toString();
-						}
-						divStatuSensorContent.innerHtml=strDevContent;
-					}
-					//add div
-					left_content_right.children.add(divStatuSensorContent);
-				//add left right in div left_content
-				left_content.children.add(left_content_left);
-				left_content.children.add(left_content_right);
-			//content_left add
-			content_left.children.add(left_header);
-			content_left.children.add(left_content);
+					divContent.children.add(divContentHeader);
+					divContent.children.add(divContentContent);
+			//clear
+			DivElement divClear=new DivElement();
+			divClear.className="Clear";
 		//content
-		DivElement content = new DivElement();
-		content.style.width="650px";
-		content.style.height="400px";
-		content.children.add(content_left);
-		content.children.add(content_right);
-	
-	return content;
+		DivElement divPopup = new DivElement();
+		divPopup.style.width="350px";
+		divPopup.style.border="1px solid #a5a5a5";
+		//change color
+		switch(device['status'])
+		{
+			case '0' ://disconnect
+				divHeader.style.background = '#c0c0c0';
+				divHeader.style.backgroundRepeat="repeat-x";
+				divHeader.style.borderBottom="1px solid #a5a5a5";
+				divPopup.style.border="1px solid #a5a5a5";
+				break;
+			case '1'://good
+				divHeader.style.background = '#9dce6e';
+				divHeader.style.backgroundRepeat="repeat-x";
+				divHeader.style.borderBottom="1px solid #689c35";
+				divPopup.style.border="1px solid #689c35";
+				break;
+			case '2'://error
+				divHeader.style.background = '#e80d15';
+				divHeader.style.backgroundRepeat="repeat-x";
+				divHeader.style.borderBottom="1px solid #910207";
+				divPopup.style.border="1px solid #910207";
+				break;
+			default:
+				divHeader.style.background = '#9dce6e';
+				divHeader.style.backgroundRepeat="repeat-x";
+				divHeader.style.borderBottom="1px solid #689c35";
+				divPopup.style.border="1px solid #689c35";
+				break;
+		}
+		divPopup.children.add(divHeader);
+		divPopup.children.add(divContent);
+		divPopup.children.add(divFooter);
+		divPopup.children.add(divClear);
+	return divPopup;
 	}
 	
 	/*
