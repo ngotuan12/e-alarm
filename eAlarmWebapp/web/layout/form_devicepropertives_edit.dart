@@ -21,6 +21,8 @@ class FormDevicesProEdit extends PolymerElement
   ButtonElement btnSave=new ButtonElement();
   ButtonElement btnCancel=new ButtonElement();
   InputElement txtName=new InputElement(type:"text");
+  InputElement txtSymbol=new InputElement(type:"text");
+  
   
   enteredView() 
   {
@@ -43,6 +45,7 @@ class FormDevicesProEdit extends PolymerElement
     txtMax=this.shadowRoot.querySelector("#txtMax");
     txtMinWarning=this.shadowRoot.querySelector("#txtMinWar");
     txtMaxWarning=this.shadowRoot.querySelector("#txtMaxWar");
+    txtSymbol = this.shadowRoot.querySelector("#txtSymbol");
     selType.onChange.listen((event)=>onChangeType());
 //    txtDeviceProID.disabled=true;
     if(DeviceCon!=null)
@@ -54,10 +57,10 @@ class FormDevicesProEdit extends PolymerElement
       
       if(DeviceCon["type"].toString()=="1")
       {
-      	selType.selectedIndex=0;
+      	selType.selectedIndex = 0;
       }
       else{
-      	selType.selectedIndex=1;
+      	selType.selectedIndex = 1;
       	txtMin.disabled = true;
       	txtMax.disabled = true;
         txtMinWarning.disabled = true;
@@ -68,11 +71,12 @@ class FormDevicesProEdit extends PolymerElement
       txtMax.value=DeviceCon["max"].toString();
       txtMinWarning.value = DeviceCon["min_alarm"].toString();
       txtMaxWarning.value = DeviceCon["max_alarm"].toString();
+      txtSymbol.value = DeviceCon["symbol"].toString();
     }
   }
   void onChangeType()
   {
-  	if(selType.selectedIndex==0){
+  	if(selType.value=="Cảm biến"){
   		txtMin.disabled = false;
       txtMax.disabled = false;
       txtMinWarning.disabled = false;
@@ -84,7 +88,7 @@ class FormDevicesProEdit extends PolymerElement
         txtMinWarning.value = "";
         txtMaxWarning.value = "";
       }
-  	}else if(selType.selectedIndex==1){
+  	}else if(selType.value=="Công tắc"){
   		txtMin.disabled = true;
       txtMax.disabled = true;
       txtMinWarning.disabled = true;
@@ -115,18 +119,18 @@ class FormDevicesProEdit extends PolymerElement
        request["name"]=txtName.value;
        request["code"]=txtCode.value;
        request["description"]=txtDescription.value;       
-       if(selType.selectedIndex==0)
+       if(selType.value=="Cảm biến")
        {
       	 request["type"]= 1;
        }
-       else if(selType.selectedIndex==1){
+       else if(selType.value=="Công tắc"){
       	 request["type"]= 2;
        }
-       request["symbol"]=txtCode.value;
+       request["symbol"]=txtSymbol.value;
        request["min"]=txtMin.value;
        request["max"]=txtMax.value;
        
-       if(request["min_alarm"]=="" ||request["max_alarm"]=="" ||request["name"]=="" ||request["code"]==""||request["description"]==""||request["type"]==""||request["min"]==""||request["max"]=="")
+       if(request["symbol"]=="" ||request["min_alarm"]=="" ||request["max_alarm"]=="" ||request["name"]=="" ||request["code"]==""||request["description"]==""||request["type"]==""||request["min"]==""||request["max"]=="")
        {
         Util.showNotifyError("Data input is  invalid");
        }

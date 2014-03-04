@@ -22,6 +22,43 @@
 			</h4>
 		</div>
 		<div class="widget-body">
+			<!-- Filters -->
+								<div class="filter-bar">
+									<form>
+							<!-- Min -->
+							<div>
+								<label>Theo tên:</label>
+								<div class="input-append">
+									<input type="text" name="from" id="txtNameSearch" style="width: 100px;" value="" placeholder="Tìm theo tên" />
+									<span class="add-on glyphicons search"><i></i></span>
+								</div>
+							</div>
+							<!-- // Min END -->
+							
+							<!-- Max -->
+							<div>
+								<label>Theo mã:</label>
+								<div class="input-append">
+									<input type="text" name="from" id="txtCodeSearch" style="width: 150px;" value="" placeholder="Tìm theo mã" />
+									<span class="add-on glyphicons search"><i></i></span>
+								</div>
+							</div>
+							<!-- // Max END -->
+							
+							<!-- Select -->
+							<div>
+								<label>Theo loại:</label>
+								<select name="from" id="selTypeSearch" style="width: 100px;">
+									<option value="Cảm Biến">Cảm Biến</option>
+									<option value="Công Tắc">Công Tắc</option>
+								</select>
+							</div>
+							<!-- // Select END -->
+								
+								<div class="clearfix"></div>
+							</form>
+						</div>
+						<!-- // Filters END -->
 			<!-- Products table -->
 			<table
 				class="table table-bordered table-condensed table-striped table-primary table-vertical-center checkboxs">
@@ -29,13 +66,15 @@
 					<tr>
 						<th style="width: 20%;" class="center">Name</th>
 						<th style="width: 5%;" class="center">Code</th>
-						<th class="center">Description</th>
+						<th class="center">Description</th>						
 						<th style="width: 5%;" class="center">Type</th>
 						<th style="width: 5%;" class="center">Min</th>
 						<th style="width: 5%;" class="center">Max</th>
 						<th style="width: 5%;" class="center">Min Alarm</th>
 						<th style="width: 5%;" class="center">Max Alarm</th>
+						<th style="width: 5%;" class="center">Symbol</th>
 						<th style="width: 10%;" class="center">Action</th>
+						
 					</tr>
 				</thead>
 				<tbody id="ListDevicesPro">
