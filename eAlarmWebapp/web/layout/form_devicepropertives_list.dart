@@ -66,7 +66,7 @@ class FormDevicePropertives extends PolymerElement
     			String nameofdepro = user["name"];
     			String codeofdepro = user["code"];
     			String statusofdepro = user["Typeaa"];
-    			if(nameofdepro.toLowerCase().contains(inputName)&&codeofdepro.toLowerCase().contains(inputCode)&&statusofdepro == selType){
+    			if(nameofdepro.toLowerCase().contains(inputName.toLowerCase())&&codeofdepro.toLowerCase().contains(inputCode.toLowerCase())&&statusofdepro == selType){
     				listDeviceProSearch.add(CurrentDevices[i]);
     			}
     		}

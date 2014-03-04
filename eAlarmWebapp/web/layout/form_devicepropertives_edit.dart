@@ -118,7 +118,7 @@ class FormDevicesProEdit extends PolymerElement
        request["max_Alarm"] = txtMaxWarning.value;
        request["name"]=txtName.value;
        request["code"]=txtCode.value;
-       request["description"]=txtDescription.value;       
+       request["description"]=txtDescription.value;
        if(selType.value=="Cảm biến")
        {
       	 request["type"]= 1;

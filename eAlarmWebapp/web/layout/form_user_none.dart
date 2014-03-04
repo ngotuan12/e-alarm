@@ -62,7 +62,7 @@ class FormUserNone extends PolymerElement
 			String nameofuser = user["FullName"];
 			String emailofuser = user["Email"];
 			String statusofuser = user["Status"];
-			if(nameofuser.toLowerCase().contains(inputName)&&emailofuser.toLowerCase().contains(inputEmail)&&statusofuser == selStatus){
+			if(nameofuser.toLowerCase().contains(inputName.toLowerCase())&&emailofuser.toLowerCase().contains(inputEmail.toLowerCase())&&statusofuser == selStatus){
 				listSearchUsers.add(CurrentUsers[i]);
 			}
 		}		
