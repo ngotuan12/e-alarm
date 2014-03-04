@@ -30,7 +30,9 @@ public class DeviceBean extends AppProcessor
 					+ "(CASE WHEN a.value<= b.min_alarm or a.value>=b.max_alarm THEN '0' "
 					+ "ELSE '1' end) alarm_status "
 					+ "FROM device_infor a,device_properties b "
-					+ "WHERE a.device_pro_id = b.id " + "AND a.device_id = ? ";
+					+ "WHERE a.device_pro_id = b.id "
+					+ "AND a.device_id = ? "
+					+ "AND a.status = 1 ";
 			// prepare
 			pstm = mcnMain.prepareStatement(strSQL);
 			pstm.setString(1, deviceID);
