@@ -24,7 +24,7 @@ public class DeviceBean extends AppProcessor
 		{
 			// open connection
 			open();
-			strSQL = "SELECT a.id,a.status,b.name,b.code,b.symbol,a.value, "
+			strSQL = "SELECT a.id,a.status,b.name,b.code,b.symbol,b.type,a.value, "
 					+ "b.min_alarm,b.max_alarm, "
 					+ "(CASE WHEN a.value<= b.min_alarm or a.value>=b.max_alarm THEN '0' "
 					+ "ELSE '1' end) alarm_status "
