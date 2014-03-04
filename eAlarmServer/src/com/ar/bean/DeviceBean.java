@@ -15,7 +15,8 @@ import com.mysql.jdbc.Statement;
 public class DeviceBean extends AppProcessor
 {
 
-	public JSONArray onGetDevicesInfoByDeviceID(int deviceID) throws Exception
+	public JSONArray onGetDevicesInfoByDeviceID(String deviceID)
+			throws Exception
 	{
 		String strSQL = "";
 		PreparedStatement pstm = null;
@@ -32,7 +33,7 @@ public class DeviceBean extends AppProcessor
 					+ "WHERE a.device_pro_id = b.id " + "AND a.device_id = ? ";
 			// prepare
 			pstm = mcnMain.prepareStatement(strSQL);
-			pstm.setInt(1, deviceID);
+			pstm.setString(1, deviceID);
 			rs = pstm.executeQuery();
 			// get JSON data
 			JSONArray arr = Util.convertToJSONArray(rs);
@@ -134,8 +135,8 @@ public class DeviceBean extends AppProcessor
 			}
 			else
 			{
-				arr.put(arr.length() + 1, onGetDevicesInfoByDeviceID(Integer
-						.parseInt(strDeviceID)));
+				arr.put(arr.length() + 1,
+						onGetDevicesInfoByDeviceID(strDeviceID));
 				// response
 				response.put("device_info", arr);
 				response.put("Mess", "Success");
@@ -413,10 +414,8 @@ public class DeviceBean extends AppProcessor
 				{
 
 					Ocooked = arr.getJSONObject(i);
-					Ocooked.put("list",
-							(Object) onGetDevicesInfoByDeviceID(Integer
-									.parseInt(arr.getJSONObject(i).getString(
-											"id"))));
+					Ocooked.put("list", (Object) onGetDevicesInfoByDeviceID(arr
+							.getJSONObject(i).getString("id")));
 					Acooked.put(Ocooked);
 
 				}
@@ -470,10 +469,8 @@ public class DeviceBean extends AppProcessor
 				{
 
 					Ocooked = arr.getJSONObject(i);
-					Ocooked.put("list",
-							(Object) onGetDevicesInfoByDeviceID(Integer
-									.parseInt(arr.getJSONObject(i).getString(
-											"id"))));
+					Ocooked.put("list", (Object) onGetDevicesInfoByDeviceID(arr
+							.getJSONObject(i).getString("id")));
 					Acooked.put(Ocooked);
 
 				}
@@ -788,10 +785,8 @@ public class DeviceBean extends AppProcessor
 				{
 
 					Ocooked = arr.getJSONObject(i);
-					Ocooked.put("list",
-							(Object) onGetDevicesInfoByDeviceID(Integer
-									.parseInt(arr.getJSONObject(i).getString(
-											"id"))));
+					Ocooked.put("list", (Object) onGetDevicesInfoByDeviceID(arr
+							.getJSONObject(i).getString("id")));
 					Acooked.put(Ocooked);
 
 				}
