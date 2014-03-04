@@ -240,8 +240,10 @@ class FormDeviceNone extends PolymerElement
 		//append
 		span.appendHtml(device["code"]+" - "+device["name"]+strImgStatus
 				+"<br><p style=\"font-size: 12px;\">"+device["address"]
-				+"<br> Connected server: "+ Util.nvl(device["connected_server"],"not connect")
-				+"<br>MAC: "+device["mac_add"]+" </p>");
+				+"<br> Connected server: <a>"+ Util.nvl(device["connected_server"],"not connect")+"</a>"
+				+"<br>MAC: <a>"+device["mac_add"] +"</a>"
+				+"<br>Chi tiết: "+Util.nvl(device["description"],"")
+				+" </p>");
 		//add children
 		content.children.add(span);
 		//div list properties
