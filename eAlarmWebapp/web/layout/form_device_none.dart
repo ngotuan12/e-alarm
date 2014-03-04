@@ -1,6 +1,7 @@
 import 'package:polymer/polymer.dart';
 import 'dart:html';
 import 'dart:convert';
+import 'dart:async';
 import '../src/util.dart';
 @CustomTag('form-device-none')
 class FormDeviceNone extends PolymerElement
@@ -40,6 +41,9 @@ class FormDeviceNone extends PolymerElement
 			tabPane=this.shadowRoot.querySelector("#device-detail");
 			//action
 			btnAdd.onClick.listen(onAddDevice);
+			//websocket
+			initWebsocket();
+			//init
 			init();
 		}
 		catch(err)
@@ -120,10 +124,12 @@ class FormDeviceNone extends PolymerElement
 				//add row
 				tblDevices.children.add(row);
 			}
-}
+		}
 	}
 	/**
-	 * 
+	 * @author TuanNA
+	 * @since: 03/02/2014
+	 * @version: 1.0
 	 */
 	void addCell(TableRowElement row,String content,{bool isAction:false,String type:null,String align:null})
 	{
@@ -167,11 +173,17 @@ class FormDeviceNone extends PolymerElement
 			List<Map> properties = response["properties"];
 			//properties
 			initDeviceProperties(device,properties);
-			//
+			//command log
 			initDeviceCommandLog();
-			//
+			//configuration
 			initConfiguration();
+			//default selected
 			setSelectedTabIndex(0);
+			//connect device id
+			Map websocketRequest = new Map();
+			websocketRequest["handle"] = "connect_device";
+			websocketRequest["device_id"] = iDeviceID;
+			AppClient.sendWebsocketMessage(websocketRequest);
 		});
 		responder.onError.listen((Map error){
 			Util.showNotifyError(error["message"]);
@@ -203,17 +215,31 @@ class FormDeviceNone extends PolymerElement
 	void initDeviceProperties(Map device,List<Map> properties)
 	{
 		DivElement content = new DivElement();
-		//name and address
+		//name, status, address
 		SpanElement span = new SpanElement();
 		span.style.fontSize = "18px";
-		span.appendHtml(device["code"]+" - "+device["name"]+"<img class=\"l_h_content_img\" style=\"margin:-3px 0px 0px 10px\" src=\"style/icons/ic_red.png\" alt=\"blue\">"
+		String strImgStatus;
+		//img status
+		if(device["status"]=="0")
+		{
+			strImgStatus = "<img class=\"l_h_content_img\" style=\"margin:-3px 0px 0px 10px\" src=\"style/icons/ic_gray.png\" alt=\"blue\">";
+		}
+		else if(device["status"]=="1")
+		{
+			strImgStatus = "<img class=\"l_h_content_img\" style=\"margin:-3px 0px 0px 10px\" src=\"style/icons/ic_green.png\" alt=\"blue\">";
+		}
+		else if(device["status"]=="2")
+		{
+			strImgStatus = "<img class=\"l_h_content_img\" style=\"margin:-3px 0px 0px 10px\" src=\"style/icons/ic_red.png\" alt=\"blue\">";
+		}
+		//append
+		span.appendHtml(device["code"]+" - "+device["name"]+strImgStatus
 				+"<br><p style=\"font-size: 12px;\">"+device["address"]
 				+"<br> Connected server: "+ Util.nvl(device["connected_server"],"not connect")
 				+"<br>MAC: "+device["mac_add"]+" </p>");
 		//add children
 		content.children.add(span);
-		//properties
-		//div
+		//div list properties
 		DivElement divListProperties = new DivElement();
 		divListProperties.className = "properties";
 		//ul
@@ -226,6 +252,7 @@ class FormDeviceNone extends PolymerElement
 			Map property = properties[i];
 			LIElement li = new LIElement();
 			li.className = "liListProperties";
+			li.attributes["value"] = JSON.encode(property); 
 			SpanElement span = new SpanElement();
 			
 			if(property["alarm_status"]=="1")
@@ -268,6 +295,50 @@ class FormDeviceNone extends PolymerElement
 //		});
 		//
 		addTab("Thông số", content);
+	}
+	/**
+	 *@author TuanNA
+	 * @since 03/03/2014
+	 * @version 1.0 
+	 */
+	void onUpdateProperties(Map properties)
+	{
+		
+	}
+	/**
+	 *@author TuanNA
+	 * @since 03/03/2014
+	 * @version 1.0 
+	 */
+	void initWebsocket()
+	{
+		AppClient.connectWebsocket();
+		AppClient.websocket.onMessage.listen((MessageEvent e) {
+			try
+			{
+				Map response = JSON.decode(e.data);
+				switch(response["handle"])
+				{
+					case "update_device_properties":
+						
+						break;
+					default:
+						break;
+				}
+			}
+			catch(err)
+			{
+				print(err);
+			}
+			
+		});
+	}
+	/**
+	 * 
+	 */
+	void updateDeviceProperties()
+	{
+		
 	}
 	/**
 	 * @author TuanNA
@@ -567,72 +638,4 @@ class FormDeviceNone extends PolymerElement
 		}
 		
 	}
-	/**
-	 * @author: diennd
-	 * @since: 21/1/2014
-	 * @company:Ex-artisan
-	 * @version:1.0
-	 */
-	List<Map> filterByAreaCode(List<Map> devices,String code)
-	{
-		return devices.where((devices){	
-				if(code==devices["area_code"])
-				{
-					return true;
-				}
-			return false;
-		}).toList();
-	}
-	/**
-	 * @author: diennd
-	 * @since: 21/1/2014
-	 * @company:Ex-artisan
-	 * @version:1.0
-	 */
-//	void Search(Event e)
-//	{
-//		if(slAreas.selectedIndex >0)
-//		{
-//			Map area=listAreas[slAreas.selectedIndex-1];
-//			CurrentDevices=filterByAreaCode(listDevices, area["code"]);
-//		}
-//		if(slAreas.selectedIndex ==0)
-//		{
-//		  CurrentDevices=listDevices;
-//		}
-//		Pagination();
-//	}
-	
-	Map getDeviceByID(String id)
-	{
-		for(int i = 0;i<listDevices.length;i++)
-		{
-			Map device = listDevices[i];
-			if(device["id"].toString()==id)
-			{
-				return listDevices[i];
-			}
-		}
-		return null;
-	}
 }
-
-	/**
-   * @diennd
-   * @since 12/2/2014
-   * @company: ex-artisan
-   * @Version: 1.0
-   */
-  List<Map> filterByType(List<Map> locations,List<String> listType)
-  {
-    return locations.where((location){
-      for(int i=0;i<listType.length;i++)
-      {
-        if(listType[i]==location["Type"])
-        {
-          return true;
-        }
-      }
-      return false;
-    }).toList();
-  }
