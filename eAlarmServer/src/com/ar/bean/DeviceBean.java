@@ -24,9 +24,13 @@ public class DeviceBean extends AppProcessor
 		{
 			// open connection
 			open();
-			strSQL = "SELECT device_infor.*,device_properties.* "
-					+ "FROM device_infor INNER JOIN device_properties "
-					+ "ON device_infor.device_pro_id = device_properties.id where device_infor.device_id = ?";
+			strSQL = "SELECT a.id,a.status,b.name,b.code,b.symbol,a.value, "
+					+ "b.min_alarm,b.max_alarm, "
+					+ "(CASE WHEN a.value<= b.min_alarm or a.value>=b.max_alarm THEN '0' "
+					+ "ELSE '1' end) alarm_status "
+					+ "FROM device_infor a,device_properties b "
+					+ "WHERE a.device_pro_id = b.id "
+					+ "AND a.device_id = ? AND status = '1' ";
 			// prepare
 			pstm = mcnMain.prepareStatement(strSQL);
 			pstm.setInt(1, deviceID);
