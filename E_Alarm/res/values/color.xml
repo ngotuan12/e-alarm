@@ -6,10 +6,12 @@
  <color name="red">#dc5d54</color>
  <color name="silver">#C0C0C0</color>
  <color name="gray">#353535</color>
+ <color name="dark_green">#006400</color>
  <color name="green">#24dd58</color>
  <color name="gray_line">#dcdcdc</color>
  <color name="low_gray">#353535</color>
  <color name="olive">#808000</color>
+ <color name="color_warning">#daa520</color>
  <color name="purple">#800080</color>
  <color name="maroon">#800000</color>
  <color name="aqua">#00FFFF</color>

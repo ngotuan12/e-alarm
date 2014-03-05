@@ -18,10 +18,12 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.DialogInterface.OnCancelListener;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
 public class PopupLoginActitvity extends Activity {
+	public String TAG="PopupLoginActitvity";
 	EditText eUserName, ePassword;
 	String userName, passWord, firstTime;
 	ArrayList<ObjArea> arrArea;
@@ -121,7 +123,7 @@ public class PopupLoginActitvity extends Activity {
 								return;
 							}
 
-							if (ResponseTranslater.CheckLoginSession(response,
+							if (ResponseTranslater.CheckLoginSession(PopupLoginActitvity.this,response,
 									userName)) {
 								firstTime = MyPreference.getInstance()
 										.getString("FIRST_TIME");
@@ -192,9 +194,10 @@ public class PopupLoginActitvity extends Activity {
 	}
 
 	/**
-	 * Get area from server To DB
+	 * save area from server To DB
 	 */
 	public void getArea() {
+		Log.i(TAG, "getArea");
 		if (NetworkUtility.checkNetworkState(this)) {
 			AreaTask.GetAllArea(NetworkUtility.AREA_SERVICE,
 					ParamBuilder.GetInfo(ParamBuilder.BuildAreaData()),
@@ -208,8 +211,8 @@ public class PopupLoginActitvity extends Activity {
 							}
 							arrArea = ResponseTranslater.getAllArea(response);
 							if (arrArea.size() > 0) {
-								MyPreference.getInstance().writeString(
-										"FIRST_TIME", "second");
+								
+								mdb.deleteArea();
 								for (int i = 0; i < arrArea.size(); i++) {
 									mdb.AddArea(arrArea.get(i));
 								}
@@ -219,6 +222,17 @@ public class PopupLoginActitvity extends Activity {
 								startActivity(intent);
 								finish();
 							}
+							else{
+								ArrayList<ObjArea> listArea = mdb.getListAreabyWoodenleg("001", 2);
+								if(listArea.size()>0){
+									Intent intent = new Intent(
+											PopupLoginActitvity.this,
+											MainActivity.class);
+									startActivity(intent);
+									finish();
+								}
+							}
+							
 							NetworkUtility.dismissProgressDialog();
 						}
 

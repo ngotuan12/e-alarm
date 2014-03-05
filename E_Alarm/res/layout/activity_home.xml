@@ -78,6 +78,8 @@
         </LinearLayout>
         
     </LinearLayout>
+  
+    
 
     <co.vn.e_alarm.customwiget.SlidingLayer
         xmlns:slidingLayer="http://schemas.android.com/apk/res/com.slidinglayersample"

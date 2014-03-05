@@ -5,9 +5,9 @@
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     <!-- key apk -->
-      <string name="key_map">AIzaSyDoXiCX0JnEIbQPjtA-g_W6Tda1KHLoXfg</string>    
+      <!-- <string name="key_map">AIzaSyDoXiCX0JnEIbQPjtA-g_W6Tda1KHLoXfg</string>     -->
      <!-- key debug -->
-     <!-- <string name="key_map">AIzaSyCPXTwJyUT_OCZXk67dNiX_6x0lKYGEYeg</string> -->   
+      <string name="key_map">AIzaSyCPXTwJyUT_OCZXk67dNiX_6x0lKYGEYeg</string>  
     <string-array name="list_distric">
         <item>Cầu Giấy</item>
         <item>Hai Bà Trưng</item>

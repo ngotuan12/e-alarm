@@ -1,6 +1,5 @@
 package co.vn.e_alarm;
 
-import java.util.ArrayList;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -9,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 public class DistrictFragment extends Fragment {
-	private static ArrayList<String> arrDistrict;
+	private static String[] arrDistrict;
 	static boolean check = false;
 	int position = 0;
 	/** Called when the activity is first created. */
@@ -23,16 +22,16 @@ public class DistrictFragment extends Fragment {
 		}
 		
 		if(arrDistrict!=null){
-			tvDistric.setText("" + arrDistrict.get(position));
+			tvDistric.setText("" + arrDistrict[position]);
 			
 		}
 		
 		return view;
 	}
 
-	public static void SetDistrict(ArrayList<String> listDistrict) {
+	public static void SetDistrict(String[] listStatus) {
 		
-		arrDistrict = listDistrict;
+		arrDistrict = listStatus;
 	}
 
 	/**
