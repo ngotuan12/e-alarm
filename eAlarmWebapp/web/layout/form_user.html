@@ -5,7 +5,7 @@
 <meta charset="UTF-8" />
 <template>
 	<template if="{{currentAction=='NONE'}}">
-		<form-user-none on-edit="{{onEdit}}" on-add="{{onAdd}}""></form-user-none>
+		<form-user-none on-edit="{{onEdit}}" on-add="{{onAdd}}"></form-user-none>
 	</template>
 	<template if="{{currentAction=='ADD'}}">
 		<form-user-add on-goback="{{onGoBack}}"></form-user-add>
