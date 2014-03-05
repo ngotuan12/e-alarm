@@ -81,7 +81,7 @@ class FormAreaEdit extends PolymerElement
     if(txtCode.value.trim() =="")
     {
       error=true;
-      errorString+="Code ATM can't empty"+", ";
+      errorString+="Code can't empty"+", ";
       txtCode.focus();
     }
     if(listAreas !=null)
@@ -92,7 +92,7 @@ class FormAreaEdit extends PolymerElement
         if(areaCurrent['code'].toString().toUpperCase()==txtCode.value.trim().toUpperCase() && areaCurrent['id'].toString().toUpperCase()!=area["id"].toString().toUpperCase())
         {
           error=true;
-          errorString+="Code ATM is already exists";
+          errorString+="Code is already exists";
         }
       }
     }

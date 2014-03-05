@@ -117,7 +117,7 @@ class FormAreaAdd extends PolymerElement
 		if(txtCode.value.trim() =="")
 		{
 			error=true;
-			errorString+="Code ATM can't empty"+", ";
+			errorString+="Code can't empty"+", ";
 			txtCode.focus();
 		}
 		if(listAreas !=null)
@@ -128,7 +128,7 @@ class FormAreaAdd extends PolymerElement
 		if(area['code'].toString().toUpperCase()==txtCode.value.trim().toUpperCase())
 		{
 			error=true;
-			errorString+="Code ATM is already exists";
+			errorString+="Code is already exists";
 		}
 		}
 		}

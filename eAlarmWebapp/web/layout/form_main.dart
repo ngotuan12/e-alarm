@@ -31,6 +31,8 @@ class FormMain extends PolymerElement
 	List<Map> AllDevices=[];
 	GMap map;
 	int count=0;
+	List<Map> properties;
+	Map currentDevice;
 	List<MapTypeStyle> styles =
 	[
 		{
@@ -65,8 +67,8 @@ class FormMain extends PolymerElement
 		olDevicesGood=this.shadowRoot.querySelector("#ol-devicesGood");
 		olDevicesError=this.shadowRoot.querySelector("#ol-devicesError");
 		spClick=this.shadowRoot.querySelector("#spClick");
-    	divRight=this.shadowRoot.querySelector("#divRight");
-    	divMapCanvas=this.shadowRoot.querySelector("#map-canvas");
+		divRight=this.shadowRoot.querySelector("#divRight");
+		divMapCanvas=this.shadowRoot.querySelector("#map-canvas");
 		//Event
 		slCity.onChange.listen(onChooseCity);
 		slStatus.onChange.listen(onChooseStatus);
@@ -90,6 +92,8 @@ class FormMain extends PolymerElement
 		op.value="-1";
 		op.text="Tỉnh/Thành Phố";
 		slCity.children.add(op);
+		//initWebsocket
+		initWebsocket();
 		//init google map
 		initGoogleMap();
 		//get data
@@ -161,7 +165,59 @@ class FormMain extends PolymerElement
 			..styles = styles;
 		map = new GMap(this.shadowRoot.querySelector("#map-canvas"), mapOptions);
 	}
-	/*
+	/**
+	 * 
+	 */
+	void initWebsocket()
+	{
+		AppClient.connectWebsocket();
+		
+		AppClient.websocket.onMessage.listen((MessageEvent event){
+			print(event.data);
+			Map response = JSON.decode(event.data);
+			switch(response["handle"])
+			{
+				case "update_device_properties":
+					updateProperties(response["infors"]);
+					break;
+				default:
+					break;
+			}
+		});
+	}
+	/**
+	 * 
+	 */
+	void updateProperties(Map infors)
+	{
+		String deviceStatus = "1";
+		for(int i = 0; i < infors.keys.length;i++)
+		{
+			String code = infors.keys.elementAt(i);
+			num value = infors[infors.keys.elementAt(i)];
+			print(infors.keys.elementAt(i)+infors[infors.keys.elementAt(i)].toString());
+			for(int j=0;j < properties.length;j++)
+			{
+				Map element = properties[j];
+				if(element["code"] == code)
+				{
+					element["value"] = value;
+					//check status
+					String strStatus = "1";
+					if(element["value"]>=element["max_alarm"]||element["value"]<=element["min_alarm"])
+					{
+						strStatus = "0";
+						deviceStatus = "2";
+					}
+					element["status"] = strStatus;
+					break;
+				}
+			}
+		}
+		currentDevice["status"] = deviceStatus;
+		popupWindow.content = createContent(currentDevice, properties);
+	}
+	/**
 	 * 
 	 */
 	void showAreaList(List<Map> listProvince)
@@ -294,8 +350,8 @@ class FormMain extends PolymerElement
 		LIElement target = event.currentTarget;
 		Map area = JSON.decode(target.attributes["area"]);
 		Map device = JSON.decode(target.attributes["device"]);
-		if(slCity.selectedIndex==0)
-		{
+//		if(slCity.selectedIndex==0)
+//		{
 			clearMarker();
 			//change selected index
 			for(int i= 1 ;i<slCity.children.length;i++)
@@ -322,11 +378,13 @@ class FormMain extends PolymerElement
 			map.center = new LatLng(area["lat"], area["lng"]);
 			//
 			showDevices(getListDevices(area_code: area["area_code"], status: strStatus),isTimer: false);
-			//
 			showMarkerInfor(device);
-		}
-			else
-				showMarkerInfor(device);
+//		}
+//		else
+//		{
+//			showMarkerInfor(device);
+//		}
+
 	}
 	/*
 	 * @DienND
@@ -545,29 +603,35 @@ class FormMain extends PolymerElement
 			Util.showNotifyError("Không tìm thấy địa điểm!");
 			return;
 		}
-		List dev = new List();
-		 Map devRequest = new Map();
-			devRequest['Method'] = 'get_device_detail_by_id';
-			devRequest['device_id'] = device['id'];
-			
-			Responder devResponder = new Responder();
-			devResponder.onSuccess.listen((Map res){
+		Map devRequest = new Map();
+		devRequest['Method'] = 'get_device_detail_by_id';
+		devRequest['device_id'] = device['id'];
+		
+		Responder devResponder = new Responder();
+		devResponder.onSuccess.listen((Map res)
+		{
 			print(res.toString());
-			 dev = res['properties'];
-			popupWindow.content = createContent(device, dev);
-		//show popup
-		popupWindow.open(map, marker);
-		//show chart
-//		AlarmServiceChart.load().then((_)
-//		{
-//			int sliderValue() => int.parse('8');
-//			// Create a Guage after the library has been loaded.
-//			final DivElement visualization1 = this.shadowRoot.querySelector('#content_right');
-//			AlarmServiceChart gauge = new AlarmServiceChart(visualization1,{ 'title': 'Biểu đồ'},device);
-//		});
-			});
-			devResponder.onError.listen((Map error)
-			{
+			properties = res['properties'];
+			popupWindow.content = createContent(device, properties);
+			currentDevice = device;
+			//show popup
+			popupWindow.open(map, marker);
+			//connect device
+			Map webSocketRequest = new Map();
+			webSocketRequest["handle"] = "connect_device";
+			webSocketRequest["device_id"] = device['id'];
+			AppClient.sendWebsocketMessage(webSocketRequest);
+			//show chart
+	//		AlarmServiceChart.load().then((_)
+	//		{
+	//			int sliderValue() => int.parse('8');
+	//			// Create a Guage after the library has been loaded.
+	//			final DivElement visualization1 = this.shadowRoot.querySelector('#content_right');
+	//			AlarmServiceChart gauge = new AlarmServiceChart(visualization1,{ 'title': 'Biểu đồ'},device);
+	//		});
+		});
+		devResponder.onError.listen((Map error)
+		{
 			Util.showNotifyError(error["message"]);
 		});
 	AppClient.sendMessage(devRequest, AlarmServiceName.DeviceService, AlarmServiceMethod.POST,devResponder);
@@ -678,7 +742,7 @@ class FormMain extends PolymerElement
 							//check status_alarm
 							if(dev[i]['alarm_status']=="0")
 							{
-								divContentContentRight.innerHtml='<p class="l_h_status_error">' + dev[i]['value'].toString()+' '+dev[i]['code'];
+								divContentContentRight.innerHtml='<p class="l_h_status_error">' + dev[i]['value'].toString()+' '+dev[i]['symbol'];
 								//show alert
 								Element pInfor=new Element.p();
 								p.style.width="100%";
@@ -691,7 +755,7 @@ class FormMain extends PolymerElement
 							}
 							else
 							{
-								divContentContentRight.innerHtml='<p class="l_h_status_good">' + dev[i]['value'].toString()+' '+dev[i]['code'];
+								divContentContentRight.innerHtml='<p class="l_h_status_good">' + dev[i]['value'].toString()+' '+dev[i]['symbol'];
 							}
 							divContentContent.children.add(divContentContentleft);
 							divContentContent.children.add(divContentContentRight);
