@@ -28,10 +28,8 @@
 
                 <TextView
                     android:id="@+id/tvNameStation"
-                    style="@style/Holo.Demo.FontViewer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="roboto-regular"
                     android:singleLine="true"
                     android:text="ATM001"
                     android:textColor="@color/white"
@@ -67,6 +65,7 @@
                     android:id="@+id/imgAlarm"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
+                    android:background="@drawable/ic_action_call"
                     android:clickable="false"
                     android:gravity="center" />
             </LinearLayout>
@@ -81,84 +80,223 @@
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:paddingTop="10dp"
             android:orientation="vertical" >
 
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="10dp"
-                android:paddingTop="10dp"
-                android:text="Trạng thái thiết bị: "
-                android:textColor="@color/white" />
+                android:text="Thông Tin Cơ Bản: " />
 
             <LinearLayout
-                android:id="@+id/layout_properties"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
+                android:padding="10dp"
                 android:background="@drawable/custome_layout_content"
-                android:orientation="vertical"
-                android:padding="10dp" >
-            </LinearLayout>
+                android:orientation="vertical" >
 
-            <LinearLayout
-                android:id="@+id/layout_statusDevices"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:visibility="gone" >
+                <TextView
+                    android:id="@+id/tvNameManager"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Ngô Anh Tuấn"
+                     />
 
                 <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="10dp"
-                    android:text="Trạng Thái Cảm Biến: "
-                    android:textColor="@color/white" />
+                    android:text="Chức Vụ: Quản Lý" />
 
-                <co.vn.e_alarm.customwiget.CustomGridView
-                    android:id="@+id/layoutStatus"
+                <TextView
+                    android:id="@+id/tvMacAddress"
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:background="@drawable/custome_layout_content"
-                    android:gravity="center"
-                    android:numColumns="4"
-                    android:stretchMode="columnWidth" >
-                </co.vn.e_alarm.customwiget.CustomGridView>
+                    android:layout_height="wrap_content" 
+                    android:text="Địa Chỉ Mac: 00:04:A3:5A:1E:88"
+                    />
+
+                <TextView
+                    android:id="@+id/tvServerConnect"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" 
+                    />
             </LinearLayout>
 
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="10dp"
-                android:text="Biểu Đồ Trạng Thái: "
-                android:textColor="@color/white" />
+                android:text="Liên Hệ: " />
 
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/custome_layout_content"
-                android:orientation="vertical"
-                android:layout_margin="10dp"
-                
-                 >
+                android:orientation="horizontal"
+                android:weightSum="3" >
+
+                <LinearLayout
+                    android:id="@+id/layout_call_main"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center" >
+
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/chang_icon_call"
+                        android:clickable="false" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center"
+                    android:background="@drawable/custom_lines" />
+
+                <LinearLayout
+                    android:id="@+id/layout_email"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center" >
+
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/change_icon_email"
+                        android:clickable="false" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center"
+                    android:background="@drawable/custom_lines" />
+
+                <LinearLayout
+                    android:id="@+id/layout_account"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center" >
+
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/change_icon_account"
+                        android:clickable="false" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_main"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="10dp"
+                    android:text="Trạng Thái Cảm Biến: "
+                    android:textColor="@color/white" />
+
+                <LinearLayout
+                    android:id="@+id/layout_properties"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/custome_layout_content"
+                    android:orientation="vertical"
+                    android:padding="10dp" >
+
+                    <LinearLayout
+                        android:id="@+id/layout_child_properties"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal" >
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layout_statusDevices"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone" >
+
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="10dp"
+                        android:text="Trạng Thái Công Tắc: "
+                        android:textColor="@color/white" />
+
+                    <co.vn.e_alarm.customwiget.CustomGridView
+                        android:id="@+id/layoutStatus"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:background="@drawable/custome_layout_content"
+                        android:gravity="center"
+                        android:numColumns="4"
+                        android:paddingBottom="10dp"
+                        android:stretchMode="columnWidth" >
+                    </co.vn.e_alarm.customwiget.CustomGridView>
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
+                    android:text="Biểu Đồ Trạng Thái: "
+                    android:textColor="@color/white" />
 
                 <LinearLayout
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal" >
-
-                    <org.holoeverywhere.widget.Spinner
-                        android:id="@+id/spGraph"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/container"
-                    android:layout_width="wrap_content"
-                    android:layout_height="250dip"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/custome_layout_content"
                     android:orientation="vertical" >
+
+                    <RelativeLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal" >
+
+                        <org.holoeverywhere.widget.Spinner
+                            android:id="@+id/spGraph"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <ImageButton
+                            android:id="@+id/imgFullChart"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:background="@drawable/ic_fullscreen"
+                            android:visibility="gone" />
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:id="@+id/container"
+                        android:layout_width="wrap_content"
+                        android:layout_height="200dip"
+                        android:orientation="vertical" >
+                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

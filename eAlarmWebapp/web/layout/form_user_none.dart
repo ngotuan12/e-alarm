@@ -268,15 +268,15 @@ class FormUserNone extends PolymerElement
               row.classes.add("selectable");
               //column
               TableCellElement colId=new TableCellElement();
-              colId.classes.add("center");
+              colId.classes.add("center important");
               colId.appendHtml((++stt).toString());
                                   
               TableCellElement colFullName=new TableCellElement();
-              colFullName.classes.add("important");
+              colFullName.classes.add("important center");
               colFullName.appendHtml((user['FullName']!=null)?user['FullName']:"");
               
               TableCellElement colUserName=new TableCellElement();
-              colUserName.classes.add("important");
+              colUserName.classes.add("important center");
               colUserName.appendHtml((user['UserName']!=null)?user['UserName']:"");
                                   
               TableCellElement colSex=new TableCellElement();
@@ -297,7 +297,7 @@ class FormUserNone extends PolymerElement
               colStatus.appendHtml((user['Status']!=null)?user['Status']:"");
                                     
               TableCellElement colAction=new TableCellElement();
-              colAction.classes.add("center");
+              colAction.classes.add("important center");
                                     
               ButtonElement btnEdit=new ButtonElement();
               btnEdit.className="btn-action glyphicons pencil btn-success";
@@ -340,15 +340,15 @@ class FormUserNone extends PolymerElement
                 row.classes.add("selectable");
                 //column
                 TableCellElement colId=new TableCellElement();
-                colId.classes.add("center");
+                colId.classes.add("important center");
                 colId.appendHtml((++stt).toString());
                                     
                 TableCellElement colFullName=new TableCellElement();
-                colFullName.classes.add("important");
+                colFullName.classes.add("important center");
                 colFullName.appendHtml((user['FullName']!=null)?user['FullName']:"");
                 
                 TableCellElement colUserName=new TableCellElement();
-                colUserName.classes.add("important");
+                colUserName.classes.add("important center");
                 colUserName.appendHtml((user['UserName']!=null)?user['UserName']:"");
                                     
                 TableCellElement colSex=new TableCellElement();
@@ -369,7 +369,7 @@ class FormUserNone extends PolymerElement
                 colStatus.appendHtml((user['Status']!=null)?user['Status']:"");
                                       
                 TableCellElement colAction=new TableCellElement();
-                colAction.classes.add("center");
+                colAction.classes.add("important center");
                                       
                 ButtonElement btnEdit=new ButtonElement();
                 btnEdit.className="btn-action glyphicons pencil btn-success";

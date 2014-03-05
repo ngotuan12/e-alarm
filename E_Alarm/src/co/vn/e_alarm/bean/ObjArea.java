@@ -2,6 +2,7 @@ package co.vn.e_alarm.bean;
 
 public class ObjArea {
 	public int id;
+	public String area_code;
 	public String code;
 	public String name;
 	public int parentID;
@@ -16,6 +17,13 @@ public class ObjArea {
 	}
 	public void setId(int id) {
 		this.id = id;
+	}
+	
+	public String getArea_code() {
+		return area_code;
+	}
+	public void setArea_code(String area_code) {
+		this.area_code = area_code;
 	}
 	public String getCode() {
 		return code;

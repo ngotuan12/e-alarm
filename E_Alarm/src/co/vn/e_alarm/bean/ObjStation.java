@@ -17,6 +17,8 @@ public class ObjStation implements Serializable {
 	public double lng;
 	public int status;
 	public ArrayList<ObjProperties> listPropertiesStation;
+	public String macAddress;
+	public String serverConnect;
 	public int getId() {
 		return id;
 	}
@@ -71,6 +73,18 @@ public class ObjStation implements Serializable {
 	}
 	public void setListPropertiesStation(ArrayList<ObjProperties> listPropertiesStation) {
 		this.listPropertiesStation = listPropertiesStation;
+	}
+	public String getMacAddress() {
+		return macAddress;
+	}
+	public void setMacAddress(String macAddress) {
+		this.macAddress = macAddress;
+	}
+	public String getServerConnect() {
+		return serverConnect;
+	}
+	public void setServerConnect(String serverConnect) {
+		this.serverConnect = serverConnect;
 	}
 	
 	

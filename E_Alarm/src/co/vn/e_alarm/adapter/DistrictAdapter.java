@@ -1,19 +1,18 @@
 package co.vn.e_alarm.adapter;
 
-import java.util.ArrayList;
 import co.vn.e_alarm.DistrictFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
-import android.util.Log;
 
 public class DistrictAdapter extends FragmentPagerAdapter implements OnPageChangeListener {
-	private ArrayList<String> arrDistrict;
-	public DistrictAdapter(FragmentManager fm,ArrayList<String> listDistrict) {
+	//private ArrayList<String> arrDistrict;
+	private String[] listStatus={"Tất Cả","Tốt","Mất Kết Nối","Sự Cố"};
+	public DistrictAdapter(FragmentManager fm) {
 		super(fm);
-		arrDistrict=listDistrict;
-		DistrictFragment.SetDistrict(arrDistrict);
+		//arrDistrict=listDistrict;
+		DistrictFragment.SetDistrict(listStatus);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -26,7 +25,7 @@ public class DistrictAdapter extends FragmentPagerAdapter implements OnPageChang
 	@Override
 	public int getCount() {
 		// TODO Auto-generated method stub
-		return arrDistrict.size();
+		return listStatus.length;
 	}
 
 	@Override
@@ -43,7 +42,6 @@ public class DistrictAdapter extends FragmentPagerAdapter implements OnPageChang
 
 	@Override
 	public void onPageSelected(int arg0) {
-		Log.e("DEMO: ", ""+arg0);
 		
 	}
 	@Override

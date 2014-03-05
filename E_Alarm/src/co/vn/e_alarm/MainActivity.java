@@ -60,18 +60,22 @@ public class MainActivity extends FragmentActivity implements
 	DBStation mdb;
 	Marker market;
 	int index = 0, count = 0, idArea = 0;
-	String TAG = "MainActivity", nameDistrict = "";
+	public static int status=3;
+	String TAG = "MainActivity", nameDistrict = "", nameCode = "";
 	ArrayList<ObjArea> listArea, listObjDistrict;
 	ArrayList<Integer> ListIDArea;
-	ArrayList<String> listCity, listDistrict;
+	ArrayList<String> listCity;
 	Marker marker;
 	Fragment fragment;
 	ProgressBar proMain;
-	public static boolean isCheckHomePress = false;
+	public static boolean isCheckHomePress = false, isCheckDialog = false;
 	Button btnRetry;
 	String[] arrDistrict;
 	OnPageChangeListener districtListener;
 	DistrictAdapter districtAdapter;
+	private int REQUESTCODE = 1;
+	static final int[] ITEM_DRAWABLES = { R.drawable.icon_call,
+			R.drawable.icon_email, R.drawable.ic_account };
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -112,9 +116,8 @@ public class MainActivity extends FragmentActivity implements
 
 			arrStation = new ArrayList<ObjStation>();
 			arrMarker = new ArrayList<Marker>();
-			listDistrict = new ArrayList<String>();
 			listObjDistrict = new ArrayList<ObjArea>();
-			city = MyPreference.getInstance().getInteger("CITY");
+			// initArcMenu(arcMenu, ITEM_DRAWABLES);
 
 		} catch (GooglePlayServicesNotAvailableException e) {
 			// TODO Auto-generated catch block
@@ -150,10 +153,8 @@ public class MainActivity extends FragmentActivity implements
 				if (mSlidingLayer.isOpened()) {
 					mSlidingLayer.closeLayer(true);
 					return true;
-				}
-				else{
-					android.os.Process.killProcess(android.os.Process
-							.myPid());
+				} else {
+					android.os.Process.killProcess(android.os.Process.myPid());
 					finish();
 					return true;
 				}
@@ -168,7 +169,7 @@ public class MainActivity extends FragmentActivity implements
 	 * method get value city from db
 	 */
 	public void ShowCity() {
-
+		city = MyPreference.getInstance().getInteger("CITY");
 		listArea = mdb.getListAreabyWoodenleg("001", 2);
 		if (listArea.size() > 0) {
 
@@ -247,19 +248,20 @@ public class MainActivity extends FragmentActivity implements
 	}
 
 	/**
-	 * method get station from server by city
+	 * method get station from server by area code
 	 * 
 	 * @param id
 	 *            : id area
 	 */
 
-	public void getStation(int id) {
+	public void getStationByCode(String nameCode, int status) {
 		if (NetworkUtility.checkNetworkState(this)) {
+			btnRetry.setVisibility(View.INVISIBLE);
+			proMain.setVisibility(View.VISIBLE);
 			layout_main.setVisibility(View.GONE);
-			Log.e(TAG, "" + id);
 			StationTask.GetAllStationByIDArea(NetworkUtility.DEVICE_SERVICES,
-					ParamBuilder.GetInfo(ParamBuilder.BuildDeviceData(id)),
-					new AsyncHttpResponseHandler() {
+					ParamBuilder.GetInfo(ParamBuilder.getDeviceByCodeArea(
+							nameCode, status)), new AsyncHttpResponseHandler() {
 						@Override
 						public void onSuccess(int arg0, String response) {
 							// TODO Auto-generated method stub
@@ -278,13 +280,18 @@ public class MainActivity extends FragmentActivity implements
 								arrMarker.clear();
 								mGooglemap.clear();
 								layout_main.setVisibility(View.INVISIBLE);
-
 								if (NetworkUtility.FAIL
 										.equals(NetworkUtility.ERROR)) {
 									StationFragment.removeAllCallback();
 									Utils.DiaLogAuthenticate(MainActivity.this);
-									
+
 								} else {
+									LatLng latLng = mdb.getLatLngCity(city);
+									mGooglemap
+											.animateCamera(CameraUpdateFactory
+													.zoomTo(13.0f));
+									mGooglemap.moveCamera(CameraUpdateFactory
+											.newLatLngZoom(latLng, 10.0f));
 									Toast.makeText(
 											getBaseContext(),
 											"Không có dữ liệu cho địa điểm này",
@@ -308,6 +315,8 @@ public class MainActivity extends FragmentActivity implements
 		}
 	}
 
+	
+
 	/**
 	 * Show station to map
 	 * 
@@ -319,36 +328,54 @@ public class MainActivity extends FragmentActivity implements
 		for (int i = 0; i < arrStation.size(); i++) {
 			LatLng lat_long_place = new LatLng(arrStation.get(i).getLat(),
 					arrStation.get(i).getLng());
-			if (arrStation.get(i).getStatus() == 1) {
+			int status_device = arrStation.get(i).getStatus();
+			switch (status_device) {
+			case 1:
 				marker = mGooglemap.addMarker(new MarkerOptions()
-						.position(lat_long_place)
-						.title("")
-						.snippet("")
-						.icon(BitmapDescriptorFactory
-								.fromResource(R.drawable.marker2)));
-			} else {
+				.position(lat_long_place)
+				.title("")
+				.snippet("")
+				.icon(BitmapDescriptorFactory
+						.fromResource(R.drawable.marker_green)));
+				break;
+			case 2:
 				marker = mGooglemap.addMarker(new MarkerOptions()
-						.position(lat_long_place)
-						.title("")
-						.snippet("")
-						.icon(BitmapDescriptorFactory
-								.fromResource(R.drawable.marker_dot)));
-			}
+				.position(lat_long_place)
+				.title("")
+				.snippet("")
+				.icon(BitmapDescriptorFactory
+						.fromResource(R.drawable.marker_red2)));
+				break;
 
-			mGooglemap.animateCamera(CameraUpdateFactory.zoomTo(14.0f), 2000,
-					null);
+			default:
+				marker = mGooglemap.addMarker(new MarkerOptions()
+				.position(lat_long_place)
+				.title("")
+				.snippet("")
+				.icon(BitmapDescriptorFactory
+						.fromResource(R.drawable.marker_gray)));
+				break;
+			}
+			
 
 			arrMarker.add(marker);
 
 		}
+		mGooglemap
+				.moveCamera(CameraUpdateFactory.newLatLngZoom(
+						new LatLng(arrStation.get(0).getLat(), arrStation
+								.get(0).getLng()), 10.0f));
+		mGooglemap.animateCamera(CameraUpdateFactory.zoomTo(14.0f), 2000, null);
+		arrMarker.get(0).showInfoWindow();
 		adapter = new StationAdapter(getSupportFragmentManager(), arrStation,
 				mGooglemap, arrMarker);
 
 		mPager.setAdapter(adapter);
 
-		mPager.setCurrentItem(1, true);
-		mPager.setCurrentItem(2, false);
-		mPager.setCurrentItem(0);
+		/*
+		 * mPager.setCurrentItem(1, true); mPager.setCurrentItem(2, false);
+		 * mPager.setCurrentItem(0);
+		 */
 		adapter.notifyDataSetChanged();
 		mPager.setOnPageChangeListener(adapter);
 
@@ -382,58 +409,33 @@ public class MainActivity extends FragmentActivity implements
 	/**
 	 * Show district by id City
 	 */
-	public void ShowDistrict(int idCity) {
-
-		listObjDistrict = mdb.getListDistrict(idCity);
-
-		if (listObjDistrict.size() > 0) {
-			ShowLocationDistrict(listObjDistrict);
-		} else {
-
-			listDistrict.clear();
-			mPagerDistric.setAdapter(null);
-			LatLng latLng = mdb.getLatLngCity(idCity);
-			mGooglemap.animateCamera(CameraUpdateFactory.zoomTo(13.0f));
-			mGooglemap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,
-					10.0f));
-			arrMarker.clear();
-			mGooglemap.clear();
-			layout_main.setVisibility(View.GONE);
-			proMain.setVisibility(View.INVISIBLE);
-		}
-	}
-
-	/**
-	 * Show device by area district param id district
-	 */
-	public void ShowDevice(int idDistrict) {
-		btnRetry.setVisibility(View.INVISIBLE);
-		proMain.setVisibility(View.VISIBLE);
-		idArea = mdb.getIdAreaByName(listDistrict.get(idDistrict));
-		getStation(idArea);
-	}
-
-	/**
-	 * Show location district
-	 */
-	public void ShowLocationDistrict(ArrayList<ObjArea> arrDistrict) {
-		for (int i = 0; i < arrDistrict.size(); i++) {
-			listDistrict.add(arrDistrict.get(i).getName());
-		}
-		districtAdapter = new DistrictAdapter(getSupportFragmentManager(),
-				listDistrict);
+	public void ShowDistrict() {
+		nameCode = mdb.getAreaCode(city);
+		getStationByCode(nameCode, 3);
+		districtAdapter = new DistrictAdapter(getSupportFragmentManager());
 		mPagerDistric.setAdapter(districtAdapter);
 		districtAdapter.notifyDataSetChanged();
-		ShowDevice(0);
-		nameDistrict = listDistrict.get(0);
 		mPagerDistric.setOnPageChangeListener(new OnPageChangeListener() {
 
 			@Override
 			public void onPageSelected(int arg0) {
+				
+				
 				mGooglemap.clear();
 				arrMarker.clear();
-				ShowDevice(arg0);
-				nameDistrict = listDistrict.get(arg0);
+				if(arg0==0){
+					status =3;
+				}
+				else if(arg0==1){
+					status =1;
+				}
+				else if(arg0==2){
+					status =0;
+				}
+				else{
+					status =2;
+				}
+				getStationByCode(nameCode, status);
 
 			}
 
@@ -457,20 +459,20 @@ public class MainActivity extends FragmentActivity implements
 	public void OnclickRetry(View v) {
 		btnRetry.setVisibility(View.INVISIBLE);
 		proMain.setVisibility(View.VISIBLE);
-		getStation(idArea);
+		getStationByCode(nameCode, status);
 
 	}
 
 	@Override
 	public void onItemSelected(AdapterView<?> parent, View view, int position,
 			long id) {
+		status=3;
 		arrMarker.clear();
 		mGooglemap.clear();
 		listObjDistrict.clear();
-		listDistrict.clear();
-		btnRetry.setVisibility(View.INVISIBLE);
 		Utils.SaveCitySelect(getBaseContext(), ListIDArea.get(position));
-		ShowDistrict(ListIDArea.get(position));
+		city = ListIDArea.get(position);
+		ShowDistrict();
 
 	}
 
@@ -484,21 +486,28 @@ public class MainActivity extends FragmentActivity implements
 	 * method transfer atm map->list
 	 */
 	public void OnClickConvertList(View v) {
-		if (!nameDistrict.equals("")) {
-			// int id=mdb.getIdAreaByName(nameDistrict);
-			Utils.SaveDistrictSelect(getBaseContext(), nameDistrict);
-		}
 		if (arrStation.size() > 0) {
-
+			StationFragment.isCheckMove = true;
 			isCheckHomePress = true;
-			Intent intent = new Intent(this, ListStationActivity.class);
+			Intent i = new Intent(this, ViewDeviceActivity.class);
 			Bundle b = new Bundle();
 			b.putSerializable("ARRAY_OBJECT", arrStation);
-			intent.putExtras(b);
-			startActivity(intent);
-		} else {
-			Toast.makeText(getBaseContext(), "Không có dữ liệu !",
-					Toast.LENGTH_SHORT).show();
+			i.putExtras(b);
+			startActivity(i);
+		}
+
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// TODO Auto-generated method stub
+		super.onActivityResult(requestCode, resultCode, data);
+		if (requestCode == REQUESTCODE) {
+			if (resultCode == RESULT_OK) {
+				mSlidingLayer.setVisibility(View.INVISIBLE);
+				listCity.clear();
+				ShowCity();
+			}
 		}
 	}
 
@@ -508,9 +517,11 @@ public class MainActivity extends FragmentActivity implements
 	@Override
 	protected void onUserLeaveHint() {
 
-		/*
-		 * if (!isCheckHomePress) { finish(); } isCheckHomePress = false;
-		 */
+		if (!isCheckHomePress) {
+			finish();
+		}
+		isCheckHomePress = false;
+
 		super.onUserLeaveHint();
 
 	}

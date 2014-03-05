@@ -32,6 +32,9 @@ public class NetworkUtility {
 	//device
 	public static String DEVICE_SERVICES="DeviceServices";
 	public static String GET_ALL_DEVICES_BY_AREA="onGetAllDevicesByAreaID";
+	public static String GET_ALL_DEVICES_BY_AREA_STATUS="onGetDevicesByAreaCodeStatus";
+	public static String AREA_CODE="area_code";
+	public static String STATUS="status";
 	public static String AREA_ID="area_id";
 	//login
 	public static String PERMISSION_SERVER="PermissionService";
@@ -45,6 +48,8 @@ public class NetworkUtility {
 	public static String DEVIECESINFOBYDEVICEID="onGetDevicesInfoByDeviceID";
 	public static String DEVICEID="deviceID";
 	public static String DEVICEPROID="deviceproID";
+	//update properties
+	public static String DEVIECESBYDEVICEID="onGetDevicesandDeviceinfobyID";
 	
 	/**
 	 * Check the network state.

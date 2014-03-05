@@ -60,6 +60,19 @@ public class ParamBuilder {
 		}
 		return data;
 	}
+	
+	public static JSONObject getDeviceByCodeArea(String nameCode,int status) {
+		JSONObject data = new JSONObject();
+		try {
+			data.put(NetworkUtility.METHOD,
+					NetworkUtility.GET_ALL_DEVICES_BY_AREA_STATUS);
+			data.put(NetworkUtility.AREA_CODE, "" + nameCode);
+			data.put(NetworkUtility.STATUS, "" + status);
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return data;
+	}
 	/**
 	 * send param to get value log
 	 */
@@ -69,6 +82,19 @@ public class ParamBuilder {
 			data.put(NetworkUtility.METHOD, NetworkUtility.DEVIECESINFOBYDEVICEID);
 			data.put(NetworkUtility.DEVICEID,""+ idDevice);
 			data.put(NetworkUtility.DEVICEPROID,""+idProDevice);
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return data;
+	}
+	/**
+	 * send param to get value log
+	 */
+	public static JSONObject getValueProperties(int idDevice){
+		JSONObject data=new JSONObject();
+		try {
+			data.put(NetworkUtility.METHOD, NetworkUtility.DEVIECESBYDEVICEID);
+			data.put(NetworkUtility.DEVICEID,""+ idDevice);
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
