@@ -1,0 +1,80 @@
+<polymer-element name="form-device-command">
+<meta charset="UTF-8" />
+<template>
+<div class="innerLR">
+	<!-- Widget -->
+	<div class="widget">
+
+		<!-- Widget heading -->
+		<div class="widget-head">
+			<h4 class="heading glyphicons list"><i></i>Các chức năng kiểm tra/điều khiển</h4>
+		</div>
+		<div class="widget-body">
+			<!-- Total products & Sort by options -->
+				<div class="form-inline separator bottom small">
+					<span id="totalAreas"></span> 
+				</div>
+			<!-- // Total products & Sort by options END -->
+			<!-- Products table -->
+			<table
+				class="table table-bordered table-condensed table-primaries table-vertical-center">
+				<thead>
+					<tr>
+						<th class="center" style="width: 20%;">Tên phòng máy</th>
+						<th class="center" style="width: 20%;">Tên phòng máy</th>
+						<th class="center" style="width: 20%;">Tên phòng máy</th>
+						<th class="center" style="width: 20%;">Tên phòng máy</th>
+						<th class="center" style="width: 20%;">Tên phòng máy</th>
+					</tr>
+				</thead>
+				<tbody id="ListDevices">
+
+				</tbody>
+			</table>
+
+			<div class="separator top form-inline small">
+
+				<!-- Pagination -->
+				<div class="pagination pagination-small pull-right"
+					style="margin: 0;">
+					<ul id="pagination">
+					</ul>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+			<!-- // Options END -->
+
+		</div>
+	</div>
+	<div class="widget" style="width: 49%; float: left;">
+		<!-- Widget heading -->
+		<div class="widget-head">
+			<h4 class="heading glyphicons list">
+				<i></i>Request <span style="color: White" id="txtID"></span>
+			</h4>
+		</div>
+		<div class="widget-body" style="padding: 10px">
+		<!-- <textarea style="" id="txtRequest"></textarea> -->
+		<button id="btnTestAlive" class="testCommand">Test alive</button><span class="titleCommand">Kiểm tra kết nối giữa server với gateway</span><br/>
+		<button id="btnCalib" class="testCommand">Calib</button><span class="titleCommand">Hiệu chỉnh khối cảm biến của gateway</span><br/>
+		<button id="btnAlarmOff" class="testCommand">Alarm off</button><span class="titleCommand">Dập cảnh báo còi,đèn phòng máy để kiểm tra</span><br/>
+		<button id="btnSMS" class="testCommand">SMS/config</button><span class="titleCommand">Chức năng mở rộng SMS/Config/Switch off,on,...</span><br/>
+		<button id="" class="testCommand">Send command</button><span class="titleCommand">Gửi tập lệnh</span>
+		</div>
+	</div>
+
+	<div class="widget" style="width: 49%; float: right;">
+
+		<!-- Widget heading -->
+		<div class="widget-head">
+			<h4 class="heading glyphicons list"><i></i>Respone</h4>
+		</div>
+		<div class="widget-body" style="padding: 10px">
+			<textarea style="width: 95%;height: 207px" id="txtRespone"></textarea>
+		</div>
+	</div>
+	<!-- // Widget END -->
+
+</div>
+</template> <script type="application/dart" src="form_device_command.dart">
+	</script> </polymer-element>

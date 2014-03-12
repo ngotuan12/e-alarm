@@ -1,0 +1,11 @@
+<link rel="import" href="form_device_command.html">
+<polymer-element name="form-gateway-device">
+<meta charset="UTF-8" />
+<template> 
+	<template if="{{currentAction == 'NONE'}}">
+		<form-device-command on-edit="{{onEdit}}" on-add="{{onAdd}}"></form-device-command> 
+	</template> 
+	
+</template> 
+<script type="application/dart" src="form_gateway_device.dart"></script> 
+</polymer-element>
