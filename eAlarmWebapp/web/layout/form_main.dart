@@ -120,7 +120,6 @@ class FormMain extends PolymerElement
 			Util.showNotifyError(error["message"]);
 		});
 			//AppClient.sendMessage(devRequest, AlarmServiceName.DeviceService, AlarmServiceMethod.POST,devResponder);
-		
 			AllDevices=response['device_list'];
 			List<Map> areas=response['area_list'];
 			listArea = filterByType(areas, ["2"]);
@@ -223,7 +222,6 @@ class FormMain extends PolymerElement
 	void showAreaList(List<Map> listProvince)
 	{
 		DivElement divProvinces = this.shadowRoot.querySelector("#list-province");
-		
 		divProvinces.children.clear();
 		for(int i=0;i<listProvince.length;i++)
 		{
@@ -236,6 +234,7 @@ class FormMain extends PolymerElement
 			List<Map> devices=getListDevices(area_code:area["area_code"],status:strStatus);
 			//new item
 			DivElement province = new DivElement();
+			province.style.width="100%";
 			province.className = "widget widget-activity margin-none";
 			province.attributes["data-toggle"]= "collapse-widget";
 			province.attributes["data-collapse-closed"]= "true";
@@ -693,6 +692,12 @@ class FormMain extends PolymerElement
 				divHeader.children.add(spCode);
 				divHeader.children.add(br);
 				divHeader.children.add(spAddress);
+			//
+				DivElement divScroll=new DivElement();
+				divScroll.style.maxHeight="200px";
+				divScroll.className="scrollbar";
+				divScroll.id="scroll";
+				
 			//divContent
 			DivElement divContent=new DivElement();
 			divContent.id="divHeader";
@@ -764,6 +769,7 @@ class FormMain extends PolymerElement
 					//add div
 					divContent.children.add(divContentHeader);
 					divContent.children.add(divContentContent);
+					divScroll.children.add(divContent);
 			//clear
 			DivElement divClear=new DivElement();
 			divClear.className="Clear";
@@ -800,7 +806,7 @@ class FormMain extends PolymerElement
 				break;
 		}
 		divPopup.children.add(divHeader);
-		divPopup.children.add(divContent);
+		divPopup.children.add(divScroll);
 		divPopup.children.add(divFooter);
 		divPopup.children.add(divClear);
 	return divPopup;

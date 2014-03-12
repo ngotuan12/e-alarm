@@ -8,12 +8,11 @@ class FormReportDeviceByArea extends PolymerElement
 {
   
   SelectElement selectorCity;
-  SelectElement selectorDistrict;
+  SelectElement selectorStatus;
   ButtonElement btnGetReport;
   ButtonElement btnViewReport;
   IFrameElement iframeReport;
   List<Map> listArea;	
-
   FormReportDeviceByArea.created() : super.created();
   bool get applyAuthorStyles => true;
 	
@@ -22,7 +21,7 @@ class FormReportDeviceByArea extends PolymerElement
 		super.enteredView();
 		
 		selectorCity = this.shadowRoot.querySelector("#selectorCity");
-		selectorDistrict = this.shadowRoot.querySelector("#selectorDistrict");
+		selectorStatus = this.shadowRoot.querySelector("#selectorStatus");
 		iframeReport = this.shadowRoot.querySelector("#iframeReport");
 		btnGetReport = this.shadowRoot.querySelector("#btnGetReport");
 		btnViewReport = this.shadowRoot.querySelector("#btnViewReport");
@@ -57,7 +56,7 @@ class FormReportDeviceByArea extends PolymerElement
 	{
 	//option
 	Map element= listArea[i];
-	String name=element['Name'];
+	String name=element['name'];
 	OptionElement op = new Element.option();
 	op.text=name;
 	op.value = JSON.encode(element);
@@ -85,7 +84,7 @@ class FormReportDeviceByArea extends PolymerElement
 		return locations.where((location){
 			for(int i=0;i<listType.length;i++)
 			{
-				if(listType[i]==location["Type"])
+				if(listType[i]==location["level"])
 				{
 					return true;
 				}
@@ -98,6 +97,21 @@ class FormReportDeviceByArea extends PolymerElement
 	Responder responder = new Responder();
 	Map request = new Map();
 	request["Method"] = "DeviceReportByArea";
+	if(selectorCity.selectedIndex==0)
+		request["area_code"] = "ALL";
+	else
+	{
+		OptionElement op=selectorCity.children.elementAt(selectorCity.selectedIndex);
+		Map area=JSON.decode(op.value);
+		request["area_code"] = area['area_code'];
+	}
+	if(selectorStatus.selectedIndex==0)
+		request["status"] = "ALL";
+	else
+	{
+		OptionElement op=selectorStatus.children.elementAt(selectorStatus.selectedIndex);
+		request["status"] = op.value;
+	}
 	responder.onSuccess.listen((Map response)
 	{
 	window.open(AppClient.url+"report/"+response["FileOut"], "_self");
@@ -115,6 +129,21 @@ class FormReportDeviceByArea extends PolymerElement
 	Responder responder = new Responder();
 	Map request = new Map();
 	request["Method"] = "DeviceReportByArea";
+	if(selectorCity.selectedIndex==0)
+		request["area_code"] = "ALL";
+	else
+	{
+		OptionElement op=selectorCity.children.elementAt(selectorCity.selectedIndex);
+		Map area=JSON.decode(op.value);
+		request["area_code"] = area['area_code'];
+	}
+	if(selectorStatus.selectedIndex==0)
+		request["status"] = "ALL";
+	else
+	{
+		OptionElement op=selectorStatus.children.elementAt(selectorStatus.selectedIndex);
+		request["status"] = op.value;
+	}
 	responder.onSuccess.listen((Map response)
 	{
 	String link =  AppClient.url+"report/"+response["FileOut"];

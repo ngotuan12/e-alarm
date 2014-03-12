@@ -10,8 +10,8 @@
 <link rel="import" href="form_report_issue_by_area.html">
 <link rel="import" href="form_area.html">
 <link rel="import" href="form_user.html">
-
 <link rel="import" href="form_gateway.html">
+<link rel="import" href="form_gateway_device.html">
 <polymer-element name="main-menu">
 <meta charset="UTF-8" />
 <template> <!-- Main Container Fluid -->
@@ -132,6 +132,9 @@
 			</template>
 			<template if="{{currentAction == 'FORM_PASS_CHANGE'}}"> 
 				<form-pass-change></form-pass-change>
+			</template>
+			<template if="{{currentAction == 'FORM_GATEWAY_DEVICE_COMMAND'}}"> 
+				<form-gateway-device></form-gateway-device>
 			</template>
 		</div>
 		<!-- // Content END -->

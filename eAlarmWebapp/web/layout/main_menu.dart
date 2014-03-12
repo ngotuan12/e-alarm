@@ -193,7 +193,7 @@ class MainMenu extends PolymerElement
 	void onModuleItemClick(MouseEvent event)
 	{
 		Element target = event.currentTarget;
-		print(target.attributes["name"]);
+		//print(target.attributes["name"]);
 		currentAction = target.attributes["name"];
 		AppClient.forceCloseWebsocket();
 	}

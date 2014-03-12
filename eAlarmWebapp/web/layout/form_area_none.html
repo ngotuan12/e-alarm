@@ -23,16 +23,47 @@
 						</h4>
 					</div>
 					<!-- // Widget heading END -->
-			
 					<div class="widget-body">
-			
 						<!-- Total products & Sort by options -->
 						<div class="form-inline separator bottom small">
 							<span id="totalAreas"></span> 
-							
 						</div>
 						<!-- // Total products & Sort by options END -->
-			
+						<!-- Filters -->
+								<div class="filter-bar">
+									<form>
+							<!-- Min -->
+							<div>
+								<label>Theo tên:</label>
+								<div class="input-append">
+									<input type="text" id="txtNameSearch" style="width: 100px;" value="" placeholder="Tìm theo tên" />
+									<span class="add-on glyphicons search"><i></i></span>
+								</div>
+							</div>
+							<!-- // Min END -->
+							<!-- Max -->
+							<div>
+								<label>Theo mã:</label>
+								<div class="input-append">
+									<input type="text" id="txtCodeSearch" style="width: 150px;" value="" placeholder="Tìm theo mã" />
+									<span class="add-on glyphicons search"><i></i></span>
+								</div>
+							</div>
+							<!-- // Max END -->
+							<!-- Select -->
+							<div>
+								<label>Theo tình trạng:</label>
+								<select name="from" id="selTypeSearch" style="width: 100px;">
+								<option value="-1">Tất cả</option>
+								<option value="1">Kích hoạt</option>
+								<option value="0">Không kích hoạt</option>
+								</select>
+							</div>
+							<!-- // Select END -->
+								<div class="clearfix"></div>
+							</form>
+						</div>
+						<!-- // Filters END -->
 						<!-- Products table -->
 						<table
 							class="table table-bordered table-condensed table-striped table-primary table-vertical-center checkboxs">
