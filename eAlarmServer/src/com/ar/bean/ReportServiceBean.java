@@ -34,12 +34,10 @@ public class ReportServiceBean extends AppProcessor
 		{
 			case "DeviceReportByArea":
 				String devLink = createDeviceReportByArea();
-				System.out.println("http://127.0.0.1:8888/AlarmServer/report/" + devLink);
 				response.put("FileOut",devLink);
 				break;
 			case "IssueReportByArea":
 				String issueLink = createIssueReportByArea();
-				System.out.println("http://127.0.0.1:8888/AlarmServer/report/" + issueLink);
 				response.put("FileOut",issueLink);
 				break;
 		}
@@ -62,18 +60,31 @@ public class ReportServiceBean extends AppProcessor
 			String templatePath = AppServer.getParam("TemplatePath");
 			String strReportOut = AppServer.getParam("ReportOut");
 			String strFileName = "TemplateDeviceReportByArea";
-			//String strFileOut = strFileName + StringUtil.format(new Date(), "yyyyMMddhhmmss");
-			String strFileOut = "dev_report";
+			String strFileOut = strFileName + StringUtil.format(new Date(), "yyyyMMddhhmmss");
+//			String strFileOut = "dev_report";
 			//read sql file
 			String strSQL = new ReadSQLFile(templatePath + strFileName + ".sql")
 					.getSQLQuery();
 			//open connection
 			open();
+			//get parameter
+			String strAreaCode = request.getString("area_code");
+			String strStatus = request.getString("status");
+			String strAreaSQL = "";
+			//set sql parameter
+			if(!strAreaCode.equals("ALL"))
+			{
+				strAreaSQL = " AND d.area_code ='"+strAreaCode+"' ";
+			}
+			strSQL = strSQL.replaceAll("<%p_area_code%>", strAreaSQL);
+			
+			if(!strStatus.equals("ALL"))
+			{
+				strAreaSQL = " AND d.status ='"+strStatus+"' ";
+			}
+			strSQL = strSQL.replaceAll("<%p_status%>", strAreaSQL);
 			//prepare statement
 			pstm = mcnMain.prepareStatement(strSQL);
-//			String strAreaCode = "HN";
-			//set sql parameter
-//			strSQL = strSQL.replaceAll("<%p_area_code%>", strAreaCode);
 			//execute query
 			rs = pstm.executeQuery();
 			//create report
@@ -85,7 +96,7 @@ public class ReportServiceBean extends AppProcessor
 			//fill data
 			report.fillDataToExcel();
 			//create file
-//			createRealFile("dev_report");
+			//createRealFile(strFileOut);
 			//return link
 			return strFileOut + ".xls";
 		} 
@@ -113,18 +124,23 @@ public class ReportServiceBean extends AppProcessor
 			String templatePath = AppServer.getParam("TemplatePath");
 			String strReportOut = AppServer.getParam("ReportOut");
 			String strFileName = "TemplateIssueReportByArea";
-			//String strFileOut = strFileName + StringUtil.format(new Date(), "yyyyMMddhhmmss");
-			String strFileOut = "issue_report";
+			String strFileOut = strFileName + StringUtil.format(new Date(), "yyyyMMddhhmmss");
+//			String strFileOut = "issue_report";
 			//read sql file
-			String strSQL = new ReadSQLFile(templatePath + strFileName + ".sql")
-					.getSQLQuery();
+			String strSQL = new ReadSQLFile(templatePath + strFileName + ".sql").getSQLQuery();
 			//open connection
 			open();
+			//get parameter
+			String strDeviceId = request.getString("device_id");
+			String strAreaSQL = "";
+			//set sql parameter
+			if(!strDeviceId.equals("ALL"))
+			{
+				strAreaSQL = " AND device_id ='"+strDeviceId+"' ";
+			}
+			strSQL = strSQL.replaceAll("<%p_device_id%>", strAreaSQL);
 			//prepare statement
 			pstm = mcnMain.prepareStatement(strSQL);
-//			String strAreaCode = "HN";
-			//set sql parameter
-//			strSQL = strSQL.replaceAll("<%p_area_code%>", strAreaCode);
 			//execute query
 			rs = pstm.executeQuery();
 			//create report
@@ -136,7 +152,7 @@ public class ReportServiceBean extends AppProcessor
 			//fill data
 			report.fillDataToExcel();
 			//create file
-//			createRealFile("issue_report");
+			//createRealFile(strFileOut);
 			//return link
 			return strFileOut + ".xls";
 		} 

@@ -20,7 +20,7 @@ public class ReportService extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-//		getReportPath();
+		//getReportPath();
 		try {
 			super.service(req, resp);
 			Util.processRequest(req, resp);
