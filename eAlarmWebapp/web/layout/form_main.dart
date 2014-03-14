@@ -742,6 +742,9 @@ class FormMain extends PolymerElement
 			}
 			if(dev !=null)
 			{
+				bool ErrorVac1=false;
+				bool ErrorHummi=false;
+				bool ErrorVac2=false;
 				for(int i=0;i<dev.length;i++)
 				{
 					DivElement divContentContentleft=new DivElement();
@@ -764,10 +767,139 @@ class FormMain extends PolymerElement
 						Element pInfor=new Element.p();
 						p.style.width="100%";
 						pInfor.className="l_h_alert";
-						if(dev[i]['value']<dev[i]['min_alarm'])
-							pInfor.text=dev[i]['name'].toString()+" thấp !!!";
-						else if(dev[i]['value']>=dev[i]['max_alarm'])
-								pInfor.text=dev[i]['name'].toString()+" cao !!!";
+						//check error
+						if(dev[i]['value']>=-2 && dev[i]['value']<=2)
+						{
+							switch(dev[i]['code'].toString().toUpperCase())
+							{
+								case 'VAC1':
+									if(ErrorVac1==false)
+									{
+										pInfor.text="MẤT ĐIỆN LƯỚI"+" !!!";
+										ErrorVac1=true;
+									}
+									break;
+								case 'HZ1':
+									if(ErrorVac1==false)
+									{
+										pInfor.text="MẤT ĐIỆN LƯỚI"+" !!!";
+										ErrorVac1=true;
+									}
+									break;
+								case 'VAC2':
+									if(ErrorVac2==false)
+									{
+										pInfor.text="KHÔNG CÓ ĐIỆN MÁY PHÁT"+" !!!";
+										ErrorVac2=true;
+									}
+									break;
+								case 'HZ2':
+									if(ErrorVac2==false)
+									{
+										pInfor.text="KHÔNG CÓ ĐIỆN MÁY PHÁT"+" !!!";
+										ErrorVac2=true;
+									}
+									break;
+								case 'TEMP1':
+									if(ErrorHummi==false)
+									{
+										pInfor.text="LỖI ĐẦU ĐO"+"!!!";
+										ErrorHummi=true;
+									}
+									break;
+								case 'TEMP2':
+									if(ErrorHummi==false)
+									{
+										pInfor.text="LỖI ĐẦU ĐO"+" !!!";
+										ErrorHummi=true;
+									}
+									break;
+								case 'HUMI' :
+									if(ErrorHummi==false)
+									{
+										pInfor.text="LỖI ĐẦU ĐO"+" !!!";
+										ErrorHummi=true;
+									}
+									break;
+								case 'VDC1' :
+									pInfor.text="MẤT NGUỒN 48DVC"+" !!!";
+									break;
+								case 'VDC2' :
+									if(ErrorHummi==false)
+									{
+										pInfor.text="LỖI ĐẦU ĐO"+" !!!";
+										ErrorHummi=true;
+									}
+									break;
+								default :
+									break;
+							}
+						}
+						else if(dev[i]['value']>2 && dev[i]['value']<=dev[i]['min_alarm'])
+						{
+							switch(dev[i]['code'].toString().toUpperCase())
+							{
+								case 'VAC1':
+									pInfor.text="ĐIỆN LƯỚI QUÁ THẤP"+" !!!";
+									break;
+								case 'HZ1':
+									pInfor.text="TẦN SỐ ĐIỆN LƯỚI QUÁ THẤP"+" !!!";
+									break;
+								case 'VAC2':
+									pInfor.text="ĐIỆN MÁY PHÁT QUÁ THẤP"+" !!!";
+									break;
+								case 'HZ2':
+									pInfor.text="TẦN SỐ ĐIỆN MÁY PHÁT QUÁ THẤP"+" !!!";
+									break;
+								case 'TEMP1':
+									pInfor.text="NHIỆT ĐỘ QUÁ THẤP"+" !!!";
+									break;
+								case 'TEMP2':pInfor.text="NHIỆT ĐỘ QUÁ THẤP"+" !!!";
+									break;
+								case 'VDC2' :
+									pInfor.text="ĐIỆN ÁP CẦU ẮC QUY QUÁ THẤP"+" !!!";
+									break;
+								case 'VDC1' :
+									pInfor.text="NGUỒN ĐIỆN 48VDC QUÁ THẤP"+" !!!";
+									break;
+								default :
+									break;
+							}
+						}
+							else if(dev[i]['value']>dev[i]['max_alarm'])
+							{
+								switch(dev[i]['code'].toString().toUpperCase())
+							{
+								case 'VAC1':
+									pInfor.text="ĐIỆN LƯỚI QUÁ CAO"+" !!!";
+									break;
+								case 'HZ1':
+									pInfor.text="TẦN SỐ ĐIỆN LƯỚI QUÁ CAO"+" !!!";
+									break;
+								case 'VAC2':
+									pInfor.text="ĐIỆN MÁY PHÁT QUÁ CAO"+" !!!";
+									break;
+								case 'HZ2':
+									pInfor.text="TẦN SỐ ĐIỆN MÁY PHÁT QUÁ CAO"+" !!!";
+									break;
+								case 'TEMP1':
+									pInfor.text="NHIỆT ĐỘ QUÁ CAO"+" !!!";
+									break;
+								case 'TEMP2':pInfor.text="NHIỆT ĐỘ QUÁ CAO"+" !!!";
+									break;
+								case 'HUMI' :
+									pInfor.text="ĐỘ ẨM QUÁ CAO"+" !!!";
+									break;
+								case 'VDC1' :
+									pInfor.text="NGUỒN ĐIỆN 48VDC QUÁ CAO"+" !!!";
+									break;
+								case 'VDC2' :
+									pInfor.text="ĐIỆN ÁP CẦU ẮC QUY QUÁ CAO"+" !!!";
+									break;
+								default :
+									break;
+							}
+							}
 						divFooter.children.add(pInfor);
 					}
 					else

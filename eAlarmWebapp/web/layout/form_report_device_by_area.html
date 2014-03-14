@@ -7,25 +7,54 @@
 
 <div class="widget-head">
 			<h4 class="heading glyphicons list">
-				<i></i>Báo cáo theo địa bàn
+				<i></i>Báo cáo theo khu vực
 			</h4>
 		</div>
-<div class="widget-body" style="padding: 10px">
-	<span>Theo địa bàn:</span>
-	<select id="selectorCity" style="margin: 5px;">
-	<option value="-1">Thành phố</option>
-	</select> 
-	<span>Theo trạng thái:</span>
-	<select id="selectorStatus" style="margin: 5px">
-		<option value="-1">Tất cả</option>
-		<option value="0">Mất kết nối</option>
-		<option value="2">Sự cố</option>
-	</select>
-	<br/>
-	<button id="btnGetReport" class="testCommand" style="width:140px ;margin-left: 5px;margin-right: 20px;margin-top: 20px;">Tải về</button>
-	<button id="btnViewReport" class="testCommand" style="width:140px ;margin-top: 20px;">Xem báo cáo</button>
+	<div class="widget-body">
+		<div class="row-fluid">
 
-</div>
+			<!-- Column -->
+			<div class="span6">
+				<!-- Group -->
+				<div class="control-group">
+					<label class="control-label" for="firstname">Khu vực: </label>
+					<div class="controls">
+						<select id="selectorCity" class="span12"" >
+						</select>
+					</div>
+				</div>
+				<!-- // Group END -->
+			</div>
+			<!-- // Column END -->
+			<!-- Column -->
+			<div class="span6">
+				<!-- Group -->
+				<div class="control-group">
+					<label class="control-label" for="firstname">Trạng thái:</label>
+					<div class="controls">
+						<select id="selectorStatus" class="span12"" >
+							<option value="-1">Tất cả</option>
+							<option value="0">Mất kết nối</option>
+							<option value="2">Sự cố</option>
+						</select>
+						
+					</div>
+				</div>
+				<!-- // Group END -->
+			</div>
+			<!-- // Column END -->
+		</div>
+		<div class="form-actions" style="padding-left: 2px">
+			<button id="btnViewReport"
+				class="testCommand btn-icon btn-primary glyphicons circle_ok" style="margin-right: 5px;">
+				<i></i>Xem
+			</button>
+			<button id="btnGetReport"
+				class="testCommand btn-icon btn-primary glyphicons circle_ok">
+				<i></i>Tải về
+			</button>
+		</div>
+	</div>
 </div>
 <!-- <iframe id="iframeReport" hidden="true" src="https://docs.google.com/file/d/0B3wCusJjGhqoN0p0bm9YYVZJRmc/preview" width="100%" height="500px"></iframe> -->
 <iframe id="iframeReport" hidden="true" height="500px" width="100%" ></iframe>
