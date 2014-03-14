@@ -178,9 +178,9 @@ class FormDeviceNone extends PolymerElement
 			//properties
 			initDeviceProperties(device,properties);
 			//command log
-			initDeviceCommandLog();
+//			initDeviceCommandLog();
 			//configuration
-			initConfiguration();
+//			initConfiguration();
 			//default selected
 			setSelectedTabIndex(0);
 			//connect device id
@@ -263,8 +263,12 @@ class FormDeviceNone extends PolymerElement
 			li.id = property["code"];
 			li.attributes["value"] = JSON.encode(property); 
 			SpanElement span = new SpanElement();
-			
-			if(property["alarm_status"]=="1")
+			if(device["status"]=="0")
+			{
+//				span.className = "normal";
+  				span.appendHtml(property["name"]+"<br><strong>  "+"--"+" "+property["symbol"]+"</strong>");  
+			}
+			else if(property["alarm_status"]=="1")
 			{
 				span.className = "normal";
 				span.appendHtml(property["name"]+"<br><strong>  "+property["value"].toString()+" "+property["symbol"]+"</strong>");
@@ -490,9 +494,41 @@ class FormDeviceNone extends PolymerElement
 		bool isComfirm = window.confirm("Bạn thực sự muốn xoá "+device["name"]+"-"+device["code"]+ "?");
 		if(isComfirm)
 		{
-			//delete
-			print("delete");
+			Map request = new Map();
+    		request["Method"] = "form_device_none_delete";
+    		request["device_id"] = device["id"];
+    		//Listen
+    		Responder responder = new Responder();
+    		//success
+    		responder.onSuccess.listen((Map response)
+    		{
+				for(int i=0;i<listDevices.length;i++)
+				{
+					if(device["id"]==listDevices[i]["id"])
+					{
+						listDevices.removeAt(i);
+						break;
+					}
+				}
+				CurrentDevices=listDevices;
+				totalDevice.text="Tổng số trạm: "+ CurrentDevices.length.toString();
+				Pagination();
+				//set selected device
+				if(listDevices!=null&&listDevices.length>0)
+					setSelectedDevice(listDevices[0]);
+				//delete
+				Util.showNotifySuccess("Xoá bản ghi thành công");
+			});
+			//error
+			responder.onError.listen((Map error)
+			{
+				Util.showNotifyError(error["message"]);
+			}
+			);
+			//send to server
+			AppClient.sendMessage(request, AlarmServiceName.DeviceManagementService, AlarmServiceMethod.POST,responder);
 		}
+		
 	}
 	/**
      * @author :diennd
@@ -522,9 +558,9 @@ class FormDeviceNone extends PolymerElement
 	  listDevices=toObservable([]);
 		//get data
 		Map request = new Map();
-	  request["Method"] = "form_device_none_load";
-	  //Listen
-	  Responder responder = new Responder();
+		request["Method"] = "form_device_none_load";
+		//Listen
+		Responder responder = new Responder();
 		//success
 		responder.onSuccess.listen((Map response)
 		{

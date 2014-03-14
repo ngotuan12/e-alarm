@@ -1,43 +1,78 @@
 <polymer-element name="form-report-issue-by-area">
 <meta charset="UTF-8" />
-<link rel="stylesheet" href="jquery-ui.css" >
-<script src="//code.jquery.com/jquery-1.9.1.js"></script>
- <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-	  
 <template>
 <style>
 </style>
 
-
+<div class="innerLR">
 <div class="widget">
+	<div class="widget-head">
+		<h4 class="heading glyphicons list">
+			<i></i>Báo cáo trạng thái hoạt động
+		</h4>
+	</div>
+	<div class="widget-body">
+		<div class="row-fluid">
 
-<div class="widget-head">
-			<h4 class="heading glyphicons list">
-				<i></i>Báo cáo trạng thái hoạt động
-			</h4>
+			<!-- Column -->
+			<div class="span6">
+				<!-- Group -->
+				<div class="control-group">
+					<label class="control-label" for="firstname">Khu vực: </label>
+					<div class="controls">
+						<select id="selectorArea" class="span12"" >
+						</select>
+					</div>
+				</div>
+				<!-- // Group END -->
+				<!-- Group -->
+				<div class="control-group">
+					<label class="control-label" for="lastname">Từ ngày:</label>
+					<div class="controls">
+						<input type="date" id="dtFromDate" class="span12" />
+					</div>
+				</div>
+				<!-- // Group END -->
+			</div>
+			<!-- // Column END -->
+			<!-- Column -->
+			<div class="span6">
+				<!-- Group -->
+				<div class="control-group">
+					<label class="control-label" for="firstname">Phòng máy:</label>
+					<div class="controls">
+						<select id="selectorDevice" class="span12"" >
+						</select>
+						
+					</div>
+				</div>
+				<!-- // Group END -->
+				<!-- Group -->
+				<div class="control-group">
+					<label class="control-label" for="lastname">Đến ngày:</label>
+					<div class="controls">
+						<input type="date" id=dtToDate class="span12" />
+					</div>
+				</div>
+				<!-- // Group END -->
+			</div>
+			<!-- // Column END -->
 		</div>
-<div class="widget-body" style="padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 50px">
-
-	<span>Theo trạm: </span>
-	<select id="selectorDevice" class="span3" style="margin: 5px;" >
-	</select> 
-	<span>Từ ngày: </span>
-	<input type="date" id="txtDateStart" class="span3" style="margin: 5px;"/>
-	<span>Đến ngày: </span>
-	<input type="date" id="txtDateEnd" class="span3" style="margin: 5px;"/>
-	<div style="width: 120px; float: right;margin: 20px 0px 10px 0px;">
-	<button id="btnGetReport" class="btn btn-block btn-primary">Tải về</button>
+		<div class="form-actions" style="padding-left: 50px">
+			<button id="btnViewReport"
+				class="btn btn-icon btn-primary glyphicons circle_ok">
+				<i></i>Xem
+			</button>
+			<button id="btnGetReport"
+				class="btn btn-icon btn-primary glyphicons circle_ok">
+				<i></i>Tải về
+			</button>
+		</div>
 	</div>
-	
-	<div style="width: 120px; float: right; padding-right: 10px ;margin: 20px 0px 10px 0px;">
-	<button id="btnViewReport" class="btn btn-block btn-primary">Xem báo cáo</button>
-	</div>
-
-</div>
 </div>
 <!-- <iframe id="iframeReport" hidden="true" src="https://docs.google.com/file/d/0B3wCusJjGhqoWnhFNXJnSURlNXc/preview" width="100%" height="500px"></iframe> -->
 <iframe id="iframeReport" hidden="true" width="100%" height="500px"></iframe>
-
+</div>
 </template>
 
  <script type="application/dart" src="form_report_issue_by_area.dart">

@@ -4,6 +4,7 @@ dependencies:
   browser: any
   crypto: any
   google_maps: any
+  intl: any
   polymer: any
 transformers:
 - polymer:
