@@ -14,6 +14,7 @@ import com.ar.util.AppProcessor;
 import com.ar.util.AppServer;
 import com.ar.util.DataHolder;
 import com.ar.util.ReadSQLFile;
+import com.ar.util.Util;
 import com.fss.sql.Database;
 import com.fss.util.StringUtil;
 
@@ -40,6 +41,9 @@ public class ReportServiceBean extends AppProcessor
 				String issueLink = createIssueReportByArea();
 				response.put("FileOut",issueLink);
 				break;
+			case "form_report_issue_load":
+				formReportIssueLoad();
+				break;
 		}
 
 	}
@@ -48,7 +52,50 @@ public class ReportServiceBean extends AppProcessor
 	{
 
 	}
-	
+	/**
+	 * 
+	 * @throws Exception
+	 */
+	public void formReportIssueLoad() throws Exception
+	{
+		ResultSet rs = null;
+		PreparedStatement pstm = null;
+		String strSQL = "";
+		try 
+		{
+			strSQL = "SELECT * FROM device ";
+			//open connection
+			open();
+			//prepare
+			pstm = mcnMain.prepareStatement(strSQL);
+			//execute query
+			rs = pstm.executeQuery();
+			//put devices
+			response.put("devices", Util.convertToJSONArray(rs));
+			//close
+			rs.close();
+			pstm.close();
+			//
+			strSQL = "SELECT * FROM area WHERE level = 2 ";
+			//prepare
+			pstm = mcnMain.prepareStatement(strSQL);
+			//execute query
+			rs = pstm.executeQuery();
+			//put devices
+			response.put("areas", Util.convertToJSONArray(rs));
+		} 
+		catch (Exception ex) 
+		{
+			ex.printStackTrace();
+			throw ex;
+		}
+		finally
+		{
+			Database.closeObject(rs);
+			Database.closeObject(pstm);
+			close();
+		}
+	}
 	public String createDeviceReportByArea() throws Exception
 	{
 		ResultSet rs = null;
@@ -132,13 +179,34 @@ public class ReportServiceBean extends AppProcessor
 			open();
 			//get parameter
 			String strDeviceId = request.getString("device_id");
+			String strDeviceSQL = "";
+			String strAreaId = request.getString("area_id");
 			String strAreaSQL = "";
+			String strFromDate = request.getString("from_date");
+			String strFromDateSQL = "";
+			String strToDate = request.getString("to_date");
+			String strToDateSQL = "";
 			//set sql parameter
 			if(!strDeviceId.equals("ALL"))
 			{
-				strAreaSQL = " AND device_id ='"+strDeviceId+"' ";
+				strDeviceSQL = " AND b.device_id ='"+strDeviceId+"' ";
 			}
-			strSQL = strSQL.replaceAll("<%p_device_id%>", strAreaSQL);
+			if(!strAreaId.equals("ALL"))
+			{
+				strAreaSQL = " AND a.area_id ='"+strAreaId+"' ";
+			}
+			if(!strFromDate.equals(""))
+			{
+				strFromDateSQL = " AND b.issue_date >= STR_TO_DATE('"+strFromDate+"','%d/%m/%Y') ";
+			}
+			if(!strToDate.equals(""))
+			{
+				strToDateSQL = " AND b.issue_date <= STR_TO_DATE('"+strToDate+" 23:59:59','%d/%m/%Y %H:%i:%s') ";
+			}
+			strSQL = strSQL.replaceAll("<%p_device_id%>", strDeviceSQL);
+			strSQL = strSQL.replaceAll("<%p_area_id%>", strAreaSQL);
+			strSQL = strSQL.replaceAll("<%p_from_date%>", strFromDateSQL);
+			strSQL = strSQL.replaceAll("<%p_to_date%>", strToDateSQL);
 			//prepare statement
 			pstm = mcnMain.prepareStatement(strSQL);
 			//execute query

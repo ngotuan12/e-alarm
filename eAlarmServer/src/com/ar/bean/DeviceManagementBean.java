@@ -33,6 +33,9 @@ public class DeviceManagementBean extends AppProcessor
 		case "form_device_none_load":
 			formDeviceNoneLoad();
 			break;
+		case "form_device_none_delete":
+			deleteDevice();
+			break;
 		case "get_device_detail":
 			getDeviceDetail();
 			break;
@@ -46,7 +49,56 @@ public class DeviceManagementBean extends AppProcessor
 			throw new AppException("EAS-DV-MN-001", "API does not exists!");
 		}
 	}
-
+	/**
+	 * 
+	 */
+	public void deleteDevice() throws Exception
+	{
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+		String strSQL = "";
+		try
+		{
+			int iDeviceID = request.getInt("device_id");
+			//open
+			open();
+			//delete device issue
+			strSQL = "DELETE FROM device_command_log WHERE device_id = ? ";
+			pstm = mcnMain.prepareStatement(strSQL);
+			pstm.setInt(1, iDeviceID);
+			pstm.executeUpdate();
+			pstm.close();
+			//delete device issue
+			strSQL = "DELETE FROM device_issue WHERE device_id = ? ";
+			pstm = mcnMain.prepareStatement(strSQL);
+			pstm.setInt(1, iDeviceID);
+			pstm.executeUpdate();
+			pstm.close();
+			//delete device infor
+			strSQL = "DELETE FROM device_infor WHERE device_id = ? ";
+			pstm = mcnMain.prepareStatement(strSQL);
+			pstm.setInt(1, iDeviceID);
+			pstm.executeUpdate();
+			pstm.close();
+			//delete device
+			strSQL = "DELETE FROM device WHERE id = ? "; 
+			pstm = mcnMain.prepareStatement(strSQL);
+			pstm.setInt(1, iDeviceID);
+			pstm.executeUpdate();
+			pstm.close();
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			throw e;
+		}
+		finally
+		{
+			Database.closeObject(rs);
+			Database.closeObject(pstm);
+			close();
+		}
+	}
 	/**
 	 * @author TuanNA
 	 * @throws Exception
