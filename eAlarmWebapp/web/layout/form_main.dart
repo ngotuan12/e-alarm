@@ -704,20 +704,20 @@ class FormMain extends PolymerElement
 			divContent.style.color="#000";
 			divContent.style.fontFamily="Arial";
 			divContent.style.width="100%";
-					//header
-					DivElement divContentHeader=new DivElement();
-					divContentHeader.style.width="100%";
-					divContentHeader.style.float="left";
-					divContentHeader.innerHtml='<p class="l_h_header">Thông tin cảm biến</p>';
-					//content
-					DivElement divContentContent=new DivElement();
-					divContentContent.id="divStatuSensor";
-					divContentContent.style.color="#000";
-					divContentContent.style.fontFamily="Arial";
-					divContentContent.style.height="73%";
-					divContentContent.style.width="100%";
-					//infor
-					//divFooter
+			//header
+			DivElement divContentHeader=new DivElement();
+			divContentHeader.style.width="100%";
+			divContentHeader.style.float="left";
+			divContentHeader.innerHtml='<p class="l_h_header">Thông tin cảm biến</p>';
+			//content
+			DivElement divContentContent=new DivElement();
+			divContentContent.id="divStatuSensor";
+			divContentContent.style.color="#000";
+			divContentContent.style.fontFamily="Arial";
+			divContentContent.style.height="73%";
+			divContentContent.style.width="100%";
+			//infor
+			//divFooter
 			DivElement divFooter=new DivElement();
 			divFooter.style.width="100%";
 			divFooter.style.fontFamily="Arial";
@@ -732,44 +732,56 @@ class FormMain extends PolymerElement
 			pAlert.className="l_h_header";
 			pAlert.text="Cảnh báo";
 			divFooter.children.add(pAlert);
-					if(dev !=null)
+			if(device["status"]=="0")
+			{
+				Element pInfor=new Element.p();
+				p.style.width="100%";
+				pInfor.className="l_h_alert";
+				pInfor.text="Mất kết nối với server !!!";
+				divFooter.children.add(pInfor);
+			}
+			if(dev !=null)
+			{
+				for(int i=0;i<dev.length;i++)
+				{
+					DivElement divContentContentleft=new DivElement();
+					divContentContentleft.style.float="left";
+					divContentContentleft.style.width="50%";
+					divContentContentleft.innerHtml='<p class="l_h_status">' + dev[i]['name'].toString();
+					//add text
+					DivElement divContentContentRight=new DivElement();
+					divContentContentRight.style.width="50%";
+					divContentContentRight.style.float="left";
+					//check status_alarm
+					if(device["status"]=="0")
 					{
-						for(int i=0;i<dev.length;i++)
-						{
-							DivElement divContentContentleft=new DivElement();
-							divContentContentleft.style.float="left";
-							divContentContentleft.style.width="50%";
-							divContentContentleft.innerHtml='<p class="l_h_status">' + dev[i]['name'].toString();
-							//add text
-							DivElement divContentContentRight=new DivElement();
-							divContentContentRight.style.width="50%";
-							divContentContentRight.style.float="left";
-							//check status_alarm
-							if(dev[i]['alarm_status']=="0")
-							{
-								divContentContentRight.innerHtml='<p class="l_h_status_error">' + dev[i]['value'].toString()+' '+dev[i]['symbol'];
-								//show alert
-								Element pInfor=new Element.p();
-								p.style.width="100%";
-								pInfor.className="l_h_alert";
-								if(dev[i]['value']<dev[i]['min_alarm'])
-									pInfor.text=dev[i]['name'].toString()+" thấp !!!";
-								else if(dev[i]['value']>=dev[i]['max_alarm'])
-										pInfor.text=dev[i]['name'].toString()+" cao !!!";
-								divFooter.children.add(pInfor);
-							}
-							else
-							{
-								divContentContentRight.innerHtml='<p class="l_h_status_good">' + dev[i]['value'].toString()+' '+dev[i]['symbol'];
-							}
-							divContentContent.children.add(divContentContentleft);
-							divContentContent.children.add(divContentContentRight);
-						}
+						divContentContentRight.innerHtml='<p class="l_h_status_good">' + "--"+' '+dev[i]['symbol'];
 					}
-					//add div
-					divContent.children.add(divContentHeader);
-					divContent.children.add(divContentContent);
-					divScroll.children.add(divContent);
+					else if(dev[i]['alarm_status']=="0")
+					{
+						divContentContentRight.innerHtml='<p class="l_h_status_error">' + dev[i]['value'].toString()+' '+dev[i]['symbol'];
+						//show alert
+						Element pInfor=new Element.p();
+						p.style.width="100%";
+						pInfor.className="l_h_alert";
+						if(dev[i]['value']<dev[i]['min_alarm'])
+							pInfor.text=dev[i]['name'].toString()+" thấp !!!";
+						else if(dev[i]['value']>=dev[i]['max_alarm'])
+								pInfor.text=dev[i]['name'].toString()+" cao !!!";
+						divFooter.children.add(pInfor);
+					}
+					else
+					{
+						divContentContentRight.innerHtml='<p class="l_h_status_good">' + dev[i]['value'].toString()+' '+dev[i]['symbol'];
+					}
+					divContentContent.children.add(divContentContentleft);
+					divContentContent.children.add(divContentContentRight);
+				}
+			}
+			//add div
+			divContent.children.add(divContentHeader);
+			divContent.children.add(divContentContent);
+			divScroll.children.add(divContent);
 			//clear
 			DivElement divClear=new DivElement();
 			divClear.className="Clear";
