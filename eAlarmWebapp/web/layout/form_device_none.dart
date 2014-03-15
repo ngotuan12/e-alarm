@@ -227,7 +227,7 @@ class FormDeviceNone extends PolymerElement
 		//img status
 		if(device["status"]=="0")
 		{
-			strImgStatus = "<img class=\"l_h_content_img\" style=\"margin:-3px 0px 0px 10px\" src=\"style/icons/ic_gray.png\" alt=\"blue\">";
+			strImgStatus = "<img class=\"l_h_content_img\" style=\"margin:-3px 0px 0px 10px\" src=\"style/icons/marker_gray.png\" alt=\"blue\">";
 		}
 		else if(device["status"]=="1")
 		{
@@ -364,6 +364,7 @@ class FormDeviceNone extends PolymerElement
 	 */
 	void initWebsocket()
 	{
+		
 		AppClient.connectWebsocket();
 		AppClient.websocket.onMessage.listen((MessageEvent e) {
 			try
