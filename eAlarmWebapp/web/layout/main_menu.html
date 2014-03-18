@@ -12,6 +12,7 @@
 <link rel="import" href="form_user.html">
 <link rel="import" href="form_gateway.html">
 <link rel="import" href="form_gateway_device.html">
+<link rel="import" href="form_device_property.html">
 <polymer-element name="main-menu">
 <meta charset="UTF-8" />
 <template> <!-- Main Container Fluid -->
@@ -135,6 +136,9 @@
 			</template>
 			<template if="{{currentAction == 'FORM_GATEWAY_DEVICE_COMMAND'}}"> 
 				<form-gateway-device></form-gateway-device>
+			</template>
+			<template if="{{currentAction == 'FORM_DEVICE_PROPERTY'}}"> 
+				<form-device-property></form-device-property>
 			</template>
 		</div>
 		<!-- // Content END -->

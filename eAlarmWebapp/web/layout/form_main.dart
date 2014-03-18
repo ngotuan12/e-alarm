@@ -194,7 +194,7 @@ class FormMain extends PolymerElement
 		{
 			String code = infors.keys.elementAt(i);
 			num value = infors[infors.keys.elementAt(i)];
-			print(infors.keys.elementAt(i)+infors[infors.keys.elementAt(i)].toString());
+//			print(infors.keys.elementAt(i)+infors[infors.keys.elementAt(i)].toString());
 			for(int j=0;j < properties.length;j++)
 			{
 				Map element = properties[j];
@@ -215,6 +215,9 @@ class FormMain extends PolymerElement
 		}
 		currentDevice["status"] = deviceStatus;
 		popupWindow.content = createContent(currentDevice, properties);
+		//
+		
+		//updateMap()
 	}
 	/**
 	 * 
@@ -609,7 +612,7 @@ class FormMain extends PolymerElement
 		Responder devResponder = new Responder();
 		devResponder.onSuccess.listen((Map res)
 		{
-			print(res.toString());
+		//	print(res.toString());
 			properties = res['properties'];
 			popupWindow.content = createContent(device, properties);
 			currentDevice = device;
