@@ -1,0 +1,107 @@
+<polymer-element name="form-device-property-none">
+<meta charset="UTF-8" /> 
+<template>
+<div class="innerLR">
+	<!-- Widget -->
+	<div class="widget">
+
+		<!-- Widget heading -->
+		<div class="widget-head">
+			<h4 class="heading glyphicons list"><i></i>Các chức năng kiểm tra/điều khiển</h4>
+		</div>
+		<div class="widget-body">
+			<!-- Filters -->
+			<div class="filter-bar">
+				<form>
+			<!-- Min -->
+				<div>
+					<label>Theo khu vực:</label>
+					<select name="from" id="selAreaSearch" style="width: 100px;">
+						<option value="-1">Tất cả</option>
+						<option value="-1">Tất cả</option>
+						<option value="-1">Tất cả</option>
+						<option value="-1">Tất cả</option>
+					</select>
+				</div>
+			<!-- // Min END -->
+			<!-- Max -->
+				<div>
+					<label>Theo tên:</label>
+					<div class="input-append">
+						<input type="text" id="txtCodeSearch" style="width: 150px;" value="" placeholder="Tìm theo tên" />
+						<span class="add-on glyphicons search"><i></i></span>
+					</div>
+				</div>
+			<!-- // Max END -->
+			<!-- Select -->
+			<div>
+			<label>Theo tình trạng:</label>
+			<select name="from" id="selStatusSearch" style="width: 100px;">
+				<option value="-1">Tất cả</option>
+				<option value="1">Mất kết nối</option>
+				<option value="0">Sự cố</option>
+			</select>
+			</div>
+			<!-- // Select END -->
+			<div class="clearfix"></div>
+			</form>
+			</div>
+			<!-- // Filters END -->
+			<!-- Products table -->
+			<table
+				class="table table-bordered table-condensed table-primaries table-vertical-center">
+				<thead>
+					<tr>
+						<th class="center" style="width: 20%;">Tên phòng máy</th>
+						<th class="center" style="width: 20%;">Tên phòng máy</th>
+						<th class="center" style="width: 20%;">Tên phòng máy</th>
+						<th class="center" style="width: 20%;">Tên phòng máy</th>
+						<th class="center" style="width: 20%;">Tên phòng máy</th>
+					</tr>
+				</thead>
+				<tbody id="ListDevices">
+
+				</tbody>
+			</table>
+
+			<div class="separator top form-inline small">
+
+				<!-- Pagination -->
+				<div class="pagination pagination-small pull-right"
+					style="margin: 0;">
+					<ul id="pagination">
+					</ul>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+			<!-- // Options END -->
+
+		</div>
+	</div>
+	<div class="widget widget-tabs" style="width: 100%;min-height:300px; float: left;">
+		<!-- Tabs Heading -->
+		<div class="widget-head">
+			<ul id="widgetHead">
+			</ul>
+		</div>
+		<!-- // Tabs Heading END -->
+		
+		<div class="widget-body">
+			<div class="tab-content" id="widgetContent">
+		
+			</div>
+	</div>
+	</div>
+<!-- 	<div class="widget" style="width: 24%;min-height: 300px; float: right;">
+		Widget heading
+		<div class="widget-head">
+			<h4 class="heading glyphicons list"><i></i>Thông số khác</h4>
+		</div>
+		<div class="widget-body" style="padding: 10px;">
+		</div>
+	</div> -->
+	<!-- // Widget END -->
+</template>
+	<script type="application/dart" src="form_device_property_none.dart">
+	</script> 
+</polymer-element>
